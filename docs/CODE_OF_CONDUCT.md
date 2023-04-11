@@ -12,6 +12,8 @@
 ### Revisioni tra pari
 - Sarò professionale e pieno di tatto quando fornirò commenti di recensione.
 - Sarò aperto a ricevere feedback quando altri recensiranno il mio lavoro.
+- Darò priorità alle critiche costruttive rispetto a quelle negative.
+- Rivedrò a fondo il lavoro del mio team prima di fornire un feedback.
 ### Scrittura di codice
 - Mi esprimerò attraverso il codice.
 - Aggiungerò commenti al codice solo se non sono riuscito ad esprimermi attraverso il codice.
