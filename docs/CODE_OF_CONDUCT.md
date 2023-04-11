@@ -1,20 +1,20 @@
-**This post defines a code of conduct that I try to adhere to on a Scrum team.**
+**Questo post definisce un codice di condotta a cui cerco di aderire in un team Scrum.**
 
-### Team participation
-- Fixing my team's broken builds is my highest priority.
-- Participating in my team's code reviews is my second highest priority.
-- Improving my team's velocity is more important than improving my individual velocity.
-- I will not be late for team meetings.
-- I will ask for help when I need it.
-- I will provide help when asked.
-- I will be honest at all times.
-- If I don't believe something is possible I will say so without hesitation.
-### Peer reviews
-- I will be professional and tactful when providing review comments.
-- I will be open to receiving feedback when others review my work.
-### Writing code
-- I will express myself through code.
-- I will add comments to code only if I have failed to express myself through code.
-- I will write code that adheres to my team's formatting and style conventions.
-- I will not submit production code without thorough in-memory unit tests.
-- I will not submit code that causes any tool to emit a warning.
+### Partecipazione del team
+- Riparare le build rotte del mio team è la mia massima priorità.
+- Partecipare alle revisioni del codice del mio team è la mia seconda priorità.
+- Migliorare la velocità della mia squadra è più importante che migliorare la mia velocità individuale.
+- Non sarò in ritardo per le riunioni del team.
+- Chiederò aiuto quando ne avrò bisogno.
+- Fornirò aiuto quando richiesto.
+- Sarò onesto in ogni momento.
+- Se non credo che qualcosa sia possibile lo dirò senza esitazione.
+### Revisioni tra pari
+- Sarò professionale e pieno di tatto quando fornirò commenti di recensione.
+- Sarò aperto a ricevere feedback quando altri recensiranno il mio lavoro.
+### Scrittura di codice
+- Mi esprimerò attraverso il codice.
+- Aggiungerò commenti al codice solo se non sono riuscito ad esprimermi attraverso il codice.
+- Scriverò codice che aderisca alle convenzioni di formattazione e stile del mio team.
+- Non presenterò codice di produzione senza test unitari approfonditi in memoria.
+- Non invierò codice che induca qualsiasi strumento a emettere un avviso.
