@@ -6,7 +6,8 @@ La struttura della repository si presenta nel seguente modo:
 ```plaintext
 |-- .github
 |    |-- workflows
-|    |      |-- ingsw2223.yml
+|    |      |-- docker_build&push.yml
+|    |      |-- gradle_build.yml
 |-- build
 |    |-- reports
 |    |      |-- checkstyle
