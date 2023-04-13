@@ -6,7 +6,7 @@ La struttura della repository si presenta nel seguente modo:
 ```plaintext
 |-- .github
 |    |-- workflows
-|    |      |-- ingsw2122.yml
+|    |      |-- ingsw2223.yml
 |-- build
 |    |-- reports
 |    |      |-- checkstyle
