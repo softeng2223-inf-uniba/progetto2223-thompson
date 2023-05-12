@@ -16,72 +16,19 @@ I componenti del gruppo sono:
 ### 3.1 Requisiti funzionali
 
 <ul>
-<li> <p><strong>Come giocatore voglio mostrare l'help con elenco comandi</strong><br>
+<li> <p><strong>Come giocatore voglio mostrare l'help con elenco comandi</strong><br></p></li>
 
-**_Criteri di accettazione_**<br>
-Al comando **/help**<br> 
-o invocando l'app con flag _--help_ o _-h_
+<li> <p><strong>Come giocatore voglio chiudere il gioco</strong><br></p></li>
 
-il risultato è una descrizione concisa, che normalmente appare all'avvio del programma, seguita dalla lista di comandi disponibili, uno per riga, come da esempio successivo:<br>
-•	gioca<br>
-•	esci<br>
-•	...<br></p></li>
+<li> <p><strong>Come giocatore voglio impostare il livello di gioco per variare il numero massimo di tentativi sbagliati</strong><br></p></li>
 
-<li> <p><strong>Come giocatore voglio chiudere il gioco</strong><br>
+<li> <p><strong>Come giocatore voglio mostrare il livello di gioco e il numero di massimo di tentativi falliti</strong><br></p></li>
 
-**_Criteri di accettazione_**<br>
-Al comando **/esci**<br>
+<li> <p><strong>Come giocatore voglio mostrare i tipi di nave e i numeri</strong><br></p></li>
 
-l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti <br>
-•	se la conferma è positiva, l'applicazione si chiude resituendo il controllo al sistema operativo<br>
-•	se la conferma è negativa, l'applicazione si predispone a ricevere nuovi tentativi o comandi<br></p></li>
+<li> <p><strong>Come giocatore voglio iniziare una nuova partita</strong><br></p></li>
 
-<li> <p><strong>Come giocatore voglio impostare il livello di gioco per variare il numero massimo di tentativi sbagliati</strong><br>
-
-**_Criteri di accettazione_**<br>
-Al comando **/facile**<br> 
-
-l’applicazione risponde con OK e imposta a 50 il numero massimo di tentativi falliti.<br>
-
-Al comando **/medio**<br>
-
-l’applicazione risponde con OK e imposta a 30 il numero massimo di tentativi falliti.<br>
-
-Al comando **/difficile**<br>
-
-l’applicazione risponde con OK e imposta a 10 il numero massimo di tentativi falliti.<br></p></li>
-
-<li> <p><strong>Come giocatore voglio mostrare il livello di gioco e il numero di massimo di tentativi falliti</strong><br>
-
-**_Criteri di accettazione_**<br>
-Al comando **/mostralivello**<br>
-
-l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti.<br></p></li>
-
-<li> <p><strong>Come giocatore voglio mostrare i tipi di nave e i numeri</strong><br>
-
-**_Criteri di accettazione_**<br>
-Al comando **/mostranavi**<br>
-
-l’applicazione risponde visualizzando, per ogni tipo di nave, la dimensione in quadrati e il numero di esemplari da affondare:<br>
-•	Cacciatorpediniere 	⊠⊠             esemplari: 4 <br>
-•	Incrociatore 		⊠⊠⊠           esemplari: 3 <br>
-•	Corazzata 		    ⊠⊠⊠⊠          esemplari: 2 <br>
-•	Portaerei  		    ⊠⊠⊠⊠⊠        esemplari: 1 <br></p></li>
-
-<li> <p><strong>Come giocatore voglio iniziare una nuova partita</strong><br>
-
-**_Criteri di accettazione_**<br>
-Al comando **/gioca**<br>
-
-se nessuna partita è in corso l'applicazione imposta causalmente le navi, in orizzontale o in verticale, mostra la griglia vuota e si predispone a ricevere il primo tentativo o altri comandi.<br></p></li>
-
-<li> <p><strong>Come giocatore voglio svelare la griglia con le navi posizionate</strong><br>
-
-**_Criteri di accettazione_**<br>
-Al comando **/svelagriglia**<br>
-
-l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate da 1 a 10 e le colonne numerate da A a J, e tutte le navi posizionate.<br></p></li>
+<li> <p><strong>Come giocatore voglio svelare la griglia con le navi posizionate</strong><br></p></li>
 
 </ul>
 
