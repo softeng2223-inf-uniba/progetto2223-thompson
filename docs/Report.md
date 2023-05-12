@@ -50,6 +50,14 @@ Dopo aver eseguito il comando docker pull copiandolo da GitHub Packages, Il coma
 </p></li>
 </ul>
 
+## 7 Manuale utente
+Il gioco si svolge su una griglia, dove il sistema posiziona in modo casuale le navi all'inizio di una partita. L'obiettivo del giocatore è quello di indovinare la posizione delle navi nemiche e cercare di affondarle attaccando le caselle della griglia.
+Il gioco termina quando tutte le navi nemiche sono state affondate o quando si esauriscono le mosse disponibili. Il numero di mosse disponibili dipende dalla modalità di gioco scelta, che può essere facile, media o difficile. Il giocatore vince se 
+affonda tutte le navi prima di esaurire le mosse.
+<br>
+Per interagire con il gioco, viene utilizzata l'interfaccia a riga di comando (CLI). In seguito si riporta l'elenco dei comandi utilizzabili:
+
+
 ## 9 Analisi retrospettiva
 
 ### 9.1 Sprint 0
