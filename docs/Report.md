@@ -49,3 +49,9 @@ Dopo aver eseguito il comando docker pull copiandolo da GitHub Packages, Il coma
 
 </p></li>
 </ul>
+
+## 9 Analisi retrospettiva
+
+### 9.1 Sprint 0
+   
+![Retrospective_Mad_Sad_Glad_Template](./img/Retrospective_Mad_Sad_Glad_Template.jpg)      
