@@ -11,6 +11,9 @@ I componenti del gruppo sono:
 - Emanuele Russo
 - Roberto Rotunno
 
+## 2 Modello di dominio
+![modelloDiDomino](./img/modelloDiDominio.png)
+
 ## 3 Requisiti specifici
 
 ### 3.1 Requisiti funzionali
