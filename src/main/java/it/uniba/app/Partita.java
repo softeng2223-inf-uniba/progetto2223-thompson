@@ -79,7 +79,7 @@ public class Partita {
     /**
      * Method for change difficulty
      */
-    private void setDifficulty(final Command.command) {
+    private void setDifficulty(final Command command) {
         if (isInGame) {
             System.out.println("E' in corso una partita, non puoi cambiare difficoltà");
         } else {
