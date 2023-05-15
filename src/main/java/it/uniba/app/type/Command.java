@@ -97,7 +97,7 @@ public enum Command {
     }
 
     /**
-     * Description getter
+     * Description getter.
      * @return destription
      */
     public String getDescription() {

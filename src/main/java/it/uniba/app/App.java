@@ -6,6 +6,15 @@ package it.uniba.app;
 public abstract class App {
 
     /**
+     * Get a greeting sentence.
+     *
+     * @return the "Hello World!" string.
+     */
+    public String getGreeting() {
+        return "Hello World!!!";
+    }
+
+    /**
      * Entrypoint of the application.
      *
      * @param args command line arguments

@@ -2,7 +2,7 @@ package it.uniba.app.grid;
 
 import it.uniba.app.grid.type.Cell;
 /**
- * Class to generate and handle the grid .
+ * Class to generate and handle the grid.
  */
 public class Grid {
     /**
@@ -14,7 +14,6 @@ public class Grid {
      * Constant number of columns.
      */
     private static final int MAXCOLUMN = 10;
-    
     /**
      * It represents the game grid.
      */
