@@ -3,7 +3,7 @@ package it.uniba.app;
 /**
  * Main class of the application.
  */
-public abstract class App {
+public final class App {
 
     /**
      * Get a greeting sentence.
