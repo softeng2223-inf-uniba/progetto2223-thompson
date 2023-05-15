@@ -52,11 +52,11 @@ public class Partita {
         } else if (command.containsKey(Command.EXIT) && command.get(Command.EXIT).isEmpty()) {
             closeGame();
         } else if (command.containsKey(Command.EASY) && command.get(Command.EASY).isEmpty()) {
-            setDifficulty(command);
+            setDifficulty(Command.EASY);
         } else if (command.containsKey(Command.MEDIUM) && command.get(Command.MEDIUM).isEmpty()) {
-            setDifficulty(command);
+            setDifficulty(Command.MEDIUM);
         } else if (command.containsKey(Command.HARD) && command.get(Command.HARD).isEmpty()) {
-            setDifficulty(command);
+            setDifficulty(Command.HARD);
         } else {
             System.out.println("Comando non valido");
         }
