@@ -8,16 +8,24 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
- * @author Utente
+ * Class to parse command.
  */
 public abstract class Parser {
-
+    /**
+     * Method to split the string into tokens.
+     * @param command String to split
+     * @return List with tokens
+     */
     public static List<String> getTokens(final String command) {
         String[] arrayTokens = command.toLowerCase().split("\\s+");
         return Arrays.asList(arrayTokens);
     }
 
+    /**
+     * Method fo convert string to command.
+     * @param command Command string
+     * @return Map with Command as key and its list of argument as value
+     */
     public static Map<Command, List<String>> parse(final String command) {
         Map<Command, List<String>> result = new HashMap<>();
         List<String> tokens = new ArrayList<>(getTokens(command));

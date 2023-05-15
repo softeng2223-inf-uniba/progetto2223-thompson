@@ -1,14 +1,14 @@
 package it.uniba.app;
 
 /**
- * Classe main dell'applicazione.
+ * Main class of the application.
  */
 public abstract class App {
 
     /**
-     * Entrypoint dell'applicazione.
+     * Entrypoint of the application.
      *
-     * @param args comandi da linea di comand
+     * @param args command line arguments
      */
     public static void main(final String[] args) {
         Partita partita = new Partita();

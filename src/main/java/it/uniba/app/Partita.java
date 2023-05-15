@@ -8,13 +8,19 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
- *
- * @author Utente
+ * Class that interprets commands.
  */
+
 public class Partita {
 
+    /**
+     * Grid of the current match.
+     */
     private Grid grid;
 
+    /**
+     * Method for starting a game.
+     */
     public final void execute() {
         System.out.println("================================");
         System.out.println("*   Battleship  -  2022/2023   *");
@@ -26,6 +32,9 @@ public class Partita {
         }
     }
 
+    /**
+     * Method for execute a command.
+     */
     private void executeCommand(final Map<Command, List<String>> command) {
         if (command == null) {
             System.out.println("Comando non riconosciuto");
@@ -36,6 +45,9 @@ public class Partita {
         }
     }
 
+    /**
+     * Method for close the application.
+     */
     private void closeGame() {
         Scanner scanner = new Scanner(System.in, "UTF-8");
         System.out.println("Chiudere il gioco? [Y/N]");
