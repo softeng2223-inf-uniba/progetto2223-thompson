@@ -1,25 +1,17 @@
 package it.uniba.app;
 
 /**
- * Main class of the application.
+ * Classe main dell'applicazione.
  */
-public final class App {
+public abstract class App {
 
     /**
-     * Get a greeting sentence.
+     * Entrypoint dell'applicazione.
      *
-     * @return the "Hello World!" string.
-     */
-    public String getGreeting() {
-        return "Hello World!!!";
-    }
-
-    /**
-     * Entrypoint of the application.
-     *
-     * @param args command line arguments
+     * @param args comandi da linea di comand
      */
     public static void main(final String[] args) {
-        System.out.println(new App().getGreeting());
+        Partita partita = new Partita();
+        partita.execute();
     }
 }
