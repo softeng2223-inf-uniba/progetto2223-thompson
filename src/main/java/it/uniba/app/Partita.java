@@ -1,5 +1,6 @@
 package it.uniba.app;
 
+import it.uniba.app.grid.Grid;
 import it.uniba.app.parser.Parser;
 import it.uniba.app.type.Command;
 import java.util.List;
@@ -11,6 +12,8 @@ import java.util.Scanner;
  * @author Utente
  */
 public class Partita {
+
+    private Grid grid;
 
     public final void execute() {
         System.out.println("================================");
