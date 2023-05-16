@@ -35,4 +35,21 @@ public enum Difficulty {
     public int getTries() {
         return tries;
     }
+
+    /**
+     * This method return a string that contains the level difficulty in italian.
+     */
+    @Override
+    public String toString() {
+        String difficulty="";
+        if(null!=this) switch (this) {
+            case HARD -> difficulty="difficile";
+            case MEDIUM -> difficulty="medio";
+            case EASY -> difficulty="facile";
+            default -> {
+            }
+        }
+        return difficulty; 
+    }
+
 }
