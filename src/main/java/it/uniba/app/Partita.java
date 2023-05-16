@@ -57,6 +57,8 @@ public class Partita {
             setDifficulty(Command.MEDIUM);
         } else if (command.containsKey(Command.HARD) && command.get(Command.HARD).isEmpty()) {
             setDifficulty(Command.HARD);
+        } else if (command.containsKey(Command.SHOW_LEVEL) && command.get(Command.SHOW_LEVEL).isEmpty()) {
+            showLevel();
         } else {
             System.out.println("Comando non valido");
         }
@@ -92,5 +94,13 @@ public class Partita {
             }
             System.out.println("OK");
         }
+    }
+
+    /**
+     * this method display level and maximum tries to users.
+     */
+    private void showLevel(){
+        System.out.print("Livello di difficoltà: "+gameDifficulty.toString());
+        System.out.print(", numero massimo di tentativi: "+gameDifficulty.getTries());
     }
 }
