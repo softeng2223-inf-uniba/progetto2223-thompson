@@ -103,4 +103,35 @@ public class Partita {
         System.out.print("Livello di difficoltà: "+gameDifficulty.toString());
         System.out.print(", numero massimo di tentativi: "+gameDifficulty.getTries());
     }
+
+    /**
+     * Controls the value of a flag based on command line arguments.
+     *
+     * @param args The command line arguments.
+     * @param flag The initial value of the flag.
+     * @return The updated value of the flag based on the command line
+     * arguments. If the flag is set to true, it means the help flag was
+     * specified. If the flag is set to false, it means no help flag was
+     * specified.
+     * @throws RuntimeException If there are too many command line arguments or
+     * an invalid flag is specified.
+     */
+    public boolean controlFlag(final String[] args) {
+        boolean flag = false;
+        if (args.length > 1) {
+            System.out.print("ERRORE: Sono stati inseriti troppi flag all'avvio!");
+            System.out.println(" Riprova inserendone solo uno.");
+            Runtime.getRuntime().exit(0);
+        } else if (args.length == 1) {
+            if (args[0].equals("-h") || args[0].equals("--help")) {
+                flag = true;
+            } else {
+                System.out.println("ERRORE: Flag non valido, riprova con -h oppure --help \n");
+                Runtime.getRuntime().exit(0);
+            }
+        } else {
+            flag = false;
+        }
+        return flag;
+    }
 }
