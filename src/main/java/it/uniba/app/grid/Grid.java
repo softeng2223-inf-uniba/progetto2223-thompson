@@ -1,10 +1,16 @@
 package it.uniba.app.grid;
 
 import it.uniba.app.grid.type.Cell;
+import it.uniba.app.grid.type.Row;
+import java.util.Random;
 /**
  * Class to generate and handle the grid.
  */
 public class Grid {
+    /**
+     * Used for generate random elements.
+     */
+    private static final Random RAND = new Random();
     /**
      * Constant number of rows.
      */
@@ -35,5 +41,19 @@ public class Grid {
             }
         }
         this.totalShips = 0;
+    }
+
+    /**
+     * Method to generate a random row.
+     */
+    private Row generateRandomRow() {
+        return Row.fromInt(RAND.nextInt(MAXROW));
+    }
+
+    /**
+     * Method to generate a random column.
+     */
+    private int generateRandomColumn() {
+        return RAND.nextInt(MAXCOLUMN);
     }
 }
