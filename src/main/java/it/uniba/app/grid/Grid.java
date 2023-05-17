@@ -5,7 +5,12 @@ import it.uniba.app.grid.type.Coordinate;
 import it.uniba.app.grid.type.Row;
 import it.uniba.app.ship.Ship;
 import it.uniba.app.ship.Direction;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
+
 /**
  * Class to generate and handle the grid.
  */
@@ -32,6 +37,10 @@ public class Grid {
      * Number of total ships placed.
      */
     private int totalShips;
+    /**
+     * Dictionary that contains the ships with their coordinates.
+     */
+    private final Map<Ship, Map<Integer, List<Coordinate>>> ships;
 
     /**
      * Grid constructor.
@@ -44,6 +53,13 @@ public class Grid {
             }
         }
         this.totalShips = 0;
+        this.ships = new HashMap<>();
+        for (Ship s : Ship.values()) {
+            ships.put(s, new HashMap<>());
+            for (int i = 0; i < s.getnShips(); i++) {
+                ships.get(s).put(i, new LinkedList<>());
+            }
+        }
     }
 
     /**
@@ -61,10 +77,56 @@ public class Grid {
     }
 
     /**
+     * Method that adds ships to the dictionary with their coordinates.
+     * 
+     * @param ship
+     * @param nShip
+     * @param direction
+     * @param coord
+     */
+    private void addShips(final Ship ship, final int nShip, final Direction direction, final Coordinate coord) {
+        if (direction != null) {
+            switch (direction) {
+                case LEFT -> {
+                    for (int i = 0; i < ship.getSize(); i++) {
+                        int row = coord.getRow().ordinal();
+                        int column = coord.getColumn() - i + 1;
+                        ships.get(ship).get(nShip).add(new Coordinate(Row.fromInt(row), column));
+                    }
+                }
+                case RIGHT -> {
+                    for (int i = 0; i < ship.getSize(); i++) {
+                        int row = coord.getRow().ordinal();
+                        int column = coord.getColumn() + i + 1;
+                        ships.get(ship).get(nShip).add(new Coordinate(Row.fromInt(row), column));
+                    }
+                }
+                case UP -> {
+                    for (int i = 0; i < ship.getSize(); i++) {
+                        int row = coord.getRow().ordinal() - i;
+                        int column = coord.getColumn() + 1;
+                        ships.get(ship).get(nShip).add(new Coordinate(Row.fromInt(row), column));
+                    }
+                }
+                case DOWN -> {
+                    for (int i = 0; i < ship.getSize(); i++) {
+                        int row = coord.getRow().ordinal() + i;
+                        int column = coord.getColumn() + 1;
+                        ships.get(ship).get(nShip).add(new Coordinate(Row.fromInt(row), column));
+                    }
+                }
+                default -> {
+                }
+            }
+        }
+    }
+
+    /**
      * Method to check if we can place a ship in a given coordinate.
+     * 
      * @param direction direction of ship
      * @param dimension dimension of ship
-     * @param coord coordinate where to place the ship
+     * @param coord     coordinate where to place the ship
      * @return true if can be placed else false
      */
     private boolean canPlaceShip(final Direction direction, final int dimension, final Coordinate coord) {
@@ -125,9 +187,10 @@ public class Grid {
 
     /**
      * Method to place ships in the grid.
+     * 
      * @param direction direction of the ship
-     * @param ship ship to place
-     * @param coord initial coordinate
+     * @param ship      ship to place
+     * @param coord     initial coordinate
      */
     private void placeShip(final Direction direction, final Ship ship, final Coordinate coord) {
         if (direction != null) {
@@ -172,11 +235,13 @@ public class Grid {
                 direction = Direction.randomDirection();
                 if (canPlaceShip(direction, s.getSize(), coord)) {
                     placeShip(direction, s, coord);
+                    addShips(s, i, direction, coord);
                     totalShips += 1;
                 } else {
                     direction = direction.rotate();
                     if (canPlaceShip(direction, s.getSize(), coord)) {
                         placeShip(direction, s, coord);
+                        addShips(s, i, direction, coord);
                         totalShips += 1;
                     } else {
                         i--;
@@ -188,9 +253,27 @@ public class Grid {
 
     /**
      * TotalShips getter.
+     * 
      * @return totalships
      */
     public final int getTotalShips() {
         return totalShips;
     }
+
+    /**
+     * Method to display remaing ships.
+     */
+    public final void showShips() {
+        for (Ship ship : ships.keySet()) {
+            System.out.print(ship.toString() + " ");
+            for (int i = 0; i < ship.getSize(); i++) {
+                System.out.print("X");
+            }
+
+            System.out.print(" " + ships.get(ship).size());
+            System.out.print(" Da affondare su " + ship.getnShips() + " Totali ");
+            System.out.println();
+        }
+    }
+
 }
