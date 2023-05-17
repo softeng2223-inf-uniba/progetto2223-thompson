@@ -1,5 +1,6 @@
 package it.uniba.app.grid.type;
 
+import it.uniba.app.ship.Ship;
 
 /**
  * Class to manage cells of grid.
@@ -12,10 +13,16 @@ public final class Cell {
     private State state;
 
     /**
+     * The ship of the current cell.
+     */
+    private Ship ship;
+
+    /**
      * Cell constructor. Set the state to void.
      */
     public Cell() {
         this.state = State.VOID;
+        this.ship = null;
     }
 
     /**
@@ -40,5 +47,22 @@ public final class Cell {
      */
     public boolean isEmpty() {
         return getState() == State.VOID;
+    }
+
+    /**
+     * Ship getter.
+     * @return ship
+     */
+    public Ship getShip() {
+        return ship;
+    }
+
+    /**
+     * Ship setter.
+     * @param valShip ship to set
+     */
+    public void setShip(final Ship valShip) {
+        this.ship = valShip;
+        setState(State.SHIP);
     }
 }
