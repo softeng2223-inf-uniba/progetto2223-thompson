@@ -50,7 +50,7 @@ public class Partita {
     /**
      * Method for starting a game.
      */
-    public final void execute() {
+    public final void execute(boolean flag) {
         System.out.println(WELCOME_MESSAGE);
         if (flag) {
             help();
