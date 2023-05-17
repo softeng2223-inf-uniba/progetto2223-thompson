@@ -9,39 +9,39 @@ public enum Command {
     /**
      * Displays the commands available to the user and their descriptions.
      */
-    HELP("", "/help", "help", "--help", "-h"),
-    /**
-     * Close the application.
-     */
-    EXIT("", "/esci", "esci"),
-    /**
-     * Set the difficulty to easy.
-     */
-    EASY("", "/facile", "facile"),
-    /**
-     * Set the difficulty to medium.
-     */
-    MEDIUM("", "/medio", "medio"),
-    /**
-     * Set the difficulty to hard.
-     */
-    HARD("", "/difficile", "difficile"),
-    /**
-     * Show the current difficulty.
-     */
-    SHOW_LEVEL("", "/mostralivello", "mostralivello"),
-    /**
-     * Show the number of remaining ships.
-     */
-    SHOW_SHIPS("", "/mostranavi", "mostranavi"),
+    HELP("Visualizza l'elenco dei comandi", "/help"),
     /**
      * Start a new game.
      */
-    PLAY("", "/gioca", "gioca"),
+    PLAY("Inizia una nuova partita", "/gioca"),
+    /**
+     * Set the difficulty to easy.
+     */
+    EASY("Imposta a 50 il numero max di tentativi falliti", "/facile"),
+    /**
+     * Set the difficulty to medium.
+     */
+    MEDIUM("Imposta a 30 il numero max di tentativi falliti", "/medio"),
+    /**
+     * Set the difficulty to hard.
+     */
+    HARD("Imposta a 10 il numero max di tentativi falliti", "/difficile"),
+    /**
+     * Show the current difficulty.
+     */
+    SHOW_LEVEL("Visualizza livello e numero max di tentativi falliti", "/mostralivello"),
+    /**
+     * Show the number of remaining ships.
+     */
+    SHOW_SHIPS("Visualizza navi da affondare", "/mostranavi"),
     /**
      * Display the grid with ship position.
      */
-    REVEAL_GRID("", "/svelagriglia", "svelagriglia"),
+    REVAL_GRID("Visualizza la griglia con le navi posizionate", "/svelagriglia"),
+    /**
+     * Close the application.
+     */
+    EXIT("Termina l'applicazione", "/esci"),
     /**
      * Confirm command.
      */

@@ -21,6 +21,7 @@ public final class App {
      */
     public static void main(final String[] args) {
         Partita partita = new Partita();
-        partita.execute();
+        boolean helpFlag = partita.controlFlag(args);
+        partita.execute(helpFlag);
     }
 }
