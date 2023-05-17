@@ -29,13 +29,34 @@ public class Partita {
     private boolean isInGame;
 
     /**
+     * Welcome message that prints when the program starts correctly.
+     */
+    private static final String WELCOME_MESSAGE
+            = "\n=========================================================================================\n"
+            + "BENVENUTO/A NELLA BATTAGLIA NAVALE\n"
+            + "In questo gioco, il sistema posizionerà le navi nemiche su una griglia.\n"
+            + "Il tuo obiettivo sarà quello di indovinare la loro posizione e affondarle una per una.\n"
+            + "Vincerai solo se riuscirai ad affondarle tutte prima di esaurire le tue mosse!\n"
+            + "Il numero di mosse a disposizione dipende dalla modalità di gioco scelta.\n"
+            + "Preparati a sfidare il sistema e dimostra le tue abilità strategiche per vincere.\n"
+            + "Buona fortuna!\n"
+            + "=========================================================================================\n";
+
+    /**
+     * Message suggesting how to view the list of available commands.
+     */        
+    private static final String HELP_TIP = "Puoi utilizzare /help per visualizzare l'elenco dei comandi\n";
+
+    /**
      * Method for starting a game.
      */
     public final void execute() {
-        System.out.println("================================");
-        System.out.println("*   Battleship  -  2022/2023   *");
-        System.out.println("================================");
-        System.out.println();
+        System.out.println(WELCOME_MESSAGE);
+        if (flag) {
+            help();
+        } else {
+            System.out.println(HELP_TIP);
+        }
         gameDifficulty = Difficulty.MEDIUM; //default difficulty
         Scanner scanner = new Scanner(System.in, "UTF-8");
         while (scanner.hasNextLine()) {
@@ -53,6 +74,8 @@ public class Partita {
             closeGame();
         } else if (command.containsKey(Command.EASY) && command.get(Command.EASY).isEmpty()) {
             setDifficulty(Command.EASY);
+        } else if (command.containsKey(Command.HELP) && command.get(Command.HELP).isEmpty()) {
+            help();
         } else if (command.containsKey(Command.MEDIUM) && command.get(Command.MEDIUM).isEmpty()) {
             setDifficulty(Command.MEDIUM);
         } else if (command.containsKey(Command.HARD) && command.get(Command.HARD).isEmpty()) {
