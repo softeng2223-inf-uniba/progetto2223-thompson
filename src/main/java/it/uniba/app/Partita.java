@@ -105,6 +105,20 @@ public class Partita {
     }
 
     /**
+     * Method to display command help.
+     */
+    private void help() {
+        System.out.println("ELENCO DEI COMANDI:");
+        for (Command command : Command.values()) {
+            String description = command.getDescription();
+            if (!description.isEmpty()) {
+                System.out.println(command.getNames()[0] + " : " + description);
+            }
+        }
+        System.out.println();
+    }
+
+    /**
      * Controls the value of a flag based on command line arguments.
      *
      * @param args The command line arguments.
