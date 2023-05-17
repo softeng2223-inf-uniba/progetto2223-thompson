@@ -67,21 +67,21 @@ Per interagire con il gioco, viene utilizzata l'interfaccia a riga di comando (C
 <li>	esci<br></li>
 </ul>
 </li><br>
-<li>Al comando **/esci** l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti<br>
+<li>Al comando <strong>/esci</strong> l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti<br>
 <ul>
 <li>	se la conferma è positiva, l'applicazione si chiude restituendo il controllo al sistema operativo</li>
 <li>	se la conferma è negativa, l'applicazione si predispone a ricevere nuovi tentativi o comandi</li>
 </ul>
 </li><br>
-<li>Al comando **/facile** l’applicazione risponde con OK e imposta a 50 il numero massimo di tentativi falliti.</li><br>
+<li>Al comando <strong>/facile</strong> l’applicazione risponde con OK e imposta a 50 il numero massimo di tentativi falliti.</li><br>
 
-<li>Al comando **/medio** l’applicazione risponde con OK e imposta a 30 il numero massimo di tentativi falliti.</li><br>
+<li>Al comando <strong>/medio</strong> l’applicazione risponde con OK e imposta a 30 il numero massimo di tentativi falliti.</li><br>
 
-<li>Al comando **/difficile** l’applicazione risponde con OK e imposta a 10 il numero massimo di tentativi falliti.</li><br>
+<li>Al comando <strong>/difficile</strong> l’applicazione risponde con OK e imposta a 10 il numero massimo di tentativi falliti.</li><br>
 
-<li>Al comando **/mostralivello** l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti.</li><br>
+<li>Al comando <strong>/mostralivello</strong> l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti.</li><br>
 
-<li>Al comando **/mostranavi** l’applicazione risponde visualizzando, per ogni tipo di nave, la dimensione in quadrati e il numero di esemplari da affondare:<br>
+<li>Al comando <strong>/mostranavi</strong> l’applicazione risponde visualizzando, per ogni tipo di nave, la dimensione in quadrati e il numero di esemplari da affondare:<br>
 <ul>
 <li>	Cacciatorpediniere 	⊠⊠ 		esemplari: 4 </li>
 <li>	Incrociatore 		⊠⊠⊠ 		esemplari: 3 </li>
@@ -89,13 +89,13 @@ Per interagire con il gioco, viene utilizzata l'interfaccia a riga di comando (C
 <li>	Portaerei  		⊠⊠⊠⊠⊠ 		esemplari: 1 </li>
 </ul>
 </li><br>
-<li>Al comando **/gioca** se nessuna partita è in corso l'applicazione imposta causalmente le navi, in orizzontale o in verticale, mostra la griglia vuota e si predispone a ricevere il primo tentativo o altri comandi.</li><br>
+<li>Al comando <strong>/gioca</strong> se nessuna partita è in corso l'applicazione imposta causalmente le navi, in orizzontale o in verticale, mostra la griglia vuota e si predispone a ricevere il primo tentativo o altri comandi.</li><br>
 
-<li>Al comando **/svelagriglia** l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate da 1 a 10 e le colonne numerate da A a J, e tutte le navi posizionate.</li><br>
+<li>Al comando <strong>/svelagriglia</strong> l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate da 1 a 10 e le colonne numerate da A a J, e tutte le navi posizionate.</li><br>
 </ul> 
 
 ## 9 Analisi retrospettiva
 
 ### 9.1 Sprint 0
    
-![Retrospective_Mad_Sad_Glad_Template](./img/Retrospective_Mad_Sad_Glad_Template.jpg)    
+![Retrospective_Mad_Sad_Glad_Template](./img/Retrospective_Mad_Sad_Glad_Template.jpg)
