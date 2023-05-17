@@ -37,7 +37,9 @@ public class Grid {
      * Number of total ships placed.
      */
     private int totalShips;
-
+    /**
+     * Dictionary that contains the ships with their coordinates.
+     */
     private final Map<Ship, Map<Integer, List<Coordinate>>> ships;
 
     /**
@@ -74,6 +76,14 @@ public class Grid {
         return RAND.nextInt(MAXCOLUMN);
     }
 
+    /**
+     * Method that adds ships to the dictionary with their coordinates.
+     * 
+     * @param ship
+     * @param nShip
+     * @param direction
+     * @param coord
+     */
     private void addShips(final Ship ship, final int nShip, final Direction direction, final Coordinate coord) {
         if (direction != null) {
             switch (direction) {
@@ -250,6 +260,9 @@ public class Grid {
         return totalShips;
     }
 
+    /**
+     * Method to display remaing ships.
+     */
     public final void showShips() {
         for (Ship ship : ships.keySet()) {
             System.out.print(ship.toString() + " ");
