@@ -52,14 +52,14 @@ public class Partita {
     public final void execute(boolean flag) {
         System.out.println(WELCOME_MESSAGE);
         if (flag) {
-            help();
+            this.help();
         } else {
             System.out.println(HELP_TIP);
         }
-        gameDifficulty = Difficulty.MEDIUM; // default difficulty
+        this.gameDifficulty = Difficulty.MEDIUM; // default difficulty
         Scanner scanner = new Scanner(System.in, "UTF-8");
         while (scanner.hasNextLine()) {
-            executeCommand(Parser.parse(scanner.nextLine()));
+            this.executeCommand(Parser.parse(scanner.nextLine()));
         }
     }
 
@@ -70,19 +70,21 @@ public class Partita {
         if (command == null) {
             System.out.println("Comando non riconosciuto");
         } else if (command.containsKey(Command.EXIT) && command.get(Command.EXIT).isEmpty()) {
-            closeGame();
+            this.closeGame();
         } else if (command.containsKey(Command.EASY) && command.get(Command.EASY).isEmpty()) {
-            setDifficulty(Command.EASY);
+            this.setDifficulty(Command.EASY);
         } else if (command.containsKey(Command.HELP) && command.get(Command.HELP).isEmpty()) {
-            help();
+            this.help();
         } else if (command.containsKey(Command.MEDIUM) && command.get(Command.MEDIUM).isEmpty()) {
-            setDifficulty(Command.MEDIUM);
+            this.setDifficulty(Command.MEDIUM);
         } else if (command.containsKey(Command.HARD) && command.get(Command.HARD).isEmpty()) {
-            setDifficulty(Command.HARD);
+            this.setDifficulty(Command.HARD);
         } else if (command.containsKey(Command.PLAY) && command.get(Command.PLAY).isEmpty()) {
-            playGame();
+            this.playGame();
         } else if (command.containsKey(Command.SHOW_LEVEL) && command.get(Command.SHOW_LEVEL).isEmpty()) {
-            showLevel();
+            this.showLevel();
+        } else if (command.containsKey(Command.SHOW_SHIPS) && command.get(Command.SHOW_SHIPS).isEmpty()) {
+            showShips();
         } else {
             System.out.println("Comando non valido");
         }
@@ -106,15 +108,15 @@ public class Partita {
      * Method for change difficulty
      */
     private void setDifficulty(final Command command) {
-        if (isInGame) {
+        if (this.isInGame) {
             System.out.println("E' in corso una partita, non puoi cambiare difficoltà");
         } else {
             if (command == Command.EASY) {
-                gameDifficulty = Difficulty.EASY;
+                this.gameDifficulty = Difficulty.EASY;
             } else if (command == Command.MEDIUM) {
-                gameDifficulty = Difficulty.MEDIUM;
+                this.gameDifficulty = Difficulty.MEDIUM;
             } else if (command == Command.HARD) {
-                gameDifficulty = Difficulty.HARD;
+                this.gameDifficulty = Difficulty.HARD;
             }
             System.out.println("OK");
         }
@@ -124,8 +126,8 @@ public class Partita {
      * this method display level and maximum tries to users.
      */
     private void showLevel() {
-        System.out.print("Livello di difficoltà: " + gameDifficulty.toString());
-        System.out.print(", numero massimo di tentativi: " + gameDifficulty.getTries());
+        System.out.print("Livello di difficoltà: " + this.gameDifficulty.toString());
+        System.out.print(", numero massimo di tentativi: " + this.gameDifficulty.getTries());
     }
 
     /**
@@ -177,9 +179,9 @@ public class Partita {
      * Method to start a game.
      */
     private void playGame() {
-        if (!isInGame) {
-            grid = new Grid();
-            grid.generateGrid();
+        if (!this.isInGame) {
+            this.grid = new Grid();
+            this.grid.generateGrid();
         }
     }
 }
