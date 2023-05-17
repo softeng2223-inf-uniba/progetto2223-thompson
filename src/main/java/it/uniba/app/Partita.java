@@ -84,7 +84,7 @@ public class Partita {
         } else if (command.containsKey(Command.SHOW_LEVEL) && command.get(Command.SHOW_LEVEL).isEmpty()) {
             this.showLevel();
         } else if (command.containsKey(Command.SHOW_SHIPS) && command.get(Command.SHOW_SHIPS).isEmpty()) {
-            showShips();
+            this.grid.showShips();
         } else {
             System.out.println("Comando non valido");
         }
