@@ -2,9 +2,11 @@ package it.uniba.app.grid;
 
 import it.uniba.app.grid.type.Cell;
 import it.uniba.app.grid.type.Coordinate;
-import it.uniba.app.grid.type.Row;
+import it.uniba.app.grid.type.Column;
 import it.uniba.app.ship.Ship;
 import it.uniba.app.ship.Direction;
+
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -60,17 +62,17 @@ public class Grid {
     }
 
     /**
-     * Method to generate a random row.
+     * Method to generate a random column.
      */
-    private Row generateRandomRow() {
-        return Row.fromInt(RAND.nextInt(MAXROW));
+    private Column generateRandomColumn() {
+        return Column.fromInt(RAND.nextInt(MAXCOLUMN));
     }
 
     /**
-     * Method to generate a random column.
+     * Method to generate a random row.
      */
-    private int generateRandomColumn() {
-        return RAND.nextInt(MAXCOLUMN);
+    private int generateRandomRow() {
+        return RAND.nextInt(MAXROW);
     }
 
     /**
@@ -86,45 +88,45 @@ public class Grid {
             switch (direction) {
                 case LEFT -> {
                     for (int i = 0; i < ship.getSize(); i++) {
-                        int row = coord.getRow().ordinal();
-                        int column = coord.getColumn() - i + 1;
+                        int row = coord.getRow() + 1;
+                        int column = coord.getColumn().ordinal() - i;
                         if (ships.get(ship).get(nShip) == null) {
                             ships.get(ship).put(nShip, new LinkedList<>());
                         } else {
-                            ships.get(ship).get(nShip).add(new Coordinate(Row.fromInt(row), column));
+                            ships.get(ship).get(nShip).add(new Coordinate(Column.fromInt(column), row));
                         }
                     }
                 }
                 case RIGHT -> {
                     for (int i = 0; i < ship.getSize(); i++) {
-                        int row = coord.getRow().ordinal();
-                        int column = coord.getColumn() + i + 1;
+                        int row = coord.getRow() + 1;
+                        int column = coord.getColumn().ordinal() + i;
                         if (ships.get(ship).get(nShip) == null) {
                             ships.get(ship).put(nShip, new LinkedList<>());
                         } else {
-                            ships.get(ship).get(nShip).add(new Coordinate(Row.fromInt(row), column));
+                            ships.get(ship).get(nShip).add(new Coordinate(Column.fromInt(column), row));
                         }
                     }
                 }
                 case UP -> {
                     for (int i = 0; i < ship.getSize(); i++) {
-                        int row = coord.getRow().ordinal() - i;
-                        int column = coord.getColumn() + 1;
+                        int row = coord.getRow() - i + 1;
+                        int column = coord.getColumn().ordinal();
                         if (ships.get(ship).get(nShip) == null) {
                             ships.get(ship).put(nShip, new LinkedList<>());
                         } else {
-                            ships.get(ship).get(nShip).add(new Coordinate(Row.fromInt(row), column));
+                            ships.get(ship).get(nShip).add(new Coordinate(Column.fromInt(column), row));
                         }
                     }
                 }
                 case DOWN -> {
                     for (int i = 0; i < ship.getSize(); i++) {
-                        int row = coord.getRow().ordinal() + i;
-                        int column = coord.getColumn() + 1;
+                        int row = coord.getRow() + i + 1;
+                        int column = coord.getColumn().ordinal();
                         if (ships.get(ship).get(nShip) == null) {
                             ships.get(ship).put(nShip, new LinkedList<>());
                         } else {
-                            ships.get(ship).get(nShip).add(new Coordinate(Row.fromInt(row), column));
+                            ships.get(ship).get(nShip).add(new Coordinate(Column.fromInt(column), row));
                         }
                     }
                 }
@@ -146,44 +148,44 @@ public class Grid {
         if (direction != null) {
             switch (direction) {
                 case LEFT -> {
-                    if (coord.getColumn() - dimension < 0) {
+                    if (coord.getColumn().ordinal() - dimension < 0) {
                         return false;
                     }
                     for (int i = 0; i < dimension; i++) {
-                        if (!grid[coord.getRow().ordinal()][coord.getColumn() - i].isEmpty()) {
+                        if (!grid[coord.getRow()][coord.getColumn().ordinal() - i].isEmpty()) {
                             return false;
                         }
                     }
                     return true;
                 }
                 case RIGHT -> {
-                    if (coord.getColumn() + dimension >= MAXCOLUMN) {
+                    if (coord.getColumn().ordinal() + dimension >= MAXCOLUMN) {
                         return false;
                     }
                     for (int i = 0; i < dimension; i++) {
-                        if (!grid[coord.getRow().ordinal()][coord.getColumn() + i].isEmpty()) {
+                        if (!grid[coord.getRow()][coord.getColumn().ordinal() + i].isEmpty()) {
                             return false;
                         }
                     }
                     return true;
                 }
                 case UP -> {
-                    if (coord.getRow().ordinal() - dimension < 0) {
+                    if (coord.getRow() - dimension < 0) {
                         return false;
                     }
                     for (int i = 0; i < dimension; i++) {
-                        if (!grid[coord.getRow().ordinal() - i][coord.getColumn()].isEmpty()) {
+                        if (!grid[coord.getRow() - i][coord.getColumn().ordinal()].isEmpty()) {
                             return false;
                         }
                     }
                     return true;
                 }
                 case DOWN -> {
-                    if (coord.getRow().ordinal() + dimension >= MAXROW) {
+                    if (coord.getRow() + dimension >= MAXROW) {
                         return false;
                     }
                     for (int i = 0; i < dimension; i++) {
-                        if (!grid[coord.getRow().ordinal() + i][coord.getColumn()].isEmpty()) {
+                        if (!grid[coord.getRow() + i][coord.getColumn().ordinal()].isEmpty()) {
                             return false;
                         }
                     }
@@ -210,22 +212,22 @@ public class Grid {
             switch (direction) {
                 case LEFT -> {
                     for (int i = 0; i < ship.getSize(); i++) {
-                        grid[coord.getRow().ordinal()][coord.getColumn() - i].setShip(ship);
+                        grid[coord.getRow()][coord.getColumn().ordinal() - i].setShip(ship);
                     }
                 }
                 case RIGHT -> {
                     for (int i = 0; i < ship.getSize(); i++) {
-                        grid[coord.getRow().ordinal()][coord.getColumn() + i].setShip(ship);
+                        grid[coord.getRow()][coord.getColumn().ordinal() + i].setShip(ship);
                     }
                 }
                 case UP -> {
                     for (int i = 0; i < ship.getSize(); i++) {
-                        grid[coord.getRow().ordinal() - i][coord.getColumn()].setShip(ship);
+                        grid[coord.getRow() - i][coord.getColumn().ordinal()].setShip(ship);
                     }
                 }
                 case DOWN -> {
                     for (int i = 0; i < ship.getSize(); i++) {
-                        grid[coord.getRow().ordinal() + i][coord.getColumn()].setShip(ship);
+                        grid[coord.getRow() + i][coord.getColumn().ordinal()].setShip(ship);
                     }
                 }
                 default -> {
@@ -248,13 +250,13 @@ public class Grid {
                 direction = Direction.randomDirection();
                 if (canPlaceShip(direction, s.getSize(), coord)) {
                     placeShip(direction, s, coord);
-                    addShips(s, i, direction, coord);
+                    addShips(s, i + 1, direction, coord);
                     totalShips += 1;
                 } else {
                     direction = direction.rotate();
                     if (canPlaceShip(direction, s.getSize(), coord)) {
                         placeShip(direction, s, coord);
-                        addShips(s, i, direction, coord);
+                        addShips(s, i + 1, direction, coord);
                         totalShips += 1;
                     } else {
                         i--;
@@ -277,8 +279,15 @@ public class Grid {
      * Method to display the grid with the ships.
      */
     public final void printGrid() {
+        for (Ship ship : Ship.values()) {
+            System.out.print(ship.toString() + " = " + ship.colorShip() + " ");
+        }
+        System.out.println();
+        System.out.println();
         System.out.print("    |");
-        System.out.print("   A   |   B   |   C   |   D   |   E   |   F   |   G   |   H   |   I   |   J   |");
+        for (int i = 0; i < MAXROW; i++) {
+            System.out.print(String.format("   %s   |", Column.fromInt(i)));
+        }
         System.out.println();
         for (int i = 0; i < MAXROW; i++) {
             System.out.print("----+");
@@ -289,7 +298,7 @@ public class Grid {
             System.out.print(String.format(" %2d |", (i + 1)));
             for (int j = 0; j < MAXCOLUMN; j++) {
                 System.out.print("   ");
-                System.out.print(grid[i][j].toString());
+                System.out.print(grid[i][j].getShip() != null ? grid[i][j].getShip().colorShip() : " ");
                 System.out.print("   ");
                 System.out.print("|");
             }
@@ -301,13 +310,13 @@ public class Grid {
      * Method to display remaing ships.
      */
     public final void showShips() {
-        for (var ship : ships.entrySet()) {
+        for (Ship ship : EnumSet.copyOf(ships.keySet())) {
             System.out.print(ship.toString() + " ");
-            for (int i = 0; i < ship.getKey().getSize(); i++) {
-                System.out.print("X");
+            for (int i = 0; i < ship.getSize(); i++) {
+                System.out.print(ship.colorShip());
             }
-            System.out.print(" " + ships.get(ship.getKey()).size());
-            System.out.print(" da affondare su " + ship.getKey().getnShips() + " totali ");
+            System.out.print(" " + ships.get(ship).size());
+            System.out.print(" da affondare su " + ship.getnShips() + " totali ");
             System.out.println();
         }
     }

@@ -33,7 +33,16 @@ public class Partita {
      */
     private static final String WELCOME_MESSAGE = ""
             + "\n=========================================================================================\n"
-            + "BENVENUTO/A NELLA BATTAGLIA NAVALE\n"
+            + "______       _   _   _           _     _       \n"
+            + "| ___ \\     | | | | | |         | |   (_)      \n"
+            + "| |_/ / __ _| |_| |_| | ___  ___| |__  _ _ __  \n"
+            + "| ___ \\/ _` | __| __| |/ _ \\/ __| '_ \\| | '_ \\ \n"
+            + "| |_/ / (_| | |_| |_| |  __/\\__ \\ | | | | |_) |\n"
+            + "\\____/ \\__,_|\\__|\\__|_|\\___||___/_| |_|_| .__/ \n"
+            + "                                        | |    \n"
+            + "                                        |_|    \n"
+            + "\n=========================================================================================\n"
+            + "BENVENUTO/A\n"
             + "In questo gioco, il sistema posizionerà le navi nemiche su una griglia.\n"
             + "Il tuo obiettivo sarà quello di indovinare la loro posizione e affondarle una per una.\n"
             + "Vincerai solo se riuscirai ad affondarle tutte prima di esaurire le tue mosse!\n"
@@ -109,13 +118,13 @@ public class Partita {
         if (scanner.hasNextLine()) {
             Map<Command, List<String>> command = Parser.parse(scanner.nextLine());
             if (command == null) {
-                System.out.println("Comando non riconosciuto");
+                System.out.println("Risposta non riconosciuta");
             } else if (command.containsKey(Command.YES) && command.get(Command.YES).isEmpty()) {
                 Runtime.getRuntime().exit(0);
             } else if (command.containsKey(Command.NO) && command.get(Command.NO).isEmpty()) {
                 System.out.println("Ok");
             } else {
-                System.out.println("Comando non valido");
+                System.out.println("Risposta non valida");
             }
         }
     }
@@ -124,18 +133,14 @@ public class Partita {
      * Method for change difficulty.
      */
     private void setDifficulty(final Command command) {
-        if (this.isInGame) {
-            System.out.println("E' in corso una partita, non puoi cambiare difficoltà");
-        } else {
-            if (command == Command.EASY) {
-                this.gameDifficulty = Difficulty.EASY;
-            } else if (command == Command.MEDIUM) {
-                this.gameDifficulty = Difficulty.MEDIUM;
-            } else if (command == Command.HARD) {
-                this.gameDifficulty = Difficulty.HARD;
-            }
-            System.out.println("OK");
+        if (command == Command.EASY) {
+            this.gameDifficulty = Difficulty.EASY;
+        } else if (command == Command.MEDIUM) {
+            this.gameDifficulty = Difficulty.MEDIUM;
+        } else if (command == Command.HARD) {
+            this.gameDifficulty = Difficulty.HARD;
         }
+        System.out.println("OK");
     }
 
     /**
@@ -192,10 +197,9 @@ public class Partita {
      * Method to start a game.
      */
     private void playGame() {
-        if (!this.isInGame) {
-            this.grid.generateGrid();
-            this.isInGame = true;
-        }
+        this.grid = new Grid();
+        this.grid.generateGrid();
+        this.isInGame = true;
     }
 
     /**
