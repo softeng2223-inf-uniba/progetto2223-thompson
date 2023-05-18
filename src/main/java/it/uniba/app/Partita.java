@@ -83,6 +83,8 @@ public class Partita {
             this.playGame();
         } else if (command.containsKey(Command.SHOW_LEVEL) && command.get(Command.SHOW_LEVEL).isEmpty()) {
             this.showLevel();
+        }else if (command.containsKey(Command.REVAL_GRID) && command.get(Command.REVAL_GRID).isEmpty()) {
+            this.printCurrentGrid();
         } else if (command.containsKey(Command.SHOW_SHIPS) && command.get(Command.SHOW_SHIPS).isEmpty()) {
             this.grid.showShips();
         } else {
@@ -182,6 +184,18 @@ public class Partita {
         if (!this.isInGame) {
             this.grid = new Grid();
             this.grid.generateGrid();
+        }
+    }
+
+    /**
+     * Method to display the grid with the ships if user is not in game
+     */
+    private void printCurrentGrid(){
+        if(!this.isInGame){
+            grid.printGrid();
+        }
+        else{
+            System.out.println("Non stai giocando, inizia a giocare con: /gioca");
         }
     }
 }
