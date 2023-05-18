@@ -33,6 +33,8 @@ public class Partita {
      */
     private static final String WELCOME_MESSAGE = ""
             + "\n=========================================================================================\n"
+            + " |_)  _. _|_ _|_ |  _   _ |_  o ._  "
+            + "\n=========================================================================================\n"
             + "BENVENUTO/A NELLA BATTAGLIA NAVALE\n"
             + "In questo gioco, il sistema posizionerà le navi nemiche su una griglia.\n"
             + "Il tuo obiettivo sarà quello di indovinare la loro posizione e affondarle una per una.\n"
