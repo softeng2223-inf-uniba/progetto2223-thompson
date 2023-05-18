@@ -95,7 +95,7 @@ public class Partita {
         } else if (command.containsKey(Command.REVAL_GRID) && command.get(Command.REVAL_GRID).isEmpty()) {
             this.printCurrentGrid();
         } else if (command.containsKey(Command.SHOW_SHIPS) && command.get(Command.SHOW_SHIPS).isEmpty()) {
-            this.grid.showShips();
+            this.showShips();
         } else {
             System.out.println("Comando non valido");
         }
@@ -201,11 +201,23 @@ public class Partita {
     /**
      * Method to display the grid with the ships if user is not in game.
      */
-    private void printCurrentGrid(){
-        if(!this.isInGame){
+    private void printCurrentGrid() {
+        if (this.isInGame) {
             grid.printGrid();
         } else {
             System.out.println("Non stai giocando, inizia a giocare con: /gioca");
+        }
+    }
+
+    /**
+     * Method to show current ships.
+     */
+    private void showShips() {
+        if (this.isInGame) {
+            this.grid.showShips();
+        } else {
+            System.out.print("E' necessario essere in partita per poter visualizzare l'elenco delle navi, ");
+            System.out.println("inizia a giocare con /gioca");
         }
     }
 }
