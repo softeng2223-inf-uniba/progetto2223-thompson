@@ -4,14 +4,14 @@ package it.uniba.app.ship;
  * Enum class to manage the type and the quantity of ships.
  */
 public enum Ship {
-    CACCIATORPEDINIERE(2, 4, "\u001B[0;31m"),
+    CACCIATORPEDINIERE(2, 4, "\u001B[0;32m"),
     INCROCIATORE(3, 3, "\u001B[0;31m"),
     CORAZZATA(4, 2, "\u001B[0;33m"),
     PORTAEREI(5, 1, "\u001B[0;35m");
 
     /**
      * Ship constructor.
-     * 
+     *
      * @param dimension dimension of ship
      * @param valnShips number of placable ships
      * @param valColor  Color of ship
@@ -41,7 +41,7 @@ public enum Ship {
 
     /**
      * Size getter.
-     * 
+     *
      * @return size
      */
     public int getSize() {
@@ -50,7 +50,7 @@ public enum Ship {
 
     /**
      * Number of ships getter.
-     * 
+     *
      * @return nShps
      */
     public int getnShips() {
@@ -58,25 +58,16 @@ public enum Ship {
     }
 
     /**
-     * return X if there is a ship
+     * Return X if there is a ship.
      */
-    @Override
-    public String toString() {
-        String ship = " ";
-        if (this != null) {
-            ship = "X";
-        }
-        return ship;
+    public String stringShip() {
+        return "X";
     }
 
     /**
-     * this method returns a colored X
+     * This method returns a colored X.
      */
     public String colorShip() {
-        String colorShip = toString();
-        if (this != null) {
-            colorShip = this.color + toString() + ANSI_RESET;
-        }
-        return colorShip;
+        return this.color + stringShip() + ANSI_RESET;
     }
 }
