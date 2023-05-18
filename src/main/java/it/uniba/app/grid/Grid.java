@@ -276,4 +276,33 @@ public class Grid {
         }
     }
 
+    /**
+     * Method to display the grid with the ships
+     */
+    public final void printGrid() {
+        System.out.print("    |");
+        System.out.print("  A  |  B  |  C  |  D  |  E  |  F  |  G  |  H  |  I  |  J  |");
+        System.out.println();
+        for (int i = 0; i < MAXROW; i++) {
+            System.out.print("----+");
+            for (int j = 0; j < MAXCOLUMN; j++) {
+                System.out.print("------+");
+            }
+            System.out.println();
+            if (i + 1 > 9) {
+                System.out.print("  " + (i + 1) + "|");
+            } 
+            else {
+                System.out.print("  " + (i + 1) + " |");
+            }
+            for (int j = 0; j < MAXCOLUMN; j++) {
+                System.out.print("  ");
+                System.out.print(grid[i][j].toString());
+                System.out.print("   ");
+                System.out.print("|");
+            }
+            System.out.println();
+        }
+    }
+
 }

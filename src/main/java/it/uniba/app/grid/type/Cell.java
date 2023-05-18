@@ -65,4 +65,17 @@ public final class Cell {
         this.ship = valShip;
         setState(State.SHIP);
     }
+
+
+    /**
+     * this method return X if there is a ship in a specific cell, else nothing
+     */
+    /*@Override
+    public String toString() {
+        String cellContent=" ";
+        if(this.state==State.SHIP){
+            cellContent="X";
+        }
+        return cellContent;
+    }*/
 }
