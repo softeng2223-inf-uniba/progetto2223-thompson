@@ -1,5 +1,7 @@
 # Report
 
+## Indice
+
 - [Introduzione](#1-introduzione)
 - [Modello di Dominio](#2-modello-di-dominio)
 - [Requisiti Specifici](#3-requisiti-specifici)
@@ -22,8 +24,12 @@ I componenti del gruppo sono:
 </ul>
 </p>
 
+[Torna all'indice](#indice)
+
 ## 2 Modello di dominio
 ![modelloDiDomino](./img/modelloDiDominio.png)
+
+[Torna all'indice](#indice)
 
 ## 3 Requisiti specifici
 
@@ -58,6 +64,8 @@ Dopo aver eseguito il comando docker pull copiandolo da GitHub Packages, Il coma
 
 </p></li>
 </ul>
+
+[Torna all'indice](#indice)
 
 ## 7 Manuale utente
 Il gioco si svolge su una griglia, dove il sistema posiziona in modo casuale le navi all'inizio di una partita. L'obiettivo del giocatore è quello di indovinare la posizione delle navi nemiche e cercare di affondarle attaccando le caselle della griglia.<br>
@@ -101,8 +109,12 @@ Per interagire con il gioco, viene utilizzata l'interfaccia a riga di comando (C
 <li>Al comando <strong>/svelagriglia</strong> l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate da 1 a 10 e le colonne numerate da A a J, e tutte le navi posizionate.</li><br>
 </ul> 
 
+[Torna all'indice](#indice)
+
 ## 9 Analisi retrospettiva
 
 ### 9.1 Sprint 0
    
 ![Retrospective_Mad_Sad_Glad_Template](./img/Retrospective_Mad_Sad_Glad_Template.jpg)
+
+[Torna all'indice](#indice)
