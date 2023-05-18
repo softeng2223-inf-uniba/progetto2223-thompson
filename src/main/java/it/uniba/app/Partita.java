@@ -83,6 +83,8 @@ public class Partita {
             this.playGame();
         } else if (command.containsKey(Command.SHOW_LEVEL) && command.get(Command.SHOW_LEVEL).isEmpty()) {
             this.showLevel();
+        }else if (command.containsKey(Command.REVAL_GRID) && command.get(Command.REVAL_GRID).isEmpty()) {
+            this.printCurrentGrid();
         } else if (command.containsKey(Command.SHOW_SHIPS) && command.get(Command.SHOW_SHIPS).isEmpty()) {
             this.grid.showShips();
         } else {
