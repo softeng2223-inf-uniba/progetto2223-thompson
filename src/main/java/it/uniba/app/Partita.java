@@ -124,18 +124,14 @@ public class Partita {
      * Method for change difficulty.
      */
     private void setDifficulty(final Command command) {
-        if (this.isInGame) {
-            System.out.println("E' in corso una partita, non puoi cambiare difficoltà");
-        } else {
-            if (command == Command.EASY) {
-                this.gameDifficulty = Difficulty.EASY;
-            } else if (command == Command.MEDIUM) {
-                this.gameDifficulty = Difficulty.MEDIUM;
-            } else if (command == Command.HARD) {
-                this.gameDifficulty = Difficulty.HARD;
-            }
-            System.out.println("OK");
+        if (command == Command.EASY) {
+            this.gameDifficulty = Difficulty.EASY;
+        } else if (command == Command.MEDIUM) {
+            this.gameDifficulty = Difficulty.MEDIUM;
+        } else if (command == Command.HARD) {
+            this.gameDifficulty = Difficulty.HARD;
         }
+        System.out.println("OK");
     }
 
     /**
@@ -192,10 +188,9 @@ public class Partita {
      * Method to start a game.
      */
     private void playGame() {
-        if (!this.isInGame) {
-            this.grid.generateGrid();
-            this.isInGame = true;
-        }
+        this.grid = new Grid();
+        this.grid.generateGrid();
+        this.isInGame = true;
     }
 
     /**

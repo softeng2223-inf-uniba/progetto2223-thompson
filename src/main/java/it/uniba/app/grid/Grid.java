@@ -5,6 +5,8 @@ import it.uniba.app.grid.type.Coordinate;
 import it.uniba.app.grid.type.Row;
 import it.uniba.app.ship.Ship;
 import it.uniba.app.ship.Direction;
+
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -301,13 +303,13 @@ public class Grid {
      * Method to display remaing ships.
      */
     public final void showShips() {
-        for (var ship : ships.entrySet()) {
+        for (Ship ship : EnumSet.copyOf(ships.keySet())) {
             System.out.print(ship.toString() + " ");
-            for (int i = 0; i < ship.getKey().getSize(); i++) {
-                System.out.print(ship.getKey().colorShip());
+            for (int i = 0; i < ship.getSize(); i++) {
+                System.out.print(ship.colorShip());
             }
-            System.out.print(" " + ships.get(ship.getKey()).size());
-            System.out.print(" da affondare su " + ship.getKey().getnShips() + " totali ");
+            System.out.print(" " + ships.get(ship).size());
+            System.out.print(" da affondare su " + ship.getnShips() + " totali ");
             System.out.println();
         }
     }

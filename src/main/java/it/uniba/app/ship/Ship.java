@@ -8,22 +8,24 @@ public enum Ship {
     INCROCIATORE(3, 3, "\u001B[0;31m"),
     CORAZZATA(4, 2, "\u001B[0;33m"),
     PORTAEREI(5, 1, "\u001B[0;35m");
-    
+
     /**
      * Ship constructor.
+     * 
      * @param dimension dimension of ship
      * @param valnShips number of placable ships
-     * @param valColor Color of ship
+     * @param valColor  Color of ship
      */
     Ship(final int dimension, final int valnShips, final String valColor) {
         this.size = dimension;
         this.nShips = valnShips;
         this.color = valColor;
     }
+
     /**
      * terminator character for ship color.
      */
-    private static final String ANSI_RESET="\u001B[0m";
+    private static final String ANSI_RESET = "\u001B[0m";
     /**
      * Size of the ship.
      */
@@ -33,11 +35,13 @@ public enum Ship {
      */
     private final int nShips;
     /**
-     * Color of ship. 
+     * Color of ship.
      */
     private final String color;
+
     /**
      * Size getter.
+     * 
      * @return size
      */
     public int getSize() {
@@ -46,31 +50,33 @@ public enum Ship {
 
     /**
      * Number of ships getter.
+     * 
      * @return nShps
      */
     public int getnShips() {
         return nShips;
     }
+
     /**
      * return X if there is a ship
      */
     @Override
     public String toString() {
-        String cellContent = " ";
+        String ship = " ";
         if (this != null) {
-            cellContent = "X";
+            ship = "X";
         }
-        return cellContent;
+        return ship;
     }
+
     /**
      * this method returns a colored X
      */
-    public String colorShip(){
+    public String colorShip() {
+        String colorShip = toString();
         if (this != null) {
-            return this.color+toString()+ANSI_RESET;
+            colorShip = this.color + toString() + ANSI_RESET;
         }
-        else{
-            return toString();
-        }
-    } 
+        return colorShip;
+    }
 }
