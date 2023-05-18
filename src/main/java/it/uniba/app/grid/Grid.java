@@ -278,21 +278,17 @@ public class Grid {
      */
     public final void printGrid() {
         System.out.print("    |");
-        System.out.print("  A  |  B  |  C  |  D  |  E  |  F  |  G  |  H  |  I  |  J  |");
+        System.out.print("   A   |   B   |   C   |   D   |   E   |   F   |   G   |   H   |   I   |   J   |");
         System.out.println();
         for (int i = 0; i < MAXROW; i++) {
             System.out.print("----+");
             for (int j = 0; j < MAXCOLUMN; j++) {
-                System.out.print("------+");
+                System.out.print("-------+");
             }
             System.out.println();
-            if (i + 1 > 9) {
-                System.out.print("  " + (i + 1) + "|");
-            } else {
-                System.out.print("  " + (i + 1) + " |");
-            }
+            System.out.print(String.format(" %2d |", (i + 1)));
             for (int j = 0; j < MAXCOLUMN; j++) {
-                System.out.print("  ");
+                System.out.print("   ");
                 System.out.print(grid[i][j].toString());
                 System.out.print("   ");
                 System.out.print("|");
@@ -305,13 +301,13 @@ public class Grid {
      * Method to display remaing ships.
      */
     public final void showShips() {
-        for (Ship ship : ships.keySet()) {
+        for (var ship : ships.entrySet()) {
             System.out.print(ship.toString() + " ");
-            for (int i = 0; i < ship.getSize(); i++) {
+            for (int i = 0; i < ship.getKey().getSize(); i++) {
                 System.out.print("X");
             }
-            System.out.print(" " + ships.get(ship).size());
-            System.out.print(" da affondare su " + ship.getnShips() + " totali ");
+            System.out.print(" " + ships.get(ship.getKey()).size());
+            System.out.print(" da affondare su " + ship.getKey().getnShips() + " totali ");
             System.out.println();
         }
     }
