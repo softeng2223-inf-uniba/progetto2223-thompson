@@ -51,4 +51,26 @@ public enum Ship {
     public int getnShips() {
         return nShips;
     }
+    /**
+     * return X if there is a ship
+     */
+    @Override
+    public String toString() {
+        String cellContent = " ";
+        if (this != null) {
+            cellContent = "X";
+        }
+        return cellContent;
+    }
+    /**
+     * this method returns a colored X
+     */
+    public String colorShip(){
+        if (this != null) {
+            return this.color+toString()+ANSI_RESET;
+        }
+        else{
+            return toString();
+        }
+    } 
 }

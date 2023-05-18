@@ -74,12 +74,12 @@ public final class Cell {
     /**
      * This method return X if there is a ship in a specific cell, else nothing.
      */
-    @Override
+    /*@Override
     public String toString() {
         String cellContent = " ";
         if (this.state == State.SHIP) {
             cellContent = "X";
         }
         return cellContent;
-    }
+    }*/
 }

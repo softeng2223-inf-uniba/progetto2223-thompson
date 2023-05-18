@@ -289,7 +289,7 @@ public class Grid {
             System.out.print(String.format(" %2d |", (i + 1)));
             for (int j = 0; j < MAXCOLUMN; j++) {
                 System.out.print("   ");
-                System.out.print(grid[i][j].toString());
+                System.out.print(grid[i][j].getShip().colorShip());
                 System.out.print("   ");
                 System.out.print("|");
             }
@@ -304,7 +304,7 @@ public class Grid {
         for (var ship : ships.entrySet()) {
             System.out.print(ship.toString() + " ");
             for (int i = 0; i < ship.getKey().getSize(); i++) {
-                System.out.print("X");
+                System.out.print(ship.getKey().colorShip());
             }
             System.out.print(" " + ships.get(ship.getKey()).size());
             System.out.print(" da affondare su " + ship.getKey().getnShips() + " totali ");
