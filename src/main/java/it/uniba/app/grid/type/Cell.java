@@ -27,6 +27,7 @@ public final class Cell {
 
     /**
      * Get the state of a cell.
+     *
      * @return state
      */
     public State getState() {
@@ -35,6 +36,7 @@ public final class Cell {
 
     /**
      * Set the state of a cell.
+     *
      * @param valState state to set
      */
     private void setState(final State valState) {
@@ -43,6 +45,7 @@ public final class Cell {
 
     /**
      * Method to check if there is empty.
+     *
      * @return boolean
      */
     public boolean isEmpty() {
@@ -51,6 +54,7 @@ public final class Cell {
 
     /**
      * Ship getter.
+     *
      * @return ship
      */
     public Ship getShip() {
@@ -59,6 +63,7 @@ public final class Cell {
 
     /**
      * Ship setter.
+     *
      * @param valShip ship to set
      */
     public void setShip(final Ship valShip) {
@@ -66,15 +71,14 @@ public final class Cell {
         setState(State.SHIP);
     }
 
-
     /**
-     * this method return X if there is a ship in a specific cell, else nothing
+     * This method return X if there is a ship in a specific cell, else nothing.
      */
     @Override
     public String toString() {
-        String cellContent=" ";
-        if(this.state==State.SHIP){
-            cellContent="X";
+        String cellContent = " ";
+        if (this.state == State.SHIP) {
+            cellContent = "X";
         }
         return cellContent;
     }
