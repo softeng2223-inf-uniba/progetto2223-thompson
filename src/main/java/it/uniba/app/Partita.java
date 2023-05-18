@@ -31,7 +31,8 @@ public class Partita {
     /**
      * Welcome message that prints when the program starts correctly.
      */
-    private static final String WELCOME_MESSAGE = "\n=========================================================================================\n"
+    private static final String WELCOME_MESSAGE = ""
+            + "\n=========================================================================================\n"
             + "BENVENUTO/A NELLA BATTAGLIA NAVALE\n"
             + "In questo gioco, il sistema posizionerà le navi nemiche su una griglia.\n"
             + "Il tuo obiettivo sarà quello di indovinare la loro posizione e affondarle una per una.\n"
@@ -39,7 +40,8 @@ public class Partita {
             + "Il numero di mosse a disposizione dipende dalla modalità di gioco scelta.\n"
             + "Preparati a sfidare il sistema e dimostra le tue abilità strategiche per vincere.\n"
             + "Buona fortuna!\n"
-            + "=========================================================================================\n";
+            + "=========================================================================================\n"
+            + "Il livello di default è medio.\n";
 
     /**
      * Message suggesting how to view the list of available commands.
@@ -47,9 +49,15 @@ public class Partita {
     private static final String HELP_TIP = "Puoi utilizzare /help per visualizzare l'elenco dei comandi\n";
 
     /**
+     * Scanner of the class.
+     */
+    private Scanner scanner;
+
+    /**
      * Method for starting a game.
      */
-    public final void execute(boolean flag) {
+    public final void execute(final boolean flag) {
+        this.grid = new Grid();
         System.out.println(WELCOME_MESSAGE);
         if (flag) {
             this.help();
@@ -57,10 +65,11 @@ public class Partita {
             System.out.println(HELP_TIP);
         }
         this.gameDifficulty = Difficulty.MEDIUM; // default difficulty
-        Scanner scanner = new Scanner(System.in, "UTF-8");
+        scanner = new Scanner(System.in, "UTF-8");
         while (scanner.hasNextLine()) {
             this.executeCommand(Parser.parse(scanner.nextLine()));
         }
+        scanner.close();
     }
 
     /**
@@ -83,10 +92,10 @@ public class Partita {
             this.playGame();
         } else if (command.containsKey(Command.SHOW_LEVEL) && command.get(Command.SHOW_LEVEL).isEmpty()) {
             this.showLevel();
-        }else if (command.containsKey(Command.REVAL_GRID) && command.get(Command.REVAL_GRID).isEmpty()) {
+        } else if (command.containsKey(Command.REVAL_GRID) && command.get(Command.REVAL_GRID).isEmpty()) {
             this.printCurrentGrid();
         } else if (command.containsKey(Command.SHOW_SHIPS) && command.get(Command.SHOW_SHIPS).isEmpty()) {
-            this.grid.showShips();
+            this.showShips();
         } else {
             System.out.println("Comando non valido");
         }
@@ -96,18 +105,23 @@ public class Partita {
      * Method for close the application.
      */
     private void closeGame() {
-        Scanner scanner = new Scanner(System.in, "UTF-8");
-        System.out.println("Chiudere il gioco? [Y/N]");
+        System.out.println("Chiudere il gioco? [s/n]");
         if (scanner.hasNextLine()) {
-            Map<Command, List<String>> p = Parser.parse(scanner.nextLine());
-            if (p.containsKey(Command.YES)) {
+            Map<Command, List<String>> command = Parser.parse(scanner.nextLine());
+            if (command == null) {
+                System.out.println("Comando non riconosciuto");
+            } else if (command.containsKey(Command.YES) && command.get(Command.YES).isEmpty()) {
                 Runtime.getRuntime().exit(0);
+            } else if (command.containsKey(Command.NO) && command.get(Command.NO).isEmpty()) {
+                System.out.println("Ok");
+            } else {
+                System.out.println("Comando non valido");
             }
         }
     }
 
     /**
-     * Method for change difficulty
+     * Method for change difficulty.
      */
     private void setDifficulty(final Command command) {
         if (this.isInGame) {
@@ -129,7 +143,7 @@ public class Partita {
      */
     private void showLevel() {
         System.out.print("Livello di difficoltà: " + this.gameDifficulty.toString());
-        System.out.print(", numero massimo di tentativi: " + this.gameDifficulty.getTries());
+        System.out.println(", numero massimo di tentativi: " + this.gameDifficulty.getTries());
     }
 
     /**
@@ -150,13 +164,10 @@ public class Partita {
      * Controls the value of a flag based on command line arguments.
      *
      * @param args The command line arguments.
-     * @param flag The initial value of the flag.
      * @return The updated value of the flag based on the command line
      *         arguments. If the flag is set to true, it means the help flag was
      *         specified. If the flag is set to false, it means no help flag was
      *         specified.
-     * @throws RuntimeException If there are too many command line arguments or
-     *                          an invalid flag is specified.
      */
     public boolean controlFlag(final String[] args) {
         boolean flag = false;
@@ -182,20 +193,31 @@ public class Partita {
      */
     private void playGame() {
         if (!this.isInGame) {
-            this.grid = new Grid();
             this.grid.generateGrid();
+            this.isInGame = true;
         }
     }
 
     /**
-     * Method to display the grid with the ships if user is not in game
+     * Method to display the grid with the ships if user is not in game.
      */
-    private void printCurrentGrid(){
-        if(!this.isInGame){
+    private void printCurrentGrid() {
+        if (this.isInGame) {
             grid.printGrid();
-        }
-        else{
+        } else {
             System.out.println("Non stai giocando, inizia a giocare con: /gioca");
+        }
+    }
+
+    /**
+     * Method to show current ships.
+     */
+    private void showShips() {
+        if (this.isInGame) {
+            this.grid.showShips();
+        } else {
+            System.out.print("E' necessario essere in partita per poter visualizzare l'elenco delle navi, ");
+            System.out.println("inizia a giocare con /gioca");
         }
     }
 }

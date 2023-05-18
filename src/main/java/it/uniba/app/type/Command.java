@@ -45,7 +45,7 @@ public enum Command {
     /**
      * Confirm command.
      */
-    YES("", "y", "yes", "si"),
+    YES("", "y", "yes", "si", "s"),
     /**
      * Reject command.
      */
@@ -60,14 +60,16 @@ public enum Command {
      */
     private final String[] names;
     /**
-     * This array contains command values, is used as a buffer so as not to recreate it each time.
+     * This array contains command values, is used as a buffer so as not to recreate
+     * it each time.
      */
     private static final Command[] VALUES = Command.values();
 
     /**
      * Constructor of the class.
+     *
      * @param valDescription Description of command
-     * @param valNames String array with alias
+     * @param valNames       String array with alias
      */
     Command(final String valDescription, final String... valNames) {
         this.names = valNames;
@@ -76,6 +78,7 @@ public enum Command {
 
     /**
      * Method to convert a string to Command.
+     *
      * @param text string to conver
      * @return Command type
      */
@@ -90,6 +93,7 @@ public enum Command {
 
     /**
      * Names getter.
+     *
      * @return string array with alias of the command.
      */
     public String[] getNames() {
@@ -98,6 +102,7 @@ public enum Command {
 
     /**
      * Description getter.
+     *
      * @return destription
      */
     public String getDescription() {

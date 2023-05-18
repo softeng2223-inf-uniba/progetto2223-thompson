@@ -1,7 +1,7 @@
 package it.uniba.app.type;
 
 /**
- *Class containing difficulty and number of attempts.
+ * Class containing difficulty and number of attempts.
  */
 public enum Difficulty {
     /**
@@ -41,15 +41,21 @@ public enum Difficulty {
      */
     @Override
     public String toString() {
-        String difficulty="";
-        if(null!=this) switch (this) {
-            case HARD -> difficulty="difficile";
-            case MEDIUM -> difficulty="medio";
-            case EASY -> difficulty="facile";
-            default -> {
+        if (null != this) {
+            switch (this) {
+                case HARD -> {
+                    return "difficile";
+                }
+                case MEDIUM -> {
+                    return "medio";
+                }
+                case EASY -> {
+                    return "facile";
+                }
+                default -> {
+                }
             }
         }
-        return difficulty; 
+        return "";
     }
-
 }
