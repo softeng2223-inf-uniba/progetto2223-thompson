@@ -188,12 +188,12 @@ public class Partita {
     /**
      * Method to display the grid with the ships if user is not in game
      */
-    /*private void printCurrentGrid(){
+    private void printCurrentGrid(){
         if(!this.isInGame){
             grid.printGrid();
         }
         else{
             System.out.println("Non stai giocando, inizia a giocare con: /gioca");
         }
-    }*/
+    }
 }
