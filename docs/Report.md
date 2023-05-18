@@ -69,8 +69,7 @@ Dopo aver eseguito il comando docker pull copiandolo da GitHub Packages, Il coma
 
 ## 7 Manuale utente
 Il gioco si svolge su una griglia, dove il sistema posiziona in modo casuale le navi all'inizio di una partita. L'obiettivo del giocatore è quello di indovinare la posizione delle navi nemiche e cercare di affondarle attaccando le caselle della griglia.<br>
-Il gioco termina quando tutte le navi nemiche sono state affondate o quando si esauriscono le mosse disponibili. Il numero di mosse disponibili dipende dalla modalità di gioco scelta, che può essere facile, media o difficile.<br>Il giocatore vince se 
-affonda tutte le navi prima di esaurire le mosse.
+Il gioco termina quando tutte le navi nemiche sono state affondate o quando si esauriscono le mosse disponibili. Il numero di mosse disponibili dipende dalla modalità di gioco scelta, che può essere facile, media o difficile.<br>Il giocatore vince se affonda tutte le navi prima di esaurire le mosse.
 <br>
 
 Per interagire con il gioco, viene utilizzata l'interfaccia a riga di comando (CLI). Di seguito si riporta l'elenco dei comandi utilizzabili e una breve descrizione del loro funzionamento:
@@ -82,6 +81,8 @@ Per interagire con il gioco, viene utilizzata l'interfaccia a riga di comando (C
 <li>	esci<br></li>
 </ul>
 </li><br>
+Si nota che se all'avvio del programma viene specificato un flag diverso da <i>--help</i> o <i>-h</i>, o vengono specificati più flag, l'applicazione risponde con un messaggio di errore e si chiude restituendo il controllo al sistema operativo. In caso non sia specificato alcun flag, l'applicazione mostra esclusivamente l'introduzione e si predispone a ricevere comandi.<br>
+<br>
 <li>Al comando <strong>/esci</strong> l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti<br>
 <ul>
 <li>	se la conferma è positiva, l'applicazione si chiude restituendo il controllo al sistema operativo</li>
@@ -92,7 +93,8 @@ Per interagire con il gioco, viene utilizzata l'interfaccia a riga di comando (C
 
 <li>Al comando <strong>/medio</strong> l’applicazione risponde con OK e imposta a 30 il numero massimo di tentativi falliti.</li><br>
 
-<li>Al comando <strong>/difficile</strong> l’applicazione risponde con OK e imposta a 10 il numero massimo di tentativi falliti.</li><br>
+<li>Al comando <strong>/difficile</strong> l’applicazione risponde con OK e imposta a 10 il numero massimo di tentativi falliti.<br>
+<br> Si nota che i comandi per la scelta del livello di gioco: <i>/facile</i>, <i>/medio</i>, e <i>/difficile</i>, possono essere invocati solo se nessuna partita è in corso, e che di default se si inizia una partita senza aver scelto la difficolta, il livello di gioco è impostato a medio.</li><br>
 
 <li>Al comando <strong>/mostralivello</strong> l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti.</li><br>
 
