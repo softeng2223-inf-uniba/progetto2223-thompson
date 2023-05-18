@@ -1,4 +1,5 @@
 package it.uniba.app.grid.type;
+
 import java.util.Objects;
 
 /**
@@ -7,13 +8,13 @@ import java.util.Objects;
 public final class Coordinate {
 
     /**
-     * Contain the Row.
+     * Contain the column.
      */
-    private Row row;
+    private Column column;
     /**
-     * Number of column.
+     * Number of row.
      */
-    private int column;
+    private int row;
     /**
      * Hash constant.
      */
@@ -25,10 +26,11 @@ public final class Coordinate {
 
     /**
      * Coordinate constructor.
-     * @param valRow Row type
-     * @param valColumn integer of column
+     *
+     * @param valColumn Column type
+     * @param valRow    integer of row
      */
-    public Coordinate(final Row valRow, final int valColumn) {
+    public Coordinate(final Column valColumn, final int valRow) {
         this.row = valRow;
         this.column = valColumn;
     }
@@ -37,50 +39,54 @@ public final class Coordinate {
      * Coordinate constructor.
      */
     public Coordinate() {
-        this.row = Row.A;
-        this.column = 0;
-    }
-
-    /**
-     * Column getter.
-     * @return column
-     */
-    public int getColumn() {
-        return column;
-    }
-
-    /**
-     * Column setter.
-     * @param valColumn column
-     */
-    public void setColumn(final int valColumn) {
-        this.column = valColumn;
+        this.column = Column.A;
+        this.row = 0;
     }
 
     /**
      * Row getter.
+     *
      * @return row
      */
-    public Row getRow() {
+    public int getRow() {
         return row;
     }
 
     /**
-     * Row getter.
+     * Row setter.
+     *
+     * @param valRow row
      */
-    public void setRow(final Row valRow) {
+    public void setRow(final int valRow) {
         this.row = valRow;
     }
 
     /**
+     * Column getter.
+     *
+     * @return column
+     */
+    public Column getColumn() {
+        return column;
+    }
+
+    /**
+     * Column getter.
+     */
+    public void setColumn(final Column valColumn) {
+        this.column = valColumn;
+    }
+
+    /**
      * Method to generate hash code of objects.
+     *
      * @return hashcode
      */
     @Override
     public int hashCode() {
         int hash = HASH1;
         hash = HASH2 * hash + Objects.hashCode(this.row);
-        hash = HASH2 * hash + this.column;
+        hash = HASH2 * hash + this.row;
         return hash;
     }
 
@@ -103,5 +109,9 @@ public final class Coordinate {
             return false;
         }
         return this.row == other.row;
+    }
+    @Override
+    public String toString() {
+        return "Coordinate{" + "row=" + row + ", column=" + column + '}';
     }
 }

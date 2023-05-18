@@ -118,13 +118,13 @@ public class Partita {
         if (scanner.hasNextLine()) {
             Map<Command, List<String>> command = Parser.parse(scanner.nextLine());
             if (command == null) {
-                System.out.println("Comando non riconosciuto");
+                System.out.println("Risposta non riconosciuta");
             } else if (command.containsKey(Command.YES) && command.get(Command.YES).isEmpty()) {
                 Runtime.getRuntime().exit(0);
             } else if (command.containsKey(Command.NO) && command.get(Command.NO).isEmpty()) {
                 System.out.println("Ok");
             } else {
-                System.out.println("Comando non valido");
+                System.out.println("Risposta non valida");
             }
         }
     }
