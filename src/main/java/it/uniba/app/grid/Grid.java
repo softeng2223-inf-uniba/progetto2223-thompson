@@ -56,9 +56,6 @@ public class Grid {
         this.ships = new HashMap<>();
         for (Ship s : Ship.values()) {
             ships.put(s, new HashMap<>());
-            for (int i = 0; i < s.getnShips(); i++) {
-                ships.get(s).put(i, new LinkedList<>());
-            }
         }
     }
 
@@ -78,7 +75,7 @@ public class Grid {
 
     /**
      * Method that adds ships to the dictionary with their coordinates.
-     * 
+     *
      * @param ship
      * @param nShip
      * @param direction
@@ -91,28 +88,44 @@ public class Grid {
                     for (int i = 0; i < ship.getSize(); i++) {
                         int row = coord.getRow().ordinal();
                         int column = coord.getColumn() - i + 1;
-                        ships.get(ship).get(nShip).add(new Coordinate(Row.fromInt(row), column));
+                        if (ships.get(ship).get(nShip) == null) {
+                            ships.get(ship).put(nShip, new LinkedList<>());
+                        } else {
+                            ships.get(ship).get(nShip).add(new Coordinate(Row.fromInt(row), column));
+                        }
                     }
                 }
                 case RIGHT -> {
                     for (int i = 0; i < ship.getSize(); i++) {
                         int row = coord.getRow().ordinal();
                         int column = coord.getColumn() + i + 1;
-                        ships.get(ship).get(nShip).add(new Coordinate(Row.fromInt(row), column));
+                        if (ships.get(ship).get(nShip) == null) {
+                            ships.get(ship).put(nShip, new LinkedList<>());
+                        } else {
+                            ships.get(ship).get(nShip).add(new Coordinate(Row.fromInt(row), column));
+                        }
                     }
                 }
                 case UP -> {
                     for (int i = 0; i < ship.getSize(); i++) {
                         int row = coord.getRow().ordinal() - i;
                         int column = coord.getColumn() + 1;
-                        ships.get(ship).get(nShip).add(new Coordinate(Row.fromInt(row), column));
+                        if (ships.get(ship).get(nShip) == null) {
+                            ships.get(ship).put(nShip, new LinkedList<>());
+                        } else {
+                            ships.get(ship).get(nShip).add(new Coordinate(Row.fromInt(row), column));
+                        }
                     }
                 }
                 case DOWN -> {
                     for (int i = 0; i < ship.getSize(); i++) {
                         int row = coord.getRow().ordinal() + i;
                         int column = coord.getColumn() + 1;
-                        ships.get(ship).get(nShip).add(new Coordinate(Row.fromInt(row), column));
+                        if (ships.get(ship).get(nShip) == null) {
+                            ships.get(ship).put(nShip, new LinkedList<>());
+                        } else {
+                            ships.get(ship).get(nShip).add(new Coordinate(Row.fromInt(row), column));
+                        }
                     }
                 }
                 default -> {
@@ -123,7 +136,7 @@ public class Grid {
 
     /**
      * Method to check if we can place a ship in a given coordinate.
-     * 
+     *
      * @param direction direction of ship
      * @param dimension dimension of ship
      * @param coord     coordinate where to place the ship
@@ -187,7 +200,7 @@ public class Grid {
 
     /**
      * Method to place ships in the grid.
-     * 
+     *
      * @param direction direction of the ship
      * @param ship      ship to place
      * @param coord     initial coordinate
@@ -253,7 +266,7 @@ public class Grid {
 
     /**
      * TotalShips getter.
-     * 
+     *
      * @return totalships
      */
     public final int getTotalShips() {
@@ -261,23 +274,7 @@ public class Grid {
     }
 
     /**
-     * Method to display remaing ships.
-     */
-    public final void showShips() {
-        for (Ship ship : ships.keySet()) {
-            System.out.print(ship.toString() + " ");
-            for (int i = 0; i < ship.getSize(); i++) {
-                System.out.print("X");
-            }
-
-            System.out.print(" " + ships.get(ship).size());
-            System.out.print(" Da affondare su " + ship.getnShips() + " Totali ");
-            System.out.println();
-        }
-    }
-
-    /**
-     * Method to display the grid with the ships
+     * Method to display the grid with the ships.
      */
     public final void printGrid() {
         System.out.print("    |");
@@ -291,8 +288,7 @@ public class Grid {
             System.out.println();
             if (i + 1 > 9) {
                 System.out.print("  " + (i + 1) + "|");
-            } 
-            else {
+            } else {
                 System.out.print("  " + (i + 1) + " |");
             }
             for (int j = 0; j < MAXCOLUMN; j++) {
@@ -305,4 +301,18 @@ public class Grid {
         }
     }
 
+    /**
+     * Method to display remaing ships.
+     */
+    public final void showShips() {
+        for (Ship ship : ships.keySet()) {
+            System.out.print(ship.toString() + " ");
+            for (int i = 0; i < ship.getSize(); i++) {
+                System.out.print("X");
+            }
+            System.out.print(" " + ships.get(ship).size());
+            System.out.print(" da affondare su " + ship.getnShips() + " totali ");
+            System.out.println();
+        }
+    }
 }
