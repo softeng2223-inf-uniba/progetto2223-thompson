@@ -1,12 +1,11 @@
 # Report
 
-<ul>
-<li>["Introduzione"](#1-introduzione)</li>
-<li>["Modello di Dominio"](#2-modello-di-dominio)</li>
-<li>["Requisiti Specifici"](#3-requisiti-specifici)</li>
-<li>["Manuale Utente"](#7-manuale-utente)</li>
-<li>["Analisi Retrospettiva"](#9-analisi-retrospettiva)</li>
-</ul>
+- [Introduzione](#1-introduzione)
+- [Modello di Dominio](#2-modello-di-dominio)
+- [Requisiti Specifici](#3-requisiti-specifici)
+- [Manuale Utente](#7-manuale-utente)
+- [Analisi Retrospettiva](#9-analisi-retrospettiva)
+
 
 ## 1 Introduzione
 <p>
