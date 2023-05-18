@@ -76,7 +76,7 @@ affonda tutte le navi prima di esaurire le mosse.
 Per interagire con il gioco, viene utilizzata l'interfaccia a riga di comando (CLI). Di seguito si riporta l'elenco dei comandi utilizzabili e una breve descrizione del loro funzionamento:
 <br>
 <ul>
-<li>Al comando <strong>/help</strong> o invocando l'app con flag _--help_ o _-h_ il risultato è una descrizione concisa, che normalmente appare all'avvio del programma, seguita dalla lista di comandi disponibili, uno per riga, come da esempio successivo:<br>
+<li>Al comando <strong>/help</strong> o invocando l'app con flag <i>--help</i> o <i>-h</i> il risultato è una descrizione concisa, che normalmente appare all'avvio del programma, seguita dalla lista di comandi disponibili, uno per riga, come da esempio successivo:<br>
 <ul>
 <li>	gioca<br></li>
 <li>	esci<br></li>
