@@ -37,19 +37,19 @@ I componenti del gruppo sono:
 
 <ul>
 <strong>
-<li>Come giocatore voglio mostrare l'help con elenco comandi</li>
-<li>Come giocatore voglio chiudere il gioco</li>
-<li>Come giocatore voglio impostare il livello di gioco per variare il numero massimo di tentativi sbagliati</li>
-<li>Come giocatore voglio mostrare il livello di gioco e il numero di massimo di tentativi falliti</li>
-<li>Come giocatore voglio mostrare i tipi di nave e i numeri</li>
-<li>Come giocatore voglio iniziare una nuova partita</li>
-<li>Come giocatore voglio svelare la griglia con le navi posizionate</li>
+<li>RF1: Come giocatore voglio mostrare l'help con elenco comandi</li>
+<li>RF2: Come giocatore voglio chiudere il gioco</li>
+<li>RF3: Come giocatore voglio impostare il livello di gioco per variare il numero massimo di tentativi sbagliati</li>
+<li>RF4: Come giocatore voglio mostrare il livello di gioco e il numero di massimo di tentativi falliti</li>
+<li>RF5: Come giocatore voglio mostrare i tipi di nave e i numeri</li>
+<li>RF6: Come giocatore voglio iniziare una nuova partita</li>
+<li>RF7: Come giocatore voglio svelare la griglia con le navi posizionate</li>
 </strong>
 </ul>
 
 ### 3.2 Requisiti non funzionali
 <ul>
-<li> <p><strong>Il container docker dell'app deve essere eseguito da terminali che supportano Unicode con encoding UTF-8 o UTF-16</strong><br>
+<li> <p><strong>RNF1: Il container docker dell'app deve essere eseguito da terminali che supportano Unicode con encoding UTF-8 o UTF-16</strong><br>
 Elenco di terminali supportati<br>
 Linux:<br>
 - terminal<br>
