@@ -45,7 +45,7 @@ public enum Ship {
      * @return size
      */
     public int getSize() {
-        return size;
+        return this.size;
     }
 
     /**
@@ -54,13 +54,13 @@ public enum Ship {
      * @return nShps
      */
     public int getnShips() {
-        return nShips;
+        return this.nShips;
     }
 
     /**
      * Return X if there is a ship.
      */
-    public String stringShip() {
+    public static String stringShip() {
         return "X";
     }
 
