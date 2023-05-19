@@ -74,11 +74,11 @@ public class Partita {
             System.out.println(HELP_TIP);
         }
         this.gameDifficulty = Difficulty.MEDIUM; // default difficulty
-        scanner = new Scanner(System.in, "UTF-8");
-        while (scanner.hasNextLine()) {
-            this.executeCommand(Parser.parse(scanner.nextLine()));
+        this.scanner = new Scanner(System.in, "UTF-8");
+        while (this.scanner.hasNextLine()) {
+            this.executeCommand(Parser.parse(this.scanner.nextLine()));
         }
-        scanner.close();
+        this.scanner.close();
     }
 
     /**
@@ -115,8 +115,8 @@ public class Partita {
      */
     private void closeGame() {
         System.out.println("Chiudere il gioco? [s/n]");
-        if (scanner.hasNextLine()) {
-            Map<Command, List<String>> command = Parser.parse(scanner.nextLine());
+        if (this.scanner.hasNextLine()) {
+            Map<Command, List<String>> command = Parser.parse(this.scanner.nextLine());
             if (command == null) {
                 System.out.println("Risposta non riconosciuta");
             } else if (command.containsKey(Command.YES) && command.get(Command.YES).isEmpty()) {
@@ -199,6 +199,7 @@ public class Partita {
     private void playGame() {
         this.grid = new Grid();
         this.grid.generateGrid();
+        this.grid.printCurrentGrid();
         this.isInGame = true;
     }
 
@@ -207,7 +208,7 @@ public class Partita {
      */
     private void printCurrentGrid() {
         if (this.isInGame) {
-            grid.printGrid();
+            this.grid.printGrid();
         } else {
             System.out.println("Non stai giocando, inizia a giocare con: /gioca");
         }
