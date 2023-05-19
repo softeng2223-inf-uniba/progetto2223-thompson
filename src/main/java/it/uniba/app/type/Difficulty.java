@@ -1,7 +1,7 @@
 package it.uniba.app.type;
 
 /**
- * Class containing difficulty and number of attempts.
+ * Class containing difficulty and number of tries.
  */
 public enum Difficulty {
     /**

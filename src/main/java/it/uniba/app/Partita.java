@@ -63,7 +63,7 @@ public class Partita {
     private Scanner scanner;
 
     /**
-     * Method for starting a game.
+     * Method for initializing variables and taking keyboard commands.
      */
     public final void execute(final boolean flag) {
         this.grid = new Grid();
@@ -144,7 +144,7 @@ public class Partita {
     }
 
     /**
-     * this method display level and maximum tries to users.
+     * Method for displaying the level and the maximum number of tries available to the user.
      */
     private void showLevel() {
         System.out.print("Livello di difficoltà: " + this.gameDifficulty.toString());

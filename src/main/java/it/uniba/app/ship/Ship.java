@@ -58,7 +58,7 @@ public enum Ship {
     }
 
     /**
-     * Return X if there is a ship.
+     * This method returns X if there is a ship.
      */
     public static String stringShip() {
         return "X";

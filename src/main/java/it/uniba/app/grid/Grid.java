@@ -344,7 +344,7 @@ public class Grid {
     }
 
     /**
-     * Method to display remaing ships.
+     * Method for displaying ships not sunk yet.
      */
     public final void showShips() {
         for (Ship ship : EnumSet.copyOf(this.ships.keySet())) {
