@@ -72,6 +72,8 @@ Il gioco si svolge su una griglia, dove il sistema posiziona in modo casuale le 
 Il gioco termina quando tutte le navi nemiche sono state affondate o quando si esauriscono le mosse disponibili. Il numero di mosse disponibili dipende dalla modalità di gioco scelta, che può essere facile, media o difficile.<br>Il giocatore vince se affonda tutte le navi prima di esaurire le mosse.
 <br>
 
+![intro](./img/intro.jpg)
+
 Per interagire con il gioco, viene utilizzata l'interfaccia a riga di comando (CLI). Di seguito si riporta l'elenco dei comandi utilizzabili e una breve descrizione del loro funzionamento:
 <br>
 <ul>
@@ -83,20 +85,30 @@ Per interagire con il gioco, viene utilizzata l'interfaccia a riga di comando (C
 </li><br>
 Si nota che se all'avvio del programma viene specificato un flag diverso da <i>--help</i> o <i>-h</i>, o vengono specificati più flag, l'applicazione risponde con un messaggio di errore e si chiude restituendo il controllo al sistema operativo. In caso non sia specificato alcun flag, l'applicazione mostra esclusivamente l'introduzione e si predispone a ricevere comandi.<br>
 <br>
+
+![help](./img/help.jpg)
+
 <li>Al comando <strong>/esci</strong> l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti<br>
 <ul>
 <li>	se la conferma è positiva, l'applicazione si chiude restituendo il controllo al sistema operativo</li>
 <li>	se la conferma è negativa, l'applicazione si predispone a ricevere nuovi tentativi o comandi</li>
 </ul>
 </li><br>
+
+![esci](./img/esci.jpg)
+
 <li>Al comando <strong>/facile</strong> l’applicazione risponde con OK e imposta a 50 il numero massimo di tentativi falliti.</li><br>
 
 <li>Al comando <strong>/medio</strong> l’applicazione risponde con OK e imposta a 30 il numero massimo di tentativi falliti.</li><br>
 
 <li>Al comando <strong>/difficile</strong> l’applicazione risponde con OK e imposta a 10 il numero massimo di tentativi falliti.<br>
-<br> Si nota che i comandi per la scelta del livello di gioco: <i>/facile</i>, <i>/medio</i>, e <i>/difficile</i>, possono essere invocati solo se nessuna partita è in corso, e che di default se si inizia una partita senza aver scelto la difficolta, il livello di gioco è impostato a medio.</li><br>
+</li><br>
+
+![livello](./img/livello.jpg)
 
 <li>Al comando <strong>/mostralivello</strong> l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti.</li><br>
+
+![mostraliv](./img/mostraliv.jpg)
 
 <li>Al comando <strong>/mostranavi</strong> l’applicazione risponde visualizzando, per ogni tipo di nave, la dimensione in quadrati e il numero di esemplari da affondare:<br>
 <ul>
@@ -106,10 +118,17 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 <li>	Portaerei  		⊠⊠⊠⊠⊠ 		esemplari: 1 </li>
 </ul>
 </li><br>
+
+![mostranavi](./img/mostranavi.jpg)
+
 <li>Al comando <strong>/gioca</strong> se nessuna partita è in corso l'applicazione imposta causalmente le navi, in orizzontale o in verticale, mostra la griglia vuota e si predispone a ricevere il primo tentativo o altri comandi.</li><br>
+
+![gioca](./img/gioca.jpg)
 
 <li>Al comando <strong>/svelagriglia</strong> l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate da 1 a 10 e le colonne numerate da A a J, e tutte le navi posizionate.</li><br>
 </ul> 
+
+![svelagriglia](./img/svelagriglia.jpg)
 
 [Torna all'indice](#indice)
 
