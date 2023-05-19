@@ -123,8 +123,12 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 
 <li>Al comando <strong>/gioca</strong> se nessuna partita è in corso l'applicazione imposta causalmente le navi, in orizzontale o in verticale, mostra la griglia vuota e si predispone a ricevere il primo tentativo o altri comandi.</li><br>
 
+![gioca](./img/gioca.jpg)
+
 <li>Al comando <strong>/svelagriglia</strong> l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate da 1 a 10 e le colonne numerate da A a J, e tutte le navi posizionate.</li><br>
 </ul> 
+
+![svelagriglia](./img/svelagriglia.jpg)
 
 [Torna all'indice](#indice)
 
