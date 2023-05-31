@@ -132,6 +132,14 @@ l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerat
 Al comando <strong>/mostratentativi </strong>
 l’applicazione risponde visualizzando il numero di tentativi già effettuati, il numero di tentativi falliti e il numero massimo di tentativi falliti
 </li>
+<li><strong>RF17: Come giocatore voglio abbandonare una partita
+<br> Criteri di accettazione: <br></strong>
+Al comando <strong>/abbandona </strong>
+l’applicazione chiede conferma
+<ul>
+<li>se la conferma è positiva, l’applicazione risponde visualizzando sulla griglia la posizione di tutte le navi e si predispone a ricevere nuovi comandi</li>
+<li>se la conferma è negativa, l'applicazione si predispone a ricevere nuovi tentativi o comandi</li>
+</ul></li>
 </ul>
 
 ### 3.2 Requisiti non funzionali
