@@ -36,15 +36,47 @@ I componenti del gruppo sono:
 ### 3.1 Requisiti funzionali
 
 <ul>
-<strong>
-<li>RF1: Come giocatore voglio mostrare l'help con elenco comandi</li>
-<li>RF2: Come giocatore voglio chiudere il gioco</li>
-<li>RF3: Come giocatore voglio impostare il livello di gioco per variare il numero massimo di tentativi sbagliati</li>
-<li>RF4: Come giocatore voglio mostrare il livello di gioco e il numero di massimo di tentativi falliti</li>
-<li>RF5: Come giocatore voglio mostrare i tipi di nave e i numeri</li>
-<li>RF6: Come giocatore voglio iniziare una nuova partita</li>
-<li>RF7: Come giocatore voglio svelare la griglia con le navi posizionate</li>
-</strong>
+
+<li><strong>RF1: Come giocatore voglio mostrare l'help con elenco comandi <br> Criteri di accettazione:
+<br> </strong>
+Al comando <strong>/help</strong> o invocando l'app con flag --help o -h
+il risultato è una descrizione concisa, che normalmente appare all'avvio del programma, seguita dalla lista di comandi disponibili, uno per riga, come da esempio successivo: <br>
+-gioca <br>
+-esci <br>
+-... <br>
+</li>
+<li><strong>RF2: Come giocatore voglio chiudere il gioco <br> Criteri di accettazione: <br></strong>
+Al comando <strong>/esci </strong>
+l'applicazione chiede conferma 
+se la conferma è positiva, l'applicazione si chiude restituendo il controllo al sistema operativo
+se la conferma è negativa, l'applicazione si predispone a ricevere nuovi tentativi o comandi
+</li>
+<li><strong>RF3: Come giocatore voglio impostare il livello di gioco per variare il numero massimo di tentativi sbagliati<br> Criteri di accettazione: <br> </strong>
+Al comando <strong>/facile </strong>
+l’applicazione risponde con OK e imposta a 50 il numero massimo di tentativi falliti <br>
+Al comando <strong>/medio </strong>
+l’applicazione risponde con OK e imposta a 30 il numero massimo di tentativi falliti <br>
+Al comando <strong>/difficile </strong>
+l’applicazione risponde con OK e imposta a 10 il numero massimo di tentativi falliti <br>
+</li>
+<li><strong>RF4: Come giocatore voglio mostrare il livello di gioco e il numero di massimo di tentativi falliti<br> Criteri di accettazione: <br> </strong>
+Al comando <strong>/mostralivello </strong> l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti
+</li>
+<li><strong>RF5: Come giocatore voglio mostrare i tipi di nave e i numeri<br> Criteri di accettazione: <br> </strong>
+Al comando <strong>/mostranavi</strong> l’applicazione risponde visualizzando, per ogni tipo di nave, la dimensione in quadrati e il numero di esemplari da affondare:<br>
+<ul>
+<li>	Cacciatorpediniere 	⊠⊠ 		esemplari: 4 </li>
+<li>	Incrociatore 		⊠⊠⊠ 		esemplari: 3 </li>
+<li>	Corazzata 		⊠⊠⊠⊠ 		esemplari: 2 </li>
+<li>	Portaerei  		⊠⊠⊠⊠⊠ 		esemplari: 1 </li>
+</ul>
+</li>
+<li><strong>RF6: Come giocatore voglio iniziare una nuova partita<br> Criteri di accettazione: <br> </strong>
+Al comando <strong>/gioca</strong> se nessuna partita è in corso l'applicazione imposta causalmente le navi, in orizzontale o in verticale, mostra la griglia vuota e si predispone a ricevere il primo tentativo o altri comandi.<br>
+</li>
+<li><strong>RF7: Come giocatore voglio svelare la griglia con le navi posizionate<br> Criteri di accettazione: <br> </strong>
+Al comando <strong>/svelagriglia </strong> l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate da 1 a 10 e le colonne numerate da A a J, e tutte le navi posizionate  
+</li>
 </ul>
 
 ### 3.2 Requisiti non funzionali
