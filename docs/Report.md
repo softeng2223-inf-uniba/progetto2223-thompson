@@ -113,6 +113,25 @@ Al comando <strong>/tempo <i>numero</i></strong> l’applicazione risponde con O
 Al comando <strong>/mostratempo </strong>
 l’applicazione risponde visualizzando il numero di minuti trascorsi nel gioco e il numero di minuti ancora disponibili
 </li>
+<li><strong>RF14: Come giocatore voglio effettuare un tentativo per colpire una nave
+<br> Criteri di accettazione: <br></strong>
+Digitando una coppia di caratteri separati da un trattino, corrispondenti rispettivamente al numero di riga e alla lettera della colonna, (es. B-4), l’applicazione risponde <ul>
+<li>“acqua” se sulla cella non è posizionata nessuna nave;</li>
+<li>"colpito" se sulla cella è posizionata una nave;</li>
+<li>"colpito e affondato" se sulla cella è posizionata una nave ed è l’ultima cella non colpita della nave. </li></ul>
+Qualunque sia l’esito del tentativo, l’applicazione mostra la griglia con le navi colpite parzialmente o affondate, il numero di tentativi già effettuati, e il tempo trascorso. <br>
+La partita termina con successo se il tentativo ha affondato l’ultima nave. <br>
+La partita termina con insuccesso se è stato raggiunto il numero massimo di tentativi falliti o se è scaduto il tempo di gioco. 
+</li>
+<li><strong>RF15: Come giocatore voglio mostrare il tempo di gioco
+<br> Criteri di accettazione: <br></strong>
+Al comando <strong>/mostragriglia </strong>
+l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate da 1 a 10 e le colonne numerate da A a J, con le navi affondate e le sole parti già colpite delle navi non affondate.  
+</li>
+<li><strong>RF16: Come giocatore voglio mostrare il numero di tentativi già effettuati e il numero di tentativi falliti<br></strong>
+Al comando <strong>/mostratentativi </strong>
+l’applicazione risponde visualizzando il numero di tentativi già effettuati, il numero di tentativi falliti e il numero massimo di tentativi falliti
+</li>
 </ul>
 
 ### 3.2 Requisiti non funzionali
