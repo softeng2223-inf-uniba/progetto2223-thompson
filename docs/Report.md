@@ -123,10 +123,10 @@ Qualunque sia l’esito del tentativo, l’applicazione mostra la griglia con le
 La partita termina con successo se il tentativo ha affondato l’ultima nave. <br>
 La partita termina con insuccesso se è stato raggiunto il numero massimo di tentativi falliti o se è scaduto il tempo di gioco. 
 </li>
-<li><strong>RF15: Come giocatore voglio mostrare il tempo di gioco
+<li><strong>RF15: Come giocatore voglio mostrare la griglia con le navi colpite e affondate
 <br> Criteri di accettazione: <br></strong>
 Al comando <strong>/mostragriglia </strong>
-l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate da 1 a 10 e le colonne numerate da A a J, con le navi affondate e le sole parti già colpite delle navi non affondate.  
+l’applicazione risponde visualizzando, una griglia con le righe numerate a partire da 1 e le colonne numerate a partire da A, con le navi affondate e le sole parti già colpite delle navi non affondate. 
 </li>
 <li><strong>RF16: Come giocatore voglio mostrare il numero di tentativi già effettuati e il numero di tentativi falliti<br></strong>
 Al comando <strong>/mostratentativi </strong>
