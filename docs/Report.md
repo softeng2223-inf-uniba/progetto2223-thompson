@@ -233,4 +233,8 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
    
 ![Retrospective_Mad_Sad_Glad_Template](./img/Retrospective_Mad_Sad_Glad_Template.jpg)
 
+### 9.2 Sprint 1
+
+![Retrospective_Sprint1_Mad_Sad_Glad_Template](./img/Retrospective_Sprint1_Mad_Sad_Glad_Template.jpg)
+
 [Torna all'indice](#indice)
