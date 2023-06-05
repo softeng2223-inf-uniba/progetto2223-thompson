@@ -254,6 +254,8 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
    - _Star-Uml_ per i diagrammi di dominio e delle classi;
    - Netbeans come IDE secondario;
 
+[Torna all'indice](#indice)
+
 ## 9 Analisi retrospettiva
 
 ### 9.1 Sprint 0
