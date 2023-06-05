@@ -6,6 +6,7 @@
 - [Modello di Dominio](#2-modello-di-dominio)
 - [Requisiti Specifici](#3-requisiti-specifici)
 - [Manuale Utente](#7-manuale-utente)
+- [Processo di sviluppo e organizzazione del lavoro](#8-Processo-di-sviluppo-e-organizzazione-del-lavoro)
 - [Analisi Retrospettiva](#9-analisi-retrospettiva)
 
 
@@ -224,6 +225,41 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 </ul> 
 
 ![svelagriglia](./img/svelagriglia.jpg)
+
+[Torna all'indice](#indice)
+
+## 8 Processo di sviluppo e organizzazione del lavoro
+   Per il processo di sviluppo e l'organizzazione del lavoro abbiamo seguito il metodo <strong>SCRUM</strong>, dove i progetti fanno progessi in una serie di consegne dette Sprint. Nel nostro caso, il metodo SCRUM prevede l'intero progetto suddiviso in 3 sprint (Sprint 0, 1, 2). Ogni sprint ha una durata di circa 2 settimane e ognuno di questi sprint è stato svolto seguendo il [codice di condotta](./CODE_OF_CONDUCT.md).
+   Abbiamo suddiviso il lavoro in base alle user story, e relativi user points, fornite dal product owner, in modo da avere un carico di lavoro equilibrato fra tutti i componenti del team.
+
+   I meeting periodici venivano svolti ogni 2 giorni, escludendo la domenica, ed avevano la durata di massimo 15 minuti ed erano effettuati attraverso un canale privato di comunicazione sulla piattaforma Discord, questi meeting periodici avevano l'obiettivo di aggiornarci su eventuali problemi riscontrati, <strong>Discord</strong> veniva anche usato per la condivisione di file utili, oppure per programmare e confrontarsi. Inoltre per le comunicazioni veloci durante l'arco della giornata è stata usata un'altra piattaforma di comunicazione, Whatsapp. 
+
+   Discord mette a disposizione la creazione di diversi canli (vocali e testuali) per questo il server è stato strutturato come segue per mantere l'ordine e l'organizzazione:
+
+   ![discord](./img/discord.jpg)
+
+   Subito dopo ogni feedback/lancio dello sprint ci siamo riuniti in presenza per prendere nota e correggere gli errori che erano emersi dalla revisione del Product Owner. Dopodichè abbiamo pianificato il lavoro da svolgere per il nuovo sprint, definendo:
+   <ul>
+   <li> Milestone legato allo sprint;</li>
+   <li> Sprint board con le colonne <i>Todo</i>, <i>In Progress</i>, <i>Review</i>, <i>Ready</i> e <i>Done</i>;</li>
+   <li> Issue da assegnare ai componenti del team;</li>
+   <li> Successivamente: completata una issue, uno o più componenti, selezionati come reviewers, revisionavano le modifiche effettuate.</li>
+   </ul>
+ 
+   Per i punti precedenti abbiamo usato: 
+   <ul>
+   <li> <i>GitHub</i> per il coordinamento del lavoro e l'issue tracking;</li>
+   <li> <i>Git</i> per il controllo di versione;</li>
+   <li> <i>GitHub Flow</i> per Branching e Pull Request;</li>
+   </ul>
+  Per la stesura del progetto, come ambiente di sviluppo, abbiamo usato l'IDE Eclipse con i sui plug-in: Gradle, Junit, Checkstyle, Spotbugs.
+  Altri Software utilizzati sono stati: 
+   <ul>
+   <li> <i>Visual Studio Code</i> per i file markdown;</li>
+   <li> <i>Docker</i> per l'utilizzo di container;</li>
+   <li> <i>Star-Uml</i> per i diagrammi di dominio e delle classi;</li>
+   <li> <i>Netbeans</i> come IDE secondario;</li>
+   </ul>
 
 [Torna all'indice](#indice)
 
