@@ -227,7 +227,7 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 
 [Torna all'indice](#indice)
 
-## Processo di sviluppo e organizzazione del lavoro
+## 8 Processo di sviluppo e organizzazione del lavoro
    Per il processo di sviluppo e l'organizzazione del lavoro abbiamo seguito il metodo SCRUM, dove i progetti fanno progessi in una serie di consegne dette Sprint. Nel nostro caso, il metodo SCRUM prevede l'intero progetto suddiviso in 3 sprint (Sprint 0, 1, 2). Ogni sprint ha una durata di circa 2 settimane e ognuno di questi sprint è stato svolto seguendo il [codice di condotta](./CODE_OF_CONDUCT.md).
    Abbiamo suddiviso il lavoro in base alle user story, e relativi user points, fornite dal product owner, in modo da avere un carico di lavoro equilibrato fra tutti i componenti del team.
 
