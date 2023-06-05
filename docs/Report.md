@@ -236,6 +236,8 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 
    Discord mette a disposizione la creazione di diversi canli (vocali e testuali) per questo il server è stato strutturato come segue per mantere l'ordine e l'organizzazione:
 
+   ![discord](./img/discord.jpg)
+
    Subito dopo ogni feedback/lancio dello sprint ci siamo riuniti in presenza per prendere nota e correggere gli errori che erano emersi dalla revisione del Product Owner. Dopodichè abbiamo pianificato il lavoro da svolgere per il nuovo sprint, definendo:
    - Milestone legato allo sprint;
    - Sprint board con le colonne Todo, In Progress, Review, Ready e Done;
