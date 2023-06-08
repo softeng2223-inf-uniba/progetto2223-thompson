@@ -1,47 +1,43 @@
 package it.uniba.app.parser;
 
-import it.uniba.app.type.Command;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
- * Class to parse command.
+ * Abstract class for parsing strings.
  */
 public abstract class Parser {
     /**
-     * Method to split the string into tokens.
-     * @param command String to split
-     * @return List with tokens
+     * Parses the input string using the provided patterns and returns a map with
+     * the matched results.
+     *
+     * @param input    the input string to parse
+     * @param patterns the regex patterns to match against the input
+     * @return a map with the matched patterns as keys and their corresponding
+     *         groups as values,
+     *         or null if no match is found or an exception occurs
      */
-    public static List<String> getTokens(final String command) {
-        String[] arrayTokens = command.toLowerCase().split("\\s+");
-        return Arrays.asList(arrayTokens);
-    }
-
-    /**
-     * Method fo convert string to command.
-     * @param command Command string
-     * @return Map with Command as key and its list of argument as value
-     */
-    public static Map<Command, List<String>> parse(final String command) {
-        Map<Command, List<String>> result = new HashMap<>();
-        List<String> tokens = new ArrayList<>(getTokens(command));
-
-        if (!tokens.isEmpty()) {
-            String token = tokens.remove(0);
-            Command value = Command.fromString(token);
-            if (value != null) {
-                result.put(value, tokens);
-                return result;
-            } else {
-                return null;
+    public static Map<String, Map<Integer, String>> parseInput(final String input, final Pattern... patterns) {
+        try {
+            Map<String, Map<Integer, String>> result = new HashMap<>();
+            for (Pattern pattern : patterns) {
+                Matcher matcher = pattern.matcher(input);
+                if (matcher.matches()) {
+                    result.put(pattern.pattern(), new HashMap<>());
+                    if (matcher.groupCount() == 0) {
+                        result.get(pattern.pattern()).put(0, matcher.group());
+                    } else {
+                        for (int i = 1; i <= matcher.groupCount(); i++) {
+                            result.get(pattern.pattern()).put(i - 1, matcher.group(i));
+                        }
+                    }
+                }
             }
-        } else {
+            return result.isEmpty() ? null : result;
+        } catch (Exception e) {
             return null;
         }
     }
 }
-

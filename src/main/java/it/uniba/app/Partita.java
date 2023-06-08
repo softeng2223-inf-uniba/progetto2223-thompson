@@ -19,11 +19,6 @@ public class Partita {
     private Grid grid;
 
     /**
-     * Difficulty of the current match.
-     */
-    private Difficulty gameDifficulty;
-
-    /**
      * Flag that indicates if a game is in progress.
      */
     private boolean isInGame;
@@ -66,17 +61,15 @@ public class Partita {
      * Method for initializing variables and taking keyboard commands.
      */
     public final void execute(final boolean flag) {
-        this.grid = new Grid();
         System.out.println(WELCOME_MESSAGE);
         if (flag) {
             this.help();
         } else {
             System.out.println(HELP_TIP);
         }
-        this.gameDifficulty = Difficulty.MEDIUM; // default difficulty
         this.scanner = new Scanner(System.in, "UTF-8");
         while (this.scanner.hasNextLine()) {
-            this.executeCommand(Parser.parse(this.scanner.nextLine()));
+            this.executeCommand(Parser.parseInput(this.scanner.nextLine(), Command.PATTERNS));
         }
         this.scanner.close();
     }
@@ -84,29 +77,31 @@ public class Partita {
     /**
      * Method for execute a command.
      */
-    private void executeCommand(final Map<Command, List<String>> command) {
+    private void executeCommand(final Map<String, Map<Integer, String>> inputCommand) {
+        Map<Command, List<String>> command = Command.parse(inputCommand);
         if (command == null) {
             System.out.println("Comando non riconosciuto");
-        } else if (command.containsKey(Command.EXIT) && command.get(Command.EXIT).isEmpty()) {
+        } else if (command.containsKey(Command.EXIT)) {
             this.closeGame();
-        } else if (command.containsKey(Command.EASY) && command.get(Command.EASY).isEmpty()) {
-            this.setDifficulty(Command.EASY);
-        } else if (command.containsKey(Command.HELP) && command.get(Command.HELP).isEmpty()) {
+        } else if (command.containsKey(Command.HELP)) {
             this.help();
-        } else if (command.containsKey(Command.MEDIUM) && command.get(Command.MEDIUM).isEmpty()) {
-            this.setDifficulty(Command.MEDIUM);
-        } else if (command.containsKey(Command.HARD) && command.get(Command.HARD).isEmpty()) {
-            this.setDifficulty(Command.HARD);
-        } else if (command.containsKey(Command.PLAY) && command.get(Command.PLAY).isEmpty()) {
+
+        } else if (command.containsKey(Command.EASY) || command.containsKey(Command.EASY_NOARG)) {
+            this.setDifficulty(Command.EASY, command.get(Command.EASY));
+        } else if (command.containsKey(Command.MEDIUM) || command.containsKey(Command.MEDIUM_NOARG)) {
+            this.setDifficulty(Command.MEDIUM, command.get(Command.MEDIUM));
+        } else if (command.containsKey(Command.HARD) || command.containsKey(Command.HARD_NOARG)) {
+            this.setDifficulty(Command.HARD, command.get(Command.HARD));
+        } else if (command.containsKey(Command.PLAY)) {
             this.playGame();
-        } else if (command.containsKey(Command.SHOW_LEVEL) && command.get(Command.SHOW_LEVEL).isEmpty()) {
+        } else if (command.containsKey(Command.SHOW_LEVEL)) {
             this.showLevel();
-        } else if (command.containsKey(Command.REVAL_GRID) && command.get(Command.REVAL_GRID).isEmpty()) {
+        } else if (command.containsKey(Command.REVAL_GRID)) {
             this.printCurrentGrid();
-        } else if (command.containsKey(Command.SHOW_SHIPS) && command.get(Command.SHOW_SHIPS).isEmpty()) {
+        } else if (command.containsKey(Command.SHOW_SHIPS)) {
             this.showShips();
         } else {
-            System.out.println("Comando non valido");
+            System.out.println("Comando non valido"); // stampa quando viene usato un comando che non può essere usato
         }
     }
 
@@ -116,7 +111,8 @@ public class Partita {
     private void closeGame() {
         System.out.println("Chiudere il gioco? [s/n]");
         if (this.scanner.hasNextLine()) {
-            Map<Command, List<String>> command = Parser.parse(this.scanner.nextLine());
+            Map<Command, List<String>> command = Command
+                    .parse(Parser.parseInput(this.scanner.nextLine(), Command.PATTERNS));
             if (command == null) {
                 System.out.println("Risposta non riconosciuta");
             } else if (command.containsKey(Command.YES) && command.get(Command.YES).isEmpty()) {
@@ -130,25 +126,51 @@ public class Partita {
     }
 
     /**
-     * Method for change difficulty.
+     * Method for change difficulty and the current tries if passed.
      */
-    private void setDifficulty(final Command command) {
-        if (command == Command.EASY) {
-            this.gameDifficulty = Difficulty.EASY;
-        } else if (command == Command.MEDIUM) {
-            this.gameDifficulty = Difficulty.MEDIUM;
-        } else if (command == Command.HARD) {
-            this.gameDifficulty = Difficulty.HARD;
+    private void setDifficulty(final Command command, final List<String> args) {
+        if (args == null) {
+            this.setOnlyDifficulty(command);
+            System.out.println("OK");
+        } else {
+            this.setOnlyDifficulty(command);
+            this.setOnlyCurrentTries(args);
         }
-        System.out.println("OK");
     }
 
     /**
-     * Method for displaying the level and the maximum number of tries available to the user.
+     * Method for change only the difficulty.
+     */
+    private void setOnlyDifficulty(final Command command) {
+        Difficulty.setDifficulty(Difficulty.valueOf(command.toString()));
+    }
+
+    /**
+     * Sets the maximum number of tries based on the provided arguments.
+     *
+     * @param args the list of arguments containing the maximum number of tries
+     */
+    private void setOnlyCurrentTries(final List<String> args) {
+        if (args == null) {
+            System.out.println("Non è stato passato nessun parametro");
+        } else {
+            try {
+                int tires = Integer.parseInt(args.get(0));
+                Difficulty.setMaxTries(tires);
+                System.out.println("OK");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Numero non valido");
+            }
+        }
+    }
+
+    /**
+     * Method for displaying the level and the maximum number of tries available to
+     * the user.
      */
     private void showLevel() {
-        System.out.print("Livello di difficoltà: " + this.gameDifficulty.toString());
-        System.out.println(", numero massimo di tentativi: " + this.gameDifficulty.getTries());
+        System.out.print("Livello di difficoltà: " + Difficulty.getDifficulty().toString());
+        System.out.println(", numero massimo di tentativi: " + Difficulty.getMaxTries());
     }
 
     /**
