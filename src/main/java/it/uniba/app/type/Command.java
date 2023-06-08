@@ -67,11 +67,11 @@ public enum Command {
     /**
      * Confirm command.
      */
-    YES("", TypeCommand.NOARG, "y", "yes", "si", "s"),
+    YES("", TypeCommand.CONFIRM, "y", "yes", "si", "s"),
     /**
      * Reject command.
      */
-    NO("", TypeCommand.NOARG, "n", "no"),
+    NO("", TypeCommand.DECLINE, "n", "no"),
     /**
      * Standard size command.
      */
@@ -200,11 +200,9 @@ public enum Command {
             for (TypeCommand type : TypeCommand.VALUES) {
                 if (input.containsKey(type.getRegex())) {
                     Command value = Command.fromString(input.get(type.getRegex()).remove(0), type.getRegex());
-                    System.out.println(value);
                     if (value != null) {
                         if (input.get(type.getRegex()).size() == value.type.getMaxArgs()) {
                             result.put(value, new ArrayList<>(input.get(type.getRegex()).values()));
-                            System.out.println(result);
                             return result;
                         }
                     }
