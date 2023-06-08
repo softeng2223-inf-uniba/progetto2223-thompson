@@ -1,10 +1,8 @@
 package it.uniba.app.parser;
 
-import it.uniba.app.type.Command;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,36 +10,30 @@ import java.util.Map;
  */
 public abstract class Parser {
     /**
-     * Method to split the string into tokens.
-     * @param command String to split
-     * @return List with tokens
-     */
-    public static List<String> getTokens(final String command) {
-        String[] arrayTokens = command.toLowerCase().split("\\s+");
-        return Arrays.asList(arrayTokens);
-    }
-
-    /**
      * Method fo convert string to command.
-     * @param command Command string
+     *
+     * @param input Command string
      * @return Map with Command as key and its list of argument as value
      */
-    public static Map<Command, List<String>> parse(final String command) {
-        Map<Command, List<String>> result = new HashMap<>();
-        List<String> tokens = new ArrayList<>(getTokens(command));
-
-        if (!tokens.isEmpty()) {
-            String token = tokens.remove(0);
-            Command value = Command.fromString(token);
-            if (value != null) {
-                result.put(value, tokens);
-                return result;
-            } else {
-                return null;
+    public static Map<String, Map<Integer, String>> parseInput(final String input, final Pattern... patterns) {
+        try {
+            Map<String, Map<Integer, String>> result = new HashMap<>();
+            for (Pattern pattern : patterns) {
+                Matcher matcher = pattern.matcher(input);
+                if (matcher.matches()) {
+                    result.put(pattern.pattern(), new HashMap<>());
+                    if (matcher.groupCount() == 0) {
+                        result.get(pattern.pattern()).put(0, matcher.group());
+                    } else {
+                        for (int i = 1; i <= matcher.groupCount(); i++) {
+                            result.get(pattern.pattern()).put(i - 1, matcher.group(i));
+                        }
+                    }
+                }
             }
-        } else {
+            return result.isEmpty() ? null : result;
+        } catch (Exception e) {
             return null;
         }
     }
 }
-
