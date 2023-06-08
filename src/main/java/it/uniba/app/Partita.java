@@ -85,7 +85,8 @@ public class Partita {
             this.closeGame();
         } else if (command.containsKey(Command.HELP)) {
             this.help();
-
+        } else if (command.containsKey(Command.HELP)){
+            this.setOnlyCurrentTries(command.get(Command.ATTEMPS));
         } else if (command.containsKey(Command.EASY) || command.containsKey(Command.EASY_NOARG)) {
             this.setDifficulty(Command.EASY, command.get(Command.EASY));
         } else if (command.containsKey(Command.MEDIUM) || command.containsKey(Command.MEDIUM_NOARG)) {
