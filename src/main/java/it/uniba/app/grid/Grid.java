@@ -253,7 +253,7 @@ public class Grid {
     }
 
     /**
-     * Prints the current grid with the state of each cell.
+     * Prints the current grid with the state of each cell, with a formatting for small grids.
      * Display HIT cells in red and MISS cells in white.
      */
     public final void printCurrentGrid() {
@@ -284,6 +284,40 @@ public class Grid {
                 }
                 System.out.print("   ");
                 System.out.print("|");
+            }
+            System.out.println();
+        }
+    }
+
+    /**
+     * Prints the current grid with the state of each cell, with a formatting for medium grids.
+     * Display HIT cells in red and MISS cells in white.
+     */
+    public final void printMediumCurrentGrid() {
+        System.out.println();
+        System.out.print("  |");
+        for (int i = 0; i < size; i++) {
+            System.out.print(String.format("  %s  |", Column.fromInt(i)));
+        }
+        System.out.println();
+        for (int i = 0; i < size; i++) {
+            System.out.print("--+");
+            for (int j = 0; j < size; j++) {
+                System.out.print("-----+");
+            }
+            System.out.println();
+            System.out.print(String.format("%2d|", (i + 1)));
+            for (int j = 0; j < size; j++) {
+                if (this.grid[i][j].getState() == State.VOID || this.grid[i][j].getState() == State.SHIP) {
+                    System.out.print("   ");
+                } else if (this.grid[i][j].getState() == State.HIT) {
+                    String color = State.HIT.getColor();
+                    System.out.print(color + "  "+Ship.stringShip() + State.ANSI_RESET);
+                } else {
+                    String color = State.MISS.getColor();
+                    System.out.print(color + "  "+Ship.stringShip() + State.ANSI_RESET);
+                }
+                System.out.print("  |");
             }
             System.out.println();
         }
