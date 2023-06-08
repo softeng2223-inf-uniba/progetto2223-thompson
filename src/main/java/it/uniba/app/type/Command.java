@@ -1,6 +1,12 @@
 package it.uniba.app.type;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * Class for commands that the user may enter.
@@ -9,47 +15,63 @@ public enum Command {
     /**
      * Displays the commands available to the user and their descriptions.
      */
-    HELP("Visualizza l'elenco dei comandi", "/help"),
+    HELP("Visualizza l'elenco dei comandi", TypeCommand.NOARG, "/help"),
     /**
      * Start a new game.
      */
-    PLAY("Inizia una nuova partita", "/gioca"),
+    PLAY("Inizia una nuova partita", TypeCommand.NOARG, "/gioca"),
+    /**
+     * Set the difficulty to easy and set attempts.
+     */
+    EASY("Imposta a 50 il numero max di tentativi falliti", TypeCommand.NUMERO, "/facile"),
     /**
      * Set the difficulty to easy.
      */
-    EASY("Imposta a 50 il numero max di tentativi falliti", "/facile"),
+    EASY_NOARG("", TypeCommand.NOARG, "/facile"),
+    /**
+     * Set the difficulty to medium and set attempts.
+     */
+    MEDIUM("Imposta a 30 il numero max di tentativi falliti", TypeCommand.NUMERO, "/medio"),
     /**
      * Set the difficulty to medium.
      */
-    MEDIUM("Imposta a 30 il numero max di tentativi falliti", "/medio"),
+    MEDIUM_NOARG("", TypeCommand.NOARG, "/medio"),
+    /**
+     * Set the difficulty to hard and set attempts.
+     */
+    HARD("Imposta a 10 il numero max di tentativi falliti", TypeCommand.NUMERO, "/difficile"),
     /**
      * Set the difficulty to hard.
      */
-    HARD("Imposta a 10 il numero max di tentativi falliti", "/difficile"),
+    HARD_NOARG("", TypeCommand.NOARG, "/difficile"),
+    /**
+     * Set the max number of tries.
+     */
+    ATTEMPS("Imposta tentativi numero", TypeCommand.NUMERO, "/tentativi"),
     /**
      * Show the current difficulty.
      */
-    SHOW_LEVEL("Visualizza livello e numero max di tentativi falliti", "/mostralivello"),
+    SHOW_LEVEL("Visualizza livello e numero max di tentativi falliti", TypeCommand.NOARG, "/mostralivello"),
     /**
      * Show the number of remaining ships.
      */
-    SHOW_SHIPS("Visualizza navi da affondare", "/mostranavi"),
+    SHOW_SHIPS("Visualizza navi da affondare", TypeCommand.NOARG, "/mostranavi"),
     /**
      * Display the grid with ship position.
      */
-    REVAL_GRID("Visualizza la griglia con le navi posizionate", "/svelagriglia"),
+    REVAL_GRID("Visualizza la griglia con le navi posizionate", TypeCommand.NOARG, "/svelagriglia"),
     /**
      * Close the application.
      */
-    EXIT("Termina l'applicazione", "/esci"),
+    EXIT("Termina l'applicazione", TypeCommand.NOARG, "/esci"),
     /**
      * Confirm command.
      */
-    YES("", "y", "yes", "si", "s"),
+    YES("", TypeCommand.NOARG, "y", "yes", "si", "s"),
     /**
      * Reject command.
      */
-    NO("", "n", "no");
+    NO("", TypeCommand.NOARG, "n", "no");
 
     /**
      * Description of what the command should do.
@@ -60,10 +82,29 @@ public enum Command {
      */
     private final String[] names;
     /**
+     * Command Type.
+     */
+    private final TypeCommand type;
+
+    /**
      * This array contains command values, is used as a buffer so as not to recreate
      * it each time.
      */
     private static final Command[] VALUES = Command.values();
+
+    private static final Map<String, List<String>> TYPE_COMMANDS = new HashMap<>();
+
+    public static final Pattern[] PATTERNS = new Pattern[TypeCommand.VALUES.length];
+
+    static {
+        for (TypeCommand type : TypeCommand.VALUES) {
+            PATTERNS[type.ordinal()] = Pattern.compile(type.getRegex(), Pattern.CASE_INSENSITIVE);
+            TYPE_COMMANDS.put(type.getRegex(), new LinkedList<>());
+        }
+        for (Command command : VALUES) {
+            TYPE_COMMANDS.get(command.type.getRegex()).addAll(Arrays.asList(command.getNames()));
+        }
+    }
 
     /**
      * Constructor of the class.
@@ -71,9 +112,10 @@ public enum Command {
      * @param valDescription Description of command
      * @param valNames       String array with alias
      */
-    Command(final String valDescription, final String... valNames) {
+    Command(final String valDescription, final TypeCommand valType, final String... valNames) {
         this.names = valNames;
         this.description = valDescription;
+        this.type = valType;
     }
 
     /**
@@ -82,9 +124,9 @@ public enum Command {
      * @param text string to conver
      * @return Command type
      */
-    public static Command fromString(final String text) {
+    public static Command fromString(final String text, final String regex) {
         for (Command b : VALUES) {
-            if (Arrays.asList(b.getNames()).contains(text)) {
+            if (Arrays.asList(b.getNames()).contains(text) && b.type.getRegex().equals(regex)) {
                 return b;
             }
         }
@@ -97,7 +139,7 @@ public enum Command {
      * @return string array with alias of the command.
      */
     public String[] getNames() {
-        return this.names.clone();
+        return this.names;
     }
 
     /**
@@ -108,7 +150,48 @@ public enum Command {
     public String getDescription() {
         return this.description;
     }
-    
+
+    /**
+     * Type getter.
+     *
+     * @return Type
+     */
+    public TypeCommand getType() {
+        return this.type;
+    }
+
+    /**
+     * Parses the input map and returns a map of commands with their corresponding
+     * arguments.
+     *
+     * @param input the input map to parse
+     * @return a map of commands with their arguments, or null if the input is null
+     *         or the parsing fails
+     */
+    public static Map<Command, List<String>> parse(final Map<String, Map<Integer, String>> input) {
+        Map<Command, List<String>> result = new HashMap<>();
+        if (input != null) {
+            for (TypeCommand type : TypeCommand.VALUES) {
+                if (input.containsKey(type.getRegex())) {
+                    Command value = Command.fromString(input.get(type.getRegex()).remove(0), type.getRegex());
+                    System.out.println(value);
+                    if (value != null) {
+                        if (input.get(type.getRegex()).size() == value.type.getMaxArgs()) {
+                            result.put(value, new ArrayList<>(input.get(type.getRegex()).values()));
+                            System.out.println(result);
+                            return result;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+        return null;
+    }
+
+    /**
+     * Enum for different types of commands.
+     */
     private enum TypeCommand {
         CONFIRM("y|yes|si|s", 0),
         DECLINE("n|no", 0),
@@ -120,15 +203,31 @@ public enum Command {
 
         public static final TypeCommand[] VALUES = TypeCommand.values();
 
+        /**
+         * Constructor of the enum.
+         *
+         * @param valRegex   regex pattern for the command type
+         * @param valMaxArgs maximum number of arguments for the command type
+         */
         TypeCommand(final String valRegex, final int valMaxArgs) {
             this.regex = valRegex;
             this.maxArgs = valMaxArgs;
         }
 
+        /**
+         * Regex getter.
+         *
+         * @return regex pattern for the command type
+         */
         public String getRegex() {
             return this.regex;
         }
 
+        /**
+         * MaxArgs getter.
+         *
+         * @return maximum number of arguments for the command type
+         */
         public int getMaxArgs() {
             return this.maxArgs;
         }
