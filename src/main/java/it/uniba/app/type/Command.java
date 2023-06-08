@@ -83,8 +83,11 @@ public enum Command {
     /**
      * Extralarge size command.
      */
-    EXTRALARGE("Imposta a 26x26 la dimensione della griglia", TypeCommand.NOARG, "/extralarge");
-
+    EXTRALARGE("Imposta a 26x26 la dimensione della griglia", TypeCommand.NOARG, "/extralarge"),
+    /**
+     * time set command.
+     */
+    TIME("Imposta la durata della partita in minuti", TypeCommand.NUMERO, "/tempo");
     /**
      * Description of what the command should do.
      */
