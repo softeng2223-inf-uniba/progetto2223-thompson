@@ -110,6 +110,8 @@ public class Partita {
             this.setMaxTime(command.get(Command.TIME));
         } else if (command.containsKey(Command.SHOW_ATTEMPS)) {
             this.showAttemps();
+        } else if (command.containsKey(Command.SHOW_TIME)) {
+            this.showCurrentTime();
         } else {
             System.out.println("Comando non valido"); // stampa quando viene usato un comando che non può essere usato
         }
@@ -156,6 +158,12 @@ public class Partita {
         }
     }
 
+    /**
+     * Displays the current time to the user.
+     * If a game is currently running, it shows the current elapsed time.
+     * If no game is running, it provides a message indicating that no game is in
+     * progress.
+     */
     private void showCurrentTime() {
         if (TimerPartita.isRunning()) {
             TimerPartita.printCurrentTime();
