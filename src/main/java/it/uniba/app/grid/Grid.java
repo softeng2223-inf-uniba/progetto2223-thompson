@@ -2,6 +2,7 @@ package it.uniba.app.grid;
 
 import it.uniba.app.grid.type.Cell;
 import it.uniba.app.grid.type.Coordinate;
+import it.uniba.app.grid.type.SizeGrid;
 import it.uniba.app.grid.type.State;
 import it.uniba.app.grid.type.Column;
 import it.uniba.app.ship.Ship;
@@ -23,14 +24,9 @@ public class Grid {
      */
     private static final Random RAND = new Random();
     /**
-     * Constant number of rows.
-     */
-    private static final int MAXROW = 10;
-
-    /**
-     * Constant number of columns.
-     */
-    private static final int MAXCOLUMN = 10;
+    * Size of the grid.
+    */
+   private int size;
     /**
      * It represents the game grid.
      */
@@ -49,9 +45,10 @@ public class Grid {
      * Grid constructor.
      */
     public Grid() {
-        this.grid = new Cell[MAXROW][MAXCOLUMN];
-        for (int row = 0; row < MAXROW; row++) {
-            for (int column = 0; column < MAXCOLUMN; column++) {
+        this.size = SizeGrid.getSize();
+        this.grid = new Cell[size][size];
+        for (int row = 0; row < size; row++) {
+            for (int column = 0; column < size; column++) {
                 this.grid[row][column] = new Cell();
             }
         }
@@ -66,14 +63,14 @@ public class Grid {
      * Method to generate a random column.
      */
     private Column generateRandomColumn() {
-        return Column.fromInt(RAND.nextInt(MAXCOLUMN));
+        return Column.fromInt(RAND.nextInt(size));
     }
 
     /**
      * Method to generate a random row.
      */
     private int generateRandomRow() {
-        return RAND.nextInt(MAXROW);
+        return RAND.nextInt(size);
     }
 
     /**
@@ -164,7 +161,7 @@ public class Grid {
                     return true;
                 }
                 case RIGHT -> {
-                    if (coord.getColumn().ordinal() + dimension >= MAXCOLUMN) {
+                    if (coord.getColumn().ordinal() + dimension >= size) {
                         return false;
                     }
                     for (int i = 0; i < dimension; i++) {
@@ -186,7 +183,7 @@ public class Grid {
                     return true;
                 }
                 case DOWN -> {
-                    if (coord.getRow() + dimension >= MAXROW) {
+                    if (coord.getRow() + dimension >= size) {
                         return false;
                     }
                     for (int i = 0; i < dimension; i++) {
@@ -290,18 +287,18 @@ public class Grid {
         System.out.println();
         System.out.println();
         System.out.print("    |");
-        for (int i = 0; i < MAXROW; i++) {
+        for (int i = 0; i < size; i++) {
             System.out.print(String.format("   %s   |", Column.fromInt(i)));
         }
         System.out.println();
-        for (int i = 0; i < MAXROW; i++) {
+        for (int i = 0; i < size; i++) {
             System.out.print("----+");
-            for (int j = 0; j < MAXCOLUMN; j++) {
+            for (int j = 0; j < size; j++) {
                 System.out.print("-------+");
             }
             System.out.println();
             System.out.print(String.format(" %2d |", (i + 1)));
-            for (int j = 0; j < MAXCOLUMN; j++) {
+            for (int j = 0; j < size; j++) {
                 System.out.print("   ");
                 System.out.print(this.grid[i][j].getShip() != null ? this.grid[i][j].getShip().colorShip() : " ");
                 System.out.print("   ");
@@ -317,18 +314,18 @@ public class Grid {
     public final void printCurrentGrid() {
         System.out.println();
         System.out.print("    |");
-        for (int i = 0; i < MAXROW; i++) {
+        for (int i = 0; i < size; i++) {
             System.out.print(String.format("   %s   |", Column.fromInt(i)));
         }
         System.out.println();
-        for (int i = 0; i < MAXROW; i++) {
+        for (int i = 0; i < size; i++) {
             System.out.print("----+");
-            for (int j = 0; j < MAXCOLUMN; j++) {
+            for (int j = 0; j < size; j++) {
                 System.out.print("-------+");
             }
             System.out.println();
             System.out.print(String.format(" %2d |", (i + 1)));
-            for (int j = 0; j < MAXCOLUMN; j++) {
+            for (int j = 0; j < size; j++) {
                 System.out.print("   ");
                 if (this.grid[i][j].getState() == State.VOID || this.grid[i][j].getState() == State.SHIP) {
                     System.out.print(" ");

@@ -71,7 +71,19 @@ public enum Command {
     /**
      * Reject command.
      */
-    NO("", TypeCommand.NOARG, "n", "no");
+    NO("", TypeCommand.NOARG, "n", "no"),
+    /**
+     * Standard size command.
+     */
+    STANDARD("Imposta a 10x10 la dimensione della griglia (è il default)", TypeCommand.NOARG, "/standard"),
+    /**
+     * Large size command.
+     */
+    LARGE("Imposta a 18x18 la dimensione della griglia", TypeCommand.NOARG, "/large"),
+    /**
+     * Extralarge size command.
+     */
+    EXTRALARGE("Imposta a 26x26 la dimensione della griglia", TypeCommand.NOARG, "/extralarge");
 
     /**
      * Description of what the command should do.

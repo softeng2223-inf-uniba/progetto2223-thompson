@@ -2,6 +2,7 @@ package it.uniba.app;
 
 import it.uniba.app.grid.Grid;
 import it.uniba.app.parser.Parser;
+import it.uniba.app.grid.type.SizeGrid;
 import it.uniba.app.type.Command;
 import it.uniba.app.type.Difficulty;
 import java.util.List;
@@ -101,8 +102,27 @@ public class Partita {
             this.printCurrentGrid();
         } else if (command.containsKey(Command.SHOW_SHIPS)) {
             this.showShips();
+        } else if (command.containsKey(Command.STANDARD)) {
+            this.setSize(Command.STANDARD);
+        } else if (command.containsKey(Command.LARGE)) {
+            this.setSize(Command.LARGE);
+        } else if (command.containsKey(Command.EXTRALARGE)) {
+            this.setSize(Command.EXTRALARGE);
         } else {
             System.out.println("Comando non valido"); // stampa quando viene usato un comando che non può essere usato
+        }
+    }
+
+    /**
+     * Method to set size of grid based on the specified command.
+     * @param command the command specifying the new size of the grid
+     */
+    private void setSize(final Command command) {
+        if (!isInGame) {
+            SizeGrid.setSize(SizeGrid.valueOf(command.toString()));
+            System.out.println("OK");
+        } else {
+            System.out.println("Partita in corso!");
         }
     }
 
