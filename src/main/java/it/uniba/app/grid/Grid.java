@@ -2,6 +2,7 @@ package it.uniba.app.grid;
 
 import it.uniba.app.grid.type.Cell;
 import it.uniba.app.grid.type.Coordinate;
+import it.uniba.app.grid.type.SizeGrid;
 import it.uniba.app.grid.type.State;
 import it.uniba.app.grid.type.Column;
 import it.uniba.app.ship.Ship;
