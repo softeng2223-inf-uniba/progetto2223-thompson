@@ -2,12 +2,12 @@
 
 ## Indice
 
-- [Introduzione](#1-introduzione)
-- [Modello di Dominio](#2-modello-di-dominio)
-- [Requisiti Specifici](#3-requisiti-specifici)
-- [Manuale Utente](#7-manuale-utente)
-- [Processo di sviluppo e organizzazione del lavoro](#8-Processo-di-sviluppo-e-organizzazione-del-lavoro)
-- [Analisi Retrospettiva](#9-analisi-retrospettiva)
+1. [Introduzione](#1-introduzione)
+2. [Modello di Dominio](#2-modello-di-dominio)
+3. [Requisiti Specifici](#3-requisiti-specifici)
+7. [Manuale Utente](#7-manuale-utente)
+8. [Processo di sviluppo e organizzazione del lavoro](#8-Processo-di-sviluppo-e-organizzazione-del-lavoro)
+9. [Analisi Retrospettiva](#9-analisi-retrospettiva)
 
 
 ## 1 Introduzione
