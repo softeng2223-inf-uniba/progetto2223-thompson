@@ -8,6 +8,7 @@ import it.uniba.app.type.Difficulty;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import it.uniba.app.utils.TimerPartita;
 
 /**
  * Class that interprets commands.
@@ -86,7 +87,7 @@ public class Partita {
             this.closeGame();
         } else if (command.containsKey(Command.HELP)) {
             this.help();
-        } else if (command.containsKey(Command.HELP)){
+        } else if (command.containsKey(Command.HELP)) {
             this.setOnlyCurrentTries(command.get(Command.ATTEMPS));
         } else if (command.containsKey(Command.EASY) || command.containsKey(Command.EASY_NOARG)) {
             this.setDifficulty(Command.EASY, command.get(Command.EASY));
@@ -106,6 +107,8 @@ public class Partita {
             this.setSize(Command.STANDARD);
         } else if (command.containsKey(Command.LARGE)) {
             this.setSize(Command.LARGE);
+        } else if (command.containsKey(Command.TIME)) {
+            this.setMaxTime(command.get(Command.TIME));
         } else if (command.containsKey(Command.EXTRALARGE)) {
             this.setSize(Command.EXTRALARGE);
         } else {
@@ -114,7 +117,27 @@ public class Partita {
     }
 
     /**
+     * Sets the maximum time for the game timer based on the provided arguments.
+     * 
+     * @param args the list of arguments containing the maximum time.
+     */
+    private void setMaxTime(final List<String> args) {
+        if (args == null) {
+            System.out.println("Non è stato passato nessun parametro");
+        } else {
+            try {
+                int time = Integer.parseInt(args.get(0));
+                TimerPartita.setMaxTime(time);
+                System.out.println("OK");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Numero non valido");
+            }
+        }
+    }
+
+    /**
      * Method to set size of grid based on the specified command.
+     * 
      * @param command the command specifying the new size of the grid
      */
     private void setSize(final Command command) {

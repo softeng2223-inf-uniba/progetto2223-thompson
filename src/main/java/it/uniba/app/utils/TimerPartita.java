@@ -62,15 +62,6 @@ public class TimerPartita {
     }
 
     /**
-     * Prints the current time and remaining time based on the maximum time.
-     */
-    public void printCurrentTime() {
-        long currentTime = TimeUnit.MINUTES.convert(getCurrentTimeMillis(), TimeUnit.MILLISECONDS);
-        long maxMinute = TimeUnit.MINUTES.convert(maxTime, TimeUnit.MILLISECONDS);
-        System.out.print("Sono passati " + currentTime + ", mancano " + (maxMinute - currentTime));
-    }
-
-    /**
      * Returns the maximum time in minutes for the game timer.
      *
      * @return the maximum time in minutes
