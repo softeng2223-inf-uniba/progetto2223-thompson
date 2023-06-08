@@ -6,14 +6,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Class to parse command.
+ * Abstract class for parsing strings.
  */
 public abstract class Parser {
     /**
-     * Method fo convert string to command.
+     * Parses the input string using the provided patterns and returns a map with
+     * the matched results.
      *
-     * @param input Command string
-     * @return Map with Command as key and its list of argument as value
+     * @param input    the input string to parse
+     * @param patterns the regex patterns to match against the input
+     * @return a map with the matched patterns as keys and their corresponding
+     *         groups as values,
+     *         or null if no match is found or an exception occurs
      */
     public static Map<String, Map<Integer, String>> parseInput(final String input, final Pattern... patterns) {
         try {
