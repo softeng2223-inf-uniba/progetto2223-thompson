@@ -104,10 +104,12 @@ public class Partita {
             this.setSize(Command.STANDARD);
         } else if (command.containsKey(Command.LARGE)) {
             this.setSize(Command.LARGE);
-        } else if (command.containsKey(Command.TIME)) {
-            this.setMaxTime(command.get(Command.TIME));
         } else if (command.containsKey(Command.EXTRALARGE)) {
             this.setSize(Command.EXTRALARGE);
+        } else if (command.containsKey(Command.TIME)) {
+            this.setMaxTime(command.get(Command.TIME));
+        } else if (command.containsKey(Command.SHOW_ATTEMPS)) {
+            this.showAttemps();
         } else {
             System.out.println("Comando non valido"); // stampa quando viene usato un comando che non può essere usato
         }
@@ -181,7 +183,7 @@ public class Partita {
      */
     private void closeGame() {
         System.out.println("Chiudere il gioco? [s/n]");
-        if (confirm()) {
+        if (this.confirm()) {
             Runtime.getRuntime().exit(0);
         }
     }
@@ -316,12 +318,12 @@ public class Partita {
         this.grid.printCurrentGrid();
         timer.startGame();
 
-        input = scanner.nextLine();
+        input = this.scanner.nextLine();
         while (TimerPartita.isRunning() && Difficulty.getCurrentTries() > 0) {
             coordinate = Coordinate.parse(Parser.parseInput(input, Coordinate.PATTERN));
             if (coordinate != null) {
                 if (coordinate.isValid()) {
-                    String result = grid.hitCoordinate(coordinate);
+                    String result = this.grid.hitCoordinate(coordinate);
                     this.grid.printCurrentGrid();
                     System.out.print("Partita> ");
                     System.out.println(result);
@@ -338,7 +340,7 @@ public class Partita {
                 TimerPartita.setRunning(false);
                 TimerPartita.stopTimer();
             }
-            input = scanner.nextLine();
+            input = this.scanner.nextLine();
         }
         if (input != null) {
             if (input.contains("/")) {
