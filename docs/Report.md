@@ -2,15 +2,18 @@
 
 ## Indice
 
-- [Introduzione](#1-introduzione)
-- [Modello di Dominio](#2-modello-di-dominio)
-- [Requisiti Specifici](#3-requisiti-specifici)
-- [Manuale Utente](#7-manuale-utente)
-- [Processo di sviluppo e organizzazione del lavoro](#8-Processo-di-sviluppo-e-organizzazione-del-lavoro)
-- [Analisi Retrospettiva](#9-analisi-retrospettiva)
+1. [Introduzione](#1-introduzione)
+2. [Modello di Dominio](#2-modello-di-dominio)
+3. [Requisiti Specifici](#3-requisiti-specifici)
+4. System Design
+5. [OO Design](#5-oo-design)
+6. [Riepilogo del test](#6-riepilogo-del-test)
+7. [Manuale Utente](#7-manuale-utente)
+8. [Processo di sviluppo e organizzazione del lavoro](#8-Processo-di-sviluppo-e-organizzazione-del-lavoro)
+9. [Analisi Retrospettiva](#9-analisi-retrospettiva)
 
 
-## 1 Introduzione
+## 1. Introduzione
 <p>
 
 **Battleship** è un'applicazione che permette di giocare a battaglia navale, con interfaccia a linea di comando (CLI). Per lo sviluppo delle implementazioni descritte in seguito si è formato un team denominato "Thompson" composto da cinque ragazzi del corso B del secondo anno di "informatica" dell'Università degli studi di Bari Aldo Moro durante l'A.A. 2022/23.
@@ -27,12 +30,15 @@ I componenti del gruppo sono:
 
 [Torna all'indice](#indice)
 
-## 2 Modello di dominio
+## 2. Modello di dominio
 ![modelloDiDomino](./img/modelloDiDominio.png)
 
 [Torna all'indice](#indice)
 
-## 3 Requisiti specifici
+## 3. Requisiti specifici
+
+3.1 [Requisiti funzionali](#31-requisiti-funzionali) <br>
+3.2 [Requisiti non funzionali](#32-requisiti-non-funzionali)
 
 ### 3.1 Requisiti funzionali
 
@@ -163,7 +169,15 @@ Dopo aver eseguito il comando docker pull copiandolo da GitHub Packages, Il coma
 
 [Torna all'indice](#indice)
 
-## 7 Manuale utente
+## 5. OO Design
+
+[Torna all'indice](#indice)
+
+## 6. Riepilogo del test
+
+[Torna all'indice](#indice)
+
+## 7. Manuale utente
 Il gioco si svolge su una griglia, dove il sistema posiziona in modo casuale le navi all'inizio di una partita. L'obiettivo del giocatore è quello di indovinare la posizione delle navi nemiche e cercare di affondarle attaccando le caselle della griglia.<br>
 Il gioco termina quando tutte le navi nemiche sono state affondate o quando si esauriscono le mosse disponibili. Il numero di mosse disponibili dipende dalla modalità di gioco scelta, che può essere facile, media o difficile.<br>Il giocatore vince se affonda tutte le navi prima di esaurire le mosse.
 <br>
@@ -228,7 +242,7 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 
 [Torna all'indice](#indice)
 
-## 8 Processo di sviluppo e organizzazione del lavoro
+## 8. Processo di sviluppo e organizzazione del lavoro
    Per il processo di sviluppo e l'organizzazione del lavoro abbiamo seguito il metodo <strong>SCRUM</strong>, dove i progetti fanno progessi in una serie di consegne dette Sprint. Nel nostro caso, il metodo SCRUM prevede l'intero progetto suddiviso in 3 sprint (Sprint 0, 1, 2). Ogni sprint ha una durata di circa 2 settimane e ognuno di questi sprint è stato svolto seguendo il [codice di condotta](./CODE_OF_CONDUCT.md).
    Abbiamo suddiviso il lavoro in base alle user story, e relativi user points, fornite dal product owner, in modo da avere un carico di lavoro equilibrato fra tutti i componenti del team.
 
@@ -263,7 +277,10 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 
 [Torna all'indice](#indice)
 
-## 9 Analisi retrospettiva
+## 9. Analisi retrospettiva
+
+9.1 [Sprint 0](#91-sprint-0) <br>
+9.2 [Sprint 1](#92-sprint-1)
 
 ### 9.1 Sprint 0
    
