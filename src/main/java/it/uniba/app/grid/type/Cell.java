@@ -70,8 +70,4 @@ public final class Cell {
         this.ship = valShip;
         setState(State.SHIP);
     }
-
-    public void shoot() {
-        state.hit();
-    }
 }

@@ -55,7 +55,17 @@ public class Grid {
         }
     }
 
-    public String shoot(final Coordinate coord) {
+    /**
+     * Shoots at the specified coordinate on the grid and returns the result of the
+     * shot.
+     *
+     * @param coord the coordinate to shoot at
+     * @return the result of the shot, which can be "acqua" (water), "colpito"
+     *         (hit), "colpito e affondato" (hit and sunk),
+     *         or "Questa mossa è stata già effettuata" (This move has already been
+     *         made)
+     */
+    public String hitCoordinate(final Coordinate coord) {
         String result = "acqua";
         boolean hit = false;
         Ship shipToRemove = null;
@@ -85,7 +95,7 @@ public class Grid {
             ships.get(shipToRemove).remove(nShipToRemove);
         }
         if (!hit) {
-            int tries  = Difficulty.getCurrentTries() - 1;
+            int tries = Difficulty.getCurrentTries() - 1;
             Difficulty.setCurrentTries(tries);
         }
         return result;

@@ -140,11 +140,12 @@ public final class Coordinate {
     }
 
     /**
-     * .
+     * Generates a random Coordinate within the specified maximum column and row
+     * values.
      *
-     * @param nMaxColumn
-     * @param nMaxRow
-     * @return
+     * @param nMaxColumn the maximum value for the column
+     * @param nMaxRow    the maximum value for the row
+     * @return a randomly generated Coordinate
      */
     public static Coordinate random(final int nMaxColumn, final int nMaxRow) {
         Column column = generateRandomColumn(nMaxColumn);
@@ -153,10 +154,10 @@ public final class Coordinate {
     }
 
     /**
-     * .
+     * Parses the input map to create a Coordinate object.
      *
-     * @param input
-     * @return
+     * @param input the input map containing the coordinate information
+     * @return the parsed Coordinate object, or null if parsing fails
      */
     public static Coordinate parse(final Map<String, Map<Integer, String>> input) {
         if (input != null) {
@@ -170,12 +171,12 @@ public final class Coordinate {
     }
 
     /**
-     * .
+     * Checks if the Coordinate is valid, i.e., within the boundaries of the grid.
      *
-     * @return
+     * @return true if the Coordinate is valid, false otherwise
      */
     public boolean isValid() {
-        if (this.row < 1 || this.row > SizeGrid.getSize())  {
+        if (this.row < 1 || this.row > SizeGrid.getSize()) {
             return false;
         }
         if (this.column.ordinal() < 0 || this.column.ordinal() >= SizeGrid.getSize()) {

@@ -115,7 +115,7 @@ public class Partita {
 
     /**
      * Sets the maximum time for the game timer based on the provided arguments.
-     * 
+     *
      * @param args the list of arguments containing the maximum time.
      */
     private void setMaxTime(final List<String> args) {
@@ -134,7 +134,7 @@ public class Partita {
 
     /**
      * Method to set size of grid based on the specified command.
-     * 
+     *
      * @param command the command specifying the new size of the grid
      */
     private void setSize(final Command command) {
@@ -156,6 +156,13 @@ public class Partita {
         }
     }
 
+    /**
+     * Prompts the user for confirmation and returns true if the user confirms with
+     * "yes", and false if the user declines
+     * with "no" or provides an invalid response.
+     *
+     * @return true if the user confirms, false otherwise
+     */
     private boolean confirm() {
         Map<Command, List<String>> command;
         boolean canContinue = true;
@@ -286,7 +293,7 @@ public class Partita {
                 if (coordinate.isValid()) {
                     this.grid.printCurrentGrid();
                     System.out.print("Partita> ");
-                    System.out.println(grid.shoot(coordinate));
+                    System.out.println(grid.hitCoordinate(coordinate));
                 } else {
                     System.out.println("Coordinata non valida");
                 }

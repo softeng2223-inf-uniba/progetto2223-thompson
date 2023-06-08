@@ -85,10 +85,20 @@ public enum Difficulty {
         return gameDifficulty;
     }
 
+    /**
+     * Returns the current number of tries allowed for the game difficulty.
+     *
+     * @return the current number of tries
+     */
     public static int getCurrentTries() {
         return currentTries;
     }
 
+    /**
+     * Sets the current number of tries allowed for the game difficulty.
+     *
+     * @param valCurrentTries the new value for the current number of tries
+     */
     public static void setCurrentTries(final int valCurrentTries) {
         Difficulty.currentTries = valCurrentTries;
     }
