@@ -85,9 +85,17 @@ public enum Command {
      */
     EXTRALARGE("Imposta a 26x26 la dimensione della griglia", TypeCommand.NOARG, "/extralarge"),
     /**
-     * time set command.
+     * Time set command.
      */
-    TIME("Imposta la durata della partita in minuti", TypeCommand.NUMERO, "/tempo");
+    TIME("Imposta la durata della partita in minuti", TypeCommand.NUMERO, "/tempo"),
+    /**
+     * Show attemps set command.
+     */
+    SHOW_ATTEMPS("Visualizza il numero di tentativi rimanenti", TypeCommand.NOARG, "/mostratentativi"),
+    /**
+     * Show attemps set command.
+     */
+    SHOW_TIME("Visualizza il tempo rimanente", TypeCommand.NOARG, "/mostratempo");
 
     /**
      * Description of what the command should do.

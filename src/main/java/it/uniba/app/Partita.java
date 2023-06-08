@@ -133,6 +133,36 @@ public class Partita {
     }
 
     /**
+     * Displays the number of remaining attempts to the user.
+     * If the game is currently running, it shows the remaining attempts based on
+     * the current and maximum tries.
+     * If the game is not running, it provides a message prompting the user to start
+     * the game.
+     */
+    private void showAttemps() {
+        if (TimerPartita.isRunning()) {
+            int currentTries = Difficulty.getCurrentTries();
+            int maxTries = Difficulty.getMaxTries();
+            int differenceTries = maxTries - currentTries;
+            System.out.println(
+                    "Ti restano " + currentTries + " tentativi, hai effettuato " + differenceTries + " tentativi su "
+                            + maxTries);
+        } else {
+            System.out.print(
+                    "E' necessario essere in partita per poter visualizzare il numero dei tentativi rimanenti, ");
+            System.out.println("inizia a giocare con /gioca");
+        }
+    }
+
+    private void showCurrentTime() {
+        if (TimerPartita.isRunning()) {
+            TimerPartita.printCurrentTime();
+        } else {
+            System.out.println("Non è in corso nessuna partita");
+        }
+    }
+
+    /**
      * Method to set size of grid based on the specified command.
      *
      * @param command the command specifying the new size of the grid
@@ -291,9 +321,10 @@ public class Partita {
             coordinate = Coordinate.parse(Parser.parseInput(input, Coordinate.PATTERN));
             if (coordinate != null) {
                 if (coordinate.isValid()) {
+                    String result = grid.hitCoordinate(coordinate);
                     this.grid.printCurrentGrid();
                     System.out.print("Partita> ");
-                    System.out.println(grid.hitCoordinate(coordinate));
+                    System.out.println(result);
                 } else {
                     System.out.println("Coordinata non valida");
                 }
@@ -302,7 +333,6 @@ public class Partita {
             } else {
                 System.out.println("Coordinata non riconosciuta");
             }
-            System.out.println(Difficulty.getCurrentTries());
             if (Difficulty.getCurrentTries() <= 0) {
                 System.out.println("Hai finito i tentativi a disposizione!");
                 TimerPartita.setRunning(false);

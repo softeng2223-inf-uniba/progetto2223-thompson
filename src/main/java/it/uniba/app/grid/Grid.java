@@ -210,7 +210,6 @@ public class Grid {
                 coord.setColumn(Coordinate.generateRandomColumn(size));
             }
         }
-        System.out.println("fine generazione");
     }
 
     /**

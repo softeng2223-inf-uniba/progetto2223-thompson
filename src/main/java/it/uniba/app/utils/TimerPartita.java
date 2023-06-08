@@ -10,9 +10,13 @@ import java.util.concurrent.TimeUnit;
 public class TimerPartita {
     private static final long DEFAULT_TIME = 10;
     private static long maxTime = TimeUnit.MILLISECONDS.convert(DEFAULT_TIME, TimeUnit.MINUTES);
-    private static Timer timer= new Timer();
+    private static Timer timer;
     private static boolean isRunning;
-    private long startTime;
+    private static long startTime;
+
+    public static void createTimer() {
+        timer = new Timer();
+    }
 
     /**
      * Checks if the timer is currently running.
@@ -36,6 +40,7 @@ public class TimerPartita {
      * Starts the game timer.
      */
     public void startGame() {
+        createTimer();
         startTime = System.currentTimeMillis();
 
         TimerTask task = new TimerTask() {
@@ -47,6 +52,15 @@ public class TimerPartita {
         timer.schedule(task, maxTime);
         System.out.println("Il timer di " + getMaxTime() + " minuti.");
         setRunning(true);
+    }
+
+    /**
+     * Prints the current time and remaining time based on the maximum time.
+     */
+    public static void printCurrentTime() {
+        long currentTime = TimeUnit.MINUTES.convert(getCurrentTimeMillis(), TimeUnit.MILLISECONDS);
+        long maxMinute = TimeUnit.MINUTES.convert(maxTime, TimeUnit.MILLISECONDS);
+        System.out.print("Sono passati " + currentTime + " minuti, mancano " + (maxMinute - currentTime) + "minuti");
     }
 
     /**
@@ -83,7 +97,7 @@ public class TimerPartita {
      *
      * @return the current time in milliseconds
      */
-    private long getCurrentTimeMillis() {
+    private static long getCurrentTimeMillis() {
         return System.currentTimeMillis() - startTime;
     }
 }
