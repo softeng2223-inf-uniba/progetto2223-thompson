@@ -12,14 +12,18 @@ public class TimerPartita {
     private static long maxTime = TimeUnit.MILLISECONDS.convert(DEFAULT_TIME, TimeUnit.MINUTES);
     private static Timer timer;
     private static boolean isRunning;
-    private long startTime;
+    private static long startTime;
+
+    public static void createTimer() {
+        timer = new Timer();
+    }
 
     /**
      * Checks if the timer is currently running.
      *
      * @return true if the timer is running, false otherwise
      */
-    public boolean isRunning() {
+    public static boolean isRunning() {
         return isRunning;
     }
 
@@ -36,7 +40,7 @@ public class TimerPartita {
      * Starts the game timer.
      */
     public void startGame() {
-        timer = new Timer();
+        createTimer();
         startTime = System.currentTimeMillis();
 
         TimerTask task = new TimerTask() {
@@ -46,8 +50,17 @@ public class TimerPartita {
             }
         };
         timer.schedule(task, maxTime);
-        System.out.println("Il timer di " + getMaxTime() + " minuti. E' ");
-        isRunning = true;
+        System.out.println("Il timer di " + getMaxTime() + " minuti.");
+        setRunning(true);
+    }
+
+    /**
+     * Prints the current time and remaining time based on the maximum time.
+     */
+    public static void printCurrentTime() {
+        long currentTime = TimeUnit.MINUTES.convert(getCurrentTimeMillis(), TimeUnit.MILLISECONDS);
+        long maxMinute = TimeUnit.MINUTES.convert(maxTime, TimeUnit.MILLISECONDS);
+        System.out.print("Sono passati " + currentTime + " minuti, mancano " + (maxMinute - currentTime) + "minuti");
     }
 
     /**
@@ -56,7 +69,7 @@ public class TimerPartita {
     public static void stopTimer() {
         if (isRunning) {
             System.out.println("Il timer è scaduto. La partita è finita!");
-            isRunning = false;
+            setRunning(false);
         }
         timer.cancel();
     }
@@ -79,7 +92,12 @@ public class TimerPartita {
         TimerPartita.maxTime = TimeUnit.MILLISECONDS.convert(minutes, TimeUnit.MINUTES);
     }
 
-    private long getCurrentTimeMillis() {
+    /**
+     * Returns the current time in milliseconds elapsed since the start time.
+     *
+     * @return the current time in milliseconds
+     */
+    private static long getCurrentTimeMillis() {
         return System.currentTimeMillis() - startTime;
     }
 }

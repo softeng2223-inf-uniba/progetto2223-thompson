@@ -39,7 +39,7 @@ public final class Cell {
      *
      * @param valState state to set
      */
-    private void setState(final State valState) {
+    public void setState(final State valState) {
         this.state = valState;
     }
 

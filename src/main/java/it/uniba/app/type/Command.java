@@ -67,11 +67,11 @@ public enum Command {
     /**
      * Confirm command.
      */
-    YES("", TypeCommand.NOARG, "y", "yes", "si", "s"),
+    YES("", TypeCommand.CONFIRM, "y", "yes", "si", "s"),
     /**
      * Reject command.
      */
-    NO("", TypeCommand.NOARG, "n", "no"),
+    NO("", TypeCommand.DECLINE, "n", "no"),
     /**
      * Standard size command.
      */
@@ -85,9 +85,18 @@ public enum Command {
      */
     EXTRALARGE("Imposta a 26x26 la dimensione della griglia", TypeCommand.NOARG, "/extralarge"),
     /**
-     * time set command.
+     * Time set command.
      */
-    TIME("Imposta la durata della partita in minuti", TypeCommand.NUMERO, "/tempo");
+    TIME("Imposta la durata della partita in minuti", TypeCommand.NUMERO, "/tempo"),
+    /**
+     * Show attemps set command.
+     */
+    SHOW_ATTEMPS("Visualizza il numero di tentativi rimanenti", TypeCommand.NOARG, "/mostratentativi"),
+    /**
+     * Show attemps set command.
+     */
+    SHOW_TIME("Visualizza il tempo rimanente", TypeCommand.NOARG, "/mostratempo");
+
     /**
      * Description of what the command should do.
      */
@@ -109,11 +118,12 @@ public enum Command {
 
     private static final Map<String, List<String>> TYPE_COMMANDS = new HashMap<>();
 
-    public static final Pattern[] PATTERNS = new Pattern[TypeCommand.VALUES.length];
+    private static Pattern[] patterns;
 
     static {
+        patterns = new Pattern[TypeCommand.VALUES.length];
         for (TypeCommand type : TypeCommand.VALUES) {
-            PATTERNS[type.ordinal()] = Pattern.compile(type.getRegex(), Pattern.CASE_INSENSITIVE);
+            patterns[type.ordinal()] = Pattern.compile(type.getRegex(), Pattern.CASE_INSENSITIVE);
             TYPE_COMMANDS.put(type.getRegex(), new LinkedList<>());
         }
         for (Command command : VALUES) {
@@ -149,12 +159,21 @@ public enum Command {
     }
 
     /**
+     * Returns the array of patterns used by the Command class.
+     *
+     * @return the array of patterns
+     */
+    public static Pattern[] getPatterns() {
+        return patterns.clone();
+    }
+
+    /**
      * Names getter.
      *
      * @return string array with alias of the command.
      */
     public String[] getNames() {
-        return this.names;
+        return this.names.clone();
     }
 
     /**
@@ -189,11 +208,9 @@ public enum Command {
             for (TypeCommand type : TypeCommand.VALUES) {
                 if (input.containsKey(type.getRegex())) {
                     Command value = Command.fromString(input.get(type.getRegex()).remove(0), type.getRegex());
-                    System.out.println(value);
                     if (value != null) {
                         if (input.get(type.getRegex()).size() == value.type.getMaxArgs()) {
                             result.put(value, new ArrayList<>(input.get(type.getRegex()).values()));
-                            System.out.println(result);
                             return result;
                         }
                     }

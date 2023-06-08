@@ -1,12 +1,21 @@
 package it.uniba.app.grid.type;
 
+import java.util.Map;
 import java.util.Objects;
+import java.util.Random;
+import java.util.regex.Pattern;
 
 /**
  * Class to handle coordinates.
  */
 public final class Coordinate {
+    /**
+     * Used for generate random elements.
+     */
+    private static final Random RAND = new Random();
 
+    public static final Pattern PATTERN = Pattern.compile("^([a-z])-(1[0-9]|2[0-6]|[1-9])$",
+            Pattern.CASE_INSENSITIVE);
     /**
      * Contain the column.
      */
@@ -39,7 +48,7 @@ public final class Coordinate {
      * Coordinate constructor.
      */
     public Coordinate() {
-        this.column = Column.A;
+        this.column = Column.fromInt(0);
         this.row = 0;
     }
 
@@ -110,8 +119,69 @@ public final class Coordinate {
         }
         return this.row == other.row;
     }
+
     @Override
     public String toString() {
         return "Coordinate{" + "row=" + row + ", column=" + column + '}';
+    }
+
+    /**
+     * Method to generate a random column.
+     */
+    public static Column generateRandomColumn(final int nMaxColumn) {
+        return Column.fromInt(RAND.nextInt(nMaxColumn));
+    }
+
+    /**
+     * Method to generate a random row.
+     */
+    public static int generateRandomRow(final int nMaxRow) {
+        return RAND.nextInt(nMaxRow);
+    }
+
+    /**
+     * Generates a random Coordinate within the specified maximum column and row
+     * values.
+     *
+     * @param nMaxColumn the maximum value for the column
+     * @param nMaxRow    the maximum value for the row
+     * @return a randomly generated Coordinate
+     */
+    public static Coordinate random(final int nMaxColumn, final int nMaxRow) {
+        Column column = generateRandomColumn(nMaxColumn);
+        int row = generateRandomRow(nMaxRow);
+        return new Coordinate(column, row);
+    }
+
+    /**
+     * Parses the input map to create a Coordinate object.
+     *
+     * @param input the input map containing the coordinate information
+     * @return the parsed Coordinate object, or null if parsing fails
+     */
+    public static Coordinate parse(final Map<String, Map<Integer, String>> input) {
+        if (input != null) {
+            if (input.containsKey(PATTERN.pattern())) {
+                Column column = Column.valueOf(input.get(PATTERN.pattern()).get(0).toUpperCase());
+                int row = Integer.parseInt(input.get(PATTERN.pattern()).get(1));
+                return new Coordinate(column, row);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Checks if the Coordinate is valid, i.e., within the boundaries of the grid.
+     *
+     * @return true if the Coordinate is valid, false otherwise
+     */
+    public boolean isValid() {
+        if (this.row < 1 || this.row > SizeGrid.getSize()) {
+            return false;
+        }
+        if (this.column.ordinal() < 0 || this.column.ordinal() >= SizeGrid.getSize()) {
+            return false;
+        }
+        return true;
     }
 }

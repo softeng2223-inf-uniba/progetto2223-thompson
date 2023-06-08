@@ -1,14 +1,16 @@
 package it.uniba.app;
 
 import it.uniba.app.grid.Grid;
-import it.uniba.app.parser.Parser;
+import it.uniba.app.grid.type.Coordinate;
 import it.uniba.app.grid.type.SizeGrid;
+import it.uniba.app.parser.Parser;
 import it.uniba.app.type.Command;
 import it.uniba.app.type.Difficulty;
+import it.uniba.app.utils.TimerPartita;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import it.uniba.app.utils.TimerPartita;
 
 /**
  * Class that interprets commands.
@@ -19,11 +21,6 @@ public class Partita {
      * Grid of the current match.
      */
     private Grid grid;
-
-    /**
-     * Flag that indicates if a game is in progress.
-     */
-    private boolean isInGame;
 
     /**
      * Welcome message that prints when the program starts correctly.
@@ -71,7 +68,7 @@ public class Partita {
         }
         this.scanner = new Scanner(System.in, "UTF-8");
         while (this.scanner.hasNextLine()) {
-            this.executeCommand(Parser.parseInput(this.scanner.nextLine(), Command.PATTERNS));
+            this.executeCommand(Parser.parseInput(this.scanner.nextLine(), Command.getPatterns()));
         }
         this.scanner.close();
     }
@@ -87,7 +84,7 @@ public class Partita {
             this.closeGame();
         } else if (command.containsKey(Command.HELP)) {
             this.help();
-        } else if (command.containsKey(Command.HELP)) {
+        } else if (command.containsKey(Command.ATTEMPS)) {
             this.setOnlyCurrentTries(command.get(Command.ATTEMPS));
         } else if (command.containsKey(Command.EASY) || command.containsKey(Command.EASY_NOARG)) {
             this.setDifficulty(Command.EASY, command.get(Command.EASY));
@@ -118,7 +115,7 @@ public class Partita {
 
     /**
      * Sets the maximum time for the game timer based on the provided arguments.
-     * 
+     *
      * @param args the list of arguments containing the maximum time.
      */
     private void setMaxTime(final List<String> args) {
@@ -136,12 +133,42 @@ public class Partita {
     }
 
     /**
+     * Displays the number of remaining attempts to the user.
+     * If the game is currently running, it shows the remaining attempts based on
+     * the current and maximum tries.
+     * If the game is not running, it provides a message prompting the user to start
+     * the game.
+     */
+    private void showAttemps() {
+        if (TimerPartita.isRunning()) {
+            int currentTries = Difficulty.getCurrentTries();
+            int maxTries = Difficulty.getMaxTries();
+            int differenceTries = maxTries - currentTries;
+            System.out.println(
+                    "Ti restano " + currentTries + " tentativi, hai effettuato " + differenceTries + " tentativi su "
+                            + maxTries);
+        } else {
+            System.out.print(
+                    "E' necessario essere in partita per poter visualizzare il numero dei tentativi rimanenti, ");
+            System.out.println("inizia a giocare con /gioca");
+        }
+    }
+
+    private void showCurrentTime() {
+        if (TimerPartita.isRunning()) {
+            TimerPartita.printCurrentTime();
+        } else {
+            System.out.println("Non è in corso nessuna partita");
+        }
+    }
+
+    /**
      * Method to set size of grid based on the specified command.
-     * 
+     *
      * @param command the command specifying the new size of the grid
      */
     private void setSize(final Command command) {
-        if (!isInGame) {
+        if (!TimerPartita.isRunning()) {
             SizeGrid.setSize(SizeGrid.valueOf(command.toString()));
             System.out.println("OK");
         } else {
@@ -154,19 +181,35 @@ public class Partita {
      */
     private void closeGame() {
         System.out.println("Chiudere il gioco? [s/n]");
-        if (this.scanner.hasNextLine()) {
-            Map<Command, List<String>> command = Command
-                    .parse(Parser.parseInput(this.scanner.nextLine(), Command.PATTERNS));
+        if (confirm()) {
+            Runtime.getRuntime().exit(0);
+        }
+    }
+
+    /**
+     * Prompts the user for confirmation and returns true if the user confirms with
+     * "yes", and false if the user declines
+     * with "no" or provides an invalid response.
+     *
+     * @return true if the user confirms, false otherwise
+     */
+    private boolean confirm() {
+        Map<Command, List<String>> command;
+        boolean canContinue = true;
+        while (canContinue && this.scanner.hasNextLine()) {
+            command = Command.parse(Parser.parseInput(this.scanner.nextLine(), Command.getPatterns()));
             if (command == null) {
                 System.out.println("Risposta non riconosciuta");
-            } else if (command.containsKey(Command.YES) && command.get(Command.YES).isEmpty()) {
-                Runtime.getRuntime().exit(0);
-            } else if (command.containsKey(Command.NO) && command.get(Command.NO).isEmpty()) {
-                System.out.println("Ok");
+            } else if (command.containsKey(Command.YES)) {
+                return true;
+            } else if (command.containsKey(Command.NO)) {
+                System.out.println("OK");
+                canContinue = false;
             } else {
                 System.out.println("Risposta non valida");
             }
         }
+        return false;
     }
 
     /**
@@ -263,17 +306,53 @@ public class Partita {
      * Method to start a game.
      */
     private void playGame() {
+        Coordinate coordinate;
+        String input;
+        int tries = Difficulty.getMaxTries();
+        Difficulty.setCurrentTries(tries);
+        TimerPartita timer = new TimerPartita();
         this.grid = new Grid();
         this.grid.generateGrid();
         this.grid.printCurrentGrid();
-        this.isInGame = true;
+        timer.startGame();
+
+        input = scanner.nextLine();
+        while (TimerPartita.isRunning() && Difficulty.getCurrentTries() > 0) {
+            coordinate = Coordinate.parse(Parser.parseInput(input, Coordinate.PATTERN));
+            if (coordinate != null) {
+                if (coordinate.isValid()) {
+                    String result = grid.hitCoordinate(coordinate);
+                    this.grid.printCurrentGrid();
+                    System.out.print("Partita> ");
+                    System.out.println(result);
+                } else {
+                    System.out.println("Coordinata non valida");
+                }
+            } else if (input != null) {
+                this.executeCommand(Parser.parseInput(input, Command.getPatterns()));
+            } else {
+                System.out.println("Coordinata non riconosciuta");
+            }
+            if (Difficulty.getCurrentTries() <= 0) {
+                System.out.println("Hai finito i tentativi a disposizione!");
+                TimerPartita.setRunning(false);
+                TimerPartita.stopTimer();
+            }
+            input = scanner.nextLine();
+        }
+        if (input != null) {
+            if (input.contains("/")) {
+                input = "/" + input.split("/")[1];
+            }
+            this.executeCommand(Parser.parseInput(input, Command.getPatterns()));
+        }
     }
 
     /**
      * Method to display the grid with the ships if user is not in game.
      */
     private void printCurrentGrid() {
-        if (this.isInGame) {
+        if (TimerPartita.isRunning()) {
             this.grid.printGrid();
         } else {
             System.out.println("Non stai giocando, inizia a giocare con: /gioca");
@@ -284,7 +363,7 @@ public class Partita {
      * Method to show current ships.
      */
     private void showShips() {
-        if (this.isInGame) {
+        if (TimerPartita.isRunning()) {
             this.grid.showShips();
         } else {
             System.out.print("E' necessario essere in partita per poter visualizzare l'elenco delle navi, ");
