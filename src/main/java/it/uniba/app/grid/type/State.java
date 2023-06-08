@@ -1,20 +1,48 @@
 package it.uniba.app.grid.type;
 
 /**
- * Enumeration representing the possible states of a grid cell.
+ * Enum class to describe cell states.
+ * Each state can be associated with a color for display purposes.
  */
 public enum State {
-    VOID,
-    SHIP,
-    MISS,
-    HIT;
+    VOID("\u001B[0m"),
+    SHIP("\u001B[0m"),
+    MISS("\u001B[0m"),
+    HIT("\u001B[31m");
+
+    private final String color;
 
     /**
-     * Performs a hit action on the state and returns the resulting state.
+     * ANSI escape code to reset the text color to the default value.
+     */
+    public static final String ANSI_RESET = "\u001B[0m";
+
+    /**
+     * Constructs a state without a color.
+     */
+    State() {
+        this.color = null;
+    }
+
+    /**
+     * Constructs a state with the specified color.
+     */
+    State(final String stateColor) {
+        this.color = stateColor;
+    }
+
+    /**
+     * Returns the color associated with the state.
+     */
+    public String getColor() {
+        return color;
+    }
+
+    /**
+     * Returns the resulting state after a hit.
+     * If the state is SHIP, returns HIT; otherwise, returns MISS.
      *
-     * @return the resulting state after the hit action, which can be
-     *         {@link State#HIT} if the state is a ship,
-     *         or {@link State#MISS} if the state is not a ship
+     * @return the resulting state after a hit
      */
     public State hit() {
         if (this == SHIP) {
