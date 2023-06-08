@@ -6,6 +6,7 @@ import it.uniba.app.grid.type.SizeGrid;
 import it.uniba.app.grid.type.State;
 import it.uniba.app.grid.type.Column;
 import it.uniba.app.ship.Ship;
+import it.uniba.app.type.Difficulty;
 import it.uniba.app.ship.Direction;
 
 import java.util.EnumSet;
@@ -55,13 +56,14 @@ public class Grid {
     }
 
     public String shoot(final Coordinate coord) {
-        String result = "mancato";
+        String result = "acqua";
+        boolean hit = false;
         Ship shipToRemove = null;
         int nShipToRemove = -1;
         int row = coord.getRow() - 1;
         int column = coord.getColumn().ordinal();
         if (grid[row][column].getState() == State.HIT || grid[row][column].getState() == State.MISS) {
-            return "La casella è stata già colpita!";
+            return "Questa mossa è stata già effettuata";
         }
         grid[row][column].setState(grid[row][column].getState().hit());
         for (Ship s : Ship.values()) {
@@ -69,16 +71,22 @@ public class Grid {
                 if (entry.getValue().contains(coord)) {
                     entry.getValue().remove(coord);
                     result = "colpito";
+                    hit = true;
                 }
                 if (entry.getValue().isEmpty()) {
                     result = "colpito e affondato";
                     nShipToRemove = entry.getKey();
                     shipToRemove = s;
+                    hit = true;
                 }
             }
         }
         if (shipToRemove != null) {
             ships.get(shipToRemove).remove(nShipToRemove);
+        }
+        if (!hit) {
+            int tries  = Difficulty.getCurrentTries() - 1;
+            Difficulty.setCurrentTries(tries);
         }
         return result;
     }

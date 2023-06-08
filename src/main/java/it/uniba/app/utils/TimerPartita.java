@@ -19,7 +19,7 @@ public class TimerPartita {
      *
      * @return true if the timer is running, false otherwise
      */
-    public boolean isRunning() {
+    public static boolean isRunning() {
         return isRunning;
     }
 
@@ -46,7 +46,7 @@ public class TimerPartita {
             }
         };
         timer.schedule(task, maxTime);
-        System.out.println("Il timer di " + getMaxTime() + " minuti. E' ");
+        System.out.println("Il timer di " + getMaxTime() + " minuti.");
         isRunning = true;
     }
 
