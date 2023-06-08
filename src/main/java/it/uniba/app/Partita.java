@@ -1,14 +1,16 @@
 package it.uniba.app;
 
 import it.uniba.app.grid.Grid;
-import it.uniba.app.parser.Parser;
+import it.uniba.app.grid.type.Coordinate;
 import it.uniba.app.grid.type.SizeGrid;
+import it.uniba.app.parser.Parser;
 import it.uniba.app.type.Command;
 import it.uniba.app.type.Difficulty;
+import it.uniba.app.utils.TimerPartita;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import it.uniba.app.utils.TimerPartita;
 
 /**
  * Class that interprets commands.
@@ -19,11 +21,6 @@ public class Partita {
      * Grid of the current match.
      */
     private Grid grid;
-
-    /**
-     * Flag that indicates if a game is in progress.
-     */
-    private boolean isInGame;
 
     /**
      * Welcome message that prints when the program starts correctly.
@@ -87,7 +84,7 @@ public class Partita {
             this.closeGame();
         } else if (command.containsKey(Command.HELP)) {
             this.help();
-        } else if (command.containsKey(Command.HELP)) {
+        } else if (command.containsKey(Command.ATTEMPS)) {
             this.setOnlyCurrentTries(command.get(Command.ATTEMPS));
         } else if (command.containsKey(Command.EASY) || command.containsKey(Command.EASY_NOARG)) {
             this.setDifficulty(Command.EASY, command.get(Command.EASY));
@@ -141,7 +138,7 @@ public class Partita {
      * @param command the command specifying the new size of the grid
      */
     private void setSize(final Command command) {
-        if (!isInGame) {
+        if (!TimerPartita.isRunning()) {
             SizeGrid.setSize(SizeGrid.valueOf(command.toString()));
             System.out.println("OK");
         } else {
@@ -154,19 +151,28 @@ public class Partita {
      */
     private void closeGame() {
         System.out.println("Chiudere il gioco? [s/n]");
-        if (this.scanner.hasNextLine()) {
-            Map<Command, List<String>> command = Command
-                    .parse(Parser.parseInput(this.scanner.nextLine(), Command.PATTERNS));
+        if (confirm()) {
+            Runtime.getRuntime().exit(0);
+        }
+    }
+
+    private boolean confirm() {
+        Map<Command, List<String>> command;
+        boolean canContinue = true;
+        while (canContinue && this.scanner.hasNextLine()) {
+            command = Command.parse(Parser.parseInput(this.scanner.nextLine(), Command.PATTERNS));
             if (command == null) {
                 System.out.println("Risposta non riconosciuta");
-            } else if (command.containsKey(Command.YES) && command.get(Command.YES).isEmpty()) {
-                Runtime.getRuntime().exit(0);
-            } else if (command.containsKey(Command.NO) && command.get(Command.NO).isEmpty()) {
-                System.out.println("Ok");
+            } else if (command.containsKey(Command.YES)) {
+                return true;
+            } else if (command.containsKey(Command.NO)) {
+                System.out.println("OK");
+                canContinue = false;
             } else {
                 System.out.println("Risposta non valida");
             }
         }
+        return false;
     }
 
     /**
@@ -263,17 +269,53 @@ public class Partita {
      * Method to start a game.
      */
     private void playGame() {
+        Coordinate coordinate;
+        String input;
+        int tries = Difficulty.getMaxTries();
+        Difficulty.setCurrentTries(tries);
+        TimerPartita timer = new TimerPartita();
         this.grid = new Grid();
         this.grid.generateGrid();
         this.grid.printCurrentGrid();
-        this.isInGame = true;
+        timer.startGame();
+
+        input = scanner.nextLine();
+        while (TimerPartita.isRunning() && Difficulty.getCurrentTries() > 0) {
+            coordinate = Coordinate.parse(Parser.parseInput(input, Coordinate.PATTERN));
+            if (coordinate != null) {
+                if (coordinate.isValid()) {
+                    this.grid.printCurrentGrid();
+                    System.out.print("Partita> ");
+                    System.out.println(grid.shoot(coordinate));
+                } else {
+                    System.out.println("Coordinata non valida");
+                }
+            } else if (input != null) {
+                this.executeCommand(Parser.parseInput(input, Command.PATTERNS));
+            } else {
+                System.out.println("Coordinata non riconosciuta");
+            }
+            System.out.println(Difficulty.getCurrentTries());
+            if (Difficulty.getCurrentTries() <= 0) {
+                System.out.println("Hai finito i tentativi a disposizione!");
+                TimerPartita.setRunning(false);
+                TimerPartita.stopTimer();
+            }
+            input = scanner.nextLine();
+        }
+        if (input != null) {
+            if (input.contains("/")) {
+                input = "/" + input.split("/")[1];
+            }
+            this.executeCommand(Parser.parseInput(input, Command.PATTERNS));
+        }
     }
 
     /**
      * Method to display the grid with the ships if user is not in game.
      */
     private void printCurrentGrid() {
-        if (this.isInGame) {
+        if (TimerPartita.isRunning()) {
             this.grid.printGrid();
         } else {
             System.out.println("Non stai giocando, inizia a giocare con: /gioca");
@@ -284,7 +326,7 @@ public class Partita {
      * Method to show current ships.
      */
     private void showShips() {
-        if (this.isInGame) {
+        if (TimerPartita.isRunning()) {
             this.grid.showShips();
         } else {
             System.out.print("E' necessario essere in partita per poter visualizzare l'elenco delle navi, ");
