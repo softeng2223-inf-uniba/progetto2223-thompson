@@ -88,6 +88,7 @@ public enum Command {
      * time set command.
      */
     TIME("Imposta la durata della partita in minuti", TypeCommand.NUMERO, "/tempo");
+
     /**
      * Description of what the command should do.
      */
@@ -109,11 +110,12 @@ public enum Command {
 
     private static final Map<String, List<String>> TYPE_COMMANDS = new HashMap<>();
 
-    public static final Pattern[] PATTERNS = new Pattern[TypeCommand.VALUES.length];
+    private static Pattern[] patterns;
 
     static {
+        patterns = new Pattern[TypeCommand.VALUES.length];
         for (TypeCommand type : TypeCommand.VALUES) {
-            PATTERNS[type.ordinal()] = Pattern.compile(type.getRegex(), Pattern.CASE_INSENSITIVE);
+            patterns[type.ordinal()] = Pattern.compile(type.getRegex(), Pattern.CASE_INSENSITIVE);
             TYPE_COMMANDS.put(type.getRegex(), new LinkedList<>());
         }
         for (Command command : VALUES) {
@@ -149,12 +151,21 @@ public enum Command {
     }
 
     /**
+     * Returns the array of patterns used by the Command class.
+     *
+     * @return the array of patterns
+     */
+    public static Pattern[] getPatterns() {
+        return patterns.clone();
+    }
+
+    /**
      * Names getter.
      *
      * @return string array with alias of the command.
      */
     public String[] getNames() {
-        return this.names;
+        return this.names.clone();
     }
 
     /**

@@ -68,7 +68,7 @@ public class Partita {
         }
         this.scanner = new Scanner(System.in, "UTF-8");
         while (this.scanner.hasNextLine()) {
-            this.executeCommand(Parser.parseInput(this.scanner.nextLine(), Command.PATTERNS));
+            this.executeCommand(Parser.parseInput(this.scanner.nextLine(), Command.getPatterns()));
         }
         this.scanner.close();
     }
@@ -167,7 +167,7 @@ public class Partita {
         Map<Command, List<String>> command;
         boolean canContinue = true;
         while (canContinue && this.scanner.hasNextLine()) {
-            command = Command.parse(Parser.parseInput(this.scanner.nextLine(), Command.PATTERNS));
+            command = Command.parse(Parser.parseInput(this.scanner.nextLine(), Command.getPatterns()));
             if (command == null) {
                 System.out.println("Risposta non riconosciuta");
             } else if (command.containsKey(Command.YES)) {
@@ -298,7 +298,7 @@ public class Partita {
                     System.out.println("Coordinata non valida");
                 }
             } else if (input != null) {
-                this.executeCommand(Parser.parseInput(input, Command.PATTERNS));
+                this.executeCommand(Parser.parseInput(input, Command.getPatterns()));
             } else {
                 System.out.println("Coordinata non riconosciuta");
             }
@@ -314,7 +314,7 @@ public class Partita {
             if (input.contains("/")) {
                 input = "/" + input.split("/")[1];
             }
-            this.executeCommand(Parser.parseInput(input, Command.PATTERNS));
+            this.executeCommand(Parser.parseInput(input, Command.getPatterns()));
         }
     }
 

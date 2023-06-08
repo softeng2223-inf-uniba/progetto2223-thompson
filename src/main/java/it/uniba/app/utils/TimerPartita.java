@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 public class TimerPartita {
     private static final long DEFAULT_TIME = 10;
     private static long maxTime = TimeUnit.MILLISECONDS.convert(DEFAULT_TIME, TimeUnit.MINUTES);
-    private static Timer timer;
+    private static Timer timer= new Timer();
     private static boolean isRunning;
     private long startTime;
 
@@ -36,7 +36,6 @@ public class TimerPartita {
      * Starts the game timer.
      */
     public void startGame() {
-        timer = new Timer();
         startTime = System.currentTimeMillis();
 
         TimerTask task = new TimerTask() {
@@ -47,7 +46,7 @@ public class TimerPartita {
         };
         timer.schedule(task, maxTime);
         System.out.println("Il timer di " + getMaxTime() + " minuti.");
-        isRunning = true;
+        setRunning(true);
     }
 
     /**
@@ -56,7 +55,7 @@ public class TimerPartita {
     public static void stopTimer() {
         if (isRunning) {
             System.out.println("Il timer è scaduto. La partita è finita!");
-            isRunning = false;
+            setRunning(false);
         }
         timer.cancel();
     }
@@ -79,6 +78,11 @@ public class TimerPartita {
         TimerPartita.maxTime = TimeUnit.MILLISECONDS.convert(minutes, TimeUnit.MINUTES);
     }
 
+    /**
+     * Returns the current time in milliseconds elapsed since the start time.
+     *
+     * @return the current time in milliseconds
+     */
     private long getCurrentTimeMillis() {
         return System.currentTimeMillis() - startTime;
     }
