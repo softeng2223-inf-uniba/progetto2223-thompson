@@ -2,6 +2,7 @@ package it.uniba.app;
 
 import it.uniba.app.grid.Grid;
 import it.uniba.app.parser.Parser;
+import it.uniba.app.grid.type.SizeGrid;
 import it.uniba.app.type.Command;
 import it.uniba.app.type.Difficulty;
 import java.util.List;
