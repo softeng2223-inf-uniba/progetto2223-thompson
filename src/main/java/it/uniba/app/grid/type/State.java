@@ -8,4 +8,12 @@ public enum State {
     SHIP,
     MISS,
     HIT;
+
+    public State hit() {
+        if (this == SHIP) {
+            return State.HIT;
+        } else {
+            return State.MISS;
+        }
+    }
 }
