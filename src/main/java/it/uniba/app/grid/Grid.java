@@ -253,7 +253,8 @@ public class Grid {
     }
 
     /**
-     * Method to display the current grid with the user's tries.
+     * Prints the current grid with the state of each cell.
+     * Display HIT cells in red and MISS cells in white.
      */
     public final void printCurrentGrid() {
         System.out.println();
@@ -274,8 +275,12 @@ public class Grid {
                 if (this.grid[i][j].getState() == State.VOID || this.grid[i][j].getState() == State.SHIP) {
                     System.out.print(" ");
 
+                } else if (this.grid[i][j].getState() == State.HIT) {
+                    String color = State.HIT.getColor();
+                    System.out.print(color + Ship.stringShip() + State.ANSI_RESET);
                 } else {
-                    System.out.print(Ship.stringShip());
+                    String color = State.MISS.getColor();
+                    System.out.print(color + Ship.stringShip() + State.ANSI_RESET);
                 }
                 System.out.print("   ");
                 System.out.print("|");
