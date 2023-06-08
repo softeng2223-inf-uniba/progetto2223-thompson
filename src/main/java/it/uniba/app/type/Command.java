@@ -97,7 +97,7 @@ public enum Command {
      * @return string array with alias of the command.
      */
     public String[] getNames() {
-        return names.clone();
+        return this.names.clone();
     }
 
     /**
@@ -106,6 +106,31 @@ public enum Command {
      * @return destription
      */
     public String getDescription() {
-        return description;
+        return this.description;
+    }
+    
+    private enum TypeCommand {
+        CONFIRM("y|yes|si|s", 0),
+        DECLINE("n|no", 0),
+        NOARG("(/[a-z]+)", 0),
+        NUMERO("(/[a-z]+) ([-|+]*[1-9][0-9]*)", 1);
+
+        private final String regex;
+        private final int maxArgs;
+
+        public static final TypeCommand[] VALUES = TypeCommand.values();
+
+        TypeCommand(final String valRegex, final int valMaxArgs) {
+            this.regex = valRegex;
+            this.maxArgs = valMaxArgs;
+        }
+
+        public String getRegex() {
+            return this.regex;
+        }
+
+        public int getMaxArgs() {
+            return this.maxArgs;
+        }
     }
 }
