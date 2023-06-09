@@ -151,7 +151,7 @@ public class Partita {
             int maxTries = Difficulty.getMaxTries();
             int differenceTries = maxTries - currentTries;
             System.out.println(
-                    "Ti restano " + currentTries + " tentativi, hai effettuato " + differenceTries + " tentativi su "
+                    "Puoi ancora effettuare " + currentTries + " errori, hai effettuato " + differenceTries + " tentativi falliti su "
                             + maxTries);
         } else {
             System.out.print(
@@ -366,7 +366,7 @@ public class Partita {
                 System.out.println("Coordinata non riconosciuta");
             }
             if (Difficulty.getCurrentTries() <= 0) {
-                System.out.println("Hai finito i tentativi a disposizione!");
+                System.out.println("Hai finito i tentativi a disposizione, partita terminata!");
                 quit();
             }
             input = this.scanner.nextLine();
