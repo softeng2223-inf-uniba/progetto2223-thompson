@@ -56,6 +56,24 @@ public class Grid {
     }
 
     /**
+     * Gets the grid of cells.
+     *
+     * @return The grid of cells.
+     */
+    public Cell[][] getGrid() {
+        return grid;
+    }
+
+    /**
+     * Gets the size of the grid.
+     *
+     * @return The size of the grid.
+     */
+    public int getSize() {
+        return size;
+    }
+
+    /**
      * Shoots at the specified coordinate on the grid and returns the result of the
      * shot.
      *
@@ -225,91 +243,16 @@ public class Grid {
      * Method to display the grid with the ships.
      */
     public final void printGrid() {
-        for (Ship ship : Ship.values()) {
-            System.out.print(ship.toString() + " = " + ship.colorShip() + " ");
-        }
-        System.out.println();
-        System.out.println();
-        System.out.print("    |");
-        for (int i = 0; i < size; i++) {
-            System.out.print(String.format("   %s   |", Column.fromInt(i)));
-        }
-        System.out.println();
-        for (int i = 0; i < size; i++) {
-            System.out.print("----+");
-            for (int j = 0; j < size; j++) {
-                System.out.print("-------+");
-            }
-            System.out.println();
-            System.out.print(String.format(" %2d |", (i + 1)));
-            for (int j = 0; j < size; j++) {
-                System.out.print("   ");
-                System.out.print(this.grid[i][j].getShip() != null ? this.grid[i][j].getShip().colorShip() : " ");
-                System.out.print("   ");
-                System.out.print("|");
-            }
-            System.out.println();
-        }
+        GridPrinter.printGrid(this);
     }
 
-    /*
+    /**
      * Prints the current grid with the state of each cell.
      * Display HIT cells in red and MISS cells in white.
-     * Format the grid display according to its size
+     * Format the grid display according to its size.
      */
     public final void printCurrentGrid() {
-        String formatterCol = "";
-        String formatterRow = "";
-        String formatterNull = "";
-        String formatterSpace = "";
-        switch (size) {
-            case 10:
-                formatterCol = "   %s   |";
-                formatterRow = "-------+";
-                formatterNull = "    ";
-                formatterSpace = "   ";
-                break;
-            case 18:
-                formatterCol = "  %s  |";
-                formatterRow = "-----+";
-                formatterNull = "   ";
-                formatterSpace = "  ";
-                break;
-            case 26:
-                formatterCol = " %s |";
-                formatterRow = "---+";
-                formatterNull = "  ";
-                formatterSpace = " ";
-                break;
-        }
-
-        System.out.println();
-        System.out.print("  |");
-        for (int i = 0; i < size; i++) {
-            System.out.print(String.format(formatterCol, Column.fromInt(i)));
-        }
-        System.out.println();
-        for (int i = 0; i < size; i++) {
-            System.out.print("--+");
-            for (int j = 0; j < size; j++) {
-                System.out.print(formatterRow);
-            }
-            System.out.println();
-            System.out.print(String.format("%2d|", (i + 1)));
-            for (int j = 0; j < size; j++) {
-                if (this.grid[i][j].getState() == State.VOID || this.grid[i][j].getState() == State.SHIP) {
-                    System.out.print(formatterNull);
-                } else if (this.grid[i][j].getState() == State.HIT) {
-                    String color = State.HIT.getColor();
-                    System.out.print(color + formatterSpace + Ship.stringShip() + State.ANSI_RESET);
-                } else {
-                    String color = State.MISS.getColor();
-                    System.out.print(color + formatterSpace + Ship.stringShip() + State.ANSI_RESET);
-                }
-                System.out.print(formatterSpace + "|");
-            }
-            System.out.println();
-        }
+        GridPrinter.printCurrentGrid(this);
     }
 
     /**
