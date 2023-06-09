@@ -5,7 +5,7 @@
 1. [Introduzione](#1-introduzione)
 2. [Modello di Dominio](#2-modello-di-dominio)
 3. [Requisiti Specifici](#3-requisiti-specifici)
-4. [System Design] (#4-system-design)
+4. [System Design](#4-system-design)
 5. [OO Design](#5-oo-design)
 6. [Riepilogo del test](#6-riepilogo-del-test)
 7. [Manuale Utente](#7-manuale-utente)
