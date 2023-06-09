@@ -67,7 +67,7 @@ public class TimerPartita {
     public static void printCurrentTime() {
         long currentTime = TimeUnit.MINUTES.convert(getCurrentTimeMillis(), TimeUnit.MILLISECONDS);
         long maxMinute = TimeUnit.MINUTES.convert(maxTime, TimeUnit.MILLISECONDS);
-        System.out.print("Sono passati " + currentTime + " minuti, mancano " + (maxMinute - currentTime) + "minuti");
+        System.out.println("Sono passati " + currentTime + " minuti, mancano ancora" + (maxMinute - currentTime) + " minuti");
     }
 
     /**
