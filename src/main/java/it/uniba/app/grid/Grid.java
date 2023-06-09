@@ -56,15 +56,6 @@ public class Grid {
     }
 
     /**
-     * Gets the grid of cells.
-     *
-     * @return The grid of cells.
-     */
-    public Cell[][] getGrid() {
-        return grid;
-    }
-
-    /**
      * Gets the size of the grid.
      *
      * @return The size of the grid.
@@ -243,7 +234,7 @@ public class Grid {
      * Method to display the grid with the ships.
      */
     public final void printGrid() {
-        GridPrinter.printGrid(this);
+        GridPrinter.printGrid(grid, size);
     }
 
     /**
@@ -252,7 +243,7 @@ public class Grid {
      * Format the grid display according to its size.
      */
     public final void printCurrentGrid() {
-        GridPrinter.printCurrentGrid(this);
+        GridPrinter.printCurrentGrid(grid, size);
     }
 
     /**

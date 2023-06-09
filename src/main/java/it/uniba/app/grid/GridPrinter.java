@@ -1,5 +1,6 @@
 package it.uniba.app.grid;
 
+import it.uniba.app.grid.type.Cell;
 import it.uniba.app.grid.type.Column;
 import it.uniba.app.grid.type.State;
 import it.uniba.app.ship.Ship;
@@ -47,8 +48,7 @@ public class GridPrinter {
      * 
      * @param grid The grid to be printed.
      */
-    public static void printGrid(final Grid grid) {
-        int size = grid.getSize();
+    public static void printGrid(final Cell[][] grid, final int size) {
         GridPrinter.setFormatters(size);
         StringBuilder legend = new StringBuilder();
         for (Ship ship : Ship.values()) {
@@ -60,8 +60,8 @@ public class GridPrinter {
             printSeparator(size);
             printIndexColumn(i);
             for (int j = 0; j < size; j++) {
-                printCell(grid.getGrid()[i][j].getShip() != null
-                        ? formatterSpace + grid.getGrid()[i][j].getShip().colorShip()
+                printCell(grid[i][j].getShip() != null
+                        ? formatterSpace + grid[i][j].getShip().colorShip()
                         : formatterVoid);
             }
             System.out.println();
@@ -134,8 +134,7 @@ public class GridPrinter {
      * 
      * @param grid The grid to be printed.
      */
-    public static final void printCurrentGrid(final Grid grid) {
-        int size = grid.getSize();
+    public static final void printCurrentGrid(final Cell[][] grid, final int size) {
         GridPrinter.setFormatters(size);
         System.out.println();
         StringBuilder legend = new StringBuilder();
@@ -149,9 +148,9 @@ public class GridPrinter {
             printSeparator(size);
             printIndexColumn(i);
             for (int j = 0; j < size; j++) {
-                if (grid.getGrid()[i][j].getState() == State.VOID || grid.getGrid()[i][j].getState() == State.SHIP) {
+                if (grid[i][j].getState() == State.VOID || grid[i][j].getState() == State.SHIP) {
                     printCell(formatterVoid);
-                } else if (grid.getGrid()[i][j].getState() == State.HIT) {
+                } else if (grid[i][j].getState() == State.HIT) {
                     color = State.HIT.getColor();
                     printCell(color + formatterSpace + Ship.stringShip() + State.ANSI_RESET);
                 } else {
