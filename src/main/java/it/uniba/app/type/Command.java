@@ -31,7 +31,7 @@ public enum Command {
     /**
      * Set the difficulty to medium and set attempts.
      */
-    MEDIUM("Imposta a 30 il numero max di tentativi falliti", TypeCommand.NUMERO, "/medio"),
+    MEDIUM("Imposta a 30 il numero max di tentativi falliti (è il default)", TypeCommand.NUMERO, "/medio"),
     /**
      * Set the difficulty to medium.
      */
