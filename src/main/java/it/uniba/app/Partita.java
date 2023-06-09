@@ -125,16 +125,20 @@ public class Partita {
      * @param args the list of arguments containing the maximum time.
      */
     private void setMaxTime(final List<String> args) {
-        if (args == null) {
-            System.out.println("Non è stato passato nessun parametro");
-        } else {
-            try {
-                int time = Integer.parseInt(args.get(0));
-                TimerPartita.setMaxTime(time);
-                System.out.println("OK");
-            } catch (IllegalArgumentException e) {
-                System.out.println("Numero non valido");
+        if (!isInGame()) {
+            if (args == null) {
+                System.out.println("Non è stato passato nessun parametro");
+            } else {
+                try {
+                    int time = Integer.parseInt(args.get(0));
+                    TimerPartita.setMaxTime(time);
+                    System.out.println("OK");
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Numero non valido");
+                }
             }
+        } else {
+            System.out.println("Non puoi cambiare il tempo massimo mentre una partita in corso!");
         }
     }
 
@@ -146,12 +150,13 @@ public class Partita {
      * the game.
      */
     private void showAttemps() {
-        if (TimerPartita.isRunning()) {
+        if (isInGame()) {
             int currentTries = Difficulty.getCurrentTries();
             int maxTries = Difficulty.getMaxTries();
             int differenceTries = maxTries - currentTries;
             System.out.println(
-                    "Puoi ancora effettuare " + currentTries + " errori, hai effettuato " + differenceTries + " tentativi falliti su "
+                    "Puoi ancora effettuare " + currentTries + " errori, hai effettuato " + differenceTries
+                            + " tentativi falliti su "
                             + maxTries);
         } else {
             System.out.print(
@@ -161,14 +166,23 @@ public class Partita {
     }
 
     /**
+     * Check if the game is currently in progress.
+     *
+     * @return true if the game is in progress, false otherwise
+     */
+    private boolean isInGame() {
+        return TimerPartita.isRunning();
+    }
+
+    /**
      * Displays the current time to the user.
      * If a game is currently running, it shows the current elapsed time.
      * If no game is running, it provides a message indicating that no game is in
      * progress.
      */
     private void showCurrentTime() {
-        if (TimerPartita.isRunning()) {
-            TimerPartita.printCurrentAndRemainingTime();
+        if (isInGame()) {
+            TimerPartita.printCurrentTime();
         } else {
             System.out.println("Non è in corso nessuna partita");
         }
@@ -180,7 +194,7 @@ public class Partita {
      * @param command the command specifying the new size of the grid
      */
     private void setSize(final Command command) {
-        if (!TimerPartita.isRunning()) {
+        if (!isInGame()) {
             SizeGrid.setSize(SizeGrid.valueOf(command.toString()));
             System.out.println("OK");
         } else {
@@ -192,7 +206,12 @@ public class Partita {
      * Method for close the application.
      */
     private void closeGame() {
-        System.out.println("Chiudere il gioco? [s/n]");
+        if (isInGame()) {
+            System.out.print("Chiudere l'applicazione? [s/n] ");
+            System.out.println("Puoi abbandonare la partita con /abbandona");
+        } else {
+            System.out.println("Chiudere l'applicazione? [s/n]");
+        }
         if (this.confirm()) {
             Runtime.getRuntime().exit(0);
         }
@@ -228,13 +247,18 @@ public class Partita {
      * Method for change difficulty and the current tries if passed.
      */
     private void setDifficulty(final Command command, final List<String> args) {
-        if (args == null) {
-            this.setOnlyDifficulty(command);
-            System.out.println("OK");
+        if (!isInGame()) {
+            if (args == null) {
+                this.setOnlyDifficulty(command);
+                System.out.println("OK");
+            } else {
+                this.setOnlyDifficulty(command);
+                this.setOnlyCurrentTries(args);
+            }
         } else {
-            this.setOnlyDifficulty(command);
-            this.setOnlyCurrentTries(args);
+            System.out.println("Non puoi cambiare la difficoltà durante la partita!");
         }
+
     }
 
     /**
@@ -250,16 +274,20 @@ public class Partita {
      * @param args the list of arguments containing the maximum number of tries
      */
     private void setOnlyCurrentTries(final List<String> args) {
-        if (args == null) {
-            System.out.println("Non è stato passato nessun parametro");
-        } else {
-            try {
-                int tires = Integer.parseInt(args.get(0));
-                Difficulty.setMaxTries(tires);
-                System.out.println("OK");
-            } catch (IllegalArgumentException e) {
-                System.out.println("Numero non valido");
+        if (!isInGame()) {
+            if (args == null) {
+                System.out.println("Non è stato passato nessun parametro");
+            } else {
+                try {
+                    int tires = Integer.parseInt(args.get(0));
+                    Difficulty.setMaxTries(tires);
+                    System.out.println("OK");
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Numero non valido");
+                }
             }
+        } else {
+            System.out.println("Non puoi cambiare il numero di tentativi durante la partita!");
         }
     }
 
@@ -322,10 +350,14 @@ public class Partita {
      * Prompt the user to exit the game and stop taking input if confirmed.
      */
     private void exitGame() {
-        System.out.println("Abbandonare la partita? [s/n]");
-        if (confirm()) {
-            printGrid();
-            quit();
+        if (isInGame()) {
+            System.out.println("Abbandonare la partita? [s/n]");
+            if (confirm()) {
+                printGrid();
+                quit();
+            }
+        } else {
+            System.out.println("Non è in corso nessuna partita!");
         }
     }
 
@@ -353,7 +385,7 @@ public class Partita {
         timer.startGame();
 
         input = this.scanner.nextLine();
-        while (TimerPartita.isRunning() && Difficulty.getCurrentTries() > 0) {
+        while (isInGame() && Difficulty.getCurrentTries() > 0) {
             coordinate = Coordinate.parse(Parser.parseInput(input, Coordinate.PATTERN));
             if (coordinate != null) {
                 if (coordinate.isValid()) {
@@ -392,7 +424,7 @@ public class Partita {
      * Method to display the grid with the ships if user is not in game.
      */
     private void printGrid() {
-        if (TimerPartita.isRunning()) {
+        if (isInGame()) {
             this.grid.printGrid();
         } else {
             System.out.println("Non stai giocando, inizia a giocare con: /gioca");
@@ -403,7 +435,7 @@ public class Partita {
      * Method to show current ships.
      */
     private void showShips() {
-        if (TimerPartita.isRunning()) {
+        if (isInGame()) {
             this.grid.showShips();
         } else {
             System.out.print("E' necessario essere in partita per poter visualizzare l'elenco delle navi, ");
