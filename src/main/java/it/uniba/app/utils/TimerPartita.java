@@ -14,6 +14,9 @@ public class TimerPartita {
     private static boolean isRunning;
     private static long startTime;
 
+    /**
+     * Creates a new timer instance.
+     */
     public static void createTimer() {
         timer = new Timer();
     }
