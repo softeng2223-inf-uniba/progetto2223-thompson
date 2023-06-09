@@ -59,7 +59,7 @@ public enum Command {
     /**
      * Display the grid with ship position.
      */
-    REVAL_GRID("Visualizza la griglia con le navi posizionate", TypeCommand.NOARG, "/svelagriglia"),
+    REVEAL_GRID("Visualizza la griglia con le navi posizionate", TypeCommand.NOARG, "/svelagriglia"),
     /**
      * Close the application.
      */
@@ -96,7 +96,7 @@ public enum Command {
      * Show attemps set command.
      */
     SHOW_TIME("Visualizza il tempo rimanente", TypeCommand.NOARG, "/mostratempo"),
-    /**
+     /**
      * Surrend set command.
      */
     SURREND("Abbandona la partita", TypeCommand.NOARG, "/abbandona");
