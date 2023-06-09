@@ -14,10 +14,14 @@ public class TimerPartita {
     private static boolean isRunning;
     private static long startTime;
 
+    private static void setStartTime(final long valStartTime) {
+        TimerPartita.startTime = valStartTime;
+    }
+
     /**
      * Creates a new timer instance.
      */
-    public static void createTimer() {
+    private static void createTimer() {
         timer = new Timer();
     }
 
@@ -44,7 +48,7 @@ public class TimerPartita {
      */
     public void startGame() {
         createTimer();
-        startTime = System.currentTimeMillis();
+        setStartTime(System.currentTimeMillis());
 
         TimerTask task = new TimerTask() {
             @Override
