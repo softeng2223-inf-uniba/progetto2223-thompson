@@ -168,7 +168,7 @@ public class Partita {
      */
     private void showCurrentTime() {
         if (TimerPartita.isRunning()) {
-            TimerPartita.printCurrentTime();
+            TimerPartita.printCurrentAndRemainingTime();
         } else {
             System.out.println("Non è in corso nessuna partita");
         }
@@ -361,6 +361,11 @@ public class Partita {
                     this.grid.printCurrentGrid();
                     System.out.print("Partita> ");
                     System.out.println(result);
+                    int currentTries = Difficulty.getCurrentTries();
+                    int maxTries = Difficulty.getMaxTries();
+                    int differenceTries = maxTries - currentTries;
+                    System.out.println("Tentativi già effettuati: " + differenceTries);
+                    TimerPartita.printCurrentTime();
                 } else {
                     System.out.println("Coordinata non valida");
                 }
