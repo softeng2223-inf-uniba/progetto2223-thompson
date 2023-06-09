@@ -169,6 +169,12 @@ Dopo aver eseguito il comando docker pull copiandolo da GitHub Packages, Il coma
 
 [Torna all'indice](#indice)
 
+## 4. System Design
+
+<strong>Questa sezione non è compilata</strong>: il gruppo dopo un'analisi del problema ha opportunamente deciso che non avrebbe avuto senso esplicitare un design del sistema, in quanto si tratta di un progetto di <i>piccole-medie</i> dimensioni.</i>
+
+[Torna all'indice](#indice)
+
 ## 5. OO Design
 
 [Torna all'indice](#indice)
