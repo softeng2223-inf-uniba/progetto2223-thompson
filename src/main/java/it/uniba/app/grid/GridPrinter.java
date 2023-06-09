@@ -79,6 +79,39 @@ public class GridPrinter {
         }
     }
 
+    private static void printLegend(final String legend) {
+        System.out.println();
+        System.out.print(legend);
+        System.out.println();
+    }
+
+    private static void printCell(final String cell) {
+        System.out.print(cell);
+        System.out.print(formatterSpace);
+        System.out.print("|");
+    }
+
+    private static void printIndexColumn(final int i) {
+        System.out.print(String.format(" %2d |", (i + 1)));
+    }
+
+    private static void printSeparator(final int size) {
+        System.out.print("----+");
+        for (int j = 0; j < size; j++) {
+            System.out.print(formatterRow);
+        }
+        System.out.println();
+    }
+
+    private static void printHeader(final int size) {
+        System.out.println();
+        System.out.print("    |");
+        for (int i = 0; i < size; i++) {
+            System.out.print(String.format(formatterCol, Column.fromInt(i)));
+        }
+        System.out.println();
+    }
+
     /*
      * Prints the current grid with the state of each cell.
      * Display HIT cells in red and MISS cells in white.
