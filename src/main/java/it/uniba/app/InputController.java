@@ -154,10 +154,12 @@ public class InputController {
             int currentTries = Difficulty.getFailedTries();
             int maxTries = Difficulty.getMaxTries();
             int differenceTries = maxTries - currentTries;
-            System.out.println(
-                    "Puoi ancora effettuare " + currentTries + " errori, hai effettuato " + differenceTries
-                            + " tentativi falliti su "
-                            + maxTries);
+            int totalTries = differenceTries + Difficulty.getCurrentTries();
+            System.out.println("Hai effettuato " + totalTries + " tentativi.");
+            System.out.println("Puoi effettuare ancora "
+                    + currentTries + " errori. Hai effettuato " + differenceTries
+                    + " tentativi falliti su "
+                    + maxTries);
         } else {
             System.out.print(
                     "E' necessario essere in partita per poter visualizzare il numero dei tentativi rimanenti, ");
@@ -182,7 +184,7 @@ public class InputController {
      */
     private void showCurrentTime() {
         if (isInGame()) {
-            TimerPartita.printCurrentTime();
+            TimerPartita.printCurrentAndRemainingTime();
         } else {
             System.out.println("Non è in corso nessuna partita. Puoi creare una nuova partita con il comando /gioca");
         }
@@ -397,8 +399,9 @@ public class InputController {
                         System.out.println(result);
                         int currentTries = Difficulty.getFailedTries();
                         int maxTries = Difficulty.getMaxTries();
-                        int differenceTries = maxTries - currentTries;
-                        System.out.println("Tentativi già effettuati: " + differenceTries);
+                        int totalTries = maxTries - currentTries + Difficulty.getCurrentTries();
+
+                        System.out.println("Tentativi già effettuati: " + totalTries);
                         TimerPartita.printCurrentTime();
                     } else {
                         System.out.println("Coordinata non valida");
