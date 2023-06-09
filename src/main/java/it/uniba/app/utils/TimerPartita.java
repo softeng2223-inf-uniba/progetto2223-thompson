@@ -9,11 +9,11 @@ import java.util.concurrent.TimeUnit;
  */
 public class TimerPartita {
     private static final long DEFAULT_TIME = 10;
+    private static final int SECONDS_IN_MINUTE = 60;
     private static long maxTime = TimeUnit.MILLISECONDS.convert(DEFAULT_TIME, TimeUnit.MINUTES);
     private static Timer timer;
     private static boolean isRunning;
     private static long startTime;
-    private final static int SECONDS_IN_MINUTE = 60;
 
     private static void setStartTime(final long valStartTime) {
         TimerPartita.startTime = valStartTime;
