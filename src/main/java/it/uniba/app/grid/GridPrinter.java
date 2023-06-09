@@ -45,7 +45,7 @@ public class GridPrinter {
     /**
      * Method to display the grid with the ships.
      * Format the grid display according to its size
-     * 
+     *
      * @param grid The grid to be printed.
      * @param size The size of the grid.
      */
@@ -128,7 +128,7 @@ public class GridPrinter {
         System.out.println();
     }
 
-    /*
+    /**
      * Prints the current grid with the state of each cell.
      * Display HIT cells in red and MISS cells in white.
      * Format the grid display according to its size
@@ -170,7 +170,7 @@ public class GridPrinter {
      *
      * @param size The size of the grid.
      */
-    public static void setFormatters(int size) {
+    public static void setFormatters(final int size) {
         if (size > 0 && size <= MAX_SIZE_SMALL) {
             formatterCol = "   %s   |";
             formatterRow = "-------+";
