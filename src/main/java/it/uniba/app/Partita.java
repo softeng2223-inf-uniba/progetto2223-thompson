@@ -168,7 +168,7 @@ public class Partita {
      */
     private void showCurrentTime() {
         if (TimerPartita.isRunning()) {
-            TimerPartita.printCurrentTime();
+            TimerPartita.printCurrentAndRemainingTime();
         } else {
             System.out.println("Non è in corso nessuna partita");
         }
