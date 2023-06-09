@@ -79,22 +79,42 @@ public class GridPrinter {
         }
     }
 
+    /**
+     * Prints the legend on a new line.
+     *
+     * @param legend The legend to be printed.
+     */
     private static void printLegend(final String legend) {
         System.out.println();
         System.out.print(legend);
         System.out.println();
     }
 
+    /**
+     * Prints a cell followed by the formatter space and a vertical separator.
+     *
+     * @param cell The cell value to be printed.
+     */
     private static void printCell(final String cell) {
         System.out.print(cell);
         System.out.print(formatterSpace);
         System.out.print("|");
     }
 
+    /**
+     * Prints the index column value for the given row index.
+     *
+     * @param i The row index.
+     */
     private static void printIndexColumn(final int i) {
         System.out.print(String.format(" %2d |", (i + 1)));
     }
 
+    /**
+     * Prints the row separator line.
+     *
+     * @param size The size of the grid.
+     */
     private static void printSeparator(final int size) {
         System.out.print("----+");
         for (int j = 0; j < size; j++) {
@@ -103,6 +123,11 @@ public class GridPrinter {
         System.out.println();
     }
 
+    /**
+     * Prints the header row with column labels.
+     *
+     * @param size The size of the grid.
+     */
     private static void printHeader(final int size) {
         System.out.println();
         System.out.print("    |");
