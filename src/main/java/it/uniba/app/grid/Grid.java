@@ -55,12 +55,22 @@ public class Grid {
         }
     }
 
+    /**
+     * Gets the grid of cells.
+     *
+     * @return The grid of cells.
+     */
     public Cell[][] getGrid() {
         return grid;
     }
 
+    /**
+     * Gets the size of the grid.
+     *
+     * @return The size of the grid.
+     */
     public int getSize() {
-        return this.size;
+        return size;
     }
 
     /**
