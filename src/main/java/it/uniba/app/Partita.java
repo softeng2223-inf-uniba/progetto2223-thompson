@@ -280,7 +280,11 @@ public class Partita {
         for (Command command : Command.values()) {
             String description = command.getDescription();
             if (!description.isEmpty()) {
-                System.out.println(command.getNames()[0] + " : " + description);
+                String args = command.getMaxArgs() > 0 ? command.getTypeToString() : "";
+                if (!args.isEmpty()) {
+                    args = " [" + args + "] ";
+                }
+                System.out.println(command.getNames()[0] + args + ": " + description);
             }
         }
         System.out.println();
