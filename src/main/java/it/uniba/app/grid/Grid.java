@@ -113,7 +113,10 @@ public class Grid {
             ships.get(shipToRemove).remove(nShipToRemove);
         }
         if (!hit) {
-            int tries = Difficulty.getCurrentTries() - 1;
+            int tries = Difficulty.getFailedTries() - 1;
+            Difficulty.setFailedTries(tries);
+        } else {
+            int tries = Difficulty.getCurrentTries() + 1;
             Difficulty.setCurrentTries(tries);
         }
         return result;

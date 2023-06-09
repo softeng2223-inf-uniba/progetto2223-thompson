@@ -151,7 +151,7 @@ public class InputController {
      */
     private void showAttemps() {
         if (isInGame()) {
-            int currentTries = Difficulty.getCurrentTries();
+            int currentTries = Difficulty.getFailedTries();
             int maxTries = Difficulty.getMaxTries();
             int differenceTries = maxTries - currentTries;
             System.out.println(
@@ -182,7 +182,7 @@ public class InputController {
      */
     private void showCurrentTime() {
         if (isInGame()) {
-            TimerPartita.printCurrentAndRemainingTime();
+            TimerPartita.printCurrentTime();
         } else {
             System.out.println("Non è in corso nessuna partita. Puoi creare una nuova partita con il comando /gioca");
         }
@@ -378,7 +378,8 @@ public class InputController {
             Coordinate coordinate;
             String input;
             int tries = Difficulty.getMaxTries();
-            Difficulty.setCurrentTries(tries);
+            Difficulty.setFailedTries(tries);
+            Difficulty.setCurrentTries(0);
             TimerPartita timer = new TimerPartita();
             this.grid = new Grid();
             this.grid.generateGrid();
@@ -386,7 +387,7 @@ public class InputController {
             timer.startGame();
 
             input = this.scanner.nextLine();
-            while (isInGame() && Difficulty.getCurrentTries() > 0) {
+            while (isInGame() && Difficulty.getFailedTries() > 0) {
                 coordinate = Coordinate.parse(Parser.parseInput(input, Coordinate.PATTERN));
                 if (coordinate != null) {
                     if (coordinate.isValid()) {
@@ -394,7 +395,7 @@ public class InputController {
                         this.grid.printCurrentGrid();
                         System.out.print("Partita> ");
                         System.out.println(result);
-                        int currentTries = Difficulty.getCurrentTries();
+                        int currentTries = Difficulty.getFailedTries();
                         int maxTries = Difficulty.getMaxTries();
                         int differenceTries = maxTries - currentTries;
                         System.out.println("Tentativi già effettuati: " + differenceTries);
@@ -407,7 +408,7 @@ public class InputController {
                 } else {
                     System.out.println("Coordinata non riconosciuta");
                 }
-                if (Difficulty.getCurrentTries() <= 0) {
+                if (Difficulty.getFailedTries() <= 0) {
                     System.out.println("Hai finito i tentativi a disposizione, hai perso!");
                     quit();
                 }

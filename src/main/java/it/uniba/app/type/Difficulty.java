@@ -35,7 +35,30 @@ public enum Difficulty {
     /**
      * Tries of the current match.
      */
-    private static int currentTries = gameDifficulty.getTries();
+    private static int failedTries = gameDifficulty.getTries();
+
+    /**
+     * Tries of the current match.
+     */
+    private static int currentTries = 0;
+
+    /**
+     * Returns the current number of tries.
+     *
+     * @return The current number of tries.
+     */
+    public static int getCurrentTries() {
+        return currentTries;
+    }
+
+    /**
+     * Sets the current number of tries.
+     *
+     * @param valCurrentTries The new value for the current number of tries.
+     */
+    public static void setCurrentTries(final int valCurrentTries) {
+        Difficulty.currentTries = valCurrentTries;
+    }
 
     /**
      * Constructor of the difficulty class.
@@ -60,7 +83,7 @@ public enum Difficulty {
     public static void setMaxTries(final int valTries) throws IllegalArgumentException {
         if (valTries > 0) {
             maxTries = valTries;
-            currentTries = maxTries;
+            failedTries = maxTries;
         } else {
             throw new IllegalArgumentException();
         }
@@ -90,8 +113,8 @@ public enum Difficulty {
      *
      * @return the current number of tries
      */
-    public static int getCurrentTries() {
-        return currentTries;
+    public static int getFailedTries() {
+        return failedTries;
     }
 
     /**
@@ -99,8 +122,8 @@ public enum Difficulty {
      *
      * @param valCurrentTries the new value for the current number of tries
      */
-    public static void setCurrentTries(final int valCurrentTries) {
-        Difficulty.currentTries = valCurrentTries;
+    public static void setFailedTries(final int valCurrentTries) {
+        Difficulty.failedTries = valCurrentTries;
     }
 
     /**
