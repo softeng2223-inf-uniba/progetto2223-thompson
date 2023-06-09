@@ -182,7 +182,7 @@ public class InputController {
      */
     private void showCurrentTime() {
         if (isInGame()) {
-            TimerPartita.printCurrentTime();
+            TimerPartita.printCurrentAndRemainingTime();
         } else {
             System.out.println("Non è in corso nessuna partita. Puoi creare una nuova partita con il comando /gioca");
         }

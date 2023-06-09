@@ -13,6 +13,7 @@ public class TimerPartita {
     private static Timer timer;
     private static boolean isRunning;
     private static long startTime;
+    private final static int SECONDS_IN_MINUTE = 60;
 
     private static void setStartTime(final long valStartTime) {
         TimerPartita.startTime = valStartTime;
@@ -69,11 +70,11 @@ public class TimerPartita {
         long currentTimeSeconds = TimeUnit.SECONDS.convert(currentTimeMillis, TimeUnit.MILLISECONDS);
         long maxTimeSeconds = TimeUnit.SECONDS.convert(maxTime, TimeUnit.MILLISECONDS);
 
-        long minutesPassed = currentTimeSeconds / 60;
-        long secondsPassed = currentTimeSeconds % 60;
+        long minutesPassed = currentTimeSeconds / SECONDS_IN_MINUTE;
+        long secondsPassed = currentTimeSeconds % SECONDS_IN_MINUTE;
 
-        long minutesRemaining = (maxTimeSeconds - currentTimeSeconds) / 60;
-        long secondsRemaining = (maxTimeSeconds - currentTimeSeconds) % 60;
+        long minutesRemaining = (maxTimeSeconds - currentTimeSeconds) / SECONDS_IN_MINUTE;
+        long secondsRemaining = (maxTimeSeconds - currentTimeSeconds) % SECONDS_IN_MINUTE;
 
         System.out.println("Sono passati " + minutesPassed + " minuti e " + secondsPassed + " secondi. Mancano ancora "
                 + minutesRemaining + " minuti e " + secondsRemaining + " secondi.");
@@ -86,8 +87,8 @@ public class TimerPartita {
         long currentTimeMillis = getCurrentTimeMillis();
         long currentTimeSeconds = TimeUnit.SECONDS.convert(currentTimeMillis, TimeUnit.MILLISECONDS);
 
-        long minutesPassed = currentTimeSeconds / 60;
-        long secondsPassed = currentTimeSeconds % 60;
+        long minutesPassed = currentTimeSeconds / SECONDS_IN_MINUTE;
+        long secondsPassed = currentTimeSeconds % SECONDS_IN_MINUTE;
         if (minutesPassed == 0) {
             System.out.println("Sono passati " + secondsPassed + " secondi.");
         } else if (minutesPassed == 1) {
