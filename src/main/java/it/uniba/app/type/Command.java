@@ -23,31 +23,31 @@ public enum Command {
     /**
      * Set the difficulty to easy and set attempts.
      */
-    EASY("Imposta a 50 il numero max di tentativi falliti", TypeCommand.NUMERO, "/facile"),
+    EASY("Imposta a [numero] il numero max di tentativi falliti", TypeCommand.NUMERO, "/facile"),
     /**
      * Set the difficulty to easy.
      */
-    EASY_NOARG("", TypeCommand.NOARG, "/facile"),
+    EASY_NOARG("Imposta a 50 il numero max di tentativi falliti (\u00E8 il default)", TypeCommand.NOARG, "/facile"),
     /**
      * Set the difficulty to medium and set attempts.
      */
-    MEDIUM("Imposta a 30 il numero max di tentativi falliti (è il default)", TypeCommand.NUMERO, "/medio"),
+    MEDIUM("Imposta a [numero] il numero max di tentativi falliti", TypeCommand.NUMERO, "/medio"),
     /**
      * Set the difficulty to medium.
      */
-    MEDIUM_NOARG("", TypeCommand.NOARG, "/medio"),
+    MEDIUM_NOARG("Imposta a 30 il numero max di tentativi falliti (\u00E8 il default)", TypeCommand.NOARG, "/medio"),
     /**
      * Set the difficulty to hard and set attempts.
      */
-    HARD("Imposta a 10 il numero max di tentativi falliti", TypeCommand.NUMERO, "/difficile"),
+    HARD("Imposta a [numero] il numero max di tentativi falliti", TypeCommand.NUMERO, "/difficile"),
     /**
      * Set the difficulty to hard.
      */
-    HARD_NOARG("", TypeCommand.NOARG, "/difficile"),
+    HARD_NOARG("Imposta a 10 il numero max di tentativi falliti", TypeCommand.NOARG, "/difficile"),
     /**
      * Set the max number of tries.
      */
-    ATTEMPS("Imposta tentativi numero", TypeCommand.NUMERO, "/tentativi"),
+    ATTEMPS("Imposta a [numero] il numero max di tentativi falliti", TypeCommand.NUMERO, "/tentativi"),
     /**
      * Show the current difficulty.
      */
@@ -96,7 +96,7 @@ public enum Command {
      * Show attemps set command.
      */
     SHOW_TIME("Visualizza il tempo rimanente", TypeCommand.NOARG, "/mostratempo"),
-     /**
+    /**
      * Surrend set command.
      */
     SURREND("Abbandona la partita", TypeCommand.NOARG, "/abbandona");
@@ -196,6 +196,24 @@ public enum Command {
      */
     public TypeCommand getType() {
         return this.type;
+    }
+
+    /**
+     * Get a lowercase string representation of the type.
+     *
+     * @return the lowercase string representation of the type
+     */
+    public String getTypeToString() {
+        return this.type.toString().toLowerCase();
+    }
+
+    /**
+     * Get the maximum number of arguments allowed for the type.
+     *
+     * @return the maximum number of arguments allowed for the type
+     */
+    public int getMaxArgs() {
+        return this.type.getMaxArgs();
     }
 
     /**
