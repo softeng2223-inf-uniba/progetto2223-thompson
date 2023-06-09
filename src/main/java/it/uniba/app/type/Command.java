@@ -99,6 +99,10 @@ public enum Command {
      */
     SHOW_ATTEMPS("Visualizza il numero di tentativi rimanenti", TypeCommand.NOARG, "/mostratentativi"),
     /**
+     * Display the grid with ship position.
+     */
+    SHOW_GRID("Visualizza la griglia con le navi affondate e le sole parti già colpite delle navi non affondate", TypeCommand.NOARG, "/mostragriglia"),
+    /**
      * Show attemps set command.
      */
     SHOW_TIME("Visualizza il tempo rimanente", TypeCommand.NOARG, "/mostratempo"),
