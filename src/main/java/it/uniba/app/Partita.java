@@ -96,8 +96,8 @@ public class Partita {
             this.playGame();
         } else if (command.containsKey(Command.SHOW_LEVEL)) {
             this.showLevel();
-        } else if (command.containsKey(Command.REVAL_GRID)) {
-            this.printCurrentGrid();
+        } else if (command.containsKey(Command.REVEAL_GRID)) {
+            this.printGrid();
         } else if (command.containsKey(Command.SHOW_SHIPS)) {
             this.showShips();
         } else if (command.containsKey(Command.STANDARD)) {
@@ -112,6 +112,8 @@ public class Partita {
             this.showAttemps();
         } else if (command.containsKey(Command.SHOW_TIME)) {
             this.showCurrentTime();
+        } else if (command.containsKey(Command.SURREND)) {
+            this.exitGame();
         } else {
             System.out.println("Comando non valido"); // stampa quando viene usato un comando che non può essere usato
         }
@@ -313,6 +315,26 @@ public class Partita {
     }
 
     /**
+     * Prompt the user to exit the game and stop taking input if confirmed.
+     */
+    private void exitGame() {
+        System.out.println("Abbandonare la partita? [s/n]");
+        if (confirm()) {
+            printGrid();
+            quit();
+        }
+    }
+
+    /**
+     * Quit the game by stopping the game timer and setting the game's running state
+     * to false.
+     */
+    private void quit() {
+        TimerPartita.setRunning(false);
+        TimerPartita.stopTimer();
+    }
+
+    /**
      * Method to start a game.
      */
     private void playGame() {
@@ -345,8 +367,7 @@ public class Partita {
             }
             if (Difficulty.getCurrentTries() <= 0) {
                 System.out.println("Hai finito i tentativi a disposizione!");
-                TimerPartita.setRunning(false);
-                TimerPartita.stopTimer();
+                quit();
             }
             input = this.scanner.nextLine();
         }
@@ -361,7 +382,7 @@ public class Partita {
     /**
      * Method to display the grid with the ships if user is not in game.
      */
-    private void printCurrentGrid() {
+    private void printGrid() {
         if (TimerPartita.isRunning()) {
             this.grid.printGrid();
         } else {
