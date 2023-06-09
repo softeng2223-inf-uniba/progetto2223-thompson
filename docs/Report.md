@@ -5,7 +5,7 @@
 1. [Introduzione](#1-introduzione)
 2. [Modello di Dominio](#2-modello-di-dominio)
 3. [Requisiti Specifici](#3-requisiti-specifici)
-4. System Design
+4. [System Design](#4-system-design)
 5. [OO Design](#5-oo-design)
 6. [Riepilogo del test](#6-riepilogo-del-test)
 7. [Manuale Utente](#7-manuale-utente)
@@ -166,6 +166,12 @@ Dopo aver eseguito il comando docker pull copiandolo da GitHub Packages, Il coma
 
 </p></li>
 </ul>
+
+[Torna all'indice](#indice)
+
+## 4. System Design
+
+<strong>Questa sezione non è compilata</strong>: il gruppo dopo un'analisi del problema ha opportunamente deciso che non avrebbe avuto senso esplicitare un design del sistema, in quanto si tratta di un progetto di <i>piccole-medie</i> dimensioni.</i>
 
 [Torna all'indice](#indice)
 
