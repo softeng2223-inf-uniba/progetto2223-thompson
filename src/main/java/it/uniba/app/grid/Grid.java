@@ -56,12 +56,12 @@ public class Grid {
     }
 
     /**
-     * Gets the grid of cells.
+     * Check if all the ships have been sunken.
      *
-     * @return The grid of cells.
+     * @return true if all the ships have been sunken, false otherwise
      */
-    public Cell[][] getGrid() {
-        return grid;
+    public boolean isAllSunken() {
+        return ships.isEmpty();
     }
 
     /**
@@ -113,7 +113,10 @@ public class Grid {
             ships.get(shipToRemove).remove(nShipToRemove);
         }
         if (!hit) {
-            int tries = Difficulty.getCurrentTries() - 1;
+            int tries = Difficulty.getFailedTries() - 1;
+            Difficulty.setFailedTries(tries);
+        } else {
+            int tries = Difficulty.getCurrentTries() + 1;
             Difficulty.setCurrentTries(tries);
         }
         return result;
@@ -241,18 +244,20 @@ public class Grid {
 
     /**
      * Method to display the grid with the ships.
+     *
      */
     public final void printGrid() {
-        GridPrinter.printGrid(this);
+        GridPrinter.printGrid(grid, size);
     }
 
     /**
      * Prints the current grid with the state of each cell.
      * Display HIT cells in red and MISS cells in white.
      * Format the grid display according to its size.
+     *
      */
     public final void printCurrentGrid() {
-        GridPrinter.printCurrentGrid(this);
+        GridPrinter.printCurrentGrid(grid, size);
     }
 
     /**

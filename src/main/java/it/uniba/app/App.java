@@ -20,7 +20,7 @@ public final class App {
      * @param args command line arguments
      */
     public static void main(final String[] args) {
-        Partita partita = new Partita();
+        InputController partita = new InputController();
         boolean helpFlag = partita.controlFlag(args);
         partita.execute(helpFlag);
     }

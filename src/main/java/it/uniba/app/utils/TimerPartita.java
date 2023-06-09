@@ -13,11 +13,16 @@ public class TimerPartita {
     private static Timer timer;
     private static boolean isRunning;
     private static long startTime;
+    private final static int SECONDS_IN_MINUTE = 60;
+
+    private static void setStartTime(final long valStartTime) {
+        TimerPartita.startTime = valStartTime;
+    }
 
     /**
      * Creates a new timer instance.
      */
-    public static void createTimer() {
+    private static void createTimer() {
         timer = new Timer();
     }
 
@@ -44,7 +49,7 @@ public class TimerPartita {
      */
     public void startGame() {
         createTimer();
-        startTime = System.currentTimeMillis();
+        setStartTime(System.currentTimeMillis());
 
         TimerTask task = new TimerTask() {
             @Override
@@ -60,10 +65,40 @@ public class TimerPartita {
     /**
      * Prints the current time and remaining time based on the maximum time.
      */
+    public static void printCurrentAndRemainingTime() {
+        printCurrentTime();
+        long currentTimeMillis = getCurrentTimeMillis();
+        long currentTimeSeconds = TimeUnit.SECONDS.convert(currentTimeMillis, TimeUnit.MILLISECONDS);
+        long maxTimeSeconds = TimeUnit.SECONDS.convert(maxTime, TimeUnit.MILLISECONDS);
+
+        long minutesRemaining = (maxTimeSeconds - currentTimeSeconds) / SECONDS_IN_MINUTE;
+        long secondsRemaining = (maxTimeSeconds - currentTimeSeconds) % SECONDS_IN_MINUTE;
+
+        if (minutesRemaining > 1) {
+            System.out.println("Mancano ancora " + minutesRemaining + " minuti e " + secondsRemaining + " secondi.");
+        } else if (minutesRemaining == 1) {
+            System.out.println("Manca ancora " + minutesRemaining + " minuto e " + secondsRemaining + " secondi.");
+        } else if (minutesRemaining == 0) {
+            System.out.println("Mancano ancora " + secondsRemaining + " secondi.");
+        }
+    }
+
+    /**
+     * Prints the current time.
+     */
     public static void printCurrentTime() {
-        long currentTime = TimeUnit.MINUTES.convert(getCurrentTimeMillis(), TimeUnit.MILLISECONDS);
-        long maxMinute = TimeUnit.MINUTES.convert(maxTime, TimeUnit.MILLISECONDS);
-        System.out.print("Sono passati " + currentTime + " minuti, mancano " + (maxMinute - currentTime) + "minuti");
+        long currentTimeMillis = getCurrentTimeMillis();
+        long currentTimeSeconds = TimeUnit.SECONDS.convert(currentTimeMillis, TimeUnit.MILLISECONDS);
+
+        long minutesPassed = currentTimeSeconds / SECONDS_IN_MINUTE;
+        long secondsPassed = currentTimeSeconds % SECONDS_IN_MINUTE;
+        if (minutesPassed == 0) {
+            System.out.println("Sono passati " + secondsPassed + " secondi.");
+        } else if (minutesPassed == 1) {
+            System.out.println("E' passato " + minutesPassed + " minuto e " + secondsPassed + " secondi.");
+        } else if (minutesPassed > 1) {
+            System.out.println("Sono passati " + minutesPassed + " minuti e " + secondsPassed + " secondi.");
+        }
     }
 
     /**

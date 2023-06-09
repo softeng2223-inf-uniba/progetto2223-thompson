@@ -1,10 +1,23 @@
 package it.uniba.app.grid;
 
+import it.uniba.app.grid.type.Cell;
 import it.uniba.app.grid.type.Column;
 import it.uniba.app.grid.type.State;
 import it.uniba.app.ship.Ship;
 
-public class GridPrinter {
+/**
+ * Utility class for printing grids with ships and their states.
+ */
+public final class GridPrinter {
+
+    /**
+     * Private constructor to prevent instantiation of the utility class.
+     * Throws an {@link IllegalStateException} with a message indicating that the
+     * class is a utility class.
+     */
+    private GridPrinter() {
+        throw new IllegalStateException("Utility class");
+    }
 
     /**
      * The formatter for column values.
@@ -44,78 +57,124 @@ public class GridPrinter {
     /**
      * Method to display the grid with the ships.
      * Format the grid display according to its size
-     * 
+     *
      * @param grid The grid to be printed.
+     * @param size The size of the grid.
      */
-    public static void printGrid(Grid grid) {
-        int size = grid.getSize();
+    public static void printGrid(final Cell[][] grid, final int size) {
         GridPrinter.setFormatters(size);
+        StringBuilder legend = new StringBuilder();
         for (Ship ship : Ship.values()) {
-            System.out.print(ship.toString() + " = " + ship.colorShip() + " ");
+            legend.append(ship.toString() + " = " + ship.colorShip() + " ");
+        }
+        printLegend(legend.toString());
+        printHeader(size);
+        for (int i = 0; i < size; i++) {
+            printSeparator(size);
+            printIndexColumn(i);
+            for (int j = 0; j < size; j++) {
+                printCell(grid[i][j].getShip() != null
+                        ? formatterSpace + grid[i][j].getShip().colorShip()
+                        : formatterVoid);
+            }
+            System.out.println();
         }
         System.out.println();
+    }
+
+    /**
+     * Prints the legend on a new line.
+     *
+     * @param legend The legend to be printed.
+     */
+    private static void printLegend(final String legend) {
+        System.out.println();
+        System.out.print(legend);
+        System.out.println();
+    }
+
+    /**
+     * Prints a cell followed by the formatter space and a vertical separator.
+     *
+     * @param cell The cell value to be printed.
+     */
+    private static void printCell(final String cell) {
+        System.out.print(cell);
+        System.out.print(formatterSpace);
+        System.out.print("|");
+    }
+
+    /**
+     * Prints the index column value for the given row index.
+     *
+     * @param i The row index.
+     */
+    private static void printIndexColumn(final int i) {
+        System.out.print(String.format(" %2d |", (i + 1)));
+    }
+
+    /**
+     * Prints the row separator line.
+     *
+     * @param size The size of the grid.
+     */
+    private static void printSeparator(final int size) {
+        System.out.print("----+");
+        for (int j = 0; j < size; j++) {
+            System.out.print(formatterRow);
+        }
+        System.out.println();
+    }
+
+    /**
+     * Prints the header row with column labels.
+     *
+     * @param size The size of the grid.
+     */
+    private static void printHeader(final int size) {
         System.out.println();
         System.out.print("    |");
         for (int i = 0; i < size; i++) {
             System.out.print(String.format(formatterCol, Column.fromInt(i)));
         }
         System.out.println();
-        for (int i = 0; i < size; i++) {
-            System.out.print("----+");
-            for (int j = 0; j < size; j++) {
-                System.out.print(formatterRow);
-            }
-            System.out.println();
-            System.out.print(String.format(" %2d |", (i + 1)));
-            for (int j = 0; j < size; j++) {
-                System.out.print(
-                        grid.getGrid()[i][j].getShip() != null
-                                ? formatterSpace + grid.getGrid()[i][j].getShip().colorShip()
-                                : formatterVoid);
-                System.out.print(formatterSpace);
-                System.out.print("|");
-            }
-            System.out.println();
-        }
     }
 
-    /*
+    /**
      * Prints the current grid with the state of each cell.
      * Display HIT cells in red and MISS cells in white.
      * Format the grid display according to its size
-     * 
+     *
      * @param grid The grid to be printed.
+     * @param size The size of the grid.
      */
-    public static final void printCurrentGrid(Grid grid) {
-        int size = grid.getSize();
+    public static void printCurrentGrid(final Cell[][] grid, final int size) {
         GridPrinter.setFormatters(size);
         System.out.println();
-        System.out.print("  |");
+        StringBuilder legend = new StringBuilder();
+        String color = State.HIT.getColor();
+        legend.append("COLPITO = " + color + " " + Ship.stringShip() + State.ANSI_RESET + " ");
+        color = State.MISS.getColor();
+        legend.append("MANCATO = " + color + " " + Ship.stringShip() + State.ANSI_RESET + " ");
+        printLegend(legend.toString());
+        printHeader(size);
         for (int i = 0; i < size; i++) {
-            System.out.print(String.format(formatterCol, Column.fromInt(i)));
+            printSeparator(size);
+            printIndexColumn(i);
+            for (int j = 0; j < size; j++) {
+                if (grid[i][j].getState() == State.VOID || grid[i][j].getState() == State.SHIP) {
+                    printCell(formatterVoid);
+                } else if (grid[i][j].getState() == State.HIT) {
+                    color = State.HIT.getColor();
+                    printCell(color + formatterSpace + Ship.stringShip() + State.ANSI_RESET);
+                } else {
+                    color = State.MISS.getColor();
+                    printCell(color + formatterSpace + Ship.stringShip() + State.ANSI_RESET);
+                }
+            }
+            System.out.println();
         }
         System.out.println();
-        for (int i = 0; i < size; i++) {
-            System.out.print("--+");
-            for (int j = 0; j < size; j++) {
-                System.out.print(formatterRow);
-            }
-            System.out.println();
-            System.out.print(String.format("%2d|", (i + 1)));
-            for (int j = 0; j < size; j++) {
-                if (grid.getGrid()[i][j].getState() == State.VOID || grid.getGrid()[i][j].getState() == State.SHIP) {
-                    System.out.print(formatterVoid);
-                } else if (grid.getGrid()[i][j].getState() == State.HIT) {
-                    String color = State.HIT.getColor();
-                    System.out.print(color + formatterSpace + Ship.stringShip() + State.ANSI_RESET);
-                } else {
-                    String color = State.MISS.getColor();
-                    System.out.print(color + formatterSpace + Ship.stringShip() + State.ANSI_RESET);
-                }
-                System.out.print(formatterSpace + "|");
-            }
-            System.out.println();
-        }
     }
 
     /**
@@ -123,7 +182,7 @@ public class GridPrinter {
      *
      * @param size The size of the grid.
      */
-    public static void setFormatters(int size) {
+    public static void setFormatters(final int size) {
         if (size > 0 && size <= MAX_SIZE_SMALL) {
             formatterCol = "   %s   |";
             formatterRow = "-------+";
