@@ -184,7 +184,7 @@ public class Partita {
         if (isInGame()) {
             TimerPartita.printCurrentTime();
         } else {
-            System.out.println("Non è in corso nessuna partita");
+            System.out.println("Non è in corso nessuna partita. Puoi creare una nuova partita con il comando /gioca");
         }
     }
 
@@ -408,7 +408,11 @@ public class Partita {
                     System.out.println("Coordinata non riconosciuta");
                 }
                 if (Difficulty.getCurrentTries() <= 0) {
-                    System.out.println("Hai finito i tentativi a disposizione, partita terminata!");
+                    System.out.println("Hai finito i tentativi a disposizione, hai perso!");
+                    quit();
+                }
+                if(grid.isAllSunken()){
+                    System.out.println("Hai affondato l'ultima nave, hai vinto!");
                     quit();
                 }
                 input = this.scanner.nextLine();

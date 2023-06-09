@@ -56,6 +56,15 @@ public class Grid {
     }
 
     /**
+     * Check if all the ships have been sunken.
+     *
+     * @return true if all the ships have been sunken, false otherwise
+     */
+    public boolean isAllSunken() {
+        return ships.isEmpty();
+    }
+
+    /**
      * Gets the size of the grid.
      *
      * @return The size of the grid.
