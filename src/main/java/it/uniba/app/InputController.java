@@ -15,7 +15,7 @@ import java.util.Scanner;
 /**
  * Class that interprets commands.
  */
-public class Partita {
+public class InputController {
 
     /**
      * Grid of the current match.
