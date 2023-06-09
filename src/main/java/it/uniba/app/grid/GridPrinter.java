@@ -47,6 +47,7 @@ public class GridPrinter {
      * Format the grid display according to its size
      * 
      * @param grid The grid to be printed.
+     * @param size The size of the grid.
      */
     public static void printGrid(final Cell[][] grid, final int size) {
         GridPrinter.setFormatters(size);
@@ -133,6 +134,7 @@ public class GridPrinter {
      * Format the grid display according to its size
      * 
      * @param grid The grid to be printed.
+     * @param size The size of the grid.
      */
     public static final void printCurrentGrid(final Cell[][] grid, final int size) {
         GridPrinter.setFormatters(size);
