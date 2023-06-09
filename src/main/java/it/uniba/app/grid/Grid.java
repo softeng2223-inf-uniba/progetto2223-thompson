@@ -252,33 +252,61 @@ public class Grid {
         }
     }
 
-    /**
-     * Method to display the current grid with the user's tries.
+    /*
+     * Prints the current grid with the state of each cell.
+     * Display HIT cells in red and MISS cells in white.
+     * Format the grid display according to its size
      */
     public final void printCurrentGrid() {
+        String formatterCol = "";
+        String formatterRow = "";
+        String formatterNull = "";
+        String formatterSpace = "";
+        switch (size) {
+            case 10:
+                formatterCol = "   %s   |";
+                formatterRow = "-------+";
+                formatterNull = "    ";
+                formatterSpace = "   ";
+                break;
+            case 18:
+                formatterCol = "  %s  |";
+                formatterRow = "-----+";
+                formatterNull = "   ";
+                formatterSpace = "  ";
+                break;
+            case 26:
+                formatterCol = " %s |";
+                formatterRow = "---+";
+                formatterNull = "  ";
+                formatterSpace = " ";
+                break;
+        }
+
         System.out.println();
-        System.out.print("    |");
+        System.out.print("  |");
         for (int i = 0; i < size; i++) {
-            System.out.print(String.format("   %s   |", Column.fromInt(i)));
+            System.out.print(String.format(formatterCol, Column.fromInt(i)));
         }
         System.out.println();
         for (int i = 0; i < size; i++) {
-            System.out.print("----+");
+            System.out.print("--+");
             for (int j = 0; j < size; j++) {
-                System.out.print("-------+");
+                System.out.print(formatterRow);
             }
             System.out.println();
-            System.out.print(String.format(" %2d |", (i + 1)));
+            System.out.print(String.format("%2d|", (i + 1)));
             for (int j = 0; j < size; j++) {
-                System.out.print("   ");
                 if (this.grid[i][j].getState() == State.VOID || this.grid[i][j].getState() == State.SHIP) {
-                    System.out.print(" ");
-
+                    System.out.print(formatterNull);
+                } else if (this.grid[i][j].getState() == State.HIT) {
+                    String color = State.HIT.getColor();
+                    System.out.print(color + formatterSpace + Ship.stringShip() + State.ANSI_RESET);
                 } else {
-                    System.out.print(Ship.stringShip());
+                    String color = State.MISS.getColor();
+                    System.out.print(color + formatterSpace + Ship.stringShip() + State.ANSI_RESET);
                 }
-                System.out.print("   ");
-                System.out.print("|");
+                System.out.print(formatterSpace + "|");
             }
             System.out.println();
         }
