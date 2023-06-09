@@ -20,7 +20,7 @@ public final class App {
      * @param args command line arguments
      */
     public static void main(final String[] args) {
-        InputController partita = new InputController();
+        InputBoundary partita = new InputBoundary();
         boolean helpFlag = partita.controlFlag(args);
         partita.execute(helpFlag);
     }

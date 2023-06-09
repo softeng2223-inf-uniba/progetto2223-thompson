@@ -101,7 +101,8 @@ public enum Command {
     /**
      * Display the grid with ship position.
      */
-    SHOW_GRID("Visualizza la griglia con le navi affondate e le sole parti già colpite delle navi non affondate", TypeCommand.NOARG, "/mostragriglia"),
+    SHOW_GRID("Visualizza la griglia con le navi affondate e le sole parti già colpite delle navi non affondate",
+            TypeCommand.NOARG, "/mostragriglia"),
     /**
      * Show attemps set command.
      */
