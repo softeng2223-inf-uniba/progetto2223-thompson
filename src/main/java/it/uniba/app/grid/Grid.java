@@ -241,9 +241,7 @@ public class Grid {
 
     /**
      * Method to display the grid with the ships.
-     * 
-     * @param grid the grid to print
-     * @param size the size of the grid
+     *
      */
     public final void printGrid() {
         GridPrinter.printGrid(grid, size);
@@ -253,9 +251,7 @@ public class Grid {
      * Prints the current grid with the state of each cell.
      * Display HIT cells in red and MISS cells in white.
      * Format the grid display according to its size.
-     * 
-     * @param grid the grid to print
-     * @param size the size of the grid
+     *
      */
     public final void printCurrentGrid() {
         GridPrinter.printCurrentGrid(grid, size);

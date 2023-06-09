@@ -30,10 +30,11 @@ public enum Direction {
     private static final Random RAND = new Random();
 
     /**
-     * Constructs a Direction with the specified horizontal and vertical values.
+     * Constructs a new Direction object with the specified vertical and horizontal
+     * values.
      *
-     * @param valVertical   the vertical value
-     * @param valHorizontal the horizontal value
+     * @param valVertical  the vertical value of the direction
+     * @param valOrizontal the horizontal value of the direction
      */
     Direction(final int valVertical, final int valOrizontal) {
         this.vertical = valVertical;

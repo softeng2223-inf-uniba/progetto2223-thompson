@@ -411,7 +411,7 @@ public class InputController {
                     System.out.println("Hai finito i tentativi a disposizione, hai perso!");
                     quit();
                 }
-                if(grid.isAllSunken()){
+                if (grid.isAllSunken()) {
                     System.out.println("Hai affondato l'ultima nave, hai vinto!");
                     quit();
                 }

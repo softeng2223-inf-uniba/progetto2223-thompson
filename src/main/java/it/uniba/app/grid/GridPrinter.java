@@ -5,7 +5,19 @@ import it.uniba.app.grid.type.Column;
 import it.uniba.app.grid.type.State;
 import it.uniba.app.ship.Ship;
 
-public class GridPrinter {
+/**
+ * Utility class for printing grids with ships and their states.
+ */
+public final class GridPrinter {
+
+    /**
+     * Private constructor to prevent instantiation of the utility class.
+     * Throws an {@link IllegalStateException} with a message indicating that the
+     * class is a utility class.
+     */
+    private GridPrinter() {
+        throw new IllegalStateException("Utility class");
+    }
 
     /**
      * The formatter for column values.
@@ -132,11 +144,11 @@ public class GridPrinter {
      * Prints the current grid with the state of each cell.
      * Display HIT cells in red and MISS cells in white.
      * Format the grid display according to its size
-     * 
+     *
      * @param grid The grid to be printed.
      * @param size The size of the grid.
      */
-    public static final void printCurrentGrid(final Cell[][] grid, final int size) {
+    public static void printCurrentGrid(final Cell[][] grid, final int size) {
         GridPrinter.setFormatters(size);
         System.out.println();
         StringBuilder legend = new StringBuilder();
