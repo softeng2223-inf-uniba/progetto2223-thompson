@@ -134,36 +134,34 @@ public class GridPrinter {
      * 
      * @param grid The grid to be printed.
      */
-    public static final void printCurrentGrid(Grid grid) {
+    public static final void printCurrentGrid(final Grid grid) {
         int size = grid.getSize();
         GridPrinter.setFormatters(size);
         System.out.println();
-        System.out.print("  |");
+        StringBuilder legend = new StringBuilder();
+        String color = State.HIT.getColor();
+        legend.append("COLPITO = " + color + " " + Ship.stringShip() + State.ANSI_RESET + " ");
+        color = State.MISS.getColor();
+        legend.append("MANCATO = " + color + " " + Ship.stringShip() + State.ANSI_RESET + " ");
+        printLegend(legend.toString());
+        printHeader(size);
         for (int i = 0; i < size; i++) {
-            System.out.print(String.format(formatterCol, Column.fromInt(i)));
-        }
-        System.out.println();
-        for (int i = 0; i < size; i++) {
-            System.out.print("--+");
-            for (int j = 0; j < size; j++) {
-                System.out.print(formatterRow);
-            }
-            System.out.println();
-            System.out.print(String.format("%2d|", (i + 1)));
+            printSeparator(size);
+            printIndexColumn(i);
             for (int j = 0; j < size; j++) {
                 if (grid.getGrid()[i][j].getState() == State.VOID || grid.getGrid()[i][j].getState() == State.SHIP) {
-                    System.out.print(formatterVoid);
+                    printCell(formatterVoid);
                 } else if (grid.getGrid()[i][j].getState() == State.HIT) {
-                    String color = State.HIT.getColor();
-                    System.out.print(color + formatterSpace + Ship.stringShip() + State.ANSI_RESET);
+                    color = State.HIT.getColor();
+                    printCell(color + formatterSpace + Ship.stringShip() + State.ANSI_RESET);
                 } else {
-                    String color = State.MISS.getColor();
-                    System.out.print(color + formatterSpace + Ship.stringShip() + State.ANSI_RESET);
+                    color = State.MISS.getColor();
+                    printCell(color + formatterSpace + Ship.stringShip() + State.ANSI_RESET);
                 }
-                System.out.print(formatterSpace + "|");
             }
             System.out.println();
         }
+        System.out.println();
     }
 
     /**
