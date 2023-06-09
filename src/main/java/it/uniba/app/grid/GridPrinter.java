@@ -15,6 +15,36 @@ public class GridPrinter {
     private static final int MAX_SIZE_MEDIUM=18;
     private static final int MAX_SIZE_LARGE=26;
 
+    public static void printGrid(Grid grid) {
+        int size = grid.getSize();
+        GridPrinter.setFormatters(size);
+        for (Ship ship : Ship.values()) {
+            System.out.print(ship.toString() + " = " + ship.colorShip() + " ");
+        }
+        System.out.println();
+        System.out.println();
+        System.out.print("    |");
+        for (int i = 0; i < size; i++) {
+            System.out.print(String.format(formatterCol, Column.fromInt(i)));
+        }
+        System.out.println();
+        for (int i = 0; i < size; i++) {
+            System.out.print("----+");
+            for (int j = 0; j < size; j++) {
+                System.out.print(formatterRow);
+            }
+            System.out.println();
+            System.out.print(String.format(" %2d |", (i + 1)));
+            for (int j = 0; j < size; j++) {
+                System.out.print(
+                        grid.getGrid()[i][j].getShip() != null ? formatterSpace+grid.getGrid()[i][j].getShip().colorShip() : formatterVoid);
+                System.out.print(formatterSpace);
+                System.out.print("|");
+            }
+            System.out.println();
+        }
+    }
+
     /*
      * Prints the current grid with the state of each cell.
      * Display HIT cells in red and MISS cells in white.

@@ -233,31 +233,7 @@ public class Grid {
      * Method to display the grid with the ships.
      */
     public final void printGrid() {
-        for (Ship ship : Ship.values()) {
-            System.out.print(ship.toString() + " = " + ship.colorShip() + " ");
-        }
-        System.out.println();
-        System.out.println();
-        System.out.print("    |");
-        for (int i = 0; i < size; i++) {
-            System.out.print(String.format("   %s   |", Column.fromInt(i)));
-        }
-        System.out.println();
-        for (int i = 0; i < size; i++) {
-            System.out.print("----+");
-            for (int j = 0; j < size; j++) {
-                System.out.print("-------+");
-            }
-            System.out.println();
-            System.out.print(String.format(" %2d |", (i + 1)));
-            for (int j = 0; j < size; j++) {
-                System.out.print("   ");
-                System.out.print(this.grid[i][j].getShip() != null ? this.grid[i][j].getShip().colorShip() : " ");
-                System.out.print("   ");
-                System.out.print("|");
-            }
-            System.out.println();
-        }
+        GridPrinter.printGrid(this);
     }
 
     /**
