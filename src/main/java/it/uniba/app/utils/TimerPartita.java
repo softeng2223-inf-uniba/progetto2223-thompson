@@ -66,18 +66,21 @@ public class TimerPartita {
      * Prints the current time and remaining time based on the maximum time.
      */
     public static void printCurrentAndRemainingTime() {
+        printCurrentTime();
         long currentTimeMillis = getCurrentTimeMillis();
         long currentTimeSeconds = TimeUnit.SECONDS.convert(currentTimeMillis, TimeUnit.MILLISECONDS);
         long maxTimeSeconds = TimeUnit.SECONDS.convert(maxTime, TimeUnit.MILLISECONDS);
 
-        long minutesPassed = currentTimeSeconds / SECONDS_IN_MINUTE;
-        long secondsPassed = currentTimeSeconds % SECONDS_IN_MINUTE;
-
         long minutesRemaining = (maxTimeSeconds - currentTimeSeconds) / SECONDS_IN_MINUTE;
         long secondsRemaining = (maxTimeSeconds - currentTimeSeconds) % SECONDS_IN_MINUTE;
 
-        System.out.println("Sono passati " + minutesPassed + " minuti e " + secondsPassed + " secondi. Mancano ancora "
-                + minutesRemaining + " minuti e " + secondsRemaining + " secondi.");
+        if (minutesRemaining > 1) {
+            System.out.println("Mancano ancora " + minutesRemaining + " minuti e " + secondsRemaining + " secondi.");
+        } else if (minutesRemaining == 1) {
+            System.out.println("Manca ancora " + minutesRemaining + " minuto e " + secondsRemaining + " secondi.");
+        } else if (minutesRemaining == 0) {
+            System.out.println("Mancano ancora " + secondsRemaining + " secondi.");
+        }
     }
 
     /**
@@ -92,7 +95,7 @@ public class TimerPartita {
         if (minutesPassed == 0) {
             System.out.println("Sono passati " + secondsPassed + " secondi.");
         } else if (minutesPassed == 1) {
-            System.out.println("E' passato" + minutesPassed + " minuto e " + secondsPassed + " secondi.");
+            System.out.println("E' passato " + minutesPassed + " minuto e " + secondsPassed + " secondi.");
         } else if (minutesPassed > 1) {
             System.out.println("Sono passati " + minutesPassed + " minuti e " + secondsPassed + " secondi.");
         }
