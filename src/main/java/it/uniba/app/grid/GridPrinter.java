@@ -47,36 +47,26 @@ public class GridPrinter {
      * 
      * @param grid The grid to be printed.
      */
-    public static void printGrid(Grid grid) {
+    public static void printGrid(final Grid grid) {
         int size = grid.getSize();
         GridPrinter.setFormatters(size);
+        StringBuilder legend = new StringBuilder();
         for (Ship ship : Ship.values()) {
-            System.out.print(ship.toString() + " = " + ship.colorShip() + " ");
+            legend.append(ship.toString() + " = " + ship.colorShip() + " ");
         }
-        System.out.println();
-        System.out.println();
-        System.out.print("    |");
+        printLegend(legend.toString());
+        printHeader(size);
         for (int i = 0; i < size; i++) {
-            System.out.print(String.format(formatterCol, Column.fromInt(i)));
-        }
-        System.out.println();
-        for (int i = 0; i < size; i++) {
-            System.out.print("----+");
+            printSeparator(size);
+            printIndexColumn(i);
             for (int j = 0; j < size; j++) {
-                System.out.print(formatterRow);
-            }
-            System.out.println();
-            System.out.print(String.format(" %2d |", (i + 1)));
-            for (int j = 0; j < size; j++) {
-                System.out.print(
-                        grid.getGrid()[i][j].getShip() != null
-                                ? formatterSpace + grid.getGrid()[i][j].getShip().colorShip()
-                                : formatterVoid);
-                System.out.print(formatterSpace);
-                System.out.print("|");
+                printCell(grid.getGrid()[i][j].getShip() != null
+                        ? formatterSpace + grid.getGrid()[i][j].getShip().colorShip()
+                        : formatterVoid);
             }
             System.out.println();
         }
+        System.out.println();
     }
 
     /**
