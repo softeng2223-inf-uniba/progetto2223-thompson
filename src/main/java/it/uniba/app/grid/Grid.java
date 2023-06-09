@@ -61,7 +61,13 @@ public class Grid {
      * @return true if all the ships have been sunken, false otherwise
      */
     public boolean isAllSunken() {
-        return ships.isEmpty();
+        boolean check = true;
+        for (Ship s : Ship.values()) {
+            if (!ships.get(s).isEmpty()) {
+                check = false;
+            }
+        }
+        return check;
     }
 
     /**
