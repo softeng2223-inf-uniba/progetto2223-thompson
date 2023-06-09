@@ -98,6 +98,8 @@ public class InputController {
             this.showLevel();
         } else if (command.containsKey(Command.REVEAL_GRID)) {
             this.printGrid();
+        } else if (command.containsKey(Command.SHOW_GRID)) {
+            this.printCurrentGrid();
         } else if (command.containsKey(Command.SHOW_SHIPS)) {
             this.showShips();
         } else if (command.containsKey(Command.STANDARD)) {
@@ -440,6 +442,19 @@ public class InputController {
     private void printGrid() {
         if (isInGame()) {
             this.grid.printGrid();
+        } else {
+            System.out.println("Non stai giocando, inizia a giocare con: /gioca");
+        }
+    }
+
+    /**
+     * Prints the current grid with the state of each cell.
+     * Display HIT cells in red and MISS cells in white.
+     * Format the grid display according to its size
+     */
+    private void printCurrentGrid() {
+        if (isInGame()) {
+            this.grid.printCurrentGrid();
         } else {
             System.out.println("Non stai giocando, inizia a giocare con: /gioca");
         }
