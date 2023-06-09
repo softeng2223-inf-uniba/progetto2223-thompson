@@ -374,49 +374,55 @@ public class Partita {
      * Method to start a game.
      */
     private void playGame() {
-        Coordinate coordinate;
-        String input;
-        int tries = Difficulty.getMaxTries();
-        Difficulty.setCurrentTries(tries);
-        TimerPartita timer = new TimerPartita();
-        this.grid = new Grid();
-        this.grid.generateGrid();
-        this.grid.printCurrentGrid();
-        timer.startGame();
+        if (!isInGame()) {
+            Coordinate coordinate;
+            String input;
+            int tries = Difficulty.getMaxTries();
+            Difficulty.setCurrentTries(tries);
+            TimerPartita timer = new TimerPartita();
+            this.grid = new Grid();
+            this.grid.generateGrid();
+            this.grid.printCurrentGrid();
+            timer.startGame();
 
-        input = this.scanner.nextLine();
-        while (isInGame() && Difficulty.getCurrentTries() > 0) {
-            coordinate = Coordinate.parse(Parser.parseInput(input, Coordinate.PATTERN));
-            if (coordinate != null) {
-                if (coordinate.isValid()) {
-                    String result = this.grid.hitCoordinate(coordinate);
-                    this.grid.printCurrentGrid();
-                    System.out.print("Partita> ");
-                    System.out.println(result);
-                    int currentTries = Difficulty.getCurrentTries();
-                    int maxTries = Difficulty.getMaxTries();
-                    int differenceTries = maxTries - currentTries;
-                    System.out.println("Tentativi già effettuati: " + differenceTries);
-                    TimerPartita.printCurrentTime();
-                } else {
-                    System.out.println("Coordinata non valida");
-                }
-            } else if (input != null) {
-                this.executeCommand(Parser.parseInput(input, Command.getPatterns()));
-            } else {
-                System.out.println("Coordinata non riconosciuta");
-            }
-            if (Difficulty.getCurrentTries() <= 0) {
-                System.out.println("Hai finito i tentativi a disposizione, partita terminata!");
-                quit();
-            }
             input = this.scanner.nextLine();
-        }
-        if (input != null) {
-            if (input.contains("/")) {
-                input = "/" + input.split("/")[1];
+            while (isInGame() && Difficulty.getCurrentTries() > 0) {
+                coordinate = Coordinate.parse(Parser.parseInput(input, Coordinate.PATTERN));
+                if (coordinate != null) {
+                    if (coordinate.isValid()) {
+                        String result = this.grid.hitCoordinate(coordinate);
+                        this.grid.printCurrentGrid();
+                        System.out.print("Partita> ");
+                        System.out.println(result);
+                        int currentTries = Difficulty.getCurrentTries();
+                        int maxTries = Difficulty.getMaxTries();
+                        int differenceTries = maxTries - currentTries;
+                        System.out.println("Tentativi già effettuati: " + differenceTries);
+                        TimerPartita.printCurrentTime();
+                    } else {
+                        System.out.println("Coordinata non valida");
+                    }
+                } else if (input != null) {
+                    this.executeCommand(Parser.parseInput(input, Command.getPatterns()));
+                } else {
+                    System.out.println("Coordinata non riconosciuta");
+                }
+                if (Difficulty.getCurrentTries() <= 0) {
+                    System.out.println("Hai finito i tentativi a disposizione, partita terminata!");
+                    quit();
+                }
+                input = this.scanner.nextLine();
             }
-            this.executeCommand(Parser.parseInput(input, Command.getPatterns()));
+            if (input != null) {
+                if (input.contains("/")) {
+                    input = "/" + input.split("/")[1];
+                }
+                this.executeCommand(Parser.parseInput(input, Command.getPatterns()));
+            }
+        } else {
+            System.out.print("E' già in corso una partita!");
+            System.out.println(
+                    "Per creare una nuova partita, è nesessario abbandonare la partita in corso con /abbandona");
         }
     }
 
