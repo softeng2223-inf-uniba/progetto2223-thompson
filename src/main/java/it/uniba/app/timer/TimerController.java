@@ -1,4 +1,4 @@
-package it.uniba.app.utils;
+package it.uniba.app.timer;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Utility class for managing game timers.
  */
-public class TimerPartita {
+public class TimerController {
     private static final long DEFAULT_TIME = 10;
     private static final int SECONDS_IN_MINUTE = 60;
     private static long maxTime = TimeUnit.MILLISECONDS.convert(DEFAULT_TIME, TimeUnit.MINUTES);
@@ -16,7 +16,7 @@ public class TimerPartita {
     private static long startTime;
 
     private static void setStartTime(final long valStartTime) {
-        TimerPartita.startTime = valStartTime;
+        TimerController.startTime = valStartTime;
     }
 
     /**
@@ -127,7 +127,7 @@ public class TimerPartita {
      * @param minutes the maximum time in minutes
      */
     public static void setMaxTime(final int minutes) {
-        TimerPartita.maxTime = TimeUnit.MILLISECONDS.convert(minutes, TimeUnit.MINUTES);
+        TimerController.maxTime = TimeUnit.MILLISECONDS.convert(minutes, TimeUnit.MINUTES);
     }
 
     /**

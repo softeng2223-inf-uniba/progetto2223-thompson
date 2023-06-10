@@ -7,9 +7,9 @@ import it.uniba.app.InputBoundary;
 import it.uniba.app.grid.Grid;
 import it.uniba.app.grid.type.Coordinate;
 import it.uniba.app.grid.type.SizeGrid;
+import it.uniba.app.timer.TimerController;
 import it.uniba.app.type.Command;
 import it.uniba.app.type.Difficulty;
-import it.uniba.app.utils.TimerPartita;
 
 /**
  * Class for commands that the user may enter.
@@ -82,8 +82,8 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void quitGame() {
-        TimerPartita.setRunning(false);
-        TimerPartita.stopTimer();
+        TimerController.setRunning(false);
+        TimerController.stopTimer();
     }
 
     /**
@@ -128,7 +128,7 @@ public final class InputController extends InputBoundary {
         int tries = Difficulty.getMaxTries();
         Difficulty.setFailedTries(tries);
         Difficulty.setCurrentTries(0);
-        TimerPartita timer = new TimerPartita();
+        TimerController timer = new TimerController();
         timer.startGame();
     }
 
@@ -146,7 +146,7 @@ public final class InputController extends InputBoundary {
 
     @Override
     protected boolean isInGame() {
-        return TimerPartita.isRunning();
+        return TimerController.isRunning();
     }
 
     /**
@@ -182,7 +182,7 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void setMaxTime(final int time) {
-        TimerPartita.setMaxTime(time);
+        TimerController.setMaxTime(time);
     }
 
     /**
@@ -230,7 +230,7 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void printCurrentAndRemainingTime() {
-        TimerPartita.printCurrentAndRemainingTime();
+        TimerController.printCurrentAndRemainingTime();
     }
 
     /**
@@ -268,7 +268,7 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void printCurrentTime() {
-        TimerPartita.printCurrentTime();
+        TimerController.printCurrentTime();
     }
 
     /**
