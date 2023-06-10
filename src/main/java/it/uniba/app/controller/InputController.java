@@ -7,7 +7,7 @@ import it.uniba.app.InputBoundary;
 import it.uniba.app.grid.Grid;
 import it.uniba.app.grid.type.Coordinate;
 import it.uniba.app.grid.type.SizeGrid;
-import it.uniba.app.timer.TimerController;
+import it.uniba.app.timer.controller.TimerController;
 import it.uniba.app.type.Command;
 import it.uniba.app.type.Difficulty;
 
@@ -82,8 +82,8 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void quitGame() {
-        TimerController.setRunning(false);
-        TimerController.stopTimer();
+        TimerController.CONTROLLER.setRunning(false);
+        TimerController.CONTROLLER.stopTimer();
     }
 
     /**
@@ -128,8 +128,7 @@ public final class InputController extends InputBoundary {
         int tries = Difficulty.getMaxTries();
         Difficulty.setFailedTries(tries);
         Difficulty.setCurrentTries(0);
-        TimerController timer = new TimerController();
-        timer.startGame();
+        TimerController.CONTROLLER.startGame();
     }
 
     /**
@@ -146,7 +145,7 @@ public final class InputController extends InputBoundary {
 
     @Override
     protected boolean isInGame() {
-        return TimerController.isRunning();
+        return TimerController.CONTROLLER.isRunning();
     }
 
     /**
@@ -182,7 +181,7 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void setMaxTime(final int time) {
-        TimerController.setMaxTime(time);
+        TimerController.CONTROLLER.setMaxTime(time);
     }
 
     /**
@@ -230,7 +229,7 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void printCurrentAndRemainingTime() {
-        TimerController.printCurrentAndRemainingTime();
+        TimerController.CONTROLLER.printCurrentAndRemainingTime();
     }
 
     /**
@@ -268,7 +267,7 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void printCurrentTime() {
-        TimerController.printCurrentTime();
+        TimerController.CONTROLLER.printCurrentTime();
     }
 
     /**
