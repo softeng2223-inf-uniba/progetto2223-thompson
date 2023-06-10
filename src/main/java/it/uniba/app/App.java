@@ -8,6 +8,8 @@ import it.uniba.app.input.controller.InputController;
 public final class App {
 
     /**
+     * <noECB>
+     * 
      * Get a greeting sentence.
      *
      * @return the "Hello World!" string.

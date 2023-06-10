@@ -1,6 +1,8 @@
 package it.uniba.app.timer;
 
 /**
+ * <Boundary>
+ * 
  * Class to print timer information.
  */
 public abstract class TimerBoundary {

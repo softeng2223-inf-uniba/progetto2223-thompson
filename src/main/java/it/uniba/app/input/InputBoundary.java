@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
+ * <Boundary>
+ * 
  * Class that interprets commands.
  */
 public abstract class InputBoundary {

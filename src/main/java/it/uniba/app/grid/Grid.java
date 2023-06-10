@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * <Entity>
+ * 
  * Class to generate and handle the grid.
  */
 public class Grid {

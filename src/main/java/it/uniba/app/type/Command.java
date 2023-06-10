@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
+ * <noECB>
+ * 
  * Class for commands that the user may enter.
  */
 public enum Command {

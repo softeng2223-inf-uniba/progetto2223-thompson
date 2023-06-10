@@ -1,6 +1,8 @@
 package it.uniba.app.grid.type;
 
 /**
+ * <noECB>
+ * 
  * Represents the result of a ship removal operation.
  */
 public class ResultRemove {

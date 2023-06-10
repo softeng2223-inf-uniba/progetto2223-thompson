@@ -12,6 +12,8 @@ import it.uniba.app.ship.Ship;
 import it.uniba.app.type.Difficulty;
 
 /**
+ * <Control>
+ * 
  * The controller class for managing the game grid.
  */
 public final class GridController extends GridBoundary {
