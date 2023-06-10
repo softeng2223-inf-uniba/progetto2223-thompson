@@ -1,5 +1,7 @@
 package it.uniba.app;
 
+import it.uniba.app.controller.InputController;
+
 /**
  * Main class of the application.
  */
@@ -20,8 +22,8 @@ public final class App {
      * @param args command line arguments
      */
     public static void main(final String[] args) {
-        InputBoundary partita = new InputBoundary();
-        boolean helpFlag = partita.controlFlag(args);
-        partita.execute(helpFlag);
+        InputController controller = InputController.CONTROLLER;
+        boolean helpFlag = controller.controlFlag(args);
+        controller.start(helpFlag);
     }
 }
