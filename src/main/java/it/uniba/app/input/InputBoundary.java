@@ -168,14 +168,14 @@ public abstract class InputBoundary {
      *
      * @param command the command specifying the new difficulty
      */
-    protected abstract void setOnlyDifficulty(final Command command);
+    protected abstract void setOnlyDifficulty(Command command);
 
     /**
      * Sets the maximum number of tries allowed for the game.
      *
      * @param tires The maximum number of tries to set.
      */
-    protected abstract void setMaxTries(final int tires);
+    protected abstract void setMaxTries(int tires);
 
     /**
      * Prints the current time of the game.
