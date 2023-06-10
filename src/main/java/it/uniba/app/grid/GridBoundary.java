@@ -70,7 +70,7 @@ public abstract class GridBoundary {
         for (int i = 0; i < size; i++) {
             coord.setRow(i);
             printSeparator(size);
-            printIndexColumn(i);
+            printIndexRow(i);
             for (int j = 0; j < size; j++) {
                 coord.setColumn(Column.fromInt(j));
                 printCell(grid.isShipPlaced(coord)
@@ -109,7 +109,7 @@ public abstract class GridBoundary {
      *
      * @param i The row index.
      */
-    private static void printIndexColumn(final int i) {
+    private static void printIndexRow(final int i) {
         System.out.print(String.format(" %2d |", (i + 1)));
     }
 
@@ -162,7 +162,7 @@ public abstract class GridBoundary {
         for (int i = 0; i < size; i++) {
             coord.setRow(i);
             printSeparator(size);
-            printIndexColumn(i);
+            printIndexRow(i);
             for (int j = 0; j < size; j++) {
                 coord.setColumn(Column.fromInt(j));
                 if (grid.getState(coord) == State.VOID || grid.getState(coord) == State.SHIP) {

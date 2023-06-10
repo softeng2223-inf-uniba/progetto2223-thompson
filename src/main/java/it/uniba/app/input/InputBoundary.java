@@ -472,7 +472,12 @@ public abstract class InputBoundary {
             }
             if (input != null) {
                 if (input.contains("/")) {
-                    input = "/" + input.split("/")[1];
+                    try {
+                        String[] split = input.split("/");
+                        input = "/" + split[split.length - 1];
+                    } catch (Exception e) {
+                        input = "";
+                    }
                 }
                 executeCommand(Parser.parseInput(input, Command.getPatterns()));
             }
