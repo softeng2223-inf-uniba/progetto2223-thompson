@@ -1,12 +1,8 @@
 package it.uniba.app;
 
-import it.uniba.app.controller.InputController;
 import it.uniba.app.grid.type.Coordinate;
-import it.uniba.app.grid.type.SizeGrid;
 import it.uniba.app.parser.Parser;
 import it.uniba.app.type.Command;
-import it.uniba.app.type.Difficulty;
-import it.uniba.app.utils.TimerPartita;
 
 import java.util.List;
 import java.util.Map;
@@ -15,12 +11,7 @@ import java.util.Scanner;
 /**
  * Class that interprets commands.
  */
-public class InputBoundary {
-
-    /**
-     * Instance of the controller.
-     */
-    private InputController controller;
+public abstract class InputBoundary {
 
     /**
      * Welcome message that prints when the program starts correctly.
@@ -54,24 +45,164 @@ public class InputBoundary {
     /**
      * Scanner of the class.
      */
-    private Scanner scanner;
+    private static Scanner scanner = new Scanner(System.in, "UTF-8");
+
+    /**
+     * Execute the command.
+     *
+     * @param inputCommand the command to execute
+     */
+    protected abstract void executeCommand(Map<String, Map<Integer, String>> inputCommand);
+
+    /**
+     * Quit the game by stopping the game timer and setting the game's running state
+     * to false.
+     */
+    protected abstract void quitGame();
+
+    /**
+     * Create a new grid.
+     */
+    protected abstract void createGrid();
+
+    /**
+     * Check if the game is finished.
+     *
+     * @return true if the game is finished, false otherwise
+     */
+    protected abstract boolean isGameFinish();
+
+    /**
+     * Try a shoot to the grid.
+     *
+     * @param coordinate the coordinate to hit
+     * @return the result of the shoot
+     */
+    protected abstract String fireShoot(Coordinate coordinate);
+
+    /**
+     * Set up the game.
+     */
+    protected abstract void setUpGame();
+
+    /**
+     * Get the total tries.
+     *
+     * @return the total tries
+     */
+    protected abstract int getTotalTries();
+
+    /**
+     * Gets the difference between the maximum tries and the current number of
+     * tries.
+     *
+     * @return The difference between the maximum tries and the current number of
+     *         tries.
+     */
+    protected abstract int getDifferenceTries();
+
+    /**
+     * Gets the maximum number of tries allowed for the game.
+     *
+     * @return The maximum number of tries.
+     */
+    protected abstract int getMaxTries();
+
+    /**
+     * Gets the current number of tries.
+     *
+     * @return The current number of tries.
+     */
+    protected abstract int getCurrentTries();
+
+    /**
+     * Check if the game is currently in progress.
+     *
+     * @return true if the game is in progress, false otherwise
+     */
+    protected abstract boolean isInGame();
+
+    /**
+     * Prints the grid with the ships if the user is not in the game.
+     */
+    protected abstract void printGrid();
+
+    /**
+     * Prints the current grid with the state of each cell.
+     * Display HIT cells in red and MISS cells in white.
+     * The grid display format is based on its size.
+     */
+    protected abstract void printCurrentGrid();
+
+    /**
+     * Displays the current state of the ships on the grid.
+     */
+    protected abstract void showShips();
+
+    /**
+     * Sets the maximum time allowed for the game.
+     *
+     * @param time The maximum time in seconds.
+     */
+    protected abstract void setMaxTime(int time);
+
+    /**
+     * Terminates the current game session.
+     */
+    protected abstract void killGame();
+
+    /**
+     * Prints the current time and remaining time for the game.
+     */
+    protected abstract void printCurrentAndRemainingTime();
+
+    /**
+     * Sets the size of the grid based on the provided command.
+     *
+     * @param command The command specifying the grid size.
+     */
+    protected abstract void setSizeGrid(Command command);
+
+    /**
+     * Method for change the difficulty.
+     *
+     * @param command the command specifying the new difficulty
+     */
+    protected abstract void setOnlyDifficulty(final Command command);
+
+    /**
+     * Sets the maximum number of tries allowed for the game.
+     *
+     * @param tires The maximum number of tries to set.
+     */
+    protected abstract void setMaxTries(final int tires);
+
+    /**
+     * Prints the current time of the game.
+     */
+    protected abstract void printCurrentTime();
+
+    /**
+     * Gets the difficulty level as a string representation.
+     *
+     * @return The difficulty level as a string.
+     */
+    protected abstract String getDifficultyString();
 
     /**
      * Constructor of the class.
      */
-    public final void execute(final boolean flag) {
-        this.controller = InputController.getController(this);
+    public final void start(final boolean flag) {
         System.out.println(WELCOME_MESSAGE);
         if (flag) {
             this.help();
         } else {
             System.out.println(HELP_TIP);
         }
-        this.scanner = new Scanner(System.in, "UTF-8");
-        while (this.scanner.hasNextLine()) {
-            controller.executeCommand(Parser.parseInput(this.scanner.nextLine(), Command.getPatterns()));
+        while (scanner.hasNextLine()) {
+            executeCommand(Parser.parseInput(scanner.nextLine(), Command.getPatterns()));
         }
-        this.scanner.close();
+        scanner.close();
     }
 
     /**
@@ -79,14 +210,14 @@ public class InputBoundary {
      *
      * @param args the list of arguments containing the maximum time.
      */
-    public void setMaxTime(final List<String> args) {
+    protected void setMaxTime(final List<String> args) {
         if (!isInGame()) {
             if (args == null) {
                 System.out.println("Non è stato passato nessun parametro");
             } else {
                 try {
                     int time = Integer.parseInt(args.get(0));
-                    TimerPartita.setMaxTime(time);
+                    setMaxTime(time);
                     System.out.println("OK");
                 } catch (IllegalArgumentException e) {
                     System.out.println("Numero non valido");
@@ -104,17 +235,13 @@ public class InputBoundary {
      * If the game is not running, it provides a message prompting the user to start
      * the game.
      */
-    public void showAttemps() {
+    protected void showAttemps() {
         if (isInGame()) {
-            int currentTries = Difficulty.getFailedTries();
-            int maxTries = Difficulty.getMaxTries();
-            int differenceTries = maxTries - currentTries;
-            int totalTries = differenceTries + Difficulty.getCurrentTries();
-            System.out.println("Hai effettuato " + totalTries + " tentativi.");
+            System.out.println("Hai effettuato " + getTotalTries() + " tentativi.");
             System.out.println("Puoi effettuare ancora "
-                    + currentTries + " errori. Hai effettuato " + differenceTries
+                    + getCurrentTries() + " errori. Hai effettuato " + getDifferenceTries()
                     + " tentativi falliti su "
-                    + maxTries);
+                    + getMaxTries());
         } else {
             System.out.print(
                     "E' necessario essere in partita per poter visualizzare il numero dei tentativi rimanenti, ");
@@ -123,23 +250,14 @@ public class InputBoundary {
     }
 
     /**
-     * Check if the game is currently in progress.
-     *
-     * @return true if the game is in progress, false otherwise
-     */
-    private boolean isInGame() {
-        return TimerPartita.isRunning();
-    }
-
-    /**
      * Displays the current time to the user.
      * If a game is currently running, it shows the current elapsed time.
      * If no game is running, it provides a message indicating that no game is in
      * progress.
      */
-    public void showCurrentTime() {
+    protected void boundaryShowCurrentTime() {
         if (isInGame()) {
-            TimerPartita.printCurrentAndRemainingTime();
+            printCurrentAndRemainingTime();
         } else {
             System.out.println("Non è in corso nessuna partita. Puoi creare una nuova partita con il comando /gioca");
         }
@@ -150,9 +268,9 @@ public class InputBoundary {
      *
      * @param command the command specifying the new size of the grid
      */
-    public void setSize(final Command command) {
+    protected void setSize(final Command command) {
         if (!isInGame()) {
-            SizeGrid.setSize(SizeGrid.valueOf(command.toString()));
+            setSizeGrid(command);
             System.out.println("OK");
         } else {
             System.out.println("Partita in corso!");
@@ -162,7 +280,7 @@ public class InputBoundary {
     /**
      * Method for close the application.
      */
-    public void closeGame() {
+    protected void closeGame() {
         if (isInGame()) {
             System.out.print("Chiudere l'applicazione? [s/n] ");
             System.out.println("Puoi abbandonare la partita con /abbandona");
@@ -170,7 +288,7 @@ public class InputBoundary {
             System.out.println("Chiudere l'applicazione? [s/n]");
         }
         if (this.confirm()) {
-            Runtime.getRuntime().exit(0);
+            killGame();
         }
     }
 
@@ -181,11 +299,11 @@ public class InputBoundary {
      *
      * @return true if the user confirms, false otherwise
      */
-    private boolean confirm() {
+    protected boolean confirm() {
         Map<Command, List<String>> command;
         boolean canContinue = true;
-        while (canContinue && this.scanner.hasNextLine()) {
-            command = Command.parse(Parser.parseInput(this.scanner.nextLine(), Command.getPatterns()));
+        while (canContinue && scanner.hasNextLine()) {
+            command = Command.parse(Parser.parseInput(scanner.nextLine(), Command.getPatterns()));
             if (command == null) {
                 System.out.println("Risposta non riconosciuta");
             } else if (command.containsKey(Command.YES)) {
@@ -202,11 +320,11 @@ public class InputBoundary {
 
     /**
      * Method for change the difficulty and current tries.
-     * 
+     *
      * @param command the command specifying the new difficulty
      * @param args    the list of arguments containing the maximum number of tries
      */
-    public void setDifficulty(final Command command, final List<String> args) {
+    protected void setDifficulty(final Command command, final List<String> args) {
         if (!isInGame()) {
             if (args == null) {
                 this.setOnlyDifficulty(command);
@@ -222,27 +340,18 @@ public class InputBoundary {
     }
 
     /**
-     * Method for change the difficulty.
-     * 
-     * @param command the command specifying the new difficulty
-     */
-    private void setOnlyDifficulty(final Command command) {
-        Difficulty.setDifficulty(Difficulty.valueOf(command.toString()));
-    }
-
-    /**
      * Sets the maximum number of tries based on the provided arguments.
      *
      * @param args the list of arguments containing the maximum number of tries
      */
-    public void setOnlyCurrentTries(final List<String> args) {
+    protected void setOnlyCurrentTries(final List<String> args) {
         if (!isInGame()) {
             if (args == null) {
                 System.out.println("Non è stato passato nessun parametro");
             } else {
                 try {
                     int tires = Integer.parseInt(args.get(0));
-                    Difficulty.setMaxTries(tires);
+                    setMaxTries(tires);
                     System.out.println("OK");
                 } catch (IllegalArgumentException e) {
                     System.out.println("Numero non valido");
@@ -256,15 +365,15 @@ public class InputBoundary {
     /**
      * Method to show the current difficulty and max tries.
      */
-    public void showLevel() {
-        System.out.print("Livello di difficoltà: " + Difficulty.getDifficulty().toString());
-        System.out.println(", numero massimo di tentativi: " + Difficulty.getMaxTries());
+    protected void showLevel() {
+        System.out.print("Livello di difficoltà: " + getDifficultyString());
+        System.out.println(", numero massimo di tentativi: " + getMaxTries());
     }
 
     /**
      * Method to display command help.
      */
-    public void help() {
+    protected void help() {
         System.out.println("ELENCO DEI COMANDI:");
         for (Command command : Command.values()) {
             String description = command.getDescription();
@@ -288,18 +397,18 @@ public class InputBoundary {
      *         specified. If the flag is set to false, it means no help flag was
      *         specified.
      */
-    public boolean controlFlag(final String[] args) {
+    protected boolean controlFlag(final String[] args) {
         boolean flag = false;
         if (args.length > 1) {
             System.out.print("ERRORE: Sono stati inseriti troppi flag all'avvio!");
             System.out.println(" Riprova inserendone solo uno.");
-            Runtime.getRuntime().exit(0);
+            killGame();
         } else if (args.length == 1) {
             if (args[0].equals("-h") || args[0].equals("--help")) {
                 flag = true;
             } else {
                 System.out.println("ERRORE: Flag non valido, riprova con -h oppure --help \n");
-                Runtime.getRuntime().exit(0);
+                killGame();
             }
         } else {
             flag = false;
@@ -310,12 +419,12 @@ public class InputBoundary {
     /**
      * Prompt the user to exit the game and stop taking input if confirmed.
      */
-    public void exitGame() {
+    protected void exitGame() {
         if (isInGame()) {
             System.out.println("Abbandonare la partita? [s/n]");
             if (confirm()) {
                 printGrid();
-                controller.quitGame();
+                quitGame();
             }
         } else {
             System.out.println("Non è in corso nessuna partita!");
@@ -325,45 +434,45 @@ public class InputBoundary {
     /**
      * Method to start a game.
      */
-    public void playGame() {
+    protected void playGame() {
         if (!isInGame()) {
             Coordinate coordinate;
             String input;
-            controller.createGrid();
-            controller.setUpGame();
-            input = this.scanner.nextLine();
-            while (isInGame() && Difficulty.getFailedTries() > 0) {
+            createGrid();
+            setUpGame();
+            input = scanner.nextLine();
+            while (isInGame() && getCurrentTries() > 0) {
                 coordinate = Coordinate.parse(Parser.parseInput(input, Coordinate.PATTERN));
                 if (coordinate != null) {
                     if (coordinate.isValid()) {
-                        String result = controller.fireShoot(coordinate);
+                        String result = fireShoot(coordinate);
                         System.out.print("Partita> ");
                         System.out.println(result);
-                        System.out.println("Tentativi già effettuati: " + controller.getTotalTries());
-                        TimerPartita.printCurrentTime();
-                        if (controller.isGameFinish()) {
+                        System.out.println("Tentativi già effettuati: " + getTotalTries());
+                        printCurrentTime();
+                        if (isGameFinish()) {
                             System.out.println("Hai affondato l'ultima nave, hai vinto!");
-                            controller.quitGame();
+                            quitGame();
                         }
                     } else {
                         System.out.println("Coordinata non valida");
                     }
                 } else if (input != null) {
-                    controller.executeCommand(Parser.parseInput(input, Command.getPatterns()));
+                    executeCommand(Parser.parseInput(input, Command.getPatterns()));
                 } else {
                     System.out.println("Coordinata non riconosciuta");
                 }
-                if (Difficulty.getFailedTries() <= 0) {
+                if (getCurrentTries() <= 0) {
                     System.out.println("Hai finito i tentativi a disposizione, hai perso!");
-                    controller.quitGame();
+                    quitGame();
                 }
-                input = this.scanner.nextLine();
+                input = scanner.nextLine();
             }
             if (input != null) {
                 if (input.contains("/")) {
                     input = "/" + input.split("/")[1];
                 }
-                controller.executeCommand(Parser.parseInput(input, Command.getPatterns()));
+                executeCommand(Parser.parseInput(input, Command.getPatterns()));
             }
         } else {
             System.out.print("E' già in corso una partita!");
@@ -375,9 +484,9 @@ public class InputBoundary {
     /**
      * Method to display the grid with the ships if user is not in game.
      */
-    public void printGrid() {
+    protected void boundaryPrintGrid() {
         if (isInGame()) {
-            controller.getGrid().printGrid();
+            printGrid();
         } else {
             System.out.println("Non stai giocando, inizia a giocare con: /gioca");
         }
@@ -388,9 +497,9 @@ public class InputBoundary {
      * Display HIT cells in red and MISS cells in white.
      * Format the grid display according to its size
      */
-    public void printCurrentGrid() {
+    protected void boundaryPrintCurrentGrid() {
         if (isInGame()) {
-            controller.getGrid().printCurrentGrid();
+            printCurrentGrid();
         } else {
             System.out.println("Non stai giocando, inizia a giocare con: /gioca");
         }
@@ -399,9 +508,9 @@ public class InputBoundary {
     /**
      * Method to show current ships.
      */
-    public void showShips() {
+    protected void boundaryShowShips() {
         if (isInGame()) {
-            controller.getGrid().showShips();
+            showShips();
         } else {
             System.out.print("E' necessario essere in partita per poter visualizzare l'elenco delle navi, ");
             System.out.println("inizia a giocare con /gioca");
