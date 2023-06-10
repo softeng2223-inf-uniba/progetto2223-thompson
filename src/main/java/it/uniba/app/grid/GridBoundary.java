@@ -13,16 +13,7 @@ import it.uniba.app.ship.Ship;
 /**
  * Utility class for printing grids with ships and their states.
  */
-public final class GridBoundary {
-
-    /**
-     * Private constructor to prevent instantiation of the utility class.
-     * Throws an {@link IllegalStateException} with a message indicating that the
-     * class is a utility class.
-     */
-    private GridBoundary() {
-        throw new IllegalStateException("Utility class");
-    }
+public abstract class GridBoundary {
 
     /**
      * The formatter for column values.
