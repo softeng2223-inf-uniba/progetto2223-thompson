@@ -1,6 +1,6 @@
 package it.uniba.app;
 
-import it.uniba.app.controller.InputController;
+import it.uniba.app.input.controller.InputController;
 
 /**
  * Main class of the application.

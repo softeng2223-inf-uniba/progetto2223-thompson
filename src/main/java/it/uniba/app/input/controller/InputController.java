@@ -1,12 +1,12 @@
-package it.uniba.app.controller;
+package it.uniba.app.input.controller;
 
 import java.util.List;
 import java.util.Map;
 
-import it.uniba.app.InputBoundary;
 import it.uniba.app.grid.Grid;
 import it.uniba.app.grid.type.Coordinate;
 import it.uniba.app.grid.type.SizeGrid;
+import it.uniba.app.input.InputBoundary;
 import it.uniba.app.timer.controller.TimerController;
 import it.uniba.app.type.Command;
 import it.uniba.app.type.Difficulty;

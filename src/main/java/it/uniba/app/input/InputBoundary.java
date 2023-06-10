@@ -1,4 +1,4 @@
-package it.uniba.app;
+package it.uniba.app.input;
 
 import it.uniba.app.grid.type.Coordinate;
 import it.uniba.app.parser.Parser;
@@ -397,7 +397,7 @@ public abstract class InputBoundary {
      *         specified. If the flag is set to false, it means no help flag was
      *         specified.
      */
-    protected boolean controlFlag(final String[] args) {
+    public boolean controlFlag(final String[] args) {
         boolean flag = false;
         if (args.length > 1) {
             System.out.print("ERRORE: Sono stati inseriti troppi flag all'avvio!");
