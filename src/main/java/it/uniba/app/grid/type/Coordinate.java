@@ -80,6 +80,15 @@ public final class Coordinate {
     }
 
     /**
+     * Column to integer getter.
+     *
+     * @return integer of column
+     */
+    public int getColumnInt() {
+        return column.ordinal();
+    }
+
+    /**
      * Column getter.
      */
     public void setColumn(final Column valColumn) {
@@ -183,5 +192,15 @@ public final class Coordinate {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Creates a copy of the current Coordinate object.
+     *
+     * @return a new Coordinate object with the same column and row values as the
+     *         original
+     */
+    public Coordinate copy() {
+        return new Coordinate(this.column, this.row);
     }
 }
