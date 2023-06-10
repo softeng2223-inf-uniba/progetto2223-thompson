@@ -36,6 +36,10 @@ public class Grid {
      */
     private final Map<Ship, Map<Integer, List<Coordinate>>> ships;
 
+    public Map<Ship, Map<Integer, List<Coordinate>>> getShips() {
+        return this.ships;
+    }
+
     /**
      * Grid constructor.
      */
@@ -54,20 +58,15 @@ public class Grid {
         }
     }
 
+    public Cell[][] getGrid() {
+        return this.grid;
+    }
+
     /**
      * Check if all the ships have been sunken.
      *
      * @return true if all the ships have been sunken, false otherwise
      */
-    public boolean isAllSunken() {
-        boolean check = true;
-        for (Ship s : Ship.values()) {
-            if (!ships.get(s).isEmpty()) {
-                check = false;
-            }
-        }
-        return check;
-    }
 
     /**
      * Gets the size of the grid.
@@ -245,30 +244,5 @@ public class Grid {
      */
     public final int getTotalShips() {
         return this.totalShips;
-    }
-
-    /**
-     * Method to display the grid with the ships.
-     *
-     */
-    public final void printGrid() {
-        GridBoundary.printGrid(grid, size);
-    }
-
-    /**
-     * Prints the current grid with the state of each cell.
-     * Display HIT cells in red and MISS cells in white.
-     * Format the grid display according to its size.
-     *
-     */
-    public final void printCurrentGrid() {
-        GridBoundary.printCurrentGrid(grid, size);
-    }
-
-    /**
-     * Method for displaying ships not sunk yet.
-     */
-    public final void showShips() {
-        GridBoundary.showShips(ships);
     }
 }

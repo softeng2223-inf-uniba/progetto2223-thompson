@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import it.uniba.app.grid.Grid;
+import it.uniba.app.grid.controller.GridController;
 import it.uniba.app.grid.type.Coordinate;
 import it.uniba.app.grid.type.SizeGrid;
 import it.uniba.app.input.InputBoundary;
@@ -94,7 +95,7 @@ public final class InputController extends InputBoundary {
     protected void createGrid() {
         this.grid = new Grid();
         this.grid.generateGrid();
-        this.grid.printCurrentGrid();
+        GridController.INSTANCE.printCurrentGrid(grid.getGrid(), grid.getSize());
     }
 
     /**
@@ -104,7 +105,7 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected boolean isGameFinish() {
-        return grid.isAllSunken();
+        return GridController.INSTANCE.isAllSunken(grid.getShips());
     }
 
     /**
@@ -116,7 +117,7 @@ public final class InputController extends InputBoundary {
     @Override
     protected String fireShoot(final Coordinate coordinate) {
         String result = this.grid.hitCoordinate(coordinate);
-        this.grid.printCurrentGrid();
+        GridController.INSTANCE.printCurrentGrid(grid.getGrid(), grid.getSize());
         return result;
     }
 
@@ -153,7 +154,8 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void printGrid() {
-        grid.printGrid();
+        int size = grid.getSize();
+        GridController.INSTANCE.printGrid(grid.getGrid(), size);
     }
 
     /**
@@ -163,7 +165,7 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void printCurrentGrid() {
-        grid.printCurrentGrid();
+        GridController.INSTANCE.printCurrentGrid(grid.getGrid(), grid.getSize());
     }
 
     /**
@@ -171,7 +173,7 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void showShips() {
-        grid.showShips();
+        GridController.INSTANCE.showShips(grid.getShips());
     }
 
     /**

@@ -57,7 +57,7 @@ public abstract class GridBoundary {
      * @param grid The grid to be printed.
      * @param size The size of the grid.
      */
-    public static void printGrid(final Cell[][] grid, final int size) {
+    public void printGrid(final Cell[][] grid, final int size) {
         GridBoundary.setFormatters(size);
         StringBuilder legend = new StringBuilder();
         for (Ship ship : Ship.values()) {
@@ -144,7 +144,7 @@ public abstract class GridBoundary {
      * @param grid The grid to be printed.
      * @param size The size of the grid.
      */
-    public static void printCurrentGrid(final Cell[][] grid, final int size) {
+    public void printCurrentGrid(final Cell[][] grid, final int size) {
         GridBoundary.setFormatters(size);
         System.out.println();
         StringBuilder legend = new StringBuilder();
@@ -200,7 +200,7 @@ public abstract class GridBoundary {
     /**
      * Method for displaying ships not sunk yet.
      */
-    public static final void showShips(final Map<Ship, Map<Integer, List<Coordinate>>> ships) {
+    public final void showShips(final Map<Ship, Map<Integer, List<Coordinate>>> ships) {
         for (Ship ship : EnumSet.copyOf(ships.keySet())) {
             System.out.print(ship.toString() + " ");
             for (int i = 0; i < ship.getSize(); i++) {
