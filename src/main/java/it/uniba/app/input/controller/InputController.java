@@ -13,7 +13,7 @@ import it.uniba.app.type.Difficulty;
 
 /**
  * <Control>
- * 
+ *
  * Class for commands that the user may enter.
  */
 public final class InputController extends InputBoundary {

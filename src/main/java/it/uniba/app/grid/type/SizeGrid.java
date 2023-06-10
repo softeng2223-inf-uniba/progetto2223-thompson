@@ -2,7 +2,7 @@ package it.uniba.app.grid.type;
 
 /**
  * <Entity>
- * 
+ *
  * Represents the size of a grid.
  */
 public enum SizeGrid {

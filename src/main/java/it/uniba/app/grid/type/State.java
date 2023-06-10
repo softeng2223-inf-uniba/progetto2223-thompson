@@ -2,7 +2,7 @@ package it.uniba.app.grid.type;
 
 /**
  * <Entity>
- * 
+ *
  * Enum class to describe cell states.
  * Each state can be associated with a color for display purposes.
  */

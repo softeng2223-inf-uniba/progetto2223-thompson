@@ -11,7 +11,7 @@ import it.uniba.app.ship.Ship;
 
 /**
  * <Boundary>
- * 
+ *
  * Utility class for printing grids with ships and their states.
  */
 public abstract class GridBoundary {

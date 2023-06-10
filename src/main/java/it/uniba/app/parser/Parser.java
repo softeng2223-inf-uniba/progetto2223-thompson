@@ -7,7 +7,7 @@ import java.util.Map;
 
 /**
  * <noECB>
- * 
+ *
  * Abstract class for parsing strings.
  */
 public abstract class Parser {

@@ -2,7 +2,7 @@ package it.uniba.app.ship;
 
 /**
  * <Entity>
- * 
+ *
  * Enum class to manage the type and the quantity of ships.
  */
 public enum Ship {

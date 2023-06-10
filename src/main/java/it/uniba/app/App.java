@@ -3,13 +3,13 @@ package it.uniba.app;
 import it.uniba.app.input.controller.InputController;
 
 /**
+ * <noECB>
+ *
  * Main class of the application.
  */
 public final class App {
 
     /**
-     * <noECB>
-     * 
      * Get a greeting sentence.
      *
      * @return the "Hello World!" string.

@@ -4,7 +4,7 @@ import it.uniba.app.ship.Ship;
 
 /**
  * <Entity>
- * 
+ *
  * Class to manage cells of grid.
  */
 public final class Cell {

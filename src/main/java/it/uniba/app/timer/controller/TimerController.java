@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * <Control>
- * 
+ *
  * Utility class for managing game timers.
  */
 public final class TimerController extends TimerBoundary {

@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 /**
  * <Entity>
- * 
+ *
  * Class to handle coordinates.
  */
 public final class Coordinate {

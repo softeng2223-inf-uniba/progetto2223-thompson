@@ -4,7 +4,7 @@ import java.util.Random;
 
 /**
  * <noECB>
- * 
+ *
  * Enumeration representing the directions of movement.
  */
 public enum Direction {

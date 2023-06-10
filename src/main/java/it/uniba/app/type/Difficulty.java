@@ -2,7 +2,7 @@ package it.uniba.app.type;
 
 /**
  * <Entity>
- * 
+ *
  * Class containing difficulty and number of tries.
  */
 public enum Difficulty {
