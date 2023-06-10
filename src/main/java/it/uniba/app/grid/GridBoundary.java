@@ -1,21 +1,26 @@
 package it.uniba.app.grid;
 
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Map;
+
 import it.uniba.app.grid.type.Cell;
 import it.uniba.app.grid.type.Column;
+import it.uniba.app.grid.type.Coordinate;
 import it.uniba.app.grid.type.State;
 import it.uniba.app.ship.Ship;
 
 /**
  * Utility class for printing grids with ships and their states.
  */
-public final class GridPrinter {
+public final class GridBoundary {
 
     /**
      * Private constructor to prevent instantiation of the utility class.
      * Throws an {@link IllegalStateException} with a message indicating that the
      * class is a utility class.
      */
-    private GridPrinter() {
+    private GridBoundary() {
         throw new IllegalStateException("Utility class");
     }
 
@@ -62,7 +67,7 @@ public final class GridPrinter {
      * @param size The size of the grid.
      */
     public static void printGrid(final Cell[][] grid, final int size) {
-        GridPrinter.setFormatters(size);
+        GridBoundary.setFormatters(size);
         StringBuilder legend = new StringBuilder();
         for (Ship ship : Ship.values()) {
             legend.append(ship.toString() + " = " + ship.colorShip() + " ");
@@ -149,7 +154,7 @@ public final class GridPrinter {
      * @param size The size of the grid.
      */
     public static void printCurrentGrid(final Cell[][] grid, final int size) {
-        GridPrinter.setFormatters(size);
+        GridBoundary.setFormatters(size);
         System.out.println();
         StringBuilder legend = new StringBuilder();
         String color = State.HIT.getColor();
@@ -198,6 +203,21 @@ public final class GridPrinter {
             formatterRow = "---+";
             formatterVoid = "  ";
             formatterSpace = " ";
+        }
+    }
+
+    /**
+     * Method for displaying ships not sunk yet.
+     */
+    public static final void showShips(final Map<Ship, Map<Integer, List<Coordinate>>> ships) {
+        for (Ship ship : EnumSet.copyOf(ships.keySet())) {
+            System.out.print(ship.toString() + " ");
+            for (int i = 0; i < ship.getSize(); i++) {
+                System.out.print(ship.colorShip());
+            }
+            System.out.print(" " + ships.get(ship).size());
+            System.out.print(" da affondare su " + ship.getnShips() + " totali ");
+            System.out.println();
         }
     }
 }
