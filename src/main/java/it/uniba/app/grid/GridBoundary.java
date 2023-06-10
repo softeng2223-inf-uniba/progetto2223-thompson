@@ -8,6 +8,7 @@ import it.uniba.app.grid.type.Cell;
 import it.uniba.app.grid.type.Column;
 import it.uniba.app.grid.type.Coordinate;
 import it.uniba.app.grid.type.State;
+import it.uniba.app.ship.Direction;
 import it.uniba.app.ship.Ship;
 
 /**
@@ -49,6 +50,52 @@ public abstract class GridBoundary {
      * The maximum size for a large grid.
      */
     private static final int MAX_SIZE_LARGE = 26;
+
+    /**
+     * Shoots at the specified coordinate on the grid and returns the result of the
+     * shot.
+     *
+     * @param coord the coordinate to shoot at
+     * @return the result of the shot, which can be "acqua" (water), "colpito"
+     *         (hit), "colpito e affondato" (hit and sunk),
+     *         or "Questa mossa è stata già effettuata" (This move has already been
+     *         made)
+     */
+    public abstract String hitCoordinate(final Coordinate coord);
+
+    /**
+     * Method that adds ships to the dictionary with their coordinates.
+     *
+     * @param ship
+     * @param nShip
+     * @param direction
+     * @param coord
+     */
+    public abstract void addShips(final Ship ship, final int nShip, final Direction direction, final Coordinate coord);
+
+    /**
+     * Method to check if we can place a ship in a given coordinate.
+     *
+     * @param direction direction of ship
+     * @param dimension dimension of ship
+     * @param coord     coordinate where to place the ship
+     * @return true if can be placed else false
+     */
+    public abstract boolean canPlaceShip(final Direction direction, final Ship dimension, final Coordinate coord);
+
+    /**
+     * Method to place ships in the grid.
+     *
+     * @param direction direction of the ship
+     * @param ship      ship to place
+     * @param coord     initial coordinate
+     */
+    public abstract void placeShip(final Direction direction, final Ship ship, final Coordinate coord);
+
+    /**
+     * Method to create a grid whit random ships.
+     */
+    public abstract void generateGrid();
 
     /**
      * Method to display the grid with the ships.
