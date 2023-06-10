@@ -9,7 +9,6 @@ import it.uniba.app.ship.Ship;
 import it.uniba.app.type.Difficulty;
 import it.uniba.app.ship.Direction;
 
-import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -253,7 +252,7 @@ public class Grid {
      *
      */
     public final void printGrid() {
-        GridPrinter.printGrid(grid, size);
+        GridBoundary.printGrid(grid, size);
     }
 
     /**
@@ -263,21 +262,13 @@ public class Grid {
      *
      */
     public final void printCurrentGrid() {
-        GridPrinter.printCurrentGrid(grid, size);
+        GridBoundary.printCurrentGrid(grid, size);
     }
 
     /**
      * Method for displaying ships not sunk yet.
      */
     public final void showShips() {
-        for (Ship ship : EnumSet.copyOf(this.ships.keySet())) {
-            System.out.print(ship.toString() + " ");
-            for (int i = 0; i < ship.getSize(); i++) {
-                System.out.print(ship.colorShip());
-            }
-            System.out.print(" " + this.ships.get(ship).size());
-            System.out.print(" da affondare su " + ship.getnShips() + " totali ");
-            System.out.println();
-        }
+        GridBoundary.showShips(ships);
     }
 }
