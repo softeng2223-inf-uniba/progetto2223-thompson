@@ -4,11 +4,9 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 
-import it.uniba.app.grid.type.Cell;
 import it.uniba.app.grid.type.Column;
 import it.uniba.app.grid.type.Coordinate;
 import it.uniba.app.grid.type.State;
-import it.uniba.app.ship.Direction;
 import it.uniba.app.ship.Ship;
 
 /**
@@ -52,72 +50,29 @@ public abstract class GridBoundary {
     private static final int MAX_SIZE_LARGE = 26;
 
     /**
-     * Shoots at the specified coordinate on the grid and returns the result of the
-     * shot.
-     *
-     * @param coord the coordinate to shoot at
-     * @return the result of the shot, which can be "acqua" (water), "colpito"
-     *         (hit), "colpito e affondato" (hit and sunk),
-     *         or "Questa mossa è stata già effettuata" (This move has already been
-     *         made)
-     */
-    public abstract String hitCoordinate(final Coordinate coord);
-
-    /**
-     * Method that adds ships to the dictionary with their coordinates.
-     *
-     * @param ship
-     * @param nShip
-     * @param direction
-     * @param coord
-     */
-    public abstract void addShips(final Ship ship, final int nShip, final Direction direction, final Coordinate coord);
-
-    /**
-     * Method to check if we can place a ship in a given coordinate.
-     *
-     * @param direction direction of ship
-     * @param dimension dimension of ship
-     * @param coord     coordinate where to place the ship
-     * @return true if can be placed else false
-     */
-    public abstract boolean canPlaceShip(final Direction direction, final Ship dimension, final Coordinate coord);
-
-    /**
-     * Method to place ships in the grid.
-     *
-     * @param direction direction of the ship
-     * @param ship      ship to place
-     * @param coord     initial coordinate
-     */
-    public abstract void placeShip(final Direction direction, final Ship ship, final Coordinate coord);
-
-    /**
-     * Method to create a grid whit random ships.
-     */
-    public abstract void generateGrid();
-
-    /**
      * Method to display the grid with the ships.
      * Format the grid display according to its size
      *
      * @param grid The grid to be printed.
      * @param size The size of the grid.
      */
-    public void printGrid(final Cell[][] grid, final int size) {
-        GridBoundary.setFormatters(size);
+    protected void boundaryPrintGrid(final Grid grid, final int size) {
+        setFormatters(size);
         StringBuilder legend = new StringBuilder();
         for (Ship ship : Ship.values()) {
             legend.append(ship.toString() + " = " + ship.colorShip() + " ");
         }
         printLegend(legend.toString());
         printHeader(size);
+        Coordinate coord = new Coordinate();
         for (int i = 0; i < size; i++) {
+            coord.setRow(i);
             printSeparator(size);
             printIndexColumn(i);
             for (int j = 0; j < size; j++) {
-                printCell(grid[i][j].getShip() != null
-                        ? formatterSpace + grid[i][j].getShip().colorShip()
+                coord.setColumn(Column.fromInt(j));
+                printCell(grid.isShipPlaced(coord)
+                        ? formatterSpace + grid.getShipColor(coord)
                         : formatterVoid);
             }
             System.out.println();
@@ -191,8 +146,8 @@ public abstract class GridBoundary {
      * @param grid The grid to be printed.
      * @param size The size of the grid.
      */
-    public void printCurrentGrid(final Cell[][] grid, final int size) {
-        GridBoundary.setFormatters(size);
+    protected void boundaryPrintCurrentGrid(final Grid grid, final int size) {
+        setFormatters(size);
         System.out.println();
         StringBuilder legend = new StringBuilder();
         String color = State.HIT.getColor();
@@ -201,13 +156,16 @@ public abstract class GridBoundary {
         legend.append("MANCATO = " + color + " " + Ship.stringShip() + State.ANSI_RESET + " ");
         printLegend(legend.toString());
         printHeader(size);
+        Coordinate coord = new Coordinate();
         for (int i = 0; i < size; i++) {
+            coord.setRow(i);
             printSeparator(size);
             printIndexColumn(i);
             for (int j = 0; j < size; j++) {
-                if (grid[i][j].getState() == State.VOID || grid[i][j].getState() == State.SHIP) {
+                coord.setColumn(Column.fromInt(j));
+                if (grid.getState(coord) == State.VOID || grid.getState(coord) == State.SHIP) {
                     printCell(formatterVoid);
-                } else if (grid[i][j].getState() == State.HIT) {
+                } else if (grid.getState(coord) == State.HIT) {
                     color = State.HIT.getColor();
                     printCell(color + formatterSpace + Ship.stringShip() + State.ANSI_RESET);
                 } else {
@@ -225,7 +183,7 @@ public abstract class GridBoundary {
      *
      * @param size The size of the grid.
      */
-    public static void setFormatters(final int size) {
+    private static void setFormatters(final int size) {
         if (size > 0 && size <= MAX_SIZE_SMALL) {
             formatterCol = "   %s   |";
             formatterRow = "-------+";
@@ -247,7 +205,7 @@ public abstract class GridBoundary {
     /**
      * Method for displaying ships not sunk yet.
      */
-    public final void showShips(final Map<Ship, Map<Integer, List<Coordinate>>> ships) {
+    protected final void boundaryShowShips(final Map<Ship, Map<Integer, List<Coordinate>>> ships) {
         for (Ship ship : EnumSet.copyOf(ships.keySet())) {
             System.out.print(ship.toString() + " ");
             for (int i = 0; i < ship.getSize(); i++) {
