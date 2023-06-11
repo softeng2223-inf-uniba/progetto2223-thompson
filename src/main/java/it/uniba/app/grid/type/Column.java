@@ -1,6 +1,8 @@
 package it.uniba.app.grid.type;
 
 /**
+ * <noECB>
+ *
  * Enum class to describe coordinate columns.
  */
 public enum Column {

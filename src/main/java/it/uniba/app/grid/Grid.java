@@ -2,20 +2,18 @@ package it.uniba.app.grid;
 
 import it.uniba.app.grid.type.Cell;
 import it.uniba.app.grid.type.Coordinate;
-import it.uniba.app.grid.type.SizeGrid;
+import it.uniba.app.grid.type.ResultRemove;
 import it.uniba.app.grid.type.State;
-import it.uniba.app.grid.type.Column;
 import it.uniba.app.ship.Ship;
-import it.uniba.app.type.Difficulty;
-import it.uniba.app.ship.Direction;
 
-import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 /**
+ * <Entity>
+ *
  * Class to generate and handle the grid.
  */
 public class Grid {
@@ -29,10 +27,6 @@ public class Grid {
     private final Cell[][] grid;
 
     /**
-     * Number of total ships placed.
-     */
-    private int totalShips;
-    /**
      * Dictionary that contains the ships with their coordinates.
      */
     private final Map<Ship, Map<Integer, List<Coordinate>>> ships;
@@ -40,19 +34,33 @@ public class Grid {
     /**
      * Grid constructor.
      */
-    public Grid() {
-        this.size = SizeGrid.getSize();
+    public Grid(final int valSize) {
+        this.size = valSize;
         this.grid = new Cell[size][size];
         for (int row = 0; row < size; row++) {
             for (int column = 0; column < size; column++) {
                 this.grid[row][column] = new Cell();
             }
         }
-        this.totalShips = 0;
         this.ships = new HashMap<>();
         for (Ship s : Ship.values()) {
             this.ships.put(s, new HashMap<>());
         }
+    }
+
+    /**
+     * Returns a copy of the ships map.
+     *
+     * @return a copy of the ships map, where each ship is mapped to a map of ship
+     *         instances
+     *         and their corresponding coordinates
+     */
+    public final Map<Ship, Map<Integer, List<Coordinate>>> getShips() {
+        Map<Ship, Map<Integer, List<Coordinate>>> copiedMap = new HashMap<>();
+        for (Map.Entry<Ship, Map<Integer, List<Coordinate>>> entry : ships.entrySet()) {
+            copiedMap.put(entry.getKey(), entry.getValue());
+        }
+        return copiedMap;
     }
 
     /**
@@ -61,7 +69,13 @@ public class Grid {
      * @return true if all the ships have been sunken, false otherwise
      */
     public boolean isAllSunken() {
-        return ships.isEmpty();
+        boolean check = true;
+        for (Ship s : Ship.values()) {
+            if (!ships.get(s).isEmpty()) {
+                check = false;
+            }
+        }
+        return check;
     }
 
     /**
@@ -74,35 +88,64 @@ public class Grid {
     }
 
     /**
-     * Shoots at the specified coordinate on the grid and returns the result of the
-     * shot.
+     * Sets the ship in the cell at the specified coordinate.
      *
-     * @param coord the coordinate to shoot at
-     * @return the result of the shot, which can be "acqua" (water), "colpito"
-     *         (hit), "colpito e affondato" (hit and sunk),
-     *         or "Questa mossa è stata già effettuata" (This move has already been
-     *         made)
+     * @param coord The coordinate of the cell where the ship will be set.
+     * @param ship  The ship object to be set in the cell.
      */
-    public String hitCoordinate(final Coordinate coord) {
-        String result = "acqua";
+    public final void setCell(final Coordinate coord, final Ship ship) {
+        int row = coord.getRow();
+        int column = coord.getColumnInt();
+        grid[row][column].setShip(ship);
+    }
+
+    /**
+     * Checks if the cell at the specified coordinate is empty.
+     *
+     * @param coord the coordinate of the cell to check
+     * @return true if the cell is empty, false otherwise
+     */
+    public final boolean isCellEmpty(final Coordinate coord) {
+        return this.grid[coord.getRow()][coord.getColumnInt()].isEmpty();
+    }
+
+    /**
+     * Sets the specified ship at the given coordinate.
+     *
+     * @param ship  the ship to set
+     * @param nShip the index of the ship in the collection
+     * @param coord the coordinate where the ship will be placed
+     */
+    public final void setShip(final Ship ship, final int nShip, final Coordinate coord) {
+        if (this.ships.get(ship).get(nShip) == null) {
+            this.ships.get(ship).put(nShip, new LinkedList<>());
+            this.ships.get(ship).get(nShip).add(coord.copy());
+        } else {
+            this.ships.get(ship).get(nShip).add(coord.copy());
+        }
+    }
+
+    /**
+     * Removes a ship at the specified coordinate and returns the result of the
+     * removal operation.
+     *
+     * @param coord the coordinate of the ship to remove
+     * @return the result of the removal operation
+     */
+    public final ResultRemove removeShip(final Coordinate coord) {
+        String message = "acqua";
         boolean hit = false;
         Ship shipToRemove = null;
         int nShipToRemove = -1;
-        int row = coord.getRow() - 1;
-        int column = coord.getColumn().ordinal();
-        if (grid[row][column].getState() == State.HIT || grid[row][column].getState() == State.MISS) {
-            return "Questa mossa è stata già effettuata";
-        }
-        grid[row][column].setState(grid[row][column].getState().hit());
         for (Ship s : Ship.values()) {
             for (var entry : ships.get(s).entrySet()) {
                 if (entry.getValue().contains(coord)) {
                     entry.getValue().remove(coord);
-                    result = "colpito";
+                    message = "colpito";
                     hit = true;
                 }
                 if (entry.getValue().isEmpty()) {
-                    result = "colpito e affondato";
+                    message = "colpito e affondato";
                     nShipToRemove = entry.getKey();
                     shipToRemove = s;
                     hit = true;
@@ -110,168 +153,56 @@ public class Grid {
             }
         }
         if (shipToRemove != null) {
-            ships.get(shipToRemove).remove(nShipToRemove);
+            this.ships.get(shipToRemove).remove(nShipToRemove);
         }
-        if (!hit) {
-            int tries = Difficulty.getFailedTries() - 1;
-            Difficulty.setFailedTries(tries);
-        } else {
-            int tries = Difficulty.getCurrentTries() + 1;
-            Difficulty.setCurrentTries(tries);
-        }
-        return result;
+        return new ResultRemove(hit, message);
     }
 
     /**
-     * Method that adds ships to the dictionary with their coordinates.
+     * Returns the state of the cell at the specified coordinate.
      *
-     * @param ship
-     * @param nShip
-     * @param direction
-     * @param coord
+     * @param coord the coordinate of the cell
+     * @return the state of the cell
      */
-    private void addShips(final Ship ship, final int nShip, final Direction direction, final Coordinate coord) {
-        if (direction != null) {
-            int row = coord.getRow() + 1;
-            int column = coord.getColumn().ordinal();
-            for (int i = 0; i < ship.getSize(); i++) {
-                if (this.ships.get(ship).get(nShip) == null) {
-                    this.ships.get(ship).put(nShip, new LinkedList<>());
-                    this.ships.get(ship).get(nShip).add(new Coordinate(Column.fromInt(column), row));
-                } else {
-                    this.ships.get(ship).get(nShip).add(new Coordinate(Column.fromInt(column), row));
-                }
-                row += direction.getOrizontal();
-                column += direction.getVertical();
-            }
-        }
+    public final State getState(final Coordinate coord) {
+        return this.grid[coord.getRow()][coord.getColumnInt()].getState();
     }
 
     /**
-     * Method to check if we can place a ship in a given coordinate.
+     * Sets the state of the cell at the specified coordinate.
      *
-     * @param direction direction of ship
-     * @param dimension dimension of ship
-     * @param coord     coordinate where to place the ship
-     * @return true if can be placed else false
+     * @param coord the coordinate of the cell
+     * @param state the state to set for the cell
      */
-    private boolean canPlaceShip(final Direction direction, final Ship dimension, final Coordinate coord) {
-        if (direction != null) {
-            int row = coord.getRow();
-            int column = coord.getColumn().ordinal();
-            if (direction.getVertical() != 0) {
-                int check = column + (dimension.getSize() * direction.getVertical());
-                if (check < 0 || check >= size) {
-                    return false;
-                }
-            }
-            if (direction.getOrizontal() != 0) {
-                int check = row + (dimension.getSize() * direction.getOrizontal());
-                if (check < 0 || check >= size) {
-                    return false;
-                }
-            }
-            for (int i = 0; i < dimension.getSize(); i++) {
-                if (!this.grid[row][column].isEmpty()) {
-                    return false;
-                }
-                row += direction.getOrizontal();
-                column += direction.getVertical();
-            }
+    public final void setState(final Coordinate coord, final State state) {
+        this.grid[coord.getRow()][coord.getColumnInt()].setState(state);
+    }
+
+    /**
+     * Checks if a ship is placed at the specified coordinate.
+     *
+     * @param coord the coordinate to check
+     * @return true if a ship is placed at the coordinate, false
+     *         otherwise
+     */
+    public final boolean isShipPlaced(final Coordinate coord) {
+        if (grid[coord.getRow()][coord.getColumnInt()].getShip() != null) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     /**
-     * Method to place ships in the grid.
+     * Returns the color of the ship placed at the specified coordinate.
+     * If no ship is placed at the coordinate, it returns the default ship color.
      *
-     * @param direction direction of the ship
-     * @param ship      ship to place
-     * @param coord     initial coordinate
+     * @param coord the coordinate to check
+     * @return the color of the ship or the default ship color
      */
-    private void placeShip(final Direction direction, final Ship ship, final Coordinate coord) {
-        if (direction != null) {
-            int row = coord.getRow();
-            int column = coord.getColumn().ordinal();
-            for (int i = 0; i < ship.getSize(); i++) {
-                this.grid[row][column].setShip(ship);
-                row += direction.getOrizontal();
-                column += direction.getVertical();
-            }
+    public final String getShipColor(final Coordinate coord) {
+        if (this.isShipPlaced(coord)) {
+            return grid[coord.getRow()][coord.getColumnInt()].getShip().colorShip();
         }
-    }
-
-    /**
-     * Method to create a grid whit random ships.
-     */
-    public final void generateGrid() {
-        Coordinate coord = Coordinate.random(size, size);
-        Direction direction;
-
-        for (Ship s : Ship.values()) {
-            for (int i = 0; i < s.getnShips(); i++) {
-                direction = Direction.randomDirection();
-                if (this.canPlaceShip(direction, s, coord)) {
-                    this.placeShip(direction, s, coord);
-                    this.addShips(s, i + 1, direction, coord);
-                    this.totalShips += 1;
-                } else {
-                    direction = direction.rotate();
-                    if (this.canPlaceShip(direction, s, coord)) {
-                        this.placeShip(direction, s, coord);
-                        this.addShips(s, i + 1, direction, coord);
-                        this.totalShips += 1;
-                    } else {
-                        i--;
-                    }
-                }
-                coord.setRow(Coordinate.generateRandomRow(size));
-                coord.setColumn(Coordinate.generateRandomColumn(size));
-            }
-        }
-    }
-
-    /**
-     * TotalShips getter.
-     *
-     * @return totalships
-     */
-    public final int getTotalShips() {
-        return this.totalShips;
-    }
-
-    /**
-     * Method to display the grid with the ships.
-     *
-     */
-    public final void printGrid() {
-        GridPrinter.printGrid(grid, size);
-    }
-
-    /**
-     * Prints the current grid with the state of each cell.
-     * Display HIT cells in red and MISS cells in white.
-     * Format the grid display according to its size.
-     *
-     */
-    public final void printCurrentGrid() {
-        GridPrinter.printCurrentGrid(grid, size);
-    }
-
-    /**
-     * Method for displaying ships not sunk yet.
-     */
-    public final void showShips() {
-        for (Ship ship : EnumSet.copyOf(this.ships.keySet())) {
-            System.out.print(ship.toString() + " ");
-            for (int i = 0; i < ship.getSize(); i++) {
-                System.out.print(ship.colorShip());
-            }
-            System.out.print(" " + this.ships.get(ship).size());
-            System.out.print(" da affondare su " + ship.getnShips() + " totali ");
-            System.out.println();
-        }
+        return Ship.stringShip();
     }
 }

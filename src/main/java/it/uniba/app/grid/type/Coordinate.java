@@ -6,6 +6,8 @@ import java.util.Random;
 import java.util.regex.Pattern;
 
 /**
+ * <Entity>
+ *
  * Class to handle coordinates.
  */
 public final class Coordinate {
@@ -77,6 +79,15 @@ public final class Coordinate {
      */
     public Column getColumn() {
         return column;
+    }
+
+    /**
+     * Column to integer getter.
+     *
+     * @return integer of column
+     */
+    public int getColumnInt() {
+        return column.ordinal();
     }
 
     /**
@@ -183,5 +194,15 @@ public final class Coordinate {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Creates a copy of the current Coordinate object.
+     *
+     * @return a new Coordinate object with the same column and row values as the
+     *         original
+     */
+    public Coordinate copy() {
+        return new Coordinate(this.column, this.row);
     }
 }

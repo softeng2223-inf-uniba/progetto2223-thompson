@@ -1,23 +1,20 @@
 package it.uniba.app.grid;
 
-import it.uniba.app.grid.type.Cell;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Map;
+
 import it.uniba.app.grid.type.Column;
+import it.uniba.app.grid.type.Coordinate;
 import it.uniba.app.grid.type.State;
 import it.uniba.app.ship.Ship;
 
 /**
+ * <Boundary>
+ *
  * Utility class for printing grids with ships and their states.
  */
-public final class GridPrinter {
-
-    /**
-     * Private constructor to prevent instantiation of the utility class.
-     * Throws an {@link IllegalStateException} with a message indicating that the
-     * class is a utility class.
-     */
-    private GridPrinter() {
-        throw new IllegalStateException("Utility class");
-    }
+public abstract class GridBoundary {
 
     /**
      * The formatter for column values.
@@ -61,20 +58,23 @@ public final class GridPrinter {
      * @param grid The grid to be printed.
      * @param size The size of the grid.
      */
-    public static void printGrid(final Cell[][] grid, final int size) {
-        GridPrinter.setFormatters(size);
+    protected void boundaryPrintGrid(final Grid grid, final int size) {
+        setFormatters(size);
         StringBuilder legend = new StringBuilder();
         for (Ship ship : Ship.values()) {
             legend.append(ship.toString() + " = " + ship.colorShip() + " ");
         }
         printLegend(legend.toString());
         printHeader(size);
+        Coordinate coord = new Coordinate();
         for (int i = 0; i < size; i++) {
+            coord.setRow(i);
             printSeparator(size);
-            printIndexColumn(i);
+            printIndexRow(i);
             for (int j = 0; j < size; j++) {
-                printCell(grid[i][j].getShip() != null
-                        ? formatterSpace + grid[i][j].getShip().colorShip()
+                coord.setColumn(Column.fromInt(j));
+                printCell(grid.isShipPlaced(coord)
+                        ? formatterSpace + grid.getShipColor(coord)
                         : formatterVoid);
             }
             System.out.println();
@@ -109,7 +109,7 @@ public final class GridPrinter {
      *
      * @param i The row index.
      */
-    private static void printIndexColumn(final int i) {
+    private static void printIndexRow(final int i) {
         System.out.print(String.format(" %2d |", (i + 1)));
     }
 
@@ -148,8 +148,8 @@ public final class GridPrinter {
      * @param grid The grid to be printed.
      * @param size The size of the grid.
      */
-    public static void printCurrentGrid(final Cell[][] grid, final int size) {
-        GridPrinter.setFormatters(size);
+    protected void boundaryPrintCurrentGrid(final Grid grid, final int size) {
+        setFormatters(size);
         System.out.println();
         StringBuilder legend = new StringBuilder();
         String color = State.HIT.getColor();
@@ -158,13 +158,16 @@ public final class GridPrinter {
         legend.append("MANCATO = " + color + " " + Ship.stringShip() + State.ANSI_RESET + " ");
         printLegend(legend.toString());
         printHeader(size);
+        Coordinate coord = new Coordinate();
         for (int i = 0; i < size; i++) {
+            coord.setRow(i);
             printSeparator(size);
-            printIndexColumn(i);
+            printIndexRow(i);
             for (int j = 0; j < size; j++) {
-                if (grid[i][j].getState() == State.VOID || grid[i][j].getState() == State.SHIP) {
+                coord.setColumn(Column.fromInt(j));
+                if (grid.getState(coord) == State.VOID || grid.getState(coord) == State.SHIP) {
                     printCell(formatterVoid);
-                } else if (grid[i][j].getState() == State.HIT) {
+                } else if (grid.getState(coord) == State.HIT) {
                     color = State.HIT.getColor();
                     printCell(color + formatterSpace + Ship.stringShip() + State.ANSI_RESET);
                 } else {
@@ -182,7 +185,7 @@ public final class GridPrinter {
      *
      * @param size The size of the grid.
      */
-    public static void setFormatters(final int size) {
+    private static void setFormatters(final int size) {
         if (size > 0 && size <= MAX_SIZE_SMALL) {
             formatterCol = "   %s   |";
             formatterRow = "-------+";
@@ -198,6 +201,21 @@ public final class GridPrinter {
             formatterRow = "---+";
             formatterVoid = "  ";
             formatterSpace = " ";
+        }
+    }
+
+    /**
+     * Method for displaying ships not sunk yet.
+     */
+    protected final void boundaryShowShips(final Map<Ship, Map<Integer, List<Coordinate>>> ships) {
+        for (Ship ship : EnumSet.copyOf(ships.keySet())) {
+            System.out.print(ship.toString() + " ");
+            for (int i = 0; i < ship.getSize(); i++) {
+                System.out.print(ship.colorShip());
+            }
+            System.out.print(" " + ships.get(ship).size());
+            System.out.print(" da affondare su " + ship.getnShips() + " totali ");
+            System.out.println();
         }
     }
 }
