@@ -53,4 +53,13 @@ public class DifficultyTest {
         assertEquals(TRIES, Difficulty.getMaxTries());
     }
 
+    /**
+     * Tests the setMaxTries method with a negative value to ensure it throws an
+     * IllegalArgumentException.
+     */
+    @Test
+    void testSetMaxTriesIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> Difficulty.setMaxTries(TRIES * -1));
+    }
+
 }
