@@ -37,4 +37,13 @@ public class ShipTest {
         assertEquals("X", Ship.stringShip());
     }
 
+    /**
+     * Tests the colorShip method to ensure it returns the correct colored
+     * representation of the ship.
+     */
+    @Test
+    void testColorShip() {
+        assertEquals("\u001B[0;32mX\u001B[0m", SHIP.colorShip());
+    }
+
 }
