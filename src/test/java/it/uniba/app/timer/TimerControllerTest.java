@@ -9,6 +9,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import it.uniba.app.timer.controller.TimerController;
+
 /**
  * Unit tests for the TimerController class.
  */
@@ -29,4 +31,13 @@ public class TimerControllerTest {
         this.timerController = TimerController.CONTROLLER;
         this.timerController.setMaxTime(MAX_TIME);
     }
+
+    /**
+     * Stop the timer after each test.
+     */
+    @AfterEach
+    void tearDown() {
+        this.timerController.stopTimer();
+    }
+
 }
