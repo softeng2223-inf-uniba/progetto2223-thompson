@@ -45,4 +45,13 @@ public class DirectionTest {
         assertEquals(Direction.DOWN, direction.rotate(), "The direction must be DOWN");
     }
 
+    /**
+     * Tests the rotate method for the DOWN direction.
+     */
+    @Test
+    void testRotateDownDirection() {
+        Direction direction = Direction.DOWN;
+        assertEquals(Direction.UP, direction.rotate(), "The direction must be UP");
+    }
+
 }
