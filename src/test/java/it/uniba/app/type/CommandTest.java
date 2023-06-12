@@ -39,6 +39,16 @@ public class CommandTest {
         assertEquals(Command.PLAY, command, "The command must be PLAY");
     }
 
+    /**
+     * Tests the getPatterns method to ensure it returns non-null patterns.
+     */
+    @Test
+    void testGetPatterns() {
+        for (Pattern pattern : Command.getPatterns()) {
+            assertNotNull(pattern);
+        }
+    }
+
     
 
 }
