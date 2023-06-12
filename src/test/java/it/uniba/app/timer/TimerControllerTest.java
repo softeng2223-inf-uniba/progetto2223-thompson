@@ -136,4 +136,13 @@ public class TimerControllerTest {
         assertEquals(RESULT_MINUTE, this.timerController.getMinutePassed(TEST_SECOND));
     }
 
+    /**
+     * Tests the getSecondPassed method to ensure it returns the correct number of
+     * seconds passed.
+     */
+    @Test
+    public void testGetSecondPassed() throws InterruptedException {
+        assertEquals(RESULT_SECOND, this.timerController.getSecondPassed(TEST_SECOND));
+    }
+
 }
