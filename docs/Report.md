@@ -254,6 +254,11 @@ Al comando /large l’applicazione risponde con OK e imposta a 18x18 la dimensio
 Al comando /extralarge l’applicazione risponde con OK e imposta a 26x26 la dimensione della griglia.
 Al comando /tempo numero l’applicazione risponde con OK e imposta a numero il numero minuti a disposizione per giocare.
 Al comando /mostratempo l’applicazione risponde visualizzando il numero di minuti trascorsi nel gioco e il numero di minuti ancora disponibili.
+Al comando /mostragriglia l’applicazione risponde visualizzando, una griglia con le righe numerate a partire da 1 e le colonne numerate a partire da A, conle navi affondate e le sole parti già colpite delle navi non affondate.
+Al comando /mostratentativi l’applicazione risponde visualizzando il numero di tentativi già effettuati,il numero di tentativi falliti e il numero massimo di tentativi falliti.
+Al comando /abbandona l'applicazione chiede conferma •se la conferma è positiva, l’applicazione risponde visualizzandosulla grigliala posizione di tutte le navi e si predispone a ricevere nuovi comandi
+•se la conferma è negativa, l'applicazione si predispone a ricevere nuovi tentativi o comandi
+
 
 [Torna all'indice](#indice)
 
