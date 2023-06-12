@@ -89,4 +89,16 @@ public class TimerControllerTest {
         assertEquals(0, this.timerController.getMaxTime());
     }
 
+    /**
+     * Tests the setMaxTime method with a negative number to ensure it throws an
+     * IllegalArgumentException.
+     */
+    @Test
+    public void testSetMaxTimeNegativeNumber() {
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    this.timerController.setMaxTime(MAX_TIME * -1);
+                });
+    }
+
 }
