@@ -176,4 +176,20 @@ public class GridTest {
         assertTrue(grid.isAllSunken(), "All ships are sunken");
     }
 
+    /**
+     * Test removing a ship from the grid when no ship exists at the given
+     * coordinate.
+     * The result should be unsuccessful.
+     */
+    @Test
+    public void testRemoveShipNoShipBoolean() {
+        Coordinate coord = new Coordinate(Column.A, ROW2);
+        Ship ship = Ship.PORTAEREI;
+        grid.setShip(ship, 1, coord);
+        coord.setRow(ROW);
+        ResultRemove result = grid.removeShip(coord);
+        assertFalse(result.getResult(), "The result is unsuccessful");
+    }
+
+
 }
