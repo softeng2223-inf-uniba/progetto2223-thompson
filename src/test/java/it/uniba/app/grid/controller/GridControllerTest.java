@@ -24,7 +24,6 @@ public class GridControllerTest {
         GridController.INSTANCE.newGrid();
     }
 
-    
     /**
      * Test the hitCoordinate method by shooting at a coordinate on the grid.
      * The result can be "acqua", "colpito", or "colpito e affondato".
@@ -35,6 +34,19 @@ public class GridControllerTest {
         String result = GridController.INSTANCE.hitCoordinate(coord);
         assertTrue(result.equals("acqua") || result.equals("colpito") || result.equals("colpito e affondato"),
                 "The result is \"acqua\", \"colpito\", or \"colpito e affondato\"");
+    }
+
+    /**
+     * Test hitting the same coordinate twice.
+     * The result should be "Questa mossa Ã¨ stata giÃ  effettuata".
+     */
+    @Test
+    public void testHitCoordinateSameCoordinate() {
+        Coordinate coord = new Coordinate(Column.A, ROW);
+        String result = GridController.INSTANCE.hitCoordinate(coord);
+        result = GridController.INSTANCE.hitCoordinate(coord);
+        assertEquals("Questa mossa Ã¨ stata giÃ  effettuata", result,
+                "The result is \"Questa mossa Ã¨ stata giÃ  effettuata\"");
     }
 
 }
