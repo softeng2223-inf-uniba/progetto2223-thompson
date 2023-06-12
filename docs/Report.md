@@ -278,8 +278,11 @@ La partita termina con insuccesso se è stato raggiunto il numero massimo di ten
 <li>Al comando <strong>/mostratentativi</strong> l’applicazione risponde visualizzando il numero di tentativi già effettuati,il numero di tentativi falliti e il numero massimo di tentativi falliti.</li><br>
 
 <li>Al comando <strong>/abbandona</strong> l'applicazione chiede conferma:
-•se la conferma è positiva, l’applicazione risponde visualizzandosulla grigliala posizione di tutte le navi e si predispone a ricevere nuovi comandi
-•se la conferma è negativa, l'applicazione si predispone a ricevere nuovi tentativi o comandi.</li><br>
+<ul>
+<li>se la conferma è positiva, l’applicazione risponde visualizzandosulla griglia la posizione di tutte le navi e si predispone a ricevere nuovi comandi;</li>
+<li>se la conferma è negativa, l'applicazione si predispone a ricevere nuovi tentativi o comandi.</li>
+</ul>
+</li><br>
 </ul>
 
 [Torna all'indice](#indice)
