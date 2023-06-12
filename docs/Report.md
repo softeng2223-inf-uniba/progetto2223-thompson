@@ -242,30 +242,41 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 ![gioca](./img/gioca.jpg)
 
 <li>Al comando <strong>/svelagriglia</strong> l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate da 1 a 10 e le colonne numerate da A a J, e tutte le navi posizionate.</li><br>
-</ul>
 
 ![svelagriglia](./img/svelagriglia.jpg)
 
-Al comando /facile numero l’applicazione risponde con OK e imposta a numero il numero massimo di tentativi falliti.
-Al comando /medio numero l’applicazione risponde con OK e imposta a numero il numero massimo di tentativi falliti.
-Al comando /difficile numero l’applicazione risponde con OK e imposta a numero il numero massimo di tentativi falliti.
-Al comando /tentativi numero l’applicazione risponde con OK e imposta a numero il numero massimo di tentativi falliti.
-Al comando /standard l’applicazione risponde con OK e imposta a 10x10 la dimensione della griglia (è il default).
-Al comando /large l’applicazione risponde con OK e imposta a 18x18 la dimensione della griglia.
-Al comando /extralarge l’applicazione risponde con OK e imposta a 26x26 la dimensione della griglia.
-Al comando /tempo numero l’applicazione risponde con OK e imposta a numero il numero minuti a disposizione per giocare.
-Al comando /mostratempo l’applicazione risponde visualizzando il numero di minuti trascorsi nel gioco e il numero di minuti ancora disponibili.
+<li>Al comando /facile numero l’applicazione risponde con OK e imposta a numero il numero massimo di tentativi falliti. </li><br>
 
-Digitando una coppia di caratteri separati da un trattino, corrispondenti rispettivamente al numero di riga e alla lettera della colonna, (es. B-4), l’applicazione risponde
+<li>Al comando /medio numero l’applicazione risponde con OK e imposta a numero il numero massimo di tentativi falliti.</li><br>
+
+<li>Al comando /difficile numero l’applicazione risponde con OK e imposta a numero il numero massimo di tentativi falliti.</li><br>
+
+<li>Al comando /tentativi numero l’applicazione risponde con OK e imposta a numero il numero massimo di tentativi falliti.</li><br>
+
+<li>Al comando /standard l’applicazione risponde con OK e imposta a 10x10 la dimensione della griglia (è il default).</li><br>
+
+<li>Al comando /large l’applicazione risponde con OK e imposta a 18x18 la dimensione della griglia.</li><br>
+
+<li>Al comando /extralarge l’applicazione risponde con OK e imposta a 26x26 la dimensione della griglia.</li><br>
+
+<li>Al comando /tempo numero l’applicazione risponde con OK e imposta a numero il numero minuti a disposizione per giocare.</li><br>
+
+<li>Al comando /mostratempo l’applicazione risponde visualizzando il numero di minuti trascorsi nel gioco e il numero di minuti ancora disponibili.</li><br>
+
+<li>Digitando una coppia di caratteri separati da un trattino, corrispondenti rispettivamente al numero di riga e alla lettera della colonna, (es. B-4), l’applicazione risponde
 •“acqua” se sulla cella non è posizionata nessuna nave;
 •"colpito" se sulla cella è posizionata una nave;
 •"colpito e affondato" se sulla cella è posizionata una nave ed è l’ultima cella non colpita della nave.
-Qualunque sia l’esito del tentativo, l’applicazione mostra la griglia con le navi colpite parzialmente o affondate, il numero di tentativi già effettuati e il tempo trascorso. La partita termina con successo se il tentativo ha affondato l’ultima nave. La partita termina con insuccesso se è stato raggiunto il numero massimo di tentativi falliti o se è scaduto il tempo di gioco.
+Qualunque sia l’esito del tentativo, l’applicazione mostra la griglia con le navi colpite parzialmente o affondate, il numero di tentativi già effettuati e il tempo trascorso. La partita termina con successo se il tentativo ha affondato l’ultima nave. La partita termina con insuccesso se è stato raggiunto il numero massimo di tentativi falliti o se è scaduto il tempo di gioco.</li><br>
 
-Al comando /mostragriglia l’applicazione risponde visualizzando, una griglia con le righe numerate a partire da 1 e le colonne numerate a partire da A, conle navi affondate e le sole parti già colpite delle navi non affondate.
-Al comando /mostratentativi l’applicazione risponde visualizzando il numero di tentativi già effettuati,il numero di tentativi falliti e il numero massimo di tentativi falliti.
-Al comando /abbandona l'applicazione chiede conferma •se la conferma è positiva, l’applicazione risponde visualizzandosulla grigliala posizione di tutte le navi e si predispone a ricevere nuovi comandi
-•se la conferma è negativa, l'applicazione si predispone a ricevere nuovi tentativi o comandi.
+<li>Al comando /mostragriglia l’applicazione risponde visualizzando, una griglia con le righe numerate a partire da 1 e le colonne numerate a partire da A, conle navi affondate e le sole parti già colpite delle navi non affondate.</li><br>
+
+<li>Al comando /mostratentativi l’applicazione risponde visualizzando il numero di tentativi già effettuati,il numero di tentativi falliti e il numero massimo di tentativi falliti.</li><br>
+
+<li>Al comando /abbandona l'applicazione chiede conferma
+•se la conferma è positiva, l’applicazione risponde visualizzandosulla grigliala posizione di tutte le navi e si predispone a ricevere nuovi comandi
+•se la conferma è negativa, l'applicazione si predispone a ricevere nuovi tentativi o comandi.</li><br>
+</ul>
 
 [Torna all'indice](#indice)
 
