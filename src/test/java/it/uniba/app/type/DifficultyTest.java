@@ -110,4 +110,15 @@ public class DifficultyTest {
         assertEquals("difficile", Difficulty.HARD.toString());
     }
 
+    /**
+     * Tests the getDifficulty method.
+     * This test does not contain any assertions and is incomplete.
+     * Additional assertions or test cases can be added as needed.
+     */
+    @Test
+    void testGetDifficultyDifficulty() {
+        Difficulty.setDifficulty(Difficulty.HARD);
+        assertEquals(Difficulty.HARD, Difficulty.getDifficulty());
+    }
+
 }
