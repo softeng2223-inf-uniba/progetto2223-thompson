@@ -69,4 +69,14 @@ public class TimerControllerTest {
         assertFalse(this.timerController.isRunning());
     }
 
+    /**
+     * Tests the setMaxTime method with a positive number to ensure it sets the
+     * maximum time correctly.
+     */
+    @Test
+    public void testSetMaxTimePositiveNumber() {
+        this.timerController.setMaxTime(MAX_TIME);
+        assertEquals(MAX_TIME, this.timerController.getMaxTime());
+    }
+
 }
