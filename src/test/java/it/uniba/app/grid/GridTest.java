@@ -46,4 +46,24 @@ public class GridTest {
         }
         assertEquals(0, count, "The number of ships is 0");
     }
+
+    /**
+     * Test getting ships when there is a ship on the grid.
+     * The number of ships should be 1.
+     */
+    @Test
+    public void testGetShipsShips() {
+        int count = 0;
+        Coordinate coord = new Coordinate(Column.A, 1);
+        Ship ship = Ship.CACCIATORPEDINIERE;
+        grid.setCell(coord, ship);
+        grid.setShip(ship, 1, coord);
+        Map<Ship, Map<Integer, List<Coordinate>>> ships = grid.getShips();
+        System.out.println(ships);
+        for (Ship s : ships.keySet()) {
+            count += ships.get(s).keySet().size();
+        }
+        assertEquals(1, count, "The number of ships is 1");
+    }
+
 }
