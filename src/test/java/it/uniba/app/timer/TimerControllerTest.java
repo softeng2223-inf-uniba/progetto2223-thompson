@@ -117,7 +117,7 @@ public class TimerControllerTest {
         assertTrue(currentTimeSeconds == 1);
     }
 
-     /**
+    /**
      * Tests the getMaxTimeSecond method to ensure it returns the maximum time in
      * seconds.
      */
@@ -143,6 +143,15 @@ public class TimerControllerTest {
     @Test
     public void testGetSecondPassed() throws InterruptedException {
         assertEquals(RESULT_SECOND, this.timerController.getSecondPassed(TEST_SECOND));
+    }
+
+    /**
+     * Tests the setRunning method to ensure it sets the running status correctly.
+     */
+    @Test
+    void testSetRunning() {
+        this.timerController.setRunning(true);
+        assertTrue(this.timerController.isRunning());
     }
 
 }
