@@ -60,4 +60,15 @@ public class CommandTest {
         assertEquals("/mostralivello", names[0]);
     }
 
+    /**
+     * Tests the getDescription method to ensure it returns the correct description
+     * for a command.
+     */
+    @Test
+    void testGetDescription() {
+        Command command = Command.SHOW_GRID;
+        assertEquals("Visualizza la griglia con le navi affondate e le sole parti già colpite delle navi non affondate",
+                command.getDescription());
+    }
+
 }
