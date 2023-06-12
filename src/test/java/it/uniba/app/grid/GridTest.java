@@ -97,6 +97,17 @@ public class GridTest {
         assertEquals(SIZE, grid.getSize(), "The size of the grid is 50");
     }
 
-    
+    /**
+     * Test setting a cell on the grid with a ship.
+     * The cell should not be empty.
+     */
+    @Test
+    public void testSetCell() {
+        Coordinate coord = new Coordinate(Column.B, ROW);
+        Ship ship = Ship.INCROCIATORE;
+        grid.setCell(coord, ship);
+        assertFalse(grid.isCellEmpty(coord), "The cell is not empty");
+    }
+
 
 }
