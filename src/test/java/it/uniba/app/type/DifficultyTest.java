@@ -82,4 +82,6 @@ public class DifficultyTest {
         assertEquals(Difficulty.MEDIUM.getTries(), Difficulty.getMaxTries());
     }
 
+    
+
 }
