@@ -9,8 +9,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import it.uniba.app.timer.controller.TimerController;
-
 /**
  * Unit tests for the TimerController class.
  */
@@ -153,5 +151,4 @@ public class TimerControllerTest {
         this.timerController.setRunning(true);
         assertTrue(this.timerController.isRunning());
     }
-
 }
