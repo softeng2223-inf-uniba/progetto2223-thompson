@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit tests for the Direction enum.
  */
-public class DirectionTest {
+class DirectionTest {
     /**
      * Tests the randomDirection method to ensure the direction is not null.
      */

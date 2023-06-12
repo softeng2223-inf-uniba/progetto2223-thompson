@@ -470,6 +470,7 @@ public abstract class InputBoundary {
                 }
                 input = scanner.nextLine();
             }
+            printGrid();
             if (input != null) {
                 if (input.contains("/")) {
                     try {

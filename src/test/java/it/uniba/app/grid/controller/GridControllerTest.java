@@ -13,7 +13,7 @@ import it.uniba.app.grid.type.Coordinate;
 /**
  * Unit tests for the GridController class.
  */
-public class GridControllerTest {
+class GridControllerTest {
     private static final int ROW = 10;
 
     /**
@@ -29,7 +29,7 @@ public class GridControllerTest {
      * The result can be "acqua", "colpito", or "colpito e affondato".
      */
     @Test
-    public void testHitCoordinate() {
+    void testHitCoordinate() {
         Coordinate coord = new Coordinate(Column.A, ROW);
         String result = GridController.INSTANCE.hitCoordinate(coord);
         assertTrue(result.equals("acqua") || result.equals("colpito") || result.equals("colpito e affondato"),
@@ -41,7 +41,7 @@ public class GridControllerTest {
      * The result should be "Questa mossa è stata giÃ  effettuata".
      */
     @Test
-    public void testHitCoordinateSameCoordinate() {
+    void testHitCoordinateSameCoordinate() {
         Coordinate coord = new Coordinate(Column.A, ROW);
         String result = GridController.INSTANCE.hitCoordinate(coord);
         result = GridController.INSTANCE.hitCoordinate(coord);
@@ -54,7 +54,7 @@ public class GridControllerTest {
      * The result should be false.
      */
     @Test
-    public void testIsAllSunken() {
+    void testIsAllSunken() {
         assertFalse(GridController.INSTANCE.isAllSunken(), "Not all ships are sunk");
     }
 }

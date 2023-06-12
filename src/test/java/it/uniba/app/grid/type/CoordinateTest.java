@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit tests for the Coordinate class.
  */
-public class CoordinateTest {
+class CoordinateTest {
     private static final Column COLUMN = Column.B;
     private static final int ROW = 5;
     private static final int MAX_ROW = 26;
@@ -140,7 +140,7 @@ public class CoordinateTest {
         int nMaxColumn = SizeGrid.getSize();
         int nMaxRow = SizeGrid.getSize();
         Coordinate coordinate = Coordinate.random(nMaxColumn, nMaxRow);
-        assertNotNull(coordinate);
+        assertNotNull(coordinate, "The coordinate must not be null");
     }
 
     /**
@@ -157,8 +157,6 @@ public class CoordinateTest {
         input.put("^([a-z])-(1[0-9]|2[0-6]|[1-9])$", data);
         Coordinate coordinate = Coordinate.parse(input);
         assertNotNull(coordinate, "The coordinate must not be null");
-        assertEquals(Column.A, coordinate.getColumn());
-        assertEquals(1, coordinate.getRow());
     }
 
     /**

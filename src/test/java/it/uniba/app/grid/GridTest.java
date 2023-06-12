@@ -19,7 +19,7 @@ import it.uniba.app.ship.Ship;
 /**
  * Unit tests for the Grid class.
  */
-public class GridTest {
+class GridTest {
     private Grid grid;
     private static final int SIZE = 50;
     private static final int ROW = 20;
@@ -38,7 +38,7 @@ public class GridTest {
      * The number of ships should be 0.
      */
     @Test
-    public void testGetShipsNoShip() {
+    void testGetShipsNoShip() {
         int count = 0;
         Map<Ship, Map<Integer, List<Coordinate>>> ships = grid.getShips();
         for (var s : ships.entrySet()) {
@@ -52,7 +52,7 @@ public class GridTest {
      * The number of ships should be 1.
      */
     @Test
-    public void testGetShipsShips() {
+    void testGetShipsShips() {
         int count = 0;
         Coordinate coord = new Coordinate(Column.A, 1);
         Ship ship = Ship.CACCIATORPEDINIERE;
@@ -71,7 +71,7 @@ public class GridTest {
      * The result should be true.
      */
     @Test
-    public void testIsAllSunkenTrue() {
+    void testIsAllSunkenTrue() {
         assertTrue(grid.isAllSunken(), "All ships are sunken");
     }
 
@@ -80,7 +80,7 @@ public class GridTest {
      * The result should be false.
      */
     @Test
-    public void testIsAllSunkenFalse() {
+    void testIsAllSunkenFalse() {
         Coordinate coord = new Coordinate(Column.A, 1);
         Ship ship = Ship.CACCIATORPEDINIERE;
         grid.setCell(coord, ship);
@@ -93,7 +93,7 @@ public class GridTest {
      * The result should be the size of the grid, which is 50.
      */
     @Test
-    public void testGetSize() {
+    void testGetSize() {
         assertEquals(SIZE, grid.getSize(), "The size of the grid is 50");
     }
 
@@ -102,7 +102,7 @@ public class GridTest {
      * The cell should not be empty.
      */
     @Test
-    public void testSetCell() {
+    void testSetCell() {
         Coordinate coord = new Coordinate(Column.B, ROW);
         Ship ship = Ship.INCROCIATORE;
         grid.setCell(coord, ship);
@@ -114,7 +114,7 @@ public class GridTest {
      * The cell should be empty.
      */
     @Test
-    public void testIsCellEmpty() {
+    void testIsCellEmpty() {
         Coordinate coord = new Coordinate(Column.A, ROW);
         assertTrue(grid.isCellEmpty(coord), "The cell is empty");
     }
@@ -124,7 +124,7 @@ public class GridTest {
      * All ships should not be sunk.
      */
     @Test
-    public void testSetShip() {
+    void testSetShip() {
         Coordinate coord = new Coordinate(Column.A, ROW);
         Ship ship = Ship.CACCIATORPEDINIERE;
         grid.setShip(ship, 1, coord);
@@ -137,7 +137,7 @@ public class GridTest {
      * The result should be successful.
      */
     @Test
-    public void testRemoveShipShipBoolean() {
+    void testRemoveShipShipBoolean() {
         Coordinate coord = new Coordinate(Column.A, ROW2);
         Ship ship = Ship.PORTAEREI;
         grid.setShip(ship, 1, coord);
@@ -151,7 +151,7 @@ public class GridTest {
      * The message should be "colpito e affondato".
      */
     @Test
-    public void testRemoveShipShipMessage() {
+    void testRemoveShipShipMessage() {
         Coordinate coord = new Coordinate(Column.A, ROW2);
         Ship ship = Ship.PORTAEREI;
         grid.setShip(ship, 1, coord);
@@ -165,7 +165,7 @@ public class GridTest {
      * All ships should be sunk after the removal.
      */
     @Test
-    public void testRemoveShipShipAllSunken() {
+    void testRemoveShipShipAllSunken() {
         Coordinate coord = new Coordinate(Column.A, ROW2);
         Ship ship = Ship.PORTAEREI;
         grid.setShip(ship, 1, coord);
@@ -179,7 +179,7 @@ public class GridTest {
      * The result should be unsuccessful.
      */
     @Test
-    public void testRemoveShipNoShipBoolean() {
+    void testRemoveShipNoShipBoolean() {
         Coordinate coord = new Coordinate(Column.A, ROW2);
         Ship ship = Ship.PORTAEREI;
         grid.setShip(ship, 1, coord);
@@ -194,7 +194,7 @@ public class GridTest {
      * The message should be "acqua".
      */
     @Test
-    public void testRemoveShipNoShipMessage() {
+    void testRemoveShipNoShipMessage() {
         Coordinate coord = new Coordinate(Column.A, ROW2);
         Ship ship = Ship.PORTAEREI;
         grid.setShip(ship, 1, coord);
@@ -209,7 +209,7 @@ public class GridTest {
      * Not all ships should be sunk after the removal.
      */
     @Test
-    public void testRemoveShipNoShipAllSunken() {
+    void testRemoveShipNoShipAllSunken() {
         Coordinate coord = new Coordinate(Column.A, ROW2);
         Ship ship = Ship.PORTAEREI;
         grid.setShip(ship, 1, coord);
@@ -223,7 +223,7 @@ public class GridTest {
      * The state should be VOID.
      */
     @Test
-    public void testGetStateVoid() {
+    void testGetStateVoid() {
         Coordinate coord = new Coordinate(Column.A, ROW2);
         assertEquals(State.VOID, grid.getState(coord), "The state is VOID");
     }
@@ -233,7 +233,7 @@ public class GridTest {
      * The state should be SHIP.
      */
     @Test
-    public void testGetStateShip() {
+    void testGetStateShip() {
         Coordinate coord = new Coordinate(Column.A, ROW2);
         grid.setCell(coord, Ship.PORTAEREI);
         assertEquals(State.SHIP, grid.getState(coord), "The state is SHIP");
@@ -244,7 +244,7 @@ public class GridTest {
      * The state should be HIT.
      */
     @Test
-    public void testSetState() {
+    void testSetState() {
         Coordinate coord = new Coordinate(Column.A, ROW2);
         grid.setCell(coord, Ship.PORTAEREI);
         grid.setState(coord, State.HIT);
@@ -257,7 +257,7 @@ public class GridTest {
      * The result should be true.
      */
     @Test
-    public void testIsShipPlacedTrue() {
+    void testIsShipPlacedTrue() {
         Coordinate coord = new Coordinate(Column.A, ROW2);
         grid.setCell(coord, Ship.PORTAEREI);
         assertTrue(grid.isShipPlaced(coord), "The ship is placed");
@@ -269,7 +269,7 @@ public class GridTest {
      * The result should be false.
      */
     @Test
-    public void testIsShipPlacedFalse() {
+    void testIsShipPlacedFalse() {
         Coordinate coord = new Coordinate(Column.A, ROW2);
         assertFalse(grid.isShipPlaced(coord), "The ship is not placed");
     }
@@ -279,7 +279,7 @@ public class GridTest {
      * The color should match the ship's color.
      */
     @Test
-    public void testGetShipColor() {
+    void testGetShipColor() {
         Coordinate coord = new Coordinate(Column.A, ROW2);
         grid.setCell(coord, Ship.PORTAEREI);
         assertEquals(Ship.PORTAEREI.colorShip(), grid.getShipColor(coord), "The color matches the ship's color");

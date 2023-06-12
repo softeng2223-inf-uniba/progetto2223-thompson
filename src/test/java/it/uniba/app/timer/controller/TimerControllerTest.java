@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit tests for the TimerController class.
  */
-public class TimerControllerTest {
+class TimerControllerTest {
     private TimerController timerController;
     private static final int MAX_TIME = 5;
     private static final int TO_SECOND = 60;
@@ -25,7 +25,7 @@ public class TimerControllerTest {
      * Set up the TimerController instance before each test.
      */
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         this.timerController = TimerController.CONTROLLER;
         this.timerController.setMaxTime(MAX_TIME);
     }
@@ -43,17 +43,17 @@ public class TimerControllerTest {
      * false.
      */
     @Test
-    public void testIsRunningBeforeStart() {
-        assertFalse(this.timerController.isRunning());
+    void testIsRunningBeforeStart() {
+        assertFalse(this.timerController.isRunning(), "The timer must not be running");
     }
 
     /**
      * Tests the isRunning method after starting the game to ensure it returns true.
      */
     @Test
-    public void testIsRunningStartGame() {
+    void testIsRunningStartGame() {
         this.timerController.startGame();
-        assertTrue(this.timerController.isRunning());
+        assertTrue(this.timerController.isRunning(), "The timer must be running");
     }
 
     /**
@@ -61,10 +61,10 @@ public class TimerControllerTest {
      * false.
      */
     @Test
-    public void testIsRunningFinishGame() {
+    void testIsRunningFinishGame() {
         this.timerController.startGame();
         this.timerController.stopTimer();
-        assertFalse(this.timerController.isRunning());
+        assertFalse(this.timerController.isRunning(), "The timer must not be running");
     }
 
     /**
@@ -72,9 +72,9 @@ public class TimerControllerTest {
      * maximum time correctly.
      */
     @Test
-    public void testSetMaxTimePositiveNumber() {
+    void testSetMaxTimePositiveNumber() {
         this.timerController.setMaxTime(MAX_TIME);
-        assertEquals(MAX_TIME, this.timerController.getMaxTime());
+        assertEquals(MAX_TIME, this.timerController.getMaxTime(), "The max time must be " + MAX_TIME);
     }
 
     /**
@@ -82,9 +82,9 @@ public class TimerControllerTest {
      * correctly.
      */
     @Test
-    public void testSetMaxTimeZero() {
+    void testSetMaxTimeZero() {
         this.timerController.setMaxTime(0);
-        assertEquals(0, this.timerController.getMaxTime());
+        assertEquals(0, this.timerController.getMaxTime(), "The max time must be 0");
     }
 
     /**
@@ -92,11 +92,11 @@ public class TimerControllerTest {
      * IllegalArgumentException.
      */
     @Test
-    public void testSetMaxTimeNegativeNumber() {
+    void testSetMaxTimeNegativeNumber() {
         assertThrows(IllegalArgumentException.class,
                 () -> {
                     this.timerController.setMaxTime(MAX_TIME * -1);
-                });
+                }, "The max time must be a positive number");
     }
 
     /**
@@ -104,7 +104,7 @@ public class TimerControllerTest {
      * in seconds.
      */
     @Test
-    public void testGetCurrentTimeSecond() {
+    void testGetCurrentTimeSecond() {
         this.timerController.startGame();
         try {
             Thread.sleep(TO_MILLISECOND);
@@ -112,7 +112,7 @@ public class TimerControllerTest {
         }
 
         long currentTimeSeconds = this.timerController.getCurrentTimeSecond();
-        assertTrue(currentTimeSeconds == 1);
+        assertTrue(currentTimeSeconds == 1, "The current time must be 1 second");
     }
 
     /**
@@ -120,9 +120,10 @@ public class TimerControllerTest {
      * seconds.
      */
     @Test
-    public void testGetMaxTimeSecond() {
+    void testGetMaxTimeSecond() {
         this.timerController.setMaxTime(MAX_TIME);
-        assertEquals(MAX_TIME * TO_SECOND, this.timerController.getMaxTimeSecond());
+        assertEquals(MAX_TIME * TO_SECOND, this.timerController.getMaxTimeSecond(),
+                "The max time must be " + MAX_TIME * TO_SECOND + " seconds");
     }
 
     /**
@@ -130,8 +131,9 @@ public class TimerControllerTest {
      * minutes passed.
      */
     @Test
-    public void testGetMinutePassed() {
-        assertEquals(RESULT_MINUTE, this.timerController.getMinutePassed(TEST_SECOND));
+    void testGetMinutePassed() {
+        assertEquals(RESULT_MINUTE, this.timerController.getMinutePassed(TEST_SECOND),
+                "The minutes passed must be " + RESULT_MINUTE);
     }
 
     /**
@@ -139,8 +141,9 @@ public class TimerControllerTest {
      * seconds passed.
      */
     @Test
-    public void testGetSecondPassed() throws InterruptedException {
-        assertEquals(RESULT_SECOND, this.timerController.getSecondPassed(TEST_SECOND));
+    void testGetSecondPassed() throws InterruptedException {
+        assertEquals(RESULT_SECOND, this.timerController.getSecondPassed(TEST_SECOND),
+                "The seconds passed must be " + RESULT_SECOND);
     }
 
     /**
@@ -149,6 +152,6 @@ public class TimerControllerTest {
     @Test
     void testSetRunning() {
         this.timerController.setRunning(true);
-        assertTrue(this.timerController.isRunning());
+        assertTrue(this.timerController.isRunning(), "The timer must be running");
     }
 }

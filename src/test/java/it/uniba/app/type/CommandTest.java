@@ -16,7 +16,7 @@ import it.uniba.app.parser.Parser;
 /**
  * Unit tests for the Command class.
  */
-public class CommandTest {
+class CommandTest {
     private static final String COMMAND = "/gioca";
     private static final String REGEX = "(/[a-z]+)";
 
@@ -45,7 +45,7 @@ public class CommandTest {
     @Test
     void testGetPatterns() {
         for (Pattern pattern : Command.getPatterns()) {
-            assertNotNull(pattern);
+            assertNotNull(pattern, "The pattern must be non-null");
         }
     }
 
@@ -57,7 +57,7 @@ public class CommandTest {
     void testGetNames() {
         Command command = Command.SHOW_LEVEL;
         String[] names = command.getNames();
-        assertEquals("/mostralivello", names[0]);
+        assertEquals("/mostralivello", names[0], "The name must be /mostralivello");
     }
 
     /**
@@ -68,7 +68,7 @@ public class CommandTest {
     void testGetDescription() {
         Command command = Command.SHOW_GRID;
         assertEquals("Visualizza la griglia con le navi affondate e le sole parti già colpite delle navi non affondate",
-                command.getDescription());
+                command.getDescription(), "The description must be correct");
     }
 
     /**
@@ -78,7 +78,7 @@ public class CommandTest {
     @Test
     void testGetTypeToString() {
         Command command = Command.YES;
-        assertEquals("confirm", command.getTypeToString());
+        assertEquals("confirm", command.getTypeToString(), "The type must be confirm");
     }
 
     /**
@@ -88,7 +88,7 @@ public class CommandTest {
     @Test
     void testGetMaxArgs() {
         Command command = Command.TIME;
-        assertEquals(1, command.getMaxArgs());
+        assertEquals(1, command.getMaxArgs(), "The maximum number of arguments must be 1");
     }
 
     /**
@@ -98,7 +98,7 @@ public class CommandTest {
     @Test
     void testParseNoArg() {
         Map<Command, List<String>> result = Command.parse(Parser.parseInput(COMMAND, Pattern.compile(REGEX)));
-        assertTrue(result.containsKey(Command.PLAY) && result.get(Command.PLAY).isEmpty());
+        assertTrue(result.containsKey(Command.PLAY) && result.get(Command.PLAY).isEmpty(), "The command must be PLAY");
     }
 
     /**
@@ -110,7 +110,8 @@ public class CommandTest {
         String command = "/facile 500";
         String regex = "(/[a-z]+) ([-|+]*[1-9][0-9]*)";
         Map<Command, List<String>> result = Command.parse(Parser.parseInput(command, Pattern.compile(regex)));
-        assertTrue(result.containsKey(Command.EASY) && result.get(Command.EASY).contains("500"));
+        assertTrue(result.containsKey(Command.EASY) && result.get(Command.EASY).contains("500"),
+                "The command must be EASY");
     }
 
     /**
@@ -122,7 +123,7 @@ public class CommandTest {
         String command = "/facil 500";
         String regex = "(/[a-z]+) ([-|+]*[1-9][0-9]*)";
         Map<Command, List<String>> result = Command.parse(Parser.parseInput(command, Pattern.compile(regex)));
-        assertNull(result);
+        assertNull(result, "The command must be null");
     }
 
 }

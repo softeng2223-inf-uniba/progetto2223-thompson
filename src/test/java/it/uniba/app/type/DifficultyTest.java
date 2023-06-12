@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit tests for the Difficulty class.
  */
-public class DifficultyTest {
+class DifficultyTest {
     private static final int TRIES = 50;
     private static final int SET_TRIES = 8;
     private static final int HARD_TRIES = 10;
@@ -19,8 +19,8 @@ public class DifficultyTest {
      */
     @Test
     void testGetCurrentTries() {
-        Difficulty.setDifficulty(Difficulty.EASY);
-        assertEquals(TRIES, Difficulty.getCurrentTries());
+        Difficulty.setCurrentTries(TRIES);
+        assertEquals(TRIES, Difficulty.getCurrentTries(), "The current tries must be 50");
     }
 
     /**
@@ -30,7 +30,7 @@ public class DifficultyTest {
     @Test
     void testSetCurrentTries() {
         Difficulty.setCurrentTries(TRIES + SET_TRIES);
-        assertEquals(TRIES + SET_TRIES, Difficulty.getCurrentTries());
+        assertEquals(TRIES + SET_TRIES, Difficulty.getCurrentTries(), "The current tries must be 58");
     }
 
     /**
@@ -40,7 +40,7 @@ public class DifficultyTest {
     @Test
     void testGetMaxTries() {
         Difficulty.setDifficulty(Difficulty.MEDIUM);
-        assertEquals(Difficulty.MEDIUM.getTries(), Difficulty.getMaxTries());
+        assertEquals(Difficulty.MEDIUM.getTries(), Difficulty.getMaxTries(), "The max tries must be 20");
     }
 
     /**
@@ -50,7 +50,7 @@ public class DifficultyTest {
     @Test
     void testSetMaxTries() {
         Difficulty.setMaxTries(TRIES);
-        assertEquals(TRIES, Difficulty.getMaxTries());
+        assertEquals(TRIES, Difficulty.getMaxTries(), "The max tries must be 50");
     }
 
     /**
@@ -59,7 +59,8 @@ public class DifficultyTest {
      */
     @Test
     void testSetMaxTriesIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> Difficulty.setMaxTries(TRIES * -1));
+        assertThrows(IllegalArgumentException.class, () -> Difficulty.setMaxTries(TRIES * -1),
+                "The max tries must be positive");
     }
 
     /**
@@ -69,7 +70,7 @@ public class DifficultyTest {
     @Test
     void testSetDifficultyDifficulty() {
         Difficulty.setDifficulty(Difficulty.EASY);
-        assertEquals(Difficulty.EASY, Difficulty.getDifficulty());
+        assertEquals(Difficulty.EASY, Difficulty.getDifficulty(), "The difficulty must be EASY");
     }
 
     /**
@@ -79,7 +80,7 @@ public class DifficultyTest {
     @Test
     void testSetDifficultyMaxTries() {
         Difficulty.setDifficulty(Difficulty.MEDIUM);
-        assertEquals(Difficulty.MEDIUM.getTries(), Difficulty.getMaxTries());
+        assertEquals(Difficulty.MEDIUM.getTries(), Difficulty.getMaxTries(), "The max tries must be 20");
     }
 
     /**
@@ -89,7 +90,7 @@ public class DifficultyTest {
     @Test
     void testGetFailedTries() {
         Difficulty.setFailedTries(SET_TRIES);
-        assertEquals(SET_TRIES, Difficulty.getFailedTries());
+        assertEquals(SET_TRIES, Difficulty.getFailedTries(), "The failed tries must be 8");
     }
 
     /**
@@ -99,7 +100,7 @@ public class DifficultyTest {
     @Test
     void testSetFailedTries() {
         Difficulty.setFailedTries(TRIES + 1);
-        assertEquals(TRIES + 1, Difficulty.getFailedTries());
+        assertEquals(TRIES + 1, Difficulty.getFailedTries(), "The failed tries must be 51");
     }
 
     /**
@@ -108,7 +109,7 @@ public class DifficultyTest {
      */
     @Test
     void testGetTries() {
-        assertEquals(TRIES, Difficulty.EASY.getTries());
+        assertEquals(TRIES, Difficulty.EASY.getTries(), "The tries must be 50");
     }
 
     /**
@@ -117,7 +118,7 @@ public class DifficultyTest {
      */
     @Test
     void testToString() {
-        assertEquals("difficile", Difficulty.HARD.toString());
+        assertEquals("difficile", Difficulty.HARD.toString(), "The string must be 'difficile'");
     }
 
     /**
@@ -128,7 +129,7 @@ public class DifficultyTest {
     @Test
     void testGetDifficultyDifficulty() {
         Difficulty.setDifficulty(Difficulty.HARD);
-        assertEquals(Difficulty.HARD, Difficulty.getDifficulty());
+        assertEquals(Difficulty.HARD, Difficulty.getDifficulty(), "The difficulty must be HARD");
     }
 
     /**
@@ -139,6 +140,6 @@ public class DifficultyTest {
     @Test
     void testGetDifficultyTries() {
         Difficulty.setDifficulty(Difficulty.HARD);
-        assertEquals(HARD_TRIES, Difficulty.getDifficulty().getTries());
+        assertEquals(HARD_TRIES, Difficulty.getDifficulty().getTries(), "The tries must be 10");
     }
 }

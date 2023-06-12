@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit tests for the Column enum.
  */
-public class ColumnTest {
+class ColumnTest {
     private static final int MIN_VALUE = 0;
     private static final int MAX_VALUE = 25;
     private static final int INVALID_MIN_VALUE = -1;

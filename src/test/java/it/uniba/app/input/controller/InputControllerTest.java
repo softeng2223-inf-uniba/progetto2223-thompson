@@ -17,7 +17,7 @@ import it.uniba.app.type.Difficulty;
 /**
  * Unit tests for the InputController class.
  */
-public class InputControllerTest {
+class InputControllerTest {
     private InputController inputController = InputController.CONTROLLER;
     private static final int TRIES = 500;
     private static final int MAX_TRIES = 10;
@@ -29,112 +29,111 @@ public class InputControllerTest {
      * Tests the executeCommand method with a SetDifficultyCommand input.
      */
     @Test
-    public void testExecuteCommandSetDifficultyCommand() {
+    void testExecuteCommandSetDifficultyCommand() {
         String input = "/medio";
         inputController.executeCommand(Parser.parseInput(input, Command.getPatterns()));
-        assertEquals(Difficulty.MEDIUM, Difficulty.getDifficulty());
+        assertEquals(Difficulty.MEDIUM, Difficulty.getDifficulty(), "The difficulty must be MEDIUM");
     }
 
     /**
      * Tests the executeCommand method with a PlayCommand input.
      */
     @Test
-    public void testExecuteCommandPlayCommand() {
+    void testExecuteCommandPlayCommand() {
         String input = "/gioca";
         inputController.executeCommand(Parser.parseInput(input, Command.getPatterns()));
-        assertTrue(inputController.isInGame());
+        assertTrue(inputController.isInGame(), "The game must be started");
     }
 
     /**
      * Tests the executeCommand method with a TriesCommand input.
      */
     @Test
-    public void testExecuteCommandTriesCommand() {
+    void testExecuteCommandTriesCommand() {
         String input = "/tentativi " + TRIES;
         inputController.executeCommand(Parser.parseInput(input, Command.getPatterns()));
-        assertTrue(Difficulty.getMaxTries() == TRIES);
+        assertTrue(Difficulty.getMaxTries() == TRIES, "The max tries must be " + TRIES);
     }
 
     /**
      * Tests the quitGame method.
      */
     @Test
-    public void testQuitGame() {
+    void testQuitGame() {
         TimerController.CONTROLLER.startGame();
         inputController.quitGame();
-        assertFalse(inputController.isInGame());
+        assertFalse(inputController.isInGame(), "The game must be stopped");
     }
 
     /**
      * Tests the createGrid method.
      */
     @Test
-    public void testCreateGrid() {
+    void testCreateGrid() {
         inputController.createGrid();
-        assertFalse(inputController.isGameFinish());
+        assertFalse(inputController.isGameFinish(), "The game must be not finished");
     }
 
     /**
      * Tests the fireShoot method.
      */
     @Test
-    public void testFireShoot() {
+    void testFireShoot() {
         inputController.createGrid();
         Coordinate coordinate = new Coordinate(Column.B, 1);
         String result = inputController.fireShoot(coordinate);
-        assertTrue(result.equals("acqua") || result.equals("colpito") || result.equals("colpito e affondato"));
+        assertTrue(result.equals("acqua") || result.equals("colpito") || result.equals("colpito e affondato"),
+                "The result must be 'acqua', 'colpito' or 'colpito e affondato'");
     }
 
     /**
      * Tests the getDifferenceTries method.
      */
     @Test
-    public void testGetDifferenceTries() {
+    void testGetDifferenceTries() {
         Difficulty.setMaxTries(MAX_TRIES);
         Difficulty.setFailedTries(CURRENT_TRIES);
-
         int difference = inputController.getDifferenceTries();
-
-        assertEquals(RESULT, difference);
+        assertEquals(RESULT, difference, "The difference must be " + RESULT);
     }
 
     /**
      * Tests the setSizeGrid method.
      */
     @Test
-    public void testSetSizeGrid() {
+    void testSetSizeGrid() {
         String input = "/standard";
         inputController.executeCommand(Parser.parseInput(input, Command.getPatterns()));
-        assertEquals(SIZE, SizeGrid.getSize());
+        assertEquals(SIZE, SizeGrid.getSize(), "The size must be " + SIZE);
     }
 
     /**
      * Tests the setOnlyDifficulty method.
      */
     @Test
-    public void testSetOnlyDifficulty() {
+    void testSetOnlyDifficulty() {
         String input = "/facile";
         inputController.executeCommand(Parser.parseInput(input, Command.getPatterns()));
-        assertEquals(Difficulty.EASY, Difficulty.getDifficulty());
+        assertEquals(Difficulty.EASY, Difficulty.getDifficulty(), "The difficulty must be EASY");
     }
 
     /**
      * Tests the setMaxTries method.
      */
     @Test
-    public void testSetMaxTries() {
+    void testSetMaxTries() {
         inputController.setMaxTries(TRIES);
-        assertEquals(TRIES, Difficulty.getMaxTries());
+        assertEquals(TRIES, Difficulty.getMaxTries(), "The max tries must be " + TRIES);
     }
 
     /**
      * Tests the getDifficultyString method.
      */
     @Test
-    public void testGetDifficultyString() {
+    void testGetDifficultyString() {
         Difficulty.setDifficulty(Difficulty.MEDIUM);
         String difficultyString = inputController.getDifficultyString();
-        assertEquals("medio", difficultyString);
+        assertEquals("medio", difficultyString, "The difficulty string must be 'medio'");
     }
 
     /**
@@ -142,7 +141,7 @@ public class InputControllerTest {
      */
     @Test
     void testGetTotalTriesNoTries() {
-        assertEquals(0, inputController.getTotalTries());
+        assertEquals(0, inputController.getTotalTries(), "The total tries must be 0");
     }
 
     /**
@@ -155,7 +154,7 @@ public class InputControllerTest {
         inputController.fireShoot(coordinate);
         coordinate = new Coordinate(Column.B, 2);
         inputController.fireShoot(coordinate);
-        assertEquals(2, inputController.getTotalTries());
+        assertEquals(2, inputController.getTotalTries(), "The total tries must be 2");
     }
 
     /**
@@ -164,7 +163,7 @@ public class InputControllerTest {
     @Test
     void testIsInGameTrue() {
         TimerController.CONTROLLER.startGame();
-        assertTrue(inputController.isInGame());
+        assertTrue(inputController.isInGame(), "The game must be in progress");
     }
 
     /**
@@ -174,7 +173,7 @@ public class InputControllerTest {
     void testIsInGameFalse() {
         TimerController.CONTROLLER.startGame();
         TimerController.CONTROLLER.stopTimer();
-        assertFalse(inputController.isInGame());
+        assertFalse(inputController.isInGame(), "The game must be not in progress");
     }
 
     /**
@@ -183,6 +182,6 @@ public class InputControllerTest {
     @Test
     void testSetUpGame() {
         inputController.setUpGame();
-        assertTrue(inputController.isInGame());
+        assertTrue(inputController.isInGame(), "The game must be in progress");
     }
 }

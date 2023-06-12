@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit tests for the Ship enum.
  */
-public class ShipTest {
+class ShipTest {
     private static final Ship SHIP = Ship.CACCIATORPEDINIERE;
     private static final int SIZE = 2;
     private static final int N_SHIPS = 4;
@@ -17,7 +17,7 @@ public class ShipTest {
      */
     @Test
     void testGetSize() {
-        assertEquals(SIZE, SHIP.getSize());
+        assertEquals(SIZE, SHIP.getSize(), "The size must be 2");
     }
 
     /**
@@ -25,7 +25,7 @@ public class ShipTest {
      */
     @Test
     void testGetnShips() {
-        assertEquals(N_SHIPS, SHIP.getnShips());
+        assertEquals(N_SHIPS, SHIP.getnShips(), "The number of ships must be 4");
     }
 
     /**
@@ -34,7 +34,7 @@ public class ShipTest {
      */
     @Test
     void testStringShip() {
-        assertEquals("X", Ship.stringShip());
+        assertEquals("X", Ship.stringShip(), "The string representation must be X");
     }
 
     /**
@@ -43,7 +43,7 @@ public class ShipTest {
      */
     @Test
     void testColorShip() {
-        assertEquals("\u001B[0;32mX\u001B[0m", SHIP.colorShip());
+        assertEquals("\u001B[0;32mX\u001B[0m", SHIP.colorShip(),
+                "The colored representation must be \u001B[0;32mX\u001B[0m");
     }
-
 }

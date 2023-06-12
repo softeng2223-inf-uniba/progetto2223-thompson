@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit tests for the State class.
  */
-public class StateTest {
+class StateTest {
     private static final String VOID = "\u001B[0m";
     private static final String SHIP = "\u001B[0m";
     private static final String MISS = "\u001B[0m";

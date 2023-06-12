@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit tests for the Parser class.
  */
-public class ParserTest {
+class ParserTest {
     private static final String INPUT1 = "Hello";
     private static final String INPUT2 = "World";
     private static final Pattern PATTERN1 = Pattern.compile("Hello", Pattern.CASE_INSENSITIVE);
