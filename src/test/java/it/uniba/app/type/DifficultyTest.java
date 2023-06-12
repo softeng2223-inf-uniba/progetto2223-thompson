@@ -62,7 +62,7 @@ public class DifficultyTest {
         assertThrows(IllegalArgumentException.class, () -> Difficulty.setMaxTries(TRIES * -1));
     }
 
-     /**
+    /**
      * Tests the setDifficulty method with a Difficulty enum to ensure it sets the
      * difficulty correctly.
      */
@@ -82,6 +82,14 @@ public class DifficultyTest {
         assertEquals(Difficulty.MEDIUM.getTries(), Difficulty.getMaxTries());
     }
 
-    
+    /**
+     * Tests the setFailedTries method to ensure it sets the number of failed tries
+     * correctly.
+     */
+    @Test
+    void testSetFailedTries() {
+        Difficulty.setFailedTries(TRIES + 1);
+        assertEquals(TRIES + 1, Difficulty.getFailedTries());
+    }
 
 }
