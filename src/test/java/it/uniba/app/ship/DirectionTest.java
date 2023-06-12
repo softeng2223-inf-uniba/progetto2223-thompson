@@ -54,4 +54,13 @@ public class DirectionTest {
         assertEquals(Direction.UP, direction.rotate(), "The direction must be UP");
     }
 
+     /**
+     * Tests the getOrizontal method for the RIGHT direction.
+     */
+    @Test
+    void testGetOrizontal() {
+        Direction direction = Direction.RIGHT;
+        assertEquals(1, direction.getOrizontal(), "The orizontal must be 1");
+    }
+
 }
