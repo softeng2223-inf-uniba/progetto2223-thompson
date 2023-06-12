@@ -20,7 +20,7 @@ public class DifficultyTest {
     @Test
     void testGetCurrentTries() {
         Difficulty.setDifficulty(Difficulty.EASY);
-        assertEquals(0, Difficulty.getCurrentTries());
+        assertEquals(TRIES, Difficulty.getCurrentTries());
     }
 
     /**
@@ -29,8 +29,8 @@ public class DifficultyTest {
      */
     @Test
     void testSetCurrentTries() {
-        Difficulty.setCurrentTries(TRIES);
-        assertEquals(TRIES, Difficulty.getCurrentTries());
+        Difficulty.setCurrentTries(TRIES + SET_TRIES);
+        assertEquals(TRIES + SET_TRIES, Difficulty.getCurrentTries());
     }
 
     /**

@@ -158,7 +158,7 @@ public class GridTest {
         ResultRemove result = grid.removeShip(coord);
         assertEquals("colpito e affondato", result.getMessage(), "The message is \"colpito e affondato\"");
     }
-    
+
     /**
      * Test removing a ship from the grid when a ship exists at the given
      * coordinate.
@@ -217,7 +217,7 @@ public class GridTest {
         grid.removeShip(coord);
         assertFalse(grid.isAllSunken(), "Not all ships are sunken");
     }
-    
+
     /**
      * Test getting the state of a cell on the grid when the cell is empty.
      * The state should be VOID.
@@ -227,7 +227,7 @@ public class GridTest {
         Coordinate coord = new Coordinate(Column.A, ROW2);
         assertEquals(State.VOID, grid.getState(coord), "The state is VOID");
     }
-    
+
     /**
      * Test getting the state of a cell on the grid when a ship exists at the cell.
      * The state should be SHIP.

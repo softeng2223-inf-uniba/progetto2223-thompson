@@ -38,17 +38,17 @@ public class GridControllerTest {
 
     /**
      * Test hitting the same coordinate twice.
-     * The result should be "Questa mossa Ã¨ stata giÃ  effettuata".
+     * The result should be "Questa mossa è stata giÃ  effettuata".
      */
     @Test
     public void testHitCoordinateSameCoordinate() {
         Coordinate coord = new Coordinate(Column.A, ROW);
         String result = GridController.INSTANCE.hitCoordinate(coord);
         result = GridController.INSTANCE.hitCoordinate(coord);
-        assertEquals("Questa mossa Ã¨ stata giÃ  effettuata", result,
-                "The result is \"Questa mossa Ã¨ stata giÃ  effettuata\"");
+        assertEquals("Questa mossa \u00E8 stata gi\u00E0 effettuata", result,
+                "The result is \"Questa mossa \u00E8 stata gi\u00E0 effettuata\"");
     }
-    
+
     /**
      * Test the isAllSunken method when not all ships are sunk.
      * The result should be false.
