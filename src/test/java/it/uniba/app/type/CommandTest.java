@@ -91,4 +91,38 @@ public class CommandTest {
         assertEquals(1, command.getMaxArgs());
     }
 
+    /**
+     * Tests the parse method with a command that has no arguments to ensure it
+     * parses correctly.
+     */
+    @Test
+    void testParseNoArg() {
+        Map<Command, List<String>> result = Command.parse(Parser.parseInput(COMMAND, Pattern.compile(REGEX)));
+        assertTrue(result.containsKey(Command.PLAY) && result.get(Command.PLAY).isEmpty());
+    }
+
+    /**
+     * Tests the parse method with a command that has an argument to ensure it
+     * parses correctly.
+     */
+    @Test
+    void testParseArg() {
+        String command = "/facile 500";
+        String regex = "(/[a-z]+) ([-|+]*[1-9][0-9]*)";
+        Map<Command, List<String>> result = Command.parse(Parser.parseInput(command, Pattern.compile(regex)));
+        assertTrue(result.containsKey(Command.EASY) && result.get(Command.EASY).contains("500"));
+    }
+
+    /**
+     * Tests the parse method with a command that does not match the regex to ensure
+     * it returns null.
+     */
+    @Test
+    void testParseNull() {
+        String command = "/facil 500";
+        String regex = "(/[a-z]+) ([-|+]*[1-9][0-9]*)";
+        Map<Command, List<String>> result = Command.parse(Parser.parseInput(command, Pattern.compile(regex)));
+        assertNull(result);
+    }
+
 }
