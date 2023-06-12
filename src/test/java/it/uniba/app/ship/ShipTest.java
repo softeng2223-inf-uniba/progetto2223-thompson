@@ -19,4 +19,12 @@ public class ShipTest {
     void testGetSize() {
         assertEquals(SIZE, SHIP.getSize());
     }
+
+    /**
+     * Tests the getnShips method to ensure it returns the correct number of ships.
+     */
+    @Test
+    void testGetnShips() {
+        assertEquals(N_SHIPS, SHIP.getnShips());
+    }
 }
