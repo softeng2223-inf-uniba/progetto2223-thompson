@@ -192,8 +192,11 @@ Il giocatore vince se affonda tutte le navi prima di esaurire le mosse e prima c
 
 ![intro](./img/intro.jpg)
 
-Per interagire con il gioco, viene utilizzata l'interfaccia a riga di comando (CLI). Di seguito si riporta l'elenco dei comandi utilizzabili e una breve descrizione del loro funzionamento:
+Per interagire con il gioco, viene utilizzata l'interfaccia a riga di comando (CLI). Di seguito si riporta l'elenco dei comandi utilizzabili e una breve descrizione del loro funzionamento.
 <br>
+
+### 7.1 Comandi pre inizio partita
+
 <ul>
 <li>Al comando <strong>/help</strong> o invocando l'app con flag <i>--help</i> o <i>-h</i> il risultato è una descrizione concisa, che normalmente appare all'avvio del programma, seguita dalla lista di comandi disponibili, uno per riga, come da esempio successivo:<br>
 <ul>
@@ -238,6 +241,8 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 <li>Al comando <strong>/gioca</strong> se nessuna partita è in corso l'applicazione imposta causalmente le navi, in orizzontale o in verticale, mostra la griglia vuota e si predispone a ricevere il primo tentativo o altri comandi.</li><br>
 
 ![gioca](./img/gioca.jpg)
+
+### 7.2 Comandi post inizio partita
 
 <li>Al comando <strong>/mostranavi</strong> l’applicazione risponde visualizzando, per ogni tipo di nave, la dimensione in quadrati e il numero di esemplari da affondare:<br>
 <ul>
