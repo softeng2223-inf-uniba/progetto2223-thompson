@@ -92,4 +92,13 @@ public class DifficultyTest {
         assertEquals(TRIES + 1, Difficulty.getFailedTries());
     }
 
+    /**
+     * Tests the getTries method to ensure it returns the correct number of tries
+     * for a Difficulty enum.
+     */
+    @Test
+    void testGetTries() {
+        assertEquals(TRIES, Difficulty.EASY.getTries());
+    }
+
 }
