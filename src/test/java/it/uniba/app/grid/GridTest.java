@@ -232,4 +232,16 @@ public class GridTest {
         assertEquals(State.VOID, grid.getState(coord), "The state is VOID");
     }
 
+    
+    /**
+     * Test getting the state of a cell on the grid when a ship exists at the cell.
+     * The state should be SHIP.
+     */
+    @Test
+    public void testGetStateShip() {
+        Coordinate coord = new Coordinate(Column.A, ROW2);
+        grid.setCell(coord, Ship.PORTAEREI);
+        assertEquals(State.SHIP, grid.getState(coord), "The state is SHIP");
+    }
+
 }
