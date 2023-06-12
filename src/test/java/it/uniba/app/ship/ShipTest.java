@@ -27,4 +27,14 @@ public class ShipTest {
     void testGetnShips() {
         assertEquals(N_SHIPS, SHIP.getnShips());
     }
+
+    /**
+     * Tests the stringShip method to ensure it returns the correct string
+     * representation of the ship.
+     */
+    @Test
+    void testStringShip() {
+        assertEquals("X", Ship.stringShip());
+    }
+
 }
