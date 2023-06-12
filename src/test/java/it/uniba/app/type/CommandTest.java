@@ -81,4 +81,14 @@ public class CommandTest {
         assertEquals("confirm", command.getTypeToString());
     }
 
+    /**
+     * Tests the getMaxArgs method to ensure it returns the correct maximum number
+     * of arguments for a command.
+     */
+    @Test
+    void testGetMaxArgs() {
+        Command command = Command.TIME;
+        assertEquals(1, command.getMaxArgs());
+    }
+
 }
