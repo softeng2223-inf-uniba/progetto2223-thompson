@@ -249,6 +249,10 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 Al comando /facile numero l’applicazione risponde con OK e imposta a numero il numero massimo di tentativi falliti.
 Al comando /medio numero l’applicazione risponde con OK e imposta a numero il numero massimo di tentativi falliti.
 Al comando /difficile numero l’applicazione risponde con OK e imposta a numero il numero massimo di tentativi falliti.
+Al comando /standard l’applicazione risponde con OK e imposta a 10x10 la dimensione della griglia (è il default).
+Al comando /large l’applicazione risponde con OK e imposta a 18x18 la dimensione della griglia.
+Al comando /extralarge l’applicazione risponde con OK e imposta a 26x26 la dimensione della griglia.
+
 
 [Torna all'indice](#indice)
 
