@@ -146,4 +146,34 @@ public class GridTest {
         assertTrue(result.getResult(), "The result is successful");
     }
 
+    
+    /**
+     * Test removing a ship from the grid when a ship exists at the given
+     * coordinate.
+     * The message should be "colpito e affondato".
+     */
+    @Test
+    public void testRemoveShipShipMessage() {
+        Coordinate coord = new Coordinate(Column.A, ROW2);
+        Ship ship = Ship.PORTAEREI;
+        grid.setShip(ship, 1, coord);
+        ResultRemove result = grid.removeShip(coord);
+        assertEquals("colpito e affondato", result.getMessage(), "The message is \"colpito e affondato\"");
+    }
+
+    
+    /**
+     * Test removing a ship from the grid when a ship exists at the given
+     * coordinate.
+     * All ships should be sunk after the removal.
+     */
+    @Test
+    public void testRemoveShipShipAllSunken() {
+        Coordinate coord = new Coordinate(Column.A, ROW2);
+        Ship ship = Ship.PORTAEREI;
+        grid.setShip(ship, 1, coord);
+        grid.removeShip(coord);
+        assertTrue(grid.isAllSunken(), "All ships are sunken");
+    }
+
 }
