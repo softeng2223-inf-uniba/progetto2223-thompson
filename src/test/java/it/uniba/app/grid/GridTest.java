@@ -131,4 +131,19 @@ public class GridTest {
         assertFalse(grid.isAllSunken(), "All ships are not sunken");
     }
 
+    
+    /**
+     * Test removing a ship from the grid when a ship exists at the given
+     * coordinate.
+     * The result should be successful.
+     */
+    @Test
+    public void testRemoveShipShipBoolean() {
+        Coordinate coord = new Coordinate(Column.A, ROW2);
+        Ship ship = Ship.PORTAEREI;
+        grid.setShip(ship, 1, coord);
+        ResultRemove result = grid.removeShip(coord);
+        assertTrue(result.getResult(), "The result is successful");
+    }
+
 }
