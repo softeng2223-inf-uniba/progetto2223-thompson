@@ -131,7 +131,6 @@ public class GridTest {
         assertFalse(grid.isAllSunken(), "All ships are not sunken");
     }
 
-    
     /**
      * Test removing a ship from the grid when a ship exists at the given
      * coordinate.
@@ -146,7 +145,6 @@ public class GridTest {
         assertTrue(result.getResult(), "The result is successful");
     }
 
-    
     /**
      * Test removing a ship from the grid when a ship exists at the given
      * coordinate.
@@ -160,7 +158,6 @@ public class GridTest {
         ResultRemove result = grid.removeShip(coord);
         assertEquals("colpito e affondato", result.getMessage(), "The message is \"colpito e affondato\"");
     }
-
     
     /**
      * Test removing a ship from the grid when a ship exists at the given
@@ -220,7 +217,6 @@ public class GridTest {
         grid.removeShip(coord);
         assertFalse(grid.isAllSunken(), "Not all ships are sunken");
     }
-
     
     /**
      * Test getting the state of a cell on the grid when the cell is empty.
@@ -231,7 +227,6 @@ public class GridTest {
         Coordinate coord = new Coordinate(Column.A, ROW2);
         assertEquals(State.VOID, grid.getState(coord), "The state is VOID");
     }
-
     
     /**
      * Test getting the state of a cell on the grid when a ship exists at the cell.
@@ -244,7 +239,6 @@ public class GridTest {
         assertEquals(State.SHIP, grid.getState(coord), "The state is SHIP");
     }
 
-    
     /**
      * Test setting the state of a cell on the grid.
      * The state should be HIT.
@@ -257,7 +251,6 @@ public class GridTest {
         assertEquals(State.HIT, grid.getState(coord), "The state is HIT");
     }
 
-    
     /**
      * Test checking if a ship is placed at the given coordinate when a ship exists
      * at the coordinate.
@@ -270,5 +263,15 @@ public class GridTest {
         assertTrue(grid.isShipPlaced(coord), "The ship is placed");
     }
 
-    
+    /**
+     * Test checking if a ship is placed at the given coordinate when no ship exists
+     * at the coordinate.
+     * The result should be false.
+     */
+    @Test
+    public void testIsShipPlacedFalse() {
+        Coordinate coord = new Coordinate(Column.A, ROW2);
+        assertFalse(grid.isShipPlaced(coord), "The ship is not placed");
+    }
+
 }
