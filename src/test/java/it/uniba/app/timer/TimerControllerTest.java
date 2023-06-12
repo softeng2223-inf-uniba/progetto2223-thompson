@@ -49,4 +49,13 @@ public class TimerControllerTest {
         assertFalse(this.timerController.isRunning());
     }
 
+    /**
+     * Tests the isRunning method after starting the game to ensure it returns true.
+     */
+    @Test
+    public void testIsRunningStartGame() {
+        this.timerController.startGame();
+        assertTrue(this.timerController.isRunning());
+    }
+
 }
