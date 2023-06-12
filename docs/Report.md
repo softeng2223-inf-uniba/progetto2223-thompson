@@ -197,6 +197,7 @@ Per interagire con il gioco, viene utilizzata l'interfaccia a riga di comando (C
 
 7.1 [Comandi pre inizio partita](#71-comandi-pre-inizio-partita) <br>
 7.2 [Comandi post inizio partita](#72-comandi-post-inizio-partita) <br>
+7.3 [Comandi invocabili sempre](#73-comandi-invocabili-sempre)
 
 
 ### 7.1 Comandi pre inizio partita
@@ -284,6 +285,10 @@ La partita termina con insuccesso se è stato raggiunto il numero massimo di ten
 
 ### 7.3 Comandi invocabili sempre
 
+<li>Al comando <strong>/mostralivello</strong> l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti.</li><br>
+
+![mostraliv](./img/mostraliv.jpg)
+
 <li>Al comando <strong>/esci</strong> l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti<br>
 <ul>
 <li>	se la conferma è positiva, l'applicazione si chiude restituendo il controllo al sistema operativo</li>
@@ -292,10 +297,6 @@ La partita termina con insuccesso se è stato raggiunto il numero massimo di ten
 </li><br>
 
 ![esci](./img/esci.jpg)
-
-<li>Al comando <strong>/mostralivello</strong> l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti.</li><br>
-
-![mostraliv](./img/mostraliv.jpg)
 
 </ul>
 
