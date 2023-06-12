@@ -32,4 +32,14 @@ public class DifficultyTest {
         Difficulty.setCurrentTries(TRIES);
         assertEquals(TRIES, Difficulty.getCurrentTries());
     }
+
+    /**
+     * Tests the getMaxTries method to ensure it returns the correct maximum number
+     * of tries for the current difficulty.
+     */
+    @Test
+    void testGetMaxTries() {
+        Difficulty.setDifficulty(Difficulty.MEDIUM);
+        assertEquals(Difficulty.MEDIUM.getTries(), Difficulty.getMaxTries());
+    }
 }
