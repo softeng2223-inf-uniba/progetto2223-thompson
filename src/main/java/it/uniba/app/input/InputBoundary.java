@@ -146,7 +146,7 @@ public abstract class InputBoundary {
      *
      * @param time The maximum time in seconds.
      */
-    protected abstract void setMaxTime(int time);
+    protected abstract void setMaxMinuteTime(int time);
 
     /**
      * Terminates the current game session.
@@ -219,7 +219,7 @@ public abstract class InputBoundary {
             } else {
                 try {
                     int time = Integer.parseInt(args.get(0));
-                    setMaxTime(time);
+                    setMaxMinuteTime(time);
                     System.out.println("OK");
                 } catch (IllegalArgumentException e) {
                     System.out.println("Numero non valido");

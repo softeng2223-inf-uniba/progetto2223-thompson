@@ -79,6 +79,9 @@ public final class TimerController extends TimerBoundary {
      * @param minutes the maximum time in minutes
      */
     public void setMaxTime(final int minutes) {
+        if (minutes < 0) {
+            throw new IllegalArgumentException("The maximum time cannot be negative.");
+        }
         this.maxTime = TimeUnit.MILLISECONDS.convert(minutes, TimeUnit.MINUTES);
     }
 

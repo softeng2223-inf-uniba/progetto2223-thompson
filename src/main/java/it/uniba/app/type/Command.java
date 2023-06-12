@@ -203,15 +203,6 @@ public enum Command {
     }
 
     /**
-     * Type getter.
-     *
-     * @return Type
-     */
-    public TypeCommand getType() {
-        return this.type;
-    }
-
-    /**
      * Get a lowercase string representation of the type.
      *
      * @return the lowercase string representation of the type

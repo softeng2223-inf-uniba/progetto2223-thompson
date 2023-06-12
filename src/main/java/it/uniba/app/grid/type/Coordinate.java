@@ -82,15 +82,6 @@ public final class Coordinate {
     }
 
     /**
-     * Column to integer getter.
-     *
-     * @return integer of column
-     */
-    public int getColumnInt() {
-        return column.ordinal();
-    }
-
-    /**
      * Column getter.
      */
     public void setColumn(final Column valColumn) {
@@ -175,7 +166,12 @@ public final class Coordinate {
             if (input.containsKey(PATTERN.pattern())) {
                 Column column = Column.valueOf(input.get(PATTERN.pattern()).get(0).toUpperCase());
                 int row = Integer.parseInt(input.get(PATTERN.pattern()).get(1));
-                return new Coordinate(column, row);
+                Coordinate coord = new Coordinate(column, row);
+                if (coord.isValid()) {
+                    return coord;
+                } else {
+                    return null;
+                }
             }
         }
         return null;

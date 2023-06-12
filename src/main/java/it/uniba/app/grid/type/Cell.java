@@ -51,7 +51,7 @@ public final class Cell {
      * @return boolean
      */
     public boolean isEmpty() {
-        return getState() == State.VOID;
+        return ship == null;
     }
 
     /**

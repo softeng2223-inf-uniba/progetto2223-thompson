@@ -129,9 +129,9 @@ public enum Difficulty {
     }
 
     /**
-     * Returns the number of remaining tries.
+     * Returns the number of max tries.
      *
-     * @return the number of remaining tries
+     * @return the number of max tries
      */
     public int getTries() {
         return this.tries;

@@ -95,7 +95,7 @@ public class Grid {
      */
     public final void setCell(final Coordinate coord, final Ship ship) {
         int row = coord.getRow();
-        int column = coord.getColumnInt();
+        int column = coord.getColumn().getColumnInt();
         grid[row][column].setShip(ship);
     }
 
@@ -106,7 +106,7 @@ public class Grid {
      * @return true if the cell is empty, false otherwise
      */
     public final boolean isCellEmpty(final Coordinate coord) {
-        return this.grid[coord.getRow()][coord.getColumnInt()].isEmpty();
+        return this.grid[coord.getRow()][coord.getColumn().getColumnInt()].isEmpty();
     }
 
     /**
@@ -165,7 +165,7 @@ public class Grid {
      * @return the state of the cell
      */
     public final State getState(final Coordinate coord) {
-        return this.grid[coord.getRow()][coord.getColumnInt()].getState();
+        return this.grid[coord.getRow()][coord.getColumn().getColumnInt()].getState();
     }
 
     /**
@@ -175,7 +175,7 @@ public class Grid {
      * @param state the state to set for the cell
      */
     public final void setState(final Coordinate coord, final State state) {
-        this.grid[coord.getRow()][coord.getColumnInt()].setState(state);
+        this.grid[coord.getRow()][coord.getColumn().getColumnInt()].setState(state);
     }
 
     /**
@@ -186,7 +186,7 @@ public class Grid {
      *         otherwise
      */
     public final boolean isShipPlaced(final Coordinate coord) {
-        if (grid[coord.getRow()][coord.getColumnInt()].getShip() != null) {
+        if (grid[coord.getRow()][coord.getColumn().getColumnInt()].getShip() != null) {
             return true;
         }
         return false;
@@ -201,7 +201,7 @@ public class Grid {
      */
     public final String getShipColor(final Coordinate coord) {
         if (this.isShipPlaced(coord)) {
-            return grid[coord.getRow()][coord.getColumnInt()].getShip().colorShip();
+            return grid[coord.getRow()][coord.getColumn().getColumnInt()].getShip().colorShip();
         }
         return Ship.stringShip();
     }
