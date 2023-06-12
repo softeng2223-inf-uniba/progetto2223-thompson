@@ -204,15 +204,6 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 
 ![help](./img/help.jpg)
 
-<li>Al comando <strong>/esci</strong> l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti<br>
-<ul>
-<li>	se la conferma è positiva, l'applicazione si chiude restituendo il controllo al sistema operativo</li>
-<li>	se la conferma è negativa, l'applicazione si predispone a ricevere nuovi tentativi o comandi</li>
-</ul>
-</li><br>
-
-![esci](./img/esci.jpg)
-
 <li>Al comando <strong>/facile</strong> l’applicazione risponde con OK e imposta a 50 il numero massimo di tentativi falliti.</li><br>
 
 <li>Al comando <strong>/medio</strong> l’applicazione risponde con OK e imposta a 30 il numero massimo di tentativi falliti (è il default).</li><br>
@@ -257,12 +248,6 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 
 ![mostranavi](./img/mostranavi.jpg)
 
-<li>Al comando <strong>/svelagriglia</strong> l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate da 1 a 10 e le colonne numerate da A a J, e tutte le navi posizionate.</li><br>
-
-![svelagriglia](./img/svelagriglia.jpg)
-
-<li>Al comando <strong>/mostratempo</strong> l’applicazione risponde visualizzando il numero di minuti trascorsi nel gioco e il numero di minuti ancora disponibili.</li><br>
-
 <li>Digitando una coppia di caratteri separati da un trattino, corrispondenti rispettivamente al numero di riga e alla lettera della colonna, (es. <strong>B-4</strong>), l’applicazione risponde:
 <ul>
 <li>“acqua” se sulla cella non è posizionata nessuna nave;</li>
@@ -273,9 +258,15 @@ Qualunque sia l’esito del tentativo, l’applicazione mostra la griglia con le
 La partita termina con successo se il tentativo ha affondato l’ultima nave.<br>
 La partita termina con insuccesso se è stato raggiunto il numero massimo di tentativi falliti o se è scaduto il tempo di gioco.</li><br>
 
+<li>Al comando <strong>/mostratempo</strong> l’applicazione risponde visualizzando il numero di minuti trascorsi nel gioco e il numero di minuti ancora disponibili.</li><br>
+
 <li>Al comando <strong>/mostragriglia</strong> l’applicazione risponde visualizzando, una griglia con le righe numerate a partire da 1 e le colonne numerate a partire da A, con le navi affondate e le sole parti già colpite delle navi non affondate.</li><br>
 
 <li>Al comando <strong>/mostratentativi</strong> l’applicazione risponde visualizzando il numero di tentativi già effettuati, il numero di tentativi falliti e il numero massimo di tentativi falliti.</li><br>
+
+<li>Al comando <strong>/svelagriglia</strong> l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate da 1 a 10 e le colonne numerate da A a J, e tutte le navi posizionate.</li><br>
+
+![svelagriglia](./img/svelagriglia.jpg)
 
 <li>Al comando <strong>/abbandona</strong> l'applicazione chiede conferma:
 <ul>
@@ -283,6 +274,15 @@ La partita termina con insuccesso se è stato raggiunto il numero massimo di ten
 <li>se la conferma è negativa, l'applicazione si predispone a ricevere nuovi tentativi o comandi.</li>
 </ul>
 </li><br>
+
+<li>Al comando <strong>/esci</strong> l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti<br>
+<ul>
+<li>	se la conferma è positiva, l'applicazione si chiude restituendo il controllo al sistema operativo</li>
+<li>	se la conferma è negativa, l'applicazione si predispone a ricevere nuovi tentativi o comandi</li>
+</ul>
+</li><br>
+
+![esci](./img/esci.jpg)
 </ul>
 
 [Torna all'indice](#indice)
