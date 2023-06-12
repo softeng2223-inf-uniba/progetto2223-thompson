@@ -191,5 +191,19 @@ public class GridTest {
         assertFalse(result.getResult(), "The result is unsuccessful");
     }
 
+    /**
+     * Test removing a ship from the grid when no ship exists at the given
+     * coordinate.
+     * The message should be "acqua".
+     */
+    @Test
+    public void testRemoveShipNoShipMessage() {
+        Coordinate coord = new Coordinate(Column.A, ROW2);
+        Ship ship = Ship.PORTAEREI;
+        grid.setShip(ship, 1, coord);
+        coord.setRow(ROW);
+        ResultRemove result = grid.removeShip(coord);
+        assertEquals("acqua", result.getMessage(), "The message is \"acqua\"");
+    }
 
 }
