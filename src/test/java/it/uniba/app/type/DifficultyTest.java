@@ -22,4 +22,14 @@ public class DifficultyTest {
         Difficulty.setDifficulty(Difficulty.EASY);
         assertEquals(0, Difficulty.getCurrentTries());
     }
+
+    /**
+     * Tests the setCurrentTries method to ensure it sets the current number of
+     * tries correctly.
+     */
+    @Test
+    void testSetCurrentTries() {
+        Difficulty.setCurrentTries(TRIES);
+        assertEquals(TRIES, Difficulty.getCurrentTries());
+    }
 }
