@@ -127,4 +127,13 @@ public class TimerControllerTest {
         assertEquals(MAX_TIME * TO_SECOND, this.timerController.getMaxTimeSecond());
     }
 
+    /**
+     * Tests the getMinutePassed method to ensure it returns the correct number of
+     * minutes passed.
+     */
+    @Test
+    public void testGetMinutePassed() {
+        assertEquals(RESULT_MINUTE, this.timerController.getMinutePassed(TEST_SECOND));
+    }
+
 }
