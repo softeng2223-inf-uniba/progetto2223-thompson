@@ -101,4 +101,20 @@ public class TimerControllerTest {
                 });
     }
 
+    /**
+     * Tests the getCurrentTimeSecond method to ensure it returns the current time
+     * in seconds.
+     */
+    @Test
+    public void testGetCurrentTimeSecond() {
+        this.timerController.startGame();
+        try {
+            Thread.sleep(TO_MILLISECOND);
+        } catch (InterruptedException e) {
+        }
+
+        long currentTimeSeconds = this.timerController.getCurrentTimeSecond();
+        assertTrue(currentTimeSeconds == 1);
+    }
+
 }
