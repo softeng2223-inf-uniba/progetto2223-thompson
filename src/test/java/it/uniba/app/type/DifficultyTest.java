@@ -101,4 +101,13 @@ public class DifficultyTest {
         assertEquals(TRIES, Difficulty.EASY.getTries());
     }
 
+    /**
+     * Tests the toString method to ensure it returns the correct string
+     * representation of a Difficulty enum.
+     */
+    @Test
+    void testToString() {
+        assertEquals("difficile", Difficulty.HARD.toString());
+    }
+
 }
