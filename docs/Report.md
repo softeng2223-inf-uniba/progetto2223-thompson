@@ -222,6 +222,14 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 
 ![livello](./img/livello.jpg)
 
+<li>Al comando <strong>/facile</strong> <i>numero</i> l’applicazione risponde con OK e imposta a <i>numero</i> il numero massimo di tentativi falliti. </li><br>
+
+<li>Al comando <strong>/medio</strong> <i>numero</i> l’applicazione risponde con OK e imposta a <i>numero</i> il numero massimo di tentativi falliti.</li><br>
+
+<li>Al comando <strong>/difficile</strong> <i>numero</i> l’applicazione risponde con OK e imposta a <i>numero</i> il numero massimo di tentativi falliti.</li><br>
+
+<li>Al comando <strong>/tentativi</strong> <i>numero</i> l’applicazione risponde con OK e imposta a <i>numero</i> il numero massimo di tentativi falliti.</li><br>
+
 <li>Al comando <strong>/mostralivello</strong> l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti.</li><br>
 
 ![mostraliv](./img/mostraliv.jpg)
@@ -245,13 +253,6 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 
 ![svelagriglia](./img/svelagriglia.jpg)
 
-<li>Al comando <strong>/facile</strong> <i>numero</i> l’applicazione risponde con OK e imposta a <i>numero</i> il numero massimo di tentativi falliti. </li><br>
-
-<li>Al comando <strong>/medio</strong> <i>numero</i> l’applicazione risponde con OK e imposta a <i>numero</i> il numero massimo di tentativi falliti.</li><br>
-
-<li>Al comando <strong>/difficile</strong> <i>numero</i> l’applicazione risponde con OK e imposta a <i>numero</i> il numero massimo di tentativi falliti.</li><br>
-
-<li>Al comando <strong>/tentativi</strong> <i>numero</i> l’applicazione risponde con OK e imposta a <i>numero</i> il numero massimo di tentativi falliti.</li><br>
 
 <li>Al comando <strong>/standard</strong> l’applicazione risponde con OK e imposta a 10x10 la dimensione della griglia (è il default).</li><br>
 
