@@ -88,6 +88,15 @@ public class GridTest {
         assertFalse(grid.isAllSunken(), "Not all ships are sunken");
     }
 
+    /**
+     * Test the getSize method.
+     * The result should be the size of the grid, which is 50.
+     */
+    @Test
+    public void testGetSize() {
+        assertEquals(SIZE, grid.getSize(), "The size of the grid is 50");
+    }
 
+    
 
 }
