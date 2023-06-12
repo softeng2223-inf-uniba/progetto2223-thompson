@@ -257,4 +257,18 @@ public class GridTest {
         assertEquals(State.HIT, grid.getState(coord), "The state is HIT");
     }
 
+    
+    /**
+     * Test checking if a ship is placed at the given coordinate when a ship exists
+     * at the coordinate.
+     * The result should be true.
+     */
+    @Test
+    public void testIsShipPlacedTrue() {
+        Coordinate coord = new Coordinate(Column.A, ROW2);
+        grid.setCell(coord, Ship.PORTAEREI);
+        assertTrue(grid.isShipPlaced(coord), "The ship is placed");
+    }
+
+    
 }
