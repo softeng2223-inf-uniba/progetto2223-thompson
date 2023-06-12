@@ -274,4 +274,14 @@ public class GridTest {
         assertFalse(grid.isShipPlaced(coord), "The ship is not placed");
     }
 
+    /**
+     * Test getting the color of a ship at the given coordinate.
+     * The color should match the ship's color.
+     */
+    @Test
+    public void testGetShipColor() {
+        Coordinate coord = new Coordinate(Column.A, ROW2);
+        grid.setCell(coord, Ship.PORTAEREI);
+        assertEquals(Ship.PORTAEREI.colorShip(), grid.getShipColor(coord), "The color matches the ship's color");
+    }
 }
