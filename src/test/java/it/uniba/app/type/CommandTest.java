@@ -49,6 +49,15 @@ public class CommandTest {
         }
     }
 
-    
+    /**
+     * Tests the getNames method to ensure it returns the correct names for a
+     * command.
+     */
+    @Test
+    void testGetNames() {
+        Command command = Command.SHOW_LEVEL;
+        String[] names = command.getNames();
+        assertEquals("/mostralivello", names[0]);
+    }
 
 }
