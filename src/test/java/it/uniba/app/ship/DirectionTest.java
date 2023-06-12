@@ -27,4 +27,13 @@ public class DirectionTest {
         assertEquals(Direction.LEFT, direction.rotate(), "The direction must be LEFT");
     }
 
+    /**
+     * Tests the rotate method for the LEFT direction.
+     */
+    @Test
+    void testRotateLeftDirection() {
+        Direction direction = Direction.LEFT;
+        assertEquals(Direction.RIGHT, direction.rotate(), "The direction must be RIGHT");
+    }
+
 }
