@@ -242,9 +242,13 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 ![gioca](./img/gioca.jpg)
 
 <li>Al comando <strong>/svelagriglia</strong> l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate da 1 a 10 e le colonne numerate da A a J, e tutte le navi posizionate.</li><br>
-</ul> 
+</ul>
 
 ![svelagriglia](./img/svelagriglia.jpg)
+
+Al comando /facile numero l’applicazione risponde con OK e imposta a numero il numero massimo di tentativi falliti.
+Al comando /medio numero l’applicazione risponde con OK e imposta a numero il numero massimo di tentativi falliti.
+Al comando /difficile numero l’applicazione risponde con OK e imposta a numero il numero massimo di tentativi falliti.
 
 [Torna all'indice](#indice)
 
