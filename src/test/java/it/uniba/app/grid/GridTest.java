@@ -244,4 +244,17 @@ public class GridTest {
         assertEquals(State.SHIP, grid.getState(coord), "The state is SHIP");
     }
 
+    
+    /**
+     * Test setting the state of a cell on the grid.
+     * The state should be HIT.
+     */
+    @Test
+    public void testSetState() {
+        Coordinate coord = new Coordinate(Column.A, ROW2);
+        grid.setCell(coord, Ship.PORTAEREI);
+        grid.setState(coord, State.HIT);
+        assertEquals(State.HIT, grid.getState(coord), "The state is HIT");
+    }
+
 }
