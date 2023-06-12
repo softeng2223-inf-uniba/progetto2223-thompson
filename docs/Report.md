@@ -252,7 +252,8 @@ Al comando /difficile numero l’applicazione risponde con OK e imposta a numero
 Al comando /standard l’applicazione risponde con OK e imposta a 10x10 la dimensione della griglia (è il default).
 Al comando /large l’applicazione risponde con OK e imposta a 18x18 la dimensione della griglia.
 Al comando /extralarge l’applicazione risponde con OK e imposta a 26x26 la dimensione della griglia.
-
+Al comando /tempo numero l’applicazione risponde con OK e imposta a numero il numero minuti a disposizione per giocare.
+Al comando /mostratempo l’applicazione risponde visualizzando il numero di minuti trascorsi nel gioco e il numero di minuti ancora disponibili.
 
 [Torna all'indice](#indice)
 
