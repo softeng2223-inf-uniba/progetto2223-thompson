@@ -23,4 +23,18 @@ public class GridControllerTest {
     public void setUp() {
         GridController.INSTANCE.newGrid();
     }
+
+    
+    /**
+     * Test the hitCoordinate method by shooting at a coordinate on the grid.
+     * The result can be "acqua", "colpito", or "colpito e affondato".
+     */
+    @Test
+    public void testHitCoordinate() {
+        Coordinate coord = new Coordinate(Column.A, ROW);
+        String result = GridController.INSTANCE.hitCoordinate(coord);
+        assertTrue(result.equals("acqua") || result.equals("colpito") || result.equals("colpito e affondato"),
+                "The result is \"acqua\", \"colpito\", or \"colpito e affondato\"");
+    }
+
 }
