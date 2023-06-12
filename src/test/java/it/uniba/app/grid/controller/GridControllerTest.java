@@ -48,5 +48,13 @@ public class GridControllerTest {
         assertEquals("Questa mossa Ã¨ stata giÃ  effettuata", result,
                 "The result is \"Questa mossa Ã¨ stata giÃ  effettuata\"");
     }
-
+    
+    /**
+     * Test the isAllSunken method when not all ships are sunk.
+     * The result should be false.
+     */
+    @Test
+    public void testIsAllSunken() {
+        assertFalse(GridController.INSTANCE.isAllSunken(), "Not all ships are sunk");
+    }
 }
