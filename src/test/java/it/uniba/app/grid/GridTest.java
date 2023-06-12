@@ -109,5 +109,15 @@ public class GridTest {
         assertFalse(grid.isCellEmpty(coord), "The cell is not empty");
     }
 
+    /**
+     * Test checking if a cell on the grid is empty.
+     * The cell should be empty.
+     */
+    @Test
+    public void testIsCellEmpty() {
+        Coordinate coord = new Coordinate(Column.A, ROW);
+        assertTrue(grid.isCellEmpty(coord), "The cell is empty");
+    }
+
 
 }
