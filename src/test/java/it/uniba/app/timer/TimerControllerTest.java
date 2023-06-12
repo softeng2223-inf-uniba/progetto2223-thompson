@@ -40,4 +40,13 @@ public class TimerControllerTest {
         this.timerController.stopTimer();
     }
 
+    /**
+     * Tests the isRunning method before starting the game to ensure it returns
+     * false.
+     */
+    @Test
+    public void testIsRunningBeforeStart() {
+        assertFalse(this.timerController.isRunning());
+    }
+
 }
