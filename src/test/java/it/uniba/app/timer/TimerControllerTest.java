@@ -1,5 +1,32 @@
-package it.uniba.app.timer;
+package it.uniba.app.timer.controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+/**
+ * Unit tests for the TimerController class.
+ */
 public class TimerControllerTest {
-    
+    private TimerController timerController;
+    private static final int MAX_TIME = 5;
+    private static final int TO_SECOND = 60;
+    private static final int TO_MILLISECOND = 1000;
+    private static final int TEST_SECOND = 63;
+    private static final int RESULT_MINUTE = 1;
+    private static final int RESULT_SECOND = 3;
+
+    /**
+     * Set up the TimerController instance before each test.
+     */
+    @BeforeEach
+    public void setUp() {
+        this.timerController = TimerController.CONTROLLER;
+        this.timerController.setMaxTime(MAX_TIME);
+    }
 }
