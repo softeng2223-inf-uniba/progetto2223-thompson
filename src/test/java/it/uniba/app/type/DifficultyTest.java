@@ -121,4 +121,15 @@ public class DifficultyTest {
         assertEquals(Difficulty.HARD, Difficulty.getDifficulty());
     }
 
+    /**
+     * Tests the getDifficulty method.
+     * This test does not contain any assertions and is incomplete.
+     * Additional assertions or test cases can be added as needed.
+     */
+    @Test
+    void testGetDifficultyTries() {
+        Difficulty.setDifficulty(Difficulty.HARD);
+        assertEquals(HARD_TRIES, Difficulty.getDifficulty().getTries());
+    }
+
 }
