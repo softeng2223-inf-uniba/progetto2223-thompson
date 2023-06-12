@@ -41,8 +41,8 @@ public class GridTest {
     public void testGetShipsNoShip() {
         int count = 0;
         Map<Ship, Map<Integer, List<Coordinate>>> ships = grid.getShips();
-        for (Ship s : ships.keySet()) {
-            count += ships.get(s).keySet().size();
+        for (var s : ships.entrySet()) {
+            count += s.getValue().keySet().size();
         }
         assertEquals(0, count, "The number of ships is 0");
     }
@@ -60,8 +60,8 @@ public class GridTest {
         grid.setShip(ship, 1, coord);
         Map<Ship, Map<Integer, List<Coordinate>>> ships = grid.getShips();
         System.out.println(ships);
-        for (Ship s : ships.keySet()) {
-            count += ships.get(s).keySet().size();
+        for (var s : ships.entrySet()) {
+            count += s.getValue().keySet().size();
         }
         assertEquals(1, count, "The number of ships is 1");
     }

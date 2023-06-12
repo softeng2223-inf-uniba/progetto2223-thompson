@@ -9,13 +9,7 @@ import it.uniba.app.input.controller.InputController;
  */
 public final class App {
 
-    /**
-     * Get a greeting sentence.
-     *
-     * @return the "Hello World!" string.
-     */
-    public String getGreeting() {
-        return "Hello World!!!";
+    private App() {
     }
 
     /**
