@@ -117,4 +117,14 @@ public class TimerControllerTest {
         assertTrue(currentTimeSeconds == 1);
     }
 
+     /**
+     * Tests the getMaxTimeSecond method to ensure it returns the maximum time in
+     * seconds.
+     */
+    @Test
+    public void testGetMaxTimeSecond() {
+        this.timerController.setMaxTime(MAX_TIME);
+        assertEquals(MAX_TIME * TO_SECOND, this.timerController.getMaxTimeSecond());
+    }
+
 }
