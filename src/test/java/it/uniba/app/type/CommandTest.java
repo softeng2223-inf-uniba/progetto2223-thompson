@@ -29,4 +29,16 @@ public class CommandTest {
         assertNull(command, "The command must be null");
     }
 
+    /**
+     * Tests the fromString method with a valid command string to ensure it returns
+     * the corresponding command.
+     */
+    @Test
+    void testFromStringGioca() {
+        Command command = Command.fromString(COMMAND, REGEX);
+        assertEquals(Command.PLAY, command, "The command must be PLAY");
+    }
+
+    
+
 }
