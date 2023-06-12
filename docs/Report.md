@@ -184,8 +184,10 @@ Dopo aver eseguito il comando docker pull copiandolo da GitHub Packages, Il coma
 [Torna all'indice](#indice)
 
 ## 7. Manuale utente
-Il gioco si svolge su una griglia, dove il sistema posiziona in modo casuale le navi all'inizio di una partita. L'obiettivo del giocatore è quello di indovinare la posizione delle navi nemiche e cercare di affondarle attaccando le caselle della griglia.<br>
-Il gioco termina quando tutte le navi nemiche sono state affondate o quando si esauriscono le mosse disponibili. Il numero di mosse disponibili dipende dalla modalità di gioco scelta, che può essere facile, media o difficile.<br>Il giocatore vince se affonda tutte le navi prima di esaurire le mosse.
+Il gioco si svolge su una griglia, dove il sistema posiziona in modo casuale le navi all'inizio di una partita. L'obiettivo del giocatore è quello di indovinare la posizione delle navi nemiche e cercare di affondarle attaccando le caselle della griglia prima che finisca il tempo a disposizione.<br>
+Il gioco termina quando tutte le navi nemiche sono state affondate, quando si esauriscono le mosse disponibili o quando scade il tempo a disposizione.
+Il numero di mosse disponibili dipende dalla modalità di gioco scelta, che può essere facile, media o difficile.<br>
+Il giocatore vince se affonda tutte le navi prima di esaurire le mosse e prima che termini il tempo.
 <br>
 
 ![intro](./img/intro.jpg)
