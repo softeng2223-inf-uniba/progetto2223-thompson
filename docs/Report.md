@@ -240,6 +240,12 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 
 <li>Al comando <strong>/extralarge</strong> l’applicazione risponde con OK e imposta a 26x26 la dimensione della griglia.</li><br>
 
+<li>Al comando <strong>/tempo</strong> <i>numero</i> l’applicazione risponde con OK e imposta a <i>numero</i> il numero minuti a disposizione per giocare.</li><br>
+
+<li>Al comando <strong>/gioca</strong> se nessuna partita è in corso l'applicazione imposta causalmente le navi, in orizzontale o in verticale, mostra la griglia vuota e si predispone a ricevere il primo tentativo o altri comandi.</li><br>
+
+![gioca](./img/gioca.jpg)
+
 <li>Al comando <strong>/mostranavi</strong> l’applicazione risponde visualizzando, per ogni tipo di nave, la dimensione in quadrati e il numero di esemplari da affondare:<br>
 <ul>
 <li>	Cacciatorpediniere 	⊠⊠ 		esemplari: 4 </li>
@@ -251,15 +257,9 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 
 ![mostranavi](./img/mostranavi.jpg)
 
-<li>Al comando <strong>/gioca</strong> se nessuna partita è in corso l'applicazione imposta causalmente le navi, in orizzontale o in verticale, mostra la griglia vuota e si predispone a ricevere il primo tentativo o altri comandi.</li><br>
-
-![gioca](./img/gioca.jpg)
-
 <li>Al comando <strong>/svelagriglia</strong> l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate da 1 a 10 e le colonne numerate da A a J, e tutte le navi posizionate.</li><br>
 
 ![svelagriglia](./img/svelagriglia.jpg)
-
-<li>Al comando <strong>/tempo</strong> <i>numero</i> l’applicazione risponde con OK e imposta a <i>numero</i> il numero minuti a disposizione per giocare.</li><br>
 
 <li>Al comando <strong>/mostratempo</strong> l’applicazione risponde visualizzando il numero di minuti trascorsi nel gioco e il numero di minuti ancora disponibili.</li><br>
 
