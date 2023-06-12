@@ -195,6 +195,9 @@ Il giocatore vince se affonda tutte le navi prima di esaurire le mosse e prima c
 Per interagire con il gioco, viene utilizzata l'interfaccia a riga di comando (CLI). Di seguito si riporta l'elenco dei comandi utilizzabili e una breve descrizione del loro funzionamento.
 <br>
 
+7.1 [Comandi pre inizio partita](#71-comandi-pre-inizio-partita) <br>
+7.2 [Requisiti post inizio partita](#72-comandi-post-inizio-partita)
+
 ### 7.1 Comandi pre inizio partita
 
 <ul>
