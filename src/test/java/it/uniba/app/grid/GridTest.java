@@ -221,4 +221,15 @@ public class GridTest {
         assertFalse(grid.isAllSunken(), "Not all ships are sunken");
     }
 
+    
+    /**
+     * Test getting the state of a cell on the grid when the cell is empty.
+     * The state should be VOID.
+     */
+    @Test
+    public void testGetStateVoid() {
+        Coordinate coord = new Coordinate(Column.A, ROW2);
+        assertEquals(State.VOID, grid.getState(coord), "The state is VOID");
+    }
+
 }
