@@ -66,4 +66,16 @@ public class GridTest {
         assertEquals(1, count, "The number of ships is 1");
     }
 
+    /**
+     * Test the isAllSunken method when all ships are sunk.
+     * The result should be true.
+     */
+    @Test
+    public void testIsAllSunkenTrue() {
+        assertTrue(grid.isAllSunken(), "All ships are sunken");
+    }
+
+
+
+
 }
