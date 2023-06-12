@@ -58,4 +58,15 @@ public class TimerControllerTest {
         assertTrue(this.timerController.isRunning());
     }
 
+    /**
+     * Tests the isRunning method after stopping the timer to ensure it returns
+     * false.
+     */
+    @Test
+    public void testIsRunningFinishGame() {
+        this.timerController.startGame();
+        this.timerController.stopTimer();
+        assertFalse(this.timerController.isRunning());
+    }
+
 }
