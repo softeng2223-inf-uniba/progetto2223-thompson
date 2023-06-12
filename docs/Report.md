@@ -234,6 +234,12 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 
 ![mostraliv](./img/mostraliv.jpg)
 
+<li>Al comando <strong>/standard</strong> l’applicazione risponde con OK e imposta a 10x10 la dimensione della griglia (è il default).</li><br>
+
+<li>Al comando <strong>/large</strong> l’applicazione risponde con OK e imposta a 18x18 la dimensione della griglia.</li><br>
+
+<li>Al comando <strong>/extralarge</strong> l’applicazione risponde con OK e imposta a 26x26 la dimensione della griglia.</li><br>
+
 <li>Al comando <strong>/mostranavi</strong> l’applicazione risponde visualizzando, per ogni tipo di nave, la dimensione in quadrati e il numero di esemplari da affondare:<br>
 <ul>
 <li>	Cacciatorpediniere 	⊠⊠ 		esemplari: 4 </li>
@@ -252,13 +258,6 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 <li>Al comando <strong>/svelagriglia</strong> l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate da 1 a 10 e le colonne numerate da A a J, e tutte le navi posizionate.</li><br>
 
 ![svelagriglia](./img/svelagriglia.jpg)
-
-
-<li>Al comando <strong>/standard</strong> l’applicazione risponde con OK e imposta a 10x10 la dimensione della griglia (è il default).</li><br>
-
-<li>Al comando <strong>/large</strong> l’applicazione risponde con OK e imposta a 18x18 la dimensione della griglia.</li><br>
-
-<li>Al comando <strong>/extralarge</strong> l’applicazione risponde con OK e imposta a 26x26 la dimensione della griglia.</li><br>
 
 <li>Al comando <strong>/tempo</strong> <i>numero</i> l’applicazione risponde con OK e imposta a <i>numero</i> il numero minuti a disposizione per giocare.</li><br>
 
