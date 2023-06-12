@@ -71,4 +71,14 @@ public class CommandTest {
                 command.getDescription());
     }
 
+    /**
+     * Tests the getTypeToString method to ensure it returns the correct type as a
+     * string for a command.
+     */
+    @Test
+    void testGetTypeToString() {
+        Command command = Command.YES;
+        assertEquals("confirm", command.getTypeToString());
+    }
+
 }
