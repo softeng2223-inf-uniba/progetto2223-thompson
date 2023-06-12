@@ -83,6 +83,16 @@ public class DifficultyTest {
     }
 
     /**
+     * Tests the getFailedTries method to ensure it returns the correct number of
+     * failed tries.
+     */
+    @Test
+    void testGetFailedTries() {
+        Difficulty.setFailedTries(SET_TRIES);
+        assertEquals(SET_TRIES, Difficulty.getFailedTries());
+    }
+
+    /**
      * Tests the setFailedTries method to ensure it sets the number of failed tries
      * correctly.
      */
@@ -131,5 +141,4 @@ public class DifficultyTest {
         Difficulty.setDifficulty(Difficulty.HARD);
         assertEquals(HARD_TRIES, Difficulty.getDifficulty().getTries());
     }
-
 }
