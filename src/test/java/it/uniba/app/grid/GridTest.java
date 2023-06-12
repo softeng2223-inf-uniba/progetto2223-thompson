@@ -75,6 +75,18 @@ public class GridTest {
         assertTrue(grid.isAllSunken(), "All ships are sunken");
     }
 
+    /**
+     * Test the isAllSunken method when not all ships are sunk.
+     * The result should be false.
+     */
+    @Test
+    public void testIsAllSunkenFalse() {
+        Coordinate coord = new Coordinate(Column.A, 1);
+        Ship ship = Ship.CACCIATORPEDINIERE;
+        grid.setCell(coord, ship);
+        grid.setShip(ship, 1, coord);
+        assertFalse(grid.isAllSunken(), "Not all ships are sunken");
+    }
 
 
 
