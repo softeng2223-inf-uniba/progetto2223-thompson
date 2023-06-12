@@ -119,5 +119,16 @@ public class GridTest {
         assertTrue(grid.isCellEmpty(coord), "The cell is empty");
     }
 
+    /**
+     * Test setting a ship on the grid.
+     * All ships should not be sunk.
+     */
+    @Test
+    public void testSetShip() {
+        Coordinate coord = new Coordinate(Column.A, ROW);
+        Ship ship = Ship.CACCIATORPEDINIERE;
+        grid.setShip(ship, 1, coord);
+        assertFalse(grid.isAllSunken(), "All ships are not sunken");
+    }
 
 }
