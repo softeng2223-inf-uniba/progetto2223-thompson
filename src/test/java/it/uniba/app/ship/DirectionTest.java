@@ -17,5 +17,14 @@ public class DirectionTest {
         Direction direction = Direction.randomDirection();
         assertNotNull(direction, "The direction must be not null");
     }
-    
+
+    /**
+     * Tests the rotate method for the RIGHT direction.
+     */
+    @Test
+    void testRotateRightDirection() {
+        Direction direction = Direction.RIGHT;
+        assertEquals(Direction.LEFT, direction.rotate(), "The direction must be LEFT");
+    }
+
 }
