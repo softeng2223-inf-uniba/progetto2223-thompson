@@ -192,11 +192,12 @@ Il giocatore vince se affonda tutte le navi prima di esaurire le mosse e prima c
 
 ![intro](./img/intro.jpg)
 
-Per interagire con il gioco, viene utilizzata l'interfaccia a riga di comando (CLI). Di seguito si riporta l'elenco dei comandi utilizzabili e una breve descrizione del loro funzionamento.
+Per interagire con il gioco, viene utilizzata l'interfaccia a riga di comando (CLI). Di seguito si riporta l'elenco dei comandi utilizzabili e una breve descrizione del loro funzionamento, suddivisi in tre sezioni:
 <br>
 
 7.1 [Comandi pre inizio partita](#71-comandi-pre-inizio-partita) <br>
-7.2 [Requisiti post inizio partita](#72-comandi-post-inizio-partita)
+7.2 [Comandi post inizio partita](#72-comandi-post-inizio-partita) <br>
+
 
 ### 7.1 Comandi pre inizio partita
 
@@ -228,10 +229,6 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 <li>Al comando <strong>/difficile</strong> <i>numero</i> l’applicazione risponde con OK e imposta a <i>numero</i> il numero massimo di tentativi falliti.</li><br>
 
 <li>Al comando <strong>/tentativi</strong> <i>numero</i> l’applicazione risponde con OK e imposta a <i>numero</i> il numero massimo di tentativi falliti.</li><br>
-
-<li>Al comando <strong>/mostralivello</strong> l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti.</li><br>
-
-![mostraliv](./img/mostraliv.jpg)
 
 <li>Al comando <strong>/standard</strong> l’applicazione risponde con OK e imposta a 10x10 la dimensione della griglia (è il default).</li><br>
 
@@ -285,6 +282,8 @@ La partita termina con insuccesso se è stato raggiunto il numero massimo di ten
 </ul>
 </li><br>
 
+### 7.3 Comandi invocabili sempre
+
 <li>Al comando <strong>/esci</strong> l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti<br>
 <ul>
 <li>	se la conferma è positiva, l'applicazione si chiude restituendo il controllo al sistema operativo</li>
@@ -293,6 +292,11 @@ La partita termina con insuccesso se è stato raggiunto il numero massimo di ten
 </li><br>
 
 ![esci](./img/esci.jpg)
+
+<li>Al comando <strong>/mostralivello</strong> l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti.</li><br>
+
+![mostraliv](./img/mostraliv.jpg)
+
 </ul>
 
 [Torna all'indice](#indice)
