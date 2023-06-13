@@ -9,6 +9,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import it.uniba.app.grid.controller.GridController;
+
 /**
  * Unit tests for the TimerController class.
  */
@@ -27,6 +29,7 @@ class TimerControllerTest {
     @BeforeEach
     void setUp() {
         this.timerController = TimerController.CONTROLLER;
+        GridController.INSTANCE.newGrid();
         this.timerController.setMaxTime(MAX_TIME);
     }
 
