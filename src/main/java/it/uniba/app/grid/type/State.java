@@ -47,7 +47,7 @@ public enum State {
      * @return the resulting state after a hit
      */
     public State hit() {
-        if (this == SHIP) {
+        if (this == SHIP || this == HIT) {
             return State.HIT;
         } else {
             return State.MISS;

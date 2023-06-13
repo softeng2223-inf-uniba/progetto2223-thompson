@@ -45,9 +45,9 @@ public final class GridController extends GridBoundary {
      *         or "Questa mossa è stata già effettuata" (This move has already been
      *         made)
      */
-    public String hitCoordinate(final Coordinate coord) {
+    public String hitCoordinate(final Coordinate coord) throws IndexOutOfBoundsException {
         int row = coord.getRow() - 1;
-        int column = coord.getColumnInt();
+        int column = coord.getColumn().getColumnInt();
         Coordinate copyCoordinate = new Coordinate(Column.fromInt(column), row);
         if (grid.getState(copyCoordinate) == State.HIT || grid.getState(copyCoordinate) == State.MISS) {
             return "Questa mossa è stata già effettuata";
@@ -75,7 +75,7 @@ public final class GridController extends GridBoundary {
     private void addShips(final Ship ship, final int nShip, final Direction direction, final Coordinate coord) {
         if (direction != null) {
             int row = coord.getRow() + 1;
-            int column = coord.getColumnInt();
+            int column = coord.getColumn().getColumnInt();
             Coordinate copyCoordinate = new Coordinate(Column.fromInt(column), row);
             for (int i = 0; i < ship.getSize(); i++) {
                 grid.setShip(ship, nShip, copyCoordinate);
@@ -99,7 +99,7 @@ public final class GridController extends GridBoundary {
         if (direction != null) {
             int size = this.grid.getSize();
             int row = coord.getRow();
-            int column = coord.getColumnInt();
+            int column = coord.getColumn().getColumnInt();
             Coordinate copyCoordinate = new Coordinate(Column.fromInt(column), row);
             if (direction.getVertical() != 0) {
                 int check = column + (dimension.getSize() * direction.getVertical());
@@ -138,7 +138,7 @@ public final class GridController extends GridBoundary {
     private void placeShip(final Direction direction, final Ship ship, final Coordinate coord) {
         if (direction != null) {
             int row = coord.getRow();
-            int column = coord.getColumnInt();
+            int column = coord.getColumn().getColumnInt();
             Coordinate copyCoordinate = new Coordinate(Column.fromInt(column), row);
             for (int i = 0; i < ship.getSize(); i++) {
                 grid.setCell(copyCoordinate, ship);
@@ -155,11 +155,11 @@ public final class GridController extends GridBoundary {
      */
     private void generateGrid() {
         int size = this.grid.getSize();
-        Coordinate coord = Coordinate.random(size, size);
         Direction direction;
 
         for (Ship s : Ship.values()) {
             for (int i = 0; i < s.getnShips(); i++) {
+                Coordinate coord = Coordinate.random(size, size);
                 direction = Direction.randomDirection();
                 if (this.canPlaceShip(direction, s, coord)) {
                     this.placeShip(direction, s, coord);
@@ -173,8 +173,6 @@ public final class GridController extends GridBoundary {
                         i--;
                     }
                 }
-                coord.setRow(Coordinate.generateRandomRow(size));
-                coord.setColumn(Coordinate.generateRandomColumn(size));
             }
         }
     }

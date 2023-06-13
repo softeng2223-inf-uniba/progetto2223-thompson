@@ -127,7 +127,7 @@ public abstract class InputBoundary {
     /**
      * Prints the grid with the ships if the user is not in the game.
      */
-    protected abstract void printGrid();
+    public abstract void printGrid();
 
     /**
      * Prints the current grid with the state of each cell.
@@ -146,7 +146,7 @@ public abstract class InputBoundary {
      *
      * @param time The maximum time in seconds.
      */
-    protected abstract void setMaxTime(int time);
+    protected abstract void setMaxMinuteTime(int time);
 
     /**
      * Terminates the current game session.
@@ -219,7 +219,7 @@ public abstract class InputBoundary {
             } else {
                 try {
                     int time = Integer.parseInt(args.get(0));
-                    setMaxTime(time);
+                    setMaxMinuteTime(time);
                     System.out.println("OK");
                 } catch (IllegalArgumentException e) {
                     System.out.println("Numero non valido");
@@ -466,6 +466,7 @@ public abstract class InputBoundary {
                 }
                 if (getCurrentTries() <= 0) {
                     System.out.println("Hai finito i tentativi a disposizione, hai perso!");
+                    printGrid();
                     quitGame();
                 }
                 input = scanner.nextLine();

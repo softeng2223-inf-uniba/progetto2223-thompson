@@ -22,9 +22,18 @@ public enum Column {
      * @return value or column
      */
     public static Column fromInt(final int value) {
-        if (value < 0 || value > VALUES.length) {
+        if (value < 0 || value >= VALUES.length) {
             return null;
         }
         return VALUES[value];
+    }
+
+    /**
+     * Column to integer getter.
+     *
+     * @return integer of column
+     */
+    public int getColumnInt() {
+        return this.ordinal();
     }
 }

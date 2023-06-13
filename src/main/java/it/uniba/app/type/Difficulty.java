@@ -59,7 +59,11 @@ public enum Difficulty {
      * @param valCurrentTries The new value for the current number of tries.
      */
     public static void setCurrentTries(final int valCurrentTries) {
-        Difficulty.currentTries = valCurrentTries;
+        if (valCurrentTries < 0) {
+            Difficulty.currentTries = 0;
+        } else {
+            Difficulty.currentTries = valCurrentTries;
+        }
     }
 
     /**
@@ -97,6 +101,9 @@ public enum Difficulty {
      * @param valDifficulty difficulty of the game
      */
     public static void setDifficulty(final Difficulty valDifficulty) {
+        if (valDifficulty == null) {
+            throw new IllegalArgumentException();
+        }
         gameDifficulty = valDifficulty;
         setMaxTries(gameDifficulty.getTries());
     }
@@ -122,16 +129,22 @@ public enum Difficulty {
     /**
      * Sets the current number of tries allowed for the game difficulty.
      *
-     * @param valCurrentTries the new value for the current number of tries
+     * @param valFailedTries the new value for the current number of tries
      */
-    public static void setFailedTries(final int valCurrentTries) {
-        Difficulty.failedTries = valCurrentTries;
+    public static void setFailedTries(final int valFailedTries) {
+        if (valFailedTries >= 0 && valFailedTries <= maxTries) {
+            Difficulty.failedTries = valFailedTries;
+        } else if (valFailedTries < 0) {
+            Difficulty.failedTries = 0;
+        } else {
+            Difficulty.failedTries = maxTries;
+        }
     }
 
     /**
-     * Returns the number of remaining tries.
+     * Returns the number of max tries.
      *
-     * @return the number of remaining tries
+     * @return the number of max tries
      */
     public int getTries() {
         return this.tries;

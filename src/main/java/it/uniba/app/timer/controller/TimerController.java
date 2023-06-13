@@ -1,5 +1,6 @@
 package it.uniba.app.timer.controller;
 
+import it.uniba.app.input.controller.InputController;
 import it.uniba.app.timer.TimerBoundary;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -68,6 +69,7 @@ public final class TimerController extends TimerBoundary {
     public void stopTimer() {
         if (isRunning) {
             endTimerMessage();
+            InputController.CONTROLLER.printGrid();
             setRunning(false);
         }
         timer.cancel();
@@ -79,6 +81,9 @@ public final class TimerController extends TimerBoundary {
      * @param minutes the maximum time in minutes
      */
     public void setMaxTime(final int minutes) {
+        if (minutes < 0) {
+            throw new IllegalArgumentException("The maximum time cannot be negative.");
+        }
         this.maxTime = TimeUnit.MILLISECONDS.convert(minutes, TimeUnit.MINUTES);
     }
 

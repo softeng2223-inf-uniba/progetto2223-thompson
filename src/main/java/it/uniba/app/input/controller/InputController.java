@@ -148,7 +148,7 @@ public final class InputController extends InputBoundary {
      * Prints the grid with the ships if the user is not in the game.
      */
     @Override
-    protected void printGrid() {
+    public void printGrid() {
         GridController.INSTANCE.printGrid();
     }
 
@@ -176,7 +176,7 @@ public final class InputController extends InputBoundary {
      * @param time The maximum time in seconds.
      */
     @Override
-    protected void setMaxTime(final int time) {
+    protected void setMaxMinuteTime(final int time) throws IllegalArgumentException {
         TimerController.CONTROLLER.setMaxTime(time);
     }
 

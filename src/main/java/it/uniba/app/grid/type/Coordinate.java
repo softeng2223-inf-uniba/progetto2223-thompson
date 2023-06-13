@@ -51,7 +51,7 @@ public final class Coordinate {
      */
     public Coordinate() {
         this.column = Column.fromInt(0);
-        this.row = 0;
+        this.row = 1;
     }
 
     /**
@@ -69,6 +69,9 @@ public final class Coordinate {
      * @param valRow row
      */
     public void setRow(final int valRow) {
+        if (valRow < 0) {
+            throw new IllegalArgumentException("Row must be positive");
+        }
         this.row = valRow;
     }
 
@@ -82,18 +85,12 @@ public final class Coordinate {
     }
 
     /**
-     * Column to integer getter.
-     *
-     * @return integer of column
-     */
-    public int getColumnInt() {
-        return column.ordinal();
-    }
-
-    /**
      * Column getter.
      */
     public void setColumn(final Column valColumn) {
+        if (valColumn == null) {
+            throw new IllegalArgumentException("Column must be not null");
+        }
         this.column = valColumn;
     }
 
@@ -175,7 +172,12 @@ public final class Coordinate {
             if (input.containsKey(PATTERN.pattern())) {
                 Column column = Column.valueOf(input.get(PATTERN.pattern()).get(0).toUpperCase());
                 int row = Integer.parseInt(input.get(PATTERN.pattern()).get(1));
-                return new Coordinate(column, row);
+                Coordinate coord = new Coordinate(column, row);
+                if (coord.isValid()) {
+                    return coord;
+                } else {
+                    return null;
+                }
             }
         }
         return null;
@@ -190,7 +192,8 @@ public final class Coordinate {
         if (this.row < 1 || this.row > SizeGrid.getSize()) {
             return false;
         }
-        if (this.column.ordinal() < 0 || this.column.ordinal() >= SizeGrid.getSize()) {
+        if (this.column == null
+                || this.column.getColumnInt() < 0 || this.column.getColumnInt() >= SizeGrid.getSize()) {
             return false;
         }
         return true;
