@@ -32,12 +32,14 @@ public abstract class InputBoundary {
             + "BENVENUTO/A\n"
             + "In questo gioco, il sistema posizionerà le navi nemiche su una griglia.\n"
             + "Il tuo obiettivo sarà quello di indovinare la loro posizione e affondarle una per una.\n"
-            + "Vincerai solo se riuscirai ad affondarle tutte prima di esaurire le tue mosse!\n"
+            + "Vincerai solo se riuscirai ad affondarle tutte prima di esaurire le tue mosse "
+            + "e prima che termini il tempo!\n"
             + "Il numero di mosse a disposizione dipende dalla modalità di gioco scelta.\n"
             + "Preparati a sfidare il sistema e dimostra le tue abilità strategiche per vincere.\n"
             + "Buona fortuna!\n"
             + "=========================================================================================\n"
-            + "Il livello di default è medio.\n";
+            + "Il livello di default è medio.\n"
+            + "La dimensione della griglia di default è standard.\n";
 
     /**
      * Message suggesting how to view the list of available commands.
@@ -226,7 +228,7 @@ public abstract class InputBoundary {
                 }
             }
         } else {
-            System.out.println("Non puoi cambiare il tempo massimo mentre una partita in corso!");
+            System.out.println("Non puoi cambiare il tempo massimo mentre una partita è in corso!");
         }
     }
 
@@ -284,8 +286,8 @@ public abstract class InputBoundary {
      */
     protected void closeGame() {
         if (isInGame()) {
-            System.out.print("Chiudere l'applicazione? [s/n] ");
-            System.out.println("Puoi abbandonare la partita con /abbandona");
+            System.out.print("Puoi abbandonare la partita con /abbandona, ");
+            System.out.println("chiudere comunque l'applicazione? [s/n] ");
         } else {
             System.out.println("Chiudere l'applicazione? [s/n]");
         }
@@ -369,7 +371,7 @@ public abstract class InputBoundary {
      */
     protected void showLevel() {
         System.out.print("Livello di difficoltà: " + getDifficultyString());
-        System.out.println(", numero massimo di tentativi: " + getMaxTries());
+        System.out.println(", numero massimo di tentativi falliti: " + getMaxTries());
     }
 
     /**
@@ -483,9 +485,9 @@ public abstract class InputBoundary {
                 executeCommand(Parser.parseInput(input, Command.getPatterns()));
             }
         } else {
-            System.out.print("E' già in corso una partita!");
+            System.out.print("E' già in corso una partita! ");
             System.out.println(
-                    "Per creare una nuova partita, è nesessario abbandonare la partita in corso con /abbandona");
+                    "Per creare una nuova partita, è necessario abbandonare la partita in corso con /abbandona");
         }
     }
 

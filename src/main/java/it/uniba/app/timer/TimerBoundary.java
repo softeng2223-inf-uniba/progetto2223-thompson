@@ -49,7 +49,7 @@ public abstract class TimerBoundary {
      * Prints a message indicating the start of the timer.
      */
     protected final void startTimerMessage() {
-        System.out.println("Il timer di " + getMaxTime() + " minuti.");
+        System.out.println("Il timer è di " + getMaxTime() + " minuti.");
     }
 
     /**
