@@ -58,6 +58,15 @@ class CellTest {
     }
 
     /**
+     * Test setting the state of the cell to null.
+     */
+    @Test
+    void testSetStateNull() {
+        cell.setState(null);
+        assertEquals(State.VOID, cell.getState(), "The state must be VOID");
+    }
+
+    /**
      * Test the state of the cell.
      */
     @Test
@@ -73,6 +82,15 @@ class CellTest {
     void testSetShip() {
         cell.setShip(ship);
         assertEquals(ship, cell.getShip(), "The ship must be CACCIATORPEDINIERE");
+    }
+
+    /**
+     * Test setting the ship of the cell to null.
+     */
+    @Test
+    void testSetShipNull() {
+        cell.setShip(null);
+        assertEquals(State.VOID, cell.getState(), "The state must be VOID");
     }
 
     /**

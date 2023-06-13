@@ -34,6 +34,16 @@ class DifficultyTest {
     }
 
     /**
+     * Tests the setCurrentTries method to ensure it sets the current number of
+     * tries correctly.
+     */
+    @Test
+    void testSetCurrentTriesNegativeNumber() {
+        Difficulty.setCurrentTries((TRIES + SET_TRIES) * -1);
+        assertEquals(0, Difficulty.getCurrentTries(), "The current tries must be 58");
+    }
+
+    /**
      * Tests the getMaxTries method to ensure it returns the correct maximum number
      * of tries for the current difficulty.
      */
@@ -68,6 +78,16 @@ class DifficultyTest {
      * difficulty correctly.
      */
     @Test
+    void testSetDifficultyNull() {
+        assertThrows(IllegalArgumentException.class, () -> Difficulty.setDifficulty(null),
+                "The difficulty must not be null");
+    }
+
+    /**
+     * Tests the setDifficulty method with a Difficulty enum to ensure it sets the
+     * difficulty correctly.
+     */
+    @Test
     void testSetDifficultyDifficulty() {
         Difficulty.setDifficulty(Difficulty.EASY);
         assertEquals(Difficulty.EASY, Difficulty.getDifficulty(), "The difficulty must be EASY");
@@ -78,7 +98,7 @@ class DifficultyTest {
      * the maximum number of tries correctly.
      */
     @Test
-    void testSetDifficultyMaxTries() {
+    void testSetDifficultyGetMaxTries() {
         Difficulty.setDifficulty(Difficulty.MEDIUM);
         assertEquals(Difficulty.MEDIUM.getTries(), Difficulty.getMaxTries(), "The max tries must be 20");
     }
@@ -99,8 +119,30 @@ class DifficultyTest {
      */
     @Test
     void testSetFailedTries() {
+        Difficulty.setMaxTries(TRIES);
+        Difficulty.setFailedTries(HARD_TRIES);
+        assertEquals(HARD_TRIES, Difficulty.getFailedTries(), "The failed tries must be 10");
+    }
+
+    /**
+     * Tests the setFailedTries method to ensure it sets the number of failed tries
+     * correctly.
+     */
+    @Test
+    void testSetFailedTriesGreaterMaxTries() {
+        Difficulty.setMaxTries(TRIES);
         Difficulty.setFailedTries(TRIES + 1);
-        assertEquals(TRIES + 1, Difficulty.getFailedTries(), "The failed tries must be 51");
+        assertEquals(TRIES, Difficulty.getFailedTries(), "The failed tries must be 50");
+    }
+
+    /**
+     * Tests the setFailedTries method to ensure it sets the number of failed tries
+     * correctly.
+     */
+    @Test
+    void testSetFailedTriesLess0() {
+        Difficulty.setFailedTries(-1);
+        assertEquals(0, Difficulty.getFailedTries(), "The failed tries must be 0");
     }
 
     /**

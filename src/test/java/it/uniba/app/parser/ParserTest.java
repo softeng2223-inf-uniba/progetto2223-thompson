@@ -29,6 +29,15 @@ class ParserTest {
     }
 
     /**
+     * Tests the parseInput method to ensure the result is not null.
+     */
+    @Test
+    void testParseInputNull() {
+        Map<String, Map<Integer, String>> result = Parser.parseInput(null, PATTERN1);
+        assertNull(result, "The result must not be null");
+    }
+
+    /**
      * Tests the parseInput method to ensure the expected match is present in the
      * result.
      */

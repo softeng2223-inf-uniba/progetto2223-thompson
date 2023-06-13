@@ -5,6 +5,7 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -59,7 +60,6 @@ class GridTest {
         grid.setCell(coord, ship);
         grid.setShip(ship, 1, coord);
         Map<Ship, Map<Integer, List<Coordinate>>> ships = grid.getShips();
-        System.out.println(ships);
         for (var s : ships.entrySet()) {
             count += s.getValue().keySet().size();
         }
@@ -110,6 +110,43 @@ class GridTest {
     }
 
     /**
+     * Test setting a cell with null coordinate.
+     */
+    @Test
+    void testSetCellNullCoord() {
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    Ship ship = Ship.INCROCIATORE;
+                    grid.setCell(null, ship);
+                }, "The coordinate is null");
+    }
+
+    /**
+     * Test setting a cell with null coordinate.
+     */
+    @Test
+    void testSetCellNullShip() {
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    Coordinate coord = new Coordinate(Column.B, ROW);
+                    grid.setCell(coord, null);
+                }, "The ship is null");
+    }
+
+    /**
+     * Test setting a cell with null coordinate.
+     */
+    @Test
+    void testSetCellOutOfRange() {
+        assertThrows(IndexOutOfBoundsException.class,
+                () -> {
+                    Coordinate coord = new Coordinate(Column.B, SIZE + 1);
+                    Ship ship = Ship.INCROCIATORE;
+                    grid.setCell(coord, ship);
+                }, "The ship is null");
+    }
+
+    /**
      * Test checking if a cell on the grid is empty.
      * The cell should be empty.
      */
@@ -129,6 +166,53 @@ class GridTest {
         Ship ship = Ship.CACCIATORPEDINIERE;
         grid.setShip(ship, 1, coord);
         assertFalse(grid.isAllSunken(), "All ships are not sunken");
+    }
+
+    /**
+     * Test setting a ship on the grid.
+     * All ships should not be sunk.
+     */
+    @Test
+    void testSetShipNullCoord() {
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    Ship ship = Ship.CACCIATORPEDINIERE;
+                    grid.setShip(ship, 1, null);
+                }, "The coordinate is null");
+    }
+
+    /**
+     * Test setting a ship on the grid.
+     * All ships should not be sunk.
+     */
+    @Test
+    void testSetShipNullShip() {
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    Coordinate coord = new Coordinate(Column.A, ROW);
+                    grid.setShip(null, 1, coord);
+                }, "The ship is null");
+    }
+
+    /**
+     * Test setting a ship on the grid.
+     * All ships should not be sunk.
+     */
+    @Test
+    void testSetShipNegativeNumberShip() {
+        boolean check = false;
+        Coordinate coord = new Coordinate(Column.A, ROW);
+        Ship ship = Ship.CACCIATORPEDINIERE;
+        grid.setShip(ship, -1, coord);
+        Map<Ship, Map<Integer, List<Coordinate>>> shpis = grid.getShips();
+        for (var entry : shpis.get(ship).entrySet()) {
+            if (entry.getValue().contains(coord)) {
+                if (entry.getKey() > 0) {
+                    check = true;
+                }
+            }
+        }
+        assertTrue(check, "The index of the ship is positive");
     }
 
     /**
@@ -249,6 +333,41 @@ class GridTest {
         grid.setCell(coord, Ship.PORTAEREI);
         grid.setState(coord, State.HIT);
         assertEquals(State.HIT, grid.getState(coord), "The state is HIT");
+    }
+
+    /**
+     * Test setting the state of a cell on the grid to null.
+     */
+    @Test
+    void testSetStateNull() {
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    Coordinate coord = new Coordinate(Column.A, ROW2);
+                    grid.setState(coord, null);
+                }, "The state is null");
+    }
+
+    /**
+     * Test setting the state of a cell on the grid to null.
+     */
+    @Test
+    void testSetStateCoordNull() {
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    grid.setState(null, State.HIT);
+                }, "The coordinate is null");
+    }
+
+    /**
+     * Test setting the state of a cell out of range on the grid.
+     */
+    @Test
+    void testSetStateOutOfRange() {
+        assertThrows(IndexOutOfBoundsException.class,
+                () -> {
+                    Coordinate coord = new Coordinate(Column.A, SIZE + 1);
+                    grid.setState(coord, State.HIT);
+                }, "The coordinate is null");
     }
 
     /**

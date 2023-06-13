@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashMap;
@@ -65,7 +66,21 @@ class CoordinateTest {
      * correctly.
      */
     @Test
-    void testSetRow() {
+    void testSetRowNegativeNumber() {
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    Coordinate coordinate = new Coordinate();
+                    int row = -1;
+                    coordinate.setRow(row);
+                }, "The row must be positive");
+    }
+
+    /**
+     * Tests the setRow method of the Coordinate class to ensure it sets the row
+     * correctly.
+     */
+    @Test
+    void testSetRowPositiveNumber() {
         Coordinate coordinate = new Coordinate();
         int row = 2;
         coordinate.setRow(row);
@@ -82,6 +97,20 @@ class CoordinateTest {
         Column column = Column.C;
         coordinate.setColumn(column);
         assertEquals(column, coordinate.getColumn(), "The column must be C");
+    }
+
+    /**
+     * Tests the setColumn method of the Coordinate class to ensure it sets the
+     * column correctly.
+     */
+    @Test
+    void testSetColumnNull() {
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    Coordinate coordinate = new Coordinate();
+                    Column column = null;
+                    coordinate.setColumn(column);
+                }, "The column must not be null");
     }
 
     /**
@@ -227,6 +256,17 @@ class CoordinateTest {
     @Test
     void testIsValidInvalidRow() {
         Coordinate coordinate = new Coordinate(Column.A, SizeGrid.getSize() + 1);
+        assertFalse(coordinate.isValid(), "The coordinate must be invalid");
+    }
+
+    /**
+     * Tests the isValid method of the Coordinate class with an invalid column
+     * value.
+     * The method should return false.
+     */
+    @Test
+    void testIsValidInvalidColumn() {
+        Coordinate coordinate = new Coordinate(null, 1);
         assertFalse(coordinate.isValid(), "The coordinate must be invalid");
     }
 
