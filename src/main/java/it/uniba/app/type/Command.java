@@ -254,7 +254,7 @@ public enum Command {
         CONFIRM("y|yes|si|s", 0),
         DECLINE("n|no", 0),
         NOARG("(/[a-z]+)", 0),
-        NUMERO("(/[a-z]+) ([-|+]*[1-9][0-9]*)", 1);
+        NUMERO("(/[a-z]+) ([-|+]*[0-9][0-9]*)", 1);
 
         private final String regex;
         private final int maxArgs;
