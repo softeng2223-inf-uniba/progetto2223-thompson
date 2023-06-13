@@ -3,7 +3,9 @@ package it.uniba.app.type;
 /**
  * <Entity>
  *
- * Class containing difficulty and number of tries.
+ * The Difficulty class is an enumeration that represents different difficulty
+ * levels in a game. It includes information about the number of tries allowed
+ * for each difficulty level.
  */
 public enum Difficulty {
     /**

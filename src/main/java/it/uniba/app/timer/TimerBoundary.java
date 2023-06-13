@@ -3,7 +3,8 @@ package it.uniba.app.timer;
 /**
  * <Boundary>
  *
- * Class to print timer information.
+ * The TimerBoundary class is a boundary class responsible for printing timer
+ * information.
  */
 public abstract class TimerBoundary {
     /**
