@@ -110,7 +110,6 @@ class CommandTest {
         String command = "/facile 500";
         String regex = "(/[a-z]+) ([-|+]*[0-9][0-9]*)";
         Map<Command, List<String>> result = Command.parse(Parser.parseInput(command, Pattern.compile(regex)));
-        System.out.println(result);
         assertTrue(result.containsKey(Command.EASY) && result.get(Command.EASY).contains("500"),
                 "The command must be EASY");
     }

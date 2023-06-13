@@ -10,7 +10,9 @@ import it.uniba.app.ship.Ship;
 public final class Cell {
 
     /**
-     * The state describe if the cell contains a ship or not and if it has been hit.
+     * The Cell class is responsible for managing the individual cells of a grid.
+     * It represents a single cell and contains information about its state and the
+     * ship occupying the cell.
      */
     private State state;
 

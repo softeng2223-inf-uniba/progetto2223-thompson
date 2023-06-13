@@ -3,7 +3,9 @@ package it.uniba.app.grid.type;
 /**
  * <noECB>
  *
- * Represents the result of a ship removal operation.
+ * The ResultRemove class represents the result of a ship removal operation.
+ * It encapsulates the outcome of the removal operation and provides access to
+ * the result and an associated message.
  */
 public class ResultRemove {
     private boolean result;
