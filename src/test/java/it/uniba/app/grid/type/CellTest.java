@@ -58,6 +58,15 @@ class CellTest {
     }
 
     /**
+     * Test the state of the cell.
+     */
+    @Test
+    void testSetShipState() {
+        cell.setShip(ship);
+        assertEquals(State.SHIP, cell.getState(), "The state must be SHIP");
+    }
+
+    /**
      * Test setting the ship of the cell.
      */
     @Test

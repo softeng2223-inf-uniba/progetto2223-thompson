@@ -57,7 +57,7 @@ class CoordinateTest {
     @Test
     void testEmptyConstructorRow() {
         Coordinate coordinate = new Coordinate();
-        assertEquals(0, coordinate.getRow(), "The row must be 0");
+        assertEquals(1, coordinate.getRow(), "The row must be 1");
     }
 
     /**

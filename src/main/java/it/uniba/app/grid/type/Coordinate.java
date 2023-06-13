@@ -51,7 +51,7 @@ public final class Coordinate {
      */
     public Coordinate() {
         this.column = Column.fromInt(0);
-        this.row = 0;
+        this.row = 1;
     }
 
     /**

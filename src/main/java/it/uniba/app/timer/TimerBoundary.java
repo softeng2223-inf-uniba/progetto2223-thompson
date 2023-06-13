@@ -56,7 +56,7 @@ public abstract class TimerBoundary {
      * Prints a message indicating that the timer has expired and the game is over.
      */
     protected final void endTimerMessage() {
-        System.out.println("Il timer Ã¨ scaduto. La partita Ã¨ finita!");
+        System.out.println("Il timer è scaduto. La partita è finita!");
     }
 
     /**
