@@ -484,9 +484,9 @@ public abstract class InputBoundary {
                 executeCommand(Parser.parseInput(input, Command.getPatterns()));
             }
         } else {
-            System.out.print("E' già in corso una partita!");
+            System.out.print("E' già in corso una partita! ");
             System.out.println(
-                    "Per creare una nuova partita, è nesessario abbandonare la partita in corso con /abbandona");
+                    "Per creare una nuova partita, è necessario abbandonare la partita in corso con /abbandona");
         }
     }
 
