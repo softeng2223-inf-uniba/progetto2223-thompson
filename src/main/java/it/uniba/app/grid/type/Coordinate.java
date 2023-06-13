@@ -69,6 +69,9 @@ public final class Coordinate {
      * @param valRow row
      */
     public void setRow(final int valRow) {
+        if (valRow < 0) {
+            throw new IllegalArgumentException("Row must be positive");
+        }
         this.row = valRow;
     }
 
@@ -85,6 +88,9 @@ public final class Coordinate {
      * Column getter.
      */
     public void setColumn(final Column valColumn) {
+        if (valColumn == null) {
+            throw new IllegalArgumentException("Column must be not null");
+        }
         this.column = valColumn;
     }
 
@@ -186,7 +192,8 @@ public final class Coordinate {
         if (this.row < 1 || this.row > SizeGrid.getSize()) {
             return false;
         }
-        if (this.column.ordinal() < 0 || this.column.ordinal() >= SizeGrid.getSize()) {
+        if (this.column == null
+                || this.column.getColumnInt() < 0 || this.column.getColumnInt() >= SizeGrid.getSize()) {
             return false;
         }
         return true;

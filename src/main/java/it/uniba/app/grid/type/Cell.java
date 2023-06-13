@@ -42,7 +42,11 @@ public final class Cell {
      * @param valState state to set
      */
     public void setState(final State valState) {
-        this.state = valState;
+        if (valState == null) {
+            this.state = State.VOID;
+        } else {
+            this.state = valState;
+        }
     }
 
     /**
@@ -70,6 +74,10 @@ public final class Cell {
      */
     public void setShip(final Ship valShip) {
         this.ship = valShip;
-        setState(State.SHIP);
+        if (valShip != null) {
+            this.setState(State.SHIP);
+        } else {
+            this.setState(State.VOID);
+        }
     }
 }
