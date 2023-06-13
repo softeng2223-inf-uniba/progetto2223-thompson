@@ -8,7 +8,8 @@ import java.util.Map;
 /**
  * <noECB>
  *
- * Abstract class for parsing strings.
+ * The Parser class is an abstract class that provides functionality for parsing
+ * strings using regular expression patterns.
  */
 public abstract class Parser {
     /**

@@ -5,7 +5,10 @@ import java.util.Random;
 /**
  * <noECB>
  *
- * Enumeration representing the directions of movement.
+ * The Direction class is an enumeration representing the directions of
+ * movement. It defines four directions: RIGHT, LEFT, UP, and DOWN. Each
+ * direction is associated with horizontal and vertical values that determine
+ * the movement in the respective direction.
  */
 public enum Direction {
     RIGHT(0, 1),

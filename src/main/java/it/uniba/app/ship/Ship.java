@@ -3,7 +3,9 @@ package it.uniba.app.ship;
 /**
  * <Entity>
  *
- * Enum class to manage the type and the quantity of ships.
+ * The Ship class is an enumeration that represents different types of ships in
+ * a game. Each ship type has a specific size, number of ships available, and
+ * color associated with it.
  */
 public enum Ship {
     CACCIATORPEDINIERE(2, 4, "\u001B[0;32m"),
