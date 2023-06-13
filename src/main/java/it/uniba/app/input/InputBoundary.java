@@ -533,4 +533,18 @@ public abstract class InputBoundary {
             System.out.println("inizia a giocare con /gioca");
         }
     }
+
+    /**
+     * Prints the message "Comando non riconosciuto".
+     */
+    protected void printCommandNotRecognized() {
+        System.out.println("Comando non riconosciuto");
+    }
+
+    /**
+     * Prints the message "Comando non valido".
+     */
+    protected void printInvalidCommand() {
+        System.out.println("Comando non valido");
+    }
 }

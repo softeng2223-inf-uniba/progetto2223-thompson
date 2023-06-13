@@ -33,7 +33,7 @@ public final class InputController extends InputBoundary {
     protected void executeCommand(final Map<String, Map<Integer, String>> inputCommand) {
         Map<Command, List<String>> command = Command.parse(inputCommand);
         if (command == null) {
-            System.out.println("Comando non riconosciuto");
+            printCommandNotRecognized();
         } else if (command.containsKey(Command.EXIT)) {
             closeGame();
         } else if (command.containsKey(Command.HELP)) {
@@ -71,7 +71,7 @@ public final class InputController extends InputBoundary {
         } else if (command.containsKey(Command.SURREND)) {
             exitGame();
         } else {
-            System.out.println("Comando non valido");
+            printInvalidCommand();
         }
     }
 
