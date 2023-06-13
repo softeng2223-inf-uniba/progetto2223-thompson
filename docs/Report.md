@@ -184,14 +184,24 @@ Dopo aver eseguito il comando docker pull copiandolo da GitHub Packages, Il coma
 [Torna all'indice](#indice)
 
 ## 7. Manuale utente
-Il gioco si svolge su una griglia, dove il sistema posiziona in modo casuale le navi all'inizio di una partita. L'obiettivo del giocatore è quello di indovinare la posizione delle navi nemiche e cercare di affondarle attaccando le caselle della griglia.<br>
-Il gioco termina quando tutte le navi nemiche sono state affondate o quando si esauriscono le mosse disponibili. Il numero di mosse disponibili dipende dalla modalità di gioco scelta, che può essere facile, media o difficile.<br>Il giocatore vince se affonda tutte le navi prima di esaurire le mosse.
+Il gioco si svolge su una griglia, dove il sistema posiziona in modo casuale le navi all'inizio di una partita. L'obiettivo del giocatore è quello di indovinare la posizione delle navi nemiche e cercare di affondarle attaccando le caselle della griglia prima che finisca il tempo a disposizione.<br>
+Il gioco termina quando tutte le navi nemiche sono state affondate, quando si esauriscono le mosse disponibili o quando scade il tempo a disposizione.
+Il numero di mosse disponibili dipende dalla modalità di gioco scelta, che può essere facile, media o difficile.<br>
+Il giocatore vince se affonda tutte le navi prima di esaurire le mosse e prima che termini il tempo.
 <br>
 
 ![intro](./img/intro.jpg)
 
-Per interagire con il gioco, viene utilizzata l'interfaccia a riga di comando (CLI). Di seguito si riporta l'elenco dei comandi utilizzabili e una breve descrizione del loro funzionamento:
+Per interagire con il gioco, viene utilizzata l'interfaccia a riga di comando (CLI). Di seguito si riporta l'elenco dei comandi utilizzabili e una breve descrizione del loro funzionamento, suddivisi in tre sezioni:
 <br>
+
+7.1 [Comandi pre inizio partita](#71-comandi-pre-inizio-partita) <br>
+7.2 [Comandi post inizio partita](#72-comandi-post-inizio-partita) <br>
+7.3 [Comandi invocabili sempre](#73-comandi-invocabili-sempre)
+
+
+### 7.1 Comandi pre inizio partita
+
 <ul>
 <li>Al comando <strong>/help</strong> o invocando l'app con flag <i>--help</i> o <i>-h</i> il risultato è una descrizione concisa, che normalmente appare all'avvio del programma, seguita dalla lista di comandi disponibili, uno per riga, come da esempio successivo:<br>
 <ul>
@@ -204,27 +214,36 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 
 ![help](./img/help.jpg)
 
-<li>Al comando <strong>/esci</strong> l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti<br>
-<ul>
-<li>	se la conferma è positiva, l'applicazione si chiude restituendo il controllo al sistema operativo</li>
-<li>	se la conferma è negativa, l'applicazione si predispone a ricevere nuovi tentativi o comandi</li>
-</ul>
-</li><br>
-
-![esci](./img/esci.jpg)
-
 <li>Al comando <strong>/facile</strong> l’applicazione risponde con OK e imposta a 50 il numero massimo di tentativi falliti.</li><br>
 
-<li>Al comando <strong>/medio</strong> l’applicazione risponde con OK e imposta a 30 il numero massimo di tentativi falliti.</li><br>
+<li>Al comando <strong>/medio</strong> l’applicazione risponde con OK e imposta a 30 il numero massimo di tentativi falliti (è il default).</li><br>
 
 <li>Al comando <strong>/difficile</strong> l’applicazione risponde con OK e imposta a 10 il numero massimo di tentativi falliti.<br>
 </li><br>
 
 ![livello](./img/livello.jpg)
 
-<li>Al comando <strong>/mostralivello</strong> l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti.</li><br>
+<li>Al comando <strong>/facile</strong> <i>numero</i> l’applicazione risponde con OK e imposta a <i>numero</i> il numero massimo di tentativi falliti. </li><br>
 
-![mostraliv](./img/mostraliv.jpg)
+<li>Al comando <strong>/medio</strong> <i>numero</i> l’applicazione risponde con OK e imposta a <i>numero</i> il numero massimo di tentativi falliti.</li><br>
+
+<li>Al comando <strong>/difficile</strong> <i>numero</i> l’applicazione risponde con OK e imposta a <i>numero</i> il numero massimo di tentativi falliti.</li><br>
+
+<li>Al comando <strong>/tentativi</strong> <i>numero</i> l’applicazione risponde con OK e imposta a <i>numero</i> il numero massimo di tentativi falliti.</li><br>
+
+<li>Al comando <strong>/standard</strong> l’applicazione risponde con OK e imposta a 10x10 la dimensione della griglia (è il default).</li><br>
+
+<li>Al comando <strong>/large</strong> l’applicazione risponde con OK e imposta a 18x18 la dimensione della griglia.</li><br>
+
+<li>Al comando <strong>/extralarge</strong> l’applicazione risponde con OK e imposta a 26x26 la dimensione della griglia.</li><br>
+
+<li>Al comando <strong>/tempo</strong> <i>numero</i> l’applicazione risponde con OK e imposta a <i>numero</i> il numero minuti a disposizione per giocare.</li><br>
+
+<li>Al comando <strong>/gioca</strong> se nessuna partita è in corso l'applicazione imposta causalmente le navi, in orizzontale o in verticale, mostra la griglia vuota e si predispone a ricevere il primo tentativo o altri comandi.</li><br>
+
+![gioca](./img/gioca.jpg)
+
+### 7.2 Comandi post inizio partita
 
 <li>Al comando <strong>/mostranavi</strong> l’applicazione risponde visualizzando, per ogni tipo di nave, la dimensione in quadrati e il numero di esemplari da affondare:<br>
 <ul>
@@ -237,14 +256,49 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 
 ![mostranavi](./img/mostranavi.jpg)
 
-<li>Al comando <strong>/gioca</strong> se nessuna partita è in corso l'applicazione imposta causalmente le navi, in orizzontale o in verticale, mostra la griglia vuota e si predispone a ricevere il primo tentativo o altri comandi.</li><br>
+<li>Digitando una coppia di caratteri separati da un trattino, corrispondenti rispettivamente al numero di riga e alla lettera della colonna, (es. <strong>B-4</strong>), l’applicazione risponde:
+<ul>
+<li>“acqua” se sulla cella non è posizionata nessuna nave;</li>
+<li>"colpito" se sulla cella è posizionata una nave;</li>
+<li>"colpito e affondato" se sulla cella è posizionata una nave ed è l’ultima cella non colpita della nave.</li>
+</ul>
+Qualunque sia l’esito del tentativo, l’applicazione mostra la griglia con le navi colpite parzialmente o affondate, il numero di tentativi già effettuati e il tempo trascorso.<br>
+La partita termina con successo se il tentativo ha affondato l’ultima nave.<br>
+La partita termina con insuccesso se è stato raggiunto il numero massimo di tentativi falliti o se è scaduto il tempo di gioco.</li><br>
 
-![gioca](./img/gioca.jpg)
+<li>Al comando <strong>/mostratempo</strong> l’applicazione risponde visualizzando il numero di minuti trascorsi nel gioco e il numero di minuti ancora disponibili.</li><br>
+
+<li>Al comando <strong>/mostragriglia</strong> l’applicazione risponde visualizzando, una griglia con le righe numerate a partire da 1 e le colonne numerate a partire da A, con le navi affondate e le sole parti già colpite delle navi non affondate.</li><br>
+
+<li>Al comando <strong>/mostratentativi</strong> l’applicazione risponde visualizzando il numero di tentativi già effettuati, il numero di tentativi falliti e il numero massimo di tentativi falliti.</li><br>
 
 <li>Al comando <strong>/svelagriglia</strong> l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate da 1 a 10 e le colonne numerate da A a J, e tutte le navi posizionate.</li><br>
-</ul> 
 
 ![svelagriglia](./img/svelagriglia.jpg)
+
+<li>Al comando <strong>/abbandona</strong> l'applicazione chiede conferma:
+<ul>
+<li>se la conferma è positiva, l’applicazione risponde visualizzando sulla griglia la posizione di tutte le navi e si predispone a ricevere nuovi comandi;</li>
+<li>se la conferma è negativa, l'applicazione si predispone a ricevere nuovi tentativi o comandi.</li>
+</ul>
+</li><br>
+
+### 7.3 Comandi invocabili sempre
+
+<li>Al comando <strong>/mostralivello</strong> l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti.</li><br>
+
+![mostraliv](./img/mostraliv.jpg)
+
+<li>Al comando <strong>/esci</strong> l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti<br>
+<ul>
+<li>	se la conferma è positiva, l'applicazione si chiude restituendo il controllo al sistema operativo</li>
+<li>	se la conferma è negativa, l'applicazione si predispone a ricevere nuovi tentativi o comandi</li>
+</ul>
+</li><br>
+
+![esci](./img/esci.jpg)
+
+</ul>
 
 [Torna all'indice](#indice)
 
