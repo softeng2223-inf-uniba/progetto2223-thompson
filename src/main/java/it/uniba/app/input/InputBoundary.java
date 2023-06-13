@@ -11,7 +11,9 @@ import java.util.Scanner;
 /**
  * <Boundary>
  *
- * Class that interprets commands.
+ * The InputBoundary class is responsible for interacting with the user through
+ * a command-line interface. Provides abstract methods for executing commands
+ * and managing game state.
  */
 public abstract class InputBoundary {
 
@@ -40,6 +42,11 @@ public abstract class InputBoundary {
             + "=========================================================================================\n"
             + "Il livello di default è medio.\n"
             + "La dimensione della griglia di default è standard.\n";
+
+    /**
+     * Constant representing the confirmation message.
+     */
+    private static final String CONFIRM_MESSAGE = "OK";
 
     /**
      * Message suggesting how to view the list of available commands.
@@ -222,7 +229,7 @@ public abstract class InputBoundary {
                 try {
                     int time = Integer.parseInt(args.get(0));
                     setMaxMinuteTime(time);
-                    System.out.println("OK");
+                    System.out.println(CONFIRM_MESSAGE);
                 } catch (IllegalArgumentException e) {
                     System.out.println("Numero non valido");
                 }
@@ -275,7 +282,7 @@ public abstract class InputBoundary {
     protected void setSize(final Command command) {
         if (!isInGame()) {
             setSizeGrid(command);
-            System.out.println("OK");
+            System.out.println(CONFIRM_MESSAGE);
         } else {
             System.out.println("Partita in corso!");
         }
@@ -313,7 +320,7 @@ public abstract class InputBoundary {
             } else if (command.containsKey(Command.YES)) {
                 return true;
             } else if (command.containsKey(Command.NO)) {
-                System.out.println("OK");
+                System.out.println(CONFIRM_MESSAGE);
                 canContinue = false;
             } else {
                 System.out.println("Risposta non valida");
@@ -332,7 +339,7 @@ public abstract class InputBoundary {
         if (!isInGame()) {
             if (args == null) {
                 this.setOnlyDifficulty(command);
-                System.out.println("OK");
+                System.out.println(CONFIRM_MESSAGE);
             } else {
                 this.setOnlyDifficulty(command);
                 this.setOnlyCurrentTries(args);
@@ -356,7 +363,7 @@ public abstract class InputBoundary {
                 try {
                     int tires = Integer.parseInt(args.get(0));
                     setMaxTries(tires);
-                    System.out.println("OK");
+                    System.out.println(CONFIRM_MESSAGE);
                 } catch (IllegalArgumentException e) {
                     System.out.println("Numero non valido");
                 }
@@ -525,5 +532,19 @@ public abstract class InputBoundary {
             System.out.print("E' necessario essere in partita per poter visualizzare l'elenco delle navi, ");
             System.out.println("inizia a giocare con /gioca");
         }
+    }
+
+    /**
+     * Prints the message "Comando non riconosciuto".
+     */
+    protected void printCommandNotRecognized() {
+        System.out.println("Comando non riconosciuto");
+    }
+
+    /**
+     * Prints the message "Comando non valido".
+     */
+    protected void printInvalidCommand() {
+        System.out.println("Comando non valido");
     }
 }

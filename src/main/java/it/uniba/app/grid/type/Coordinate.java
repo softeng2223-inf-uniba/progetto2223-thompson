@@ -8,7 +8,9 @@ import java.util.regex.Pattern;
 /**
  * <Entity>
  *
- * Class to handle coordinates.
+ * The Coordinate class is responsible for handling coordinates within a grid.
+ * It provides functionality to represent and manipulate the column and row
+ * values of a coordinate.
  */
 public final class Coordinate {
     /**

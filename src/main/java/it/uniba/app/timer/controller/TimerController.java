@@ -9,7 +9,10 @@ import java.util.concurrent.TimeUnit;
 /**
  * <Control>
  *
- * Utility class for managing game timers.
+ * The TimerController class is a class for managing game timers. It
+ * provides functionality to start and stop a timer, set the maximum time for
+ * the timer, and retrieve information about the timer's current and maximum
+ * time.
  */
 public final class TimerController extends TimerBoundary {
     public static final TimerController CONTROLLER = new TimerController();
@@ -131,7 +134,8 @@ public final class TimerController extends TimerBoundary {
     }
 
     /**
-     * Calculates the number of minutes passed based on the given current time in seconds.
+     * Calculates the number of minutes passed based on the given current time in
+     * seconds.
      *
      * @param currentTimeSeconds the current time in seconds
      * @return the number of minutes passed
@@ -142,7 +146,8 @@ public final class TimerController extends TimerBoundary {
     }
 
     /**
-     * Calculates the number of seconds passed based on the given current time in seconds.
+     * Calculates the number of seconds passed based on the given current time in
+     * seconds.
      *
      * @param currentTimeSeconds the current time in seconds
      * @return the number of seconds passed

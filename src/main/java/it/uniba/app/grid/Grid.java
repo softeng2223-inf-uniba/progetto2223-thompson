@@ -15,7 +15,9 @@ import java.util.Map;
 /**
  * <Entity>
  *
- * Class to generate and handle the grid.
+ * The Grid class is responsible for representing the grid concept,
+ * and mainly offers get and set methods to access and modify its internal
+ * attributes.
  */
 public class Grid {
     /**

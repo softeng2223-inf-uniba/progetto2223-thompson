@@ -3,7 +3,8 @@ package it.uniba.app.grid.type;
 /**
  * <Entity>
  *
- * Enum class to describe cell states.
+ * The State class is an enum class that represents the different states a cell
+ * can have.
  * Each state can be associated with a color for display purposes.
  */
 public enum State {

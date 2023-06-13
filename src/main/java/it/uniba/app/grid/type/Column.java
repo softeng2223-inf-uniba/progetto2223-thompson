@@ -3,7 +3,10 @@ package it.uniba.app.grid.type;
 /**
  * <noECB>
  *
- * Enum class to describe coordinate columns.
+ * The Column enum class is responsible for representing the columns in a
+ * coordinate system.
+ * It provides a set of predefined column values, from A to Z, to describe the
+ * columns in a grid.
  */
 public enum Column {
     A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z;

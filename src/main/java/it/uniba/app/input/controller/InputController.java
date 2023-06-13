@@ -14,7 +14,9 @@ import it.uniba.app.type.Difficulty;
 /**
  * <Control>
  *
- * Class for commands that the user may enter.
+ * The InputController class is responsible for handling user commands and
+ * controlling the game flow. It receives input commands from the user
+ * interface, interprets them, and executes the corresponding actions.
  */
 public final class InputController extends InputBoundary {
     public static final InputController CONTROLLER = new InputController();
@@ -31,7 +33,7 @@ public final class InputController extends InputBoundary {
     protected void executeCommand(final Map<String, Map<Integer, String>> inputCommand) {
         Map<Command, List<String>> command = Command.parse(inputCommand);
         if (command == null) {
-            System.out.println("Comando non riconosciuto");
+            printCommandNotRecognized();
         } else if (command.containsKey(Command.EXIT)) {
             closeGame();
         } else if (command.containsKey(Command.HELP)) {
@@ -69,7 +71,7 @@ public final class InputController extends InputBoundary {
         } else if (command.containsKey(Command.SURREND)) {
             exitGame();
         } else {
-            System.out.println("Comando non valido");
+            printInvalidCommand();
         }
     }
 

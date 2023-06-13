@@ -14,7 +14,10 @@ import it.uniba.app.type.Difficulty;
 /**
  * <Control>
  *
- * The controller class for managing the game grid.
+ * The GridController class is responsible for managing the game grid.
+ * It handles the creation of the grid, placement of ships, shooting at
+ * coordinates,
+ * and various operations related to the grid.
  */
 public final class GridController extends GridBoundary {
     public static final GridController INSTANCE = new GridController();

@@ -3,7 +3,10 @@ package it.uniba.app.grid.type;
 /**
  * <Entity>
  *
- * Represents the size of a grid.
+ * The SizeGrid class represents the size options available for a grid.
+ * It is an enum class that defines three size options: STANDARD, LARGE, and
+ * EXTRALARGE,
+ * each associated with a specific size value.
  */
 public enum SizeGrid {
     STANDARD(10),
