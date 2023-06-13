@@ -11,7 +11,9 @@ import java.util.Scanner;
 /**
  * <Boundary>
  *
- * Class that interprets commands.
+ * The InputBoundary class is responsible for interacting with the user through
+ * a command-line interface. Provides abstract methods for executing commands
+ * and managing game state.
  */
 public abstract class InputBoundary {
 

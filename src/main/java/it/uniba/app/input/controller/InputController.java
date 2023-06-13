@@ -14,7 +14,9 @@ import it.uniba.app.type.Difficulty;
 /**
  * <Control>
  *
- * Class for commands that the user may enter.
+ * The InputController class is responsible for handling user commands and
+ * controlling the game flow. It receives input commands from the user
+ * interface, interprets them, and executes the corresponding actions.
  */
 public final class InputController extends InputBoundary {
     public static final InputController CONTROLLER = new InputController();
