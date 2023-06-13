@@ -6,6 +6,7 @@ import it.uniba.app.grid.type.ResultRemove;
 import it.uniba.app.grid.type.State;
 import it.uniba.app.ship.Ship;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -93,7 +94,10 @@ public class Grid {
      * @param coord The coordinate of the cell where the ship will be set.
      * @param ship  The ship object to be set in the cell.
      */
-    public final void setCell(final Coordinate coord, final Ship ship) {
+    public final void setCell(final Coordinate coord, final Ship ship) throws IndexOutOfBoundsException {
+        if (coord == null || ship == null) {
+            throw new IllegalArgumentException("Coordinate and ship cannot be null");
+        }
         int row = coord.getRow();
         int column = coord.getColumn().getColumnInt();
         grid[row][column].setShip(ship);
@@ -117,11 +121,22 @@ public class Grid {
      * @param coord the coordinate where the ship will be placed
      */
     public final void setShip(final Ship ship, final int nShip, final Coordinate coord) {
-        if (this.ships.get(ship).get(nShip) == null) {
-            this.ships.get(ship).put(nShip, new LinkedList<>());
-            this.ships.get(ship).get(nShip).add(coord.copy());
+        if (ship == null || coord == null) {
+            throw new IllegalArgumentException("Coordinate and ship cannot be null");
+        }
+        int newNShip = nShip;
+        if (this.ships.get(ship).get(newNShip) == null) {
+            if (nShip <= 0) {
+                newNShip = 1;
+            }
+            this.ships.get(ship).put(newNShip, new LinkedList<>());
+
+            this.ships.get(ship).get(newNShip).add(coord.copy());
         } else {
-            this.ships.get(ship).get(nShip).add(coord.copy());
+            if (nShip <= 0) {
+                newNShip = Collections.max(ships.get(ship).entrySet(), Map.Entry.comparingByKey()).getKey() + 1;
+            }
+            this.ships.get(ship).get(newNShip).add(coord.copy());
         }
     }
 
@@ -174,7 +189,10 @@ public class Grid {
      * @param coord the coordinate of the cell
      * @param state the state to set for the cell
      */
-    public final void setState(final Coordinate coord, final State state) {
+    public final void setState(final Coordinate coord, final State state) throws IndexOutOfBoundsException {
+        if (state == null || coord == null) {
+            throw new IllegalArgumentException("Coordinate and state cannot be null");
+        }
         this.grid[coord.getRow()][coord.getColumn().getColumnInt()].setState(state);
     }
 
@@ -185,7 +203,7 @@ public class Grid {
      * @return true if a ship is placed at the coordinate, false
      *         otherwise
      */
-    public final boolean isShipPlaced(final Coordinate coord) {
+    public final boolean isShipPlaced(final Coordinate coord) throws IndexOutOfBoundsException {
         if (grid[coord.getRow()][coord.getColumn().getColumnInt()].getShip() != null) {
             return true;
         }

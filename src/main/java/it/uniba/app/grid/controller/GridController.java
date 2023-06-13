@@ -45,7 +45,7 @@ public final class GridController extends GridBoundary {
      *         or "Questa mossa è stata già effettuata" (This move has already been
      *         made)
      */
-    public String hitCoordinate(final Coordinate coord) {
+    public String hitCoordinate(final Coordinate coord) throws IndexOutOfBoundsException {
         int row = coord.getRow() - 1;
         int column = coord.getColumn().getColumnInt();
         Coordinate copyCoordinate = new Coordinate(Column.fromInt(column), row);
