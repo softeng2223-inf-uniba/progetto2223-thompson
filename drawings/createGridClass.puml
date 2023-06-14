@@ -1,0 +1,78 @@
+@startuml createGrid
+skinparam classAttributeIconSize 0
+abstract class InputBoundary <<boundary>>{
+    - {static} scanner : Scanner
+    # {abstract} void createGrid()
+}
+
+class InputController <<control>>{
+    - {static} CONTROLLER : InputController
+    - InputController()
+    + {static}InputController getInstance()
+}
+
+abstract class GridBoundary <<boundary>>{
+}
+
+class GridController <<control>>{
+    - {static} CONTROLLER : GridController
+    - grid : Grid
+    + {static}GridController getInstance()
+    + void newGrid()
+    - void generateGrid()
+    - boolean canPlaceShip()
+    - boolean placeShip()
+    - boolean addShips()
+}
+
+enum Column {
+    + int getColumnInt()
+    + Column fromInt()
+}
+
+class Grid <<entity>>{
+    - size: Integer
+    - grid[][] : Cell
+    - ships : Map
+    + boolean isCellEmpty()
+}
+
+class Coordinate <<entity>>{
+    - row : Integer
+    - column : Column
+    + {static} Coordinate random()
+    + {static} Column generateRandomColumn()
+    + {static} int generateRandomRow()
+    + boolean isValid()
+    + Coordinate copy()
+}
+
+enum Direction {
+
+    - orizontal : Integer
+    - vertical : Integer
+    + {static} Direction randomDirection()
+    + Direction rotate()
+}
+enum Ship <<entity>>{
+    CACCIATORPEDINIERE
+    INCROCIATORE
+    CORAZZATA
+    PORTAEREI
+    ..
+    - nShips : Integer
+    - size : Integer
+}
+
+InputBoundary <|-- InputController
+InputController "1" <-- InputController
+GridController "1" <-- GridController
+InputController ..> GridController
+GridController ..> Coordinate
+GridController ..> Direction
+GridController ..> Column
+GridController ..> Ship
+Coordinate ..> Column
+GridBoundary <|-- GridController
+Grid "1" <-- GridController
+@enduml
