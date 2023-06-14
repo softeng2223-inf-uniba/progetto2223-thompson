@@ -7,8 +7,8 @@
 3. [Requisiti Specifici](#3-requisiti-specifici)
 4. [System Design](#4-system-design)
 5. [OO Design](#5-oo-design)
-   5.1 [Diagrammi delle classi](#5.1-diagramma-delle-classi)
-   5.2 [Diagrammi di sequenza](#5.2-diagramma-delle-sequenze)
+   - 5.1 [Diagrammi delle classi](#5.1-diagrammi-delle-classi)
+   - 5.2 [Diagrammi di sequenza](#5.2-diagrammi-di-sequenza)
 6. [Riepilogo del test](#6-riepilogo-del-test)
 7. [Manuale Utente](#7-manuale-utente)
 8. [Processo di sviluppo e organizzazione del lavoro](#8-Processo-di-sviluppo-e-organizzazione-del-lavoro)
@@ -180,8 +180,14 @@ Dopo aver eseguito il comando docker pull copiandolo da GitHub Packages, Il coma
 ## 5. OO Design
 
 ## 5.1 Diagrammi delle classi
+![playGameClassDiagram](./img/playGameClassDiagram.png)
+![generateGridClassDiagram](./img/generateGridClassDiagram.png)
+![printGridClassDiagram](./img/printGridClassDiagram.png)
 
 ## 5.2 Diagrammi di sequenza
+![playGameSequenceDiagram](./img/playGameSequenceDiagram.png)
+![generateGridSequenceDiagram](./img/generateGridSequenceDiagram.png)
+![printGridSequenceDiagram](./img/printGridSequenceDiagram.png)
 
 [Torna all'indice](#indice)
 
