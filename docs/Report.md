@@ -7,6 +7,8 @@
 3. [Requisiti Specifici](#3-requisiti-specifici)
 4. [System Design](#4-system-design)
 5. [OO Design](#5-oo-design)
+   5.1 [Diagrammi delle classi](#5.1-diagramma-delle-classi)
+   5.2 [Diagrammi di sequenza](#5.2-diagramma-delle-sequenze)
 6. [Riepilogo del test](#6-riepilogo-del-test)
 7. [Manuale Utente](#7-manuale-utente)
 8. [Processo di sviluppo e organizzazione del lavoro](#8-Processo-di-sviluppo-e-organizzazione-del-lavoro)
@@ -176,6 +178,10 @@ Dopo aver eseguito il comando docker pull copiandolo da GitHub Packages, Il coma
 [Torna all'indice](#indice)
 
 ## 5. OO Design
+
+## 5.1 Diagrammi delle classi
+
+## 5.2 Diagrammi di sequenza
 
 [Torna all'indice](#indice)
 
