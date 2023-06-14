@@ -14,8 +14,6 @@ import java.util.regex.Pattern;
  * The Command class represents different commands that the user can enter. It
  * is an enumeration that contains various commands along with their
  * descriptions, aliases, and types.
- * 
- * 
  */
 public enum Command {
     /**
