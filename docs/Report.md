@@ -10,6 +10,7 @@
    - 5.1 [Diagrammi delle classi](#5.1-diagrammi-delle-classi)
    - 5.2 [Diagrammi di sequenza](#5.2-diagrammi-di-sequenza)
    - 5.3 [Decisioni prese](#5.3-decisioni-prese)
+   - 5.4 [Design Pattern](#5.4-design-pattern)
 6. [Riepilogo del test](#6-riepilogo-del-test)
 7. [Manuale Utente](#7-manuale-utente)
 8. [Processo di sviluppo e organizzazione del lavoro](#8-Processo-di-sviluppo-e-organizzazione-del-lavoro)
@@ -214,6 +215,12 @@ Successivamente, abbiamo ristrutturato il codice per evitare questa duplicazione
 ![printExtraLargeGrid](./img/printExtraLargeGrid.png)
 ![printCurrentGrid](./img/printCurrentGrid.png)
 
+## 5.4 Design pattern
+Per le classi control (InputController, GridController, TimerController), è stato applicato il design pattern Singleton per garantire che esista solo un'istanza di queste classi durante l'esecuzione del programma.
+Il design pattern Singleton è stato implementato nascondendo il costruttore delle classi e definendo un metodo statico chiamato "getInstance" che restituisce l'unica istanza della classe.
+L'utilizzo di tale pattern risiede nel fatto di fornisce un unico punto di accesso per interagire con l'istanza delle classi control, semplificando l'utilizzo e la gestione delle funzionalità offerte da queste classi ed evitare la creazione di istanze multiple che potrebbero causare problemi di inconsistenza dei dati.
+
+L'utilizzo di questo design pattern ha portato a segnalazioni di warning da parte di SpotBugs, tuttavia, tali avvertenze sono state ignorate al fine di implementare correttamente il design pattern.
 <br>
 
 ## 6. Riepilogo del test
