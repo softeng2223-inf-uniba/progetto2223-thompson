@@ -1,0 +1,43 @@
+@startuml createGrid
+control InputController
+control GridController
+entity Grid
+entity Coordinate
+participant Direction
+autonumber
+activate InputController
+InputController -> GridController : newGrid()
+activate GridController
+create Grid
+GridController -> Grid : <<create>>
+GridController -> GridController : generateGrid()
+loop finchè piazza tutte le navi
+    GridController -> Coordinate : random()
+    activate Coordinate
+    Coordinate --> GridController : coordinata
+    deactivate Coordinate
+    GridController -> Direction : randomDirection()
+    activate Direction
+    Direction --> GridController : direzione
+    deactivate Direction
+    alt è possibile piazzare la nave
+        GridController -> GridController : placeShip()
+
+        GridController -> GridController : addShips()
+
+    else altrimenti
+        GridController -> Direction : rotate()
+        activate Direction
+        Direction --> GridController : direzione
+        deactivate Direction
+        alt è possibile piazzare la nave
+            GridController -> GridController : placeShip()
+
+            GridController -> GridController : addShip()
+
+        else non piazzarla
+        end
+    end
+end
+deactivate GridController
+@enduml

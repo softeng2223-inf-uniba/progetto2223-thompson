@@ -1,0 +1,92 @@
+@startuml playGame
+skinparam classAttributeIconSize 0
+abstract class InputBoundary <<boundary>>{
+    - {static} scanner : Scanner
+    # void playGame()
+    {abstract} + void printGrid()
+    {abstract} # void executeCommand()
+    {abstract} # void createGrid()
+    {abstract} # void setUpGame()
+    {abstract} # void printCurrentTime()
+    {abstract} # void quitGame()
+    {abstract} # int getCurrentTries()
+    {abstract} # int getTotalTries()
+    {abstract} # String fireShoot()
+    {abstract} # boolean isInGame()
+    {abstract} # boolean isGameFinish()
+}
+
+class InputController <<control>>{
+    - {static} CONTROLLER : InputController
+    - InputController()
+    + {static}InputController getInstance()
+
+}
+
+abstract class GridBoundary <<boundary>>{
+    #  void boundaryPrintCurrentGrid()
+    # void boundaryPrintGrid()
+}
+
+class GridController <<control>>{
+    - {static} CONTROLLER : GridController
+    - grid : Grid
+    + {static}GridController getInstance()
+    - GridController()
+    + void newGrid()
+    - void generateGrid()
+    + void printCurrentGrid()
+    + void printGrid()
+    + boolean isAllSunken()
+    + String hitCoordinate()
+}
+abstract class TimerBoundary <<boundary>>{
+    + void printCurrentTime()
+
+}
+
+class TimerController <<control>>{
+    - {static} CONTROLLER: TimerController
+    - timer : Timer
+    - maxTime: long
+    - startTime : long
+    - isRunning : boolean
+    + {static} TimerController getInstance()
+    - TimerController()
+    + boolean isRunning()
+    + void startGame()
+    + void stopTimer()
+
+}
+class Coordinate <<entity>>{
+    - row : Integer
+    - column : Column
+    + {static} Coordinate parse()
+    + boolean isValid()
+}
+
+enum Command {
+    + {static} Command parse()
+}
+
+enum Difficulty <<entity>>{
+    - {static} maxTries : Integer
+    - {static} failedTries : Integer
+    - {static} currentTries : Integer
+    - {static} gameDifficulty : Difficulty
+}
+
+InputBoundary <|-- InputController
+InputController "1" <-- InputController
+GridController "1" <-- GridController
+TimerController "1" <-- TimerController
+Difficulty "1" <-- Difficulty
+InputController ..> GridController
+InputController ..> TimerController
+InputController ..> Command
+InputController ..> Difficulty
+InputController ..> Coordinate
+GridBoundary..> Coordinate
+GridBoundary <|-- GridController
+TimerBoundary <|-- TimerController
+@enduml

@@ -8,13 +8,9 @@ La struttura della repository si presenta nel seguente modo:
 |    |-- workflows
 |    |      |-- docker_build&push.yml
 |    |      |-- gradle_build.yml
-|-- build
-|    |-- reports
-|    |      |-- checkstyle
-|    |      |-- spotbugs
-|    |      |-- tests/test
 |–– config
 |    |–– checkstyle
+|    |–– pmd
 |–– docs
 |    |–– Assegnazione progetto.md
 |    |–– CODE_OF_CONDUCT.md
@@ -39,20 +35,21 @@ La struttura della repository si presenta nel seguente modo:
 
 Nel seguito si dettagliano i ruoli dei diversi componenti:
 
-- `.github/workflows/ingsw2122.yml`: dettaglia le direttive per assicurare la *continuous integration* attraverso l’uso di GitHub Actions;
-- `build/`: ospita la sottocartella `reports/`, contenente gli output dei tool automatici di test e controllo di qualità;
-- `config/`: ospita i file di configurazione. L’unica configurazione di base richiesta è quella per il tool checkstyle;
-- `docs/`: ospita la documentazione di progetto, incluse le figure (nella sottocartella `img/`).
-  Il file `Report.md` verrà usato per redigere la relazione finale del progetto.
+- `.github/workflows/`: fornisce un workflow completo per automatizzare il processo di build del progetto utilizzando Gradle, seguito dalla creazione e dal push dell'immagine Docker nel registro GitHub Packages
+  - `docker_build&push.yml`: automatizza il processo di build del progetto utilizzando Gradle, la creazione e il push dell'immagine Docker nel registro GitHub Packages;
+  - `gradle_build.yml`: file di configurazione per un workflow di GitHub Actions;
+- `config/`: ospita i file di configurazione. Le uniche configurazioni di base richieste sono quelle per il tool checkstyle e pmd;
+- `docs/`: ospita la documentazione di progetto, incluse le immagini (nella sottocartella `img/`).
   La cartella raccoglie inoltre:
   - `Assegnazione progetto.md`: contenente la descrizione dettagliata del progetto assegnato;
   - `CODE_OF_CONDUCT.md`: contenente il codice di comportamento del gruppo;
   - `Guida per lo studente.md`: contenente la descrizione di tutti i passi di configurazione necessari per l'attivazione del flusso di lavoro a supporto dello sviluppo del progetto;
   - `ISPIRATORE.md`: contenente una breve biografia e principali contributi del personaggio a cui il gruppo si è ispirato per il nome: Ken Thompson;
+  - `Report.md`: contenente la relazione tecnica del progetto.
 - `gradle/`: ospita il `.jar` relativo al sistema di gestione delle dipendenze *Gradle*.
 - `lib`: include eventuali librerie esterne utilizzate dal progetto.
 - `res`: contiene risorse varie utilizzate dal sistema
-- `src`: cartella principale del progetto, in cui scrivere tutto il codice dell’applicazione. In `main/` ci saranno i file sorgente e `test/` conterrà i test di unità previsti.
+- `src`: cartella principale del progetto, in cui è presente tutto il codice dell’applicazione. In `main/` sono presenti i file sorgente e in `test/` i test di unità previsti.
 - `drawings/`: contiene tutti i diagrammi UML usati per descrivere il progetto.
 - `.gitignore`: specifica tutti i file che devono essere esclusi dal sistema di controllo versione.
 - `build.gradle`: esplicita le direttive e la configurazione di *Gradle*.
