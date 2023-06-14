@@ -1,0 +1,54 @@
+@startuml printGrid
+actor Actor
+boundary InputBoundary
+control InputController
+participant Command
+control GridController
+boundary GridBoundary
+entity Grid
+entity Ship
+autonumber
+Actor -// InputBoundary : /svelagriglia
+activate InputBoundary
+InputBoundary -> InputController : executeCommand()
+activate InputController
+InputController -> Command : parse()
+activate Command
+Command --> InputController : comando
+deactivate Command
+InputController -> InputBoundary : boundaryPrintGrid()
+InputBoundary -> InputController : printGrid()
+InputController -> GridController : printGrid()
+activate GridController
+GridController -> GridBoundary : boundaryPrintGrid()
+activate GridBoundary
+GridBoundary -> GridBoundary : setFormatters()
+GridBoundary -> GridBoundary : printLegend()
+GridBoundary -\\ Actor : legenda
+GridBoundary -> GridBoundary : printHeader()
+GridBoundary -\\ Actor : header griglia
+loop per ogni riga
+    GridBoundary -> GridBoundary : printSeparator()
+    GridBoundary -\\ Actor : separatore righe
+    GridBoundary -> GridBoundary : printIndexRow()
+    GridBoundary -\\ Actor : indice riga
+    loop per ogni colonna
+        GridBoundary -> GridBoundary : printCell()
+        alt se la cella è occupata
+            GridBoundary -> Grid: getShipColor()
+            activate Grid
+            Grid -> Ship : colorShip()
+            activate Ship
+            Ship --> Grid : nave colorata
+            deactivate Ship
+            deactivate Grid
+            GridBoundary -\\ Actor : nave colorata
+        else altrimenti
+            GridBoundary -\\ Actor : cella vuota
+        end
+    end
+end
+deactivate GridBoundary
+deactivate GridController
+deactivate InputController
+@enduml

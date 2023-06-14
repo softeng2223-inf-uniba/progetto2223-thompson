@@ -1,0 +1,77 @@
+@startuml printGrid
+skinparam classAttributeIconSize 0
+abstract class InputBoundary <<boundary>>{
+    - {static} scanner : Scanner
+    + {abstract} void printGrid()
+    # {abstract} boolean isInGame()
+}
+
+class InputController <<control>>{
+    - {static} CONTROLLER : InputController
+    - InputController()
+    + {static}InputController getInstance()
+}
+
+abstract class GridBoundary <<boundary>>{
+    # void boundaryPrintGrid()
+    - {static} void setFormatters()
+    - {static} void printLegend()
+    - {static} void printHeader()
+    - {static} void printSeparator()
+    - {static} void printIndexRow()
+    - {static} void printCell()
+}
+
+class GridController <<control>>{
+    - {static} CONTROLLER : GridController
+    - grid : Grid
+    - GridController()
+    + {static}GridController getInstance()
+    + void printGrid()
+}
+
+class Grid <<entity>>{
+    - size: Integer
+    - grid[][] : Cell
+    - ships : Map
+    + boolean isShipPlaced()
+    + String getShipColor()
+    + boolean isCellEmpty()
+}
+class Cell <<entity>> {
+    - state : State
+    - ship : Ship
+    + boolean isEmpty()
+}
+class Coordinate <<entity>>{
+    - row : Integer
+    - column : Column
+}
+enum Ship <<entity>>{
+    CACCIATORPEDINIERE
+    INCROCIATORE
+    CORAZZATA
+    PORTAEREI
+    ..
+    -color : String
+    + {static} String stringShip()
+    + String colorShip()
+}
+enum State <<entity>>{
+    VOID
+    SHIP
+    MISS
+    HIT
+}
+
+InputBoundary <|-- InputController
+InputController "1" <-- InputController
+GridController "1" <-- GridController
+InputController ..> GridController
+GridBoundary ..> Coordinate
+GridBoundary <|-- GridController
+Grid "1" <-- GridController
+Cell "*" <-- Grid
+Ship "1" <-- Cell
+State "1" <-- Cell
+@enduml

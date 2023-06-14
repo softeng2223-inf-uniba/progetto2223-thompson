@@ -1,0 +1,61 @@
+@startuml playGame
+actor Actor
+boundary InputBoundary
+control InputController
+control GridController
+boundary GridBoundary
+control TimerController
+entity Coordinate
+participant Command
+boundary TimerBoundary
+
+autonumber
+Actor -// InputBoundary : /gioca
+activate InputBoundary
+InputBoundary -> InputController : executeCommand()
+activate InputController
+InputController -> Command : parse()
+activate Command
+Command --> InputController : comando
+deactivate Command
+InputController -> InputBoundary : playGame()
+InputBoundary -> InputController : createGrid()
+InputController -> GridController : newGrid()
+activate GridController
+deactivate GridController
+InputController -> GridBoundary : printCurrentGrid()
+activate GridBoundary
+GridBoundary -\\ Actor : griglia
+deactivate GridBoundary
+InputBoundary -> InputController : setUpGame()
+InputController -> TimerController : startGame()
+activate TimerController
+
+loop Finchè non si vince o si perde o scade il tempo
+    Actor -// InputBoundary : coordinata
+    InputBoundary -> Coordinate : parse()
+    activate Coordinate
+    Coordinate --> InputController : coordinata
+    deactivate Coordinate
+    alt coordinata valida
+        InputBoundary-> InputController : fireShoot()
+        InputController -> GridController : hitCoordinate()
+        activate GridController
+        GridController -\\ Actor : risultato
+        deactivate GridController
+        InputController -> GridBoundary : printCurrentGrid()
+        activate GridBoundary
+        GridBoundary -\\ Actor : griglia
+        deactivate GridBoundary
+        InputBoundary-> InputController : printCurrentTime()
+        InputController -> TimerBoundary : printCurrentTime()
+        activate TimerBoundary
+        TimerBoundary -\\ Actor : tempo
+        deactivate TimerBoundary
+    else coordinata non valida
+        InputBoundary -\\ Actor : messaggio errore
+    end
+end
+deactivate InputController
+deactivate TimerController
+@enduml
