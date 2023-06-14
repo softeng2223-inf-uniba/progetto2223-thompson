@@ -61,7 +61,7 @@ class InputControllerTest {
      */
     @Test
     void testQuitGame() {
-        TimerController controller = TimerController.getIstance();
+        TimerController controller = TimerController.getInstance();
         controller.startGame();
         inputController.quitGame();
         assertFalse(inputController.isInGame(), "The game must be stopped");
@@ -164,7 +164,7 @@ class InputControllerTest {
      */
     @Test
     void testIsInGameTrue() {
-        TimerController controller = TimerController.getIstance();
+        TimerController controller = TimerController.getInstance();
         controller.startGame();
         assertTrue(inputController.isInGame(), "The game must be in progress");
     }
@@ -176,7 +176,7 @@ class InputControllerTest {
     void testIsInGameFalse() {
         GridController gridController = GridController.getInstance();
         gridController.newGrid();
-        TimerController timerController = TimerController.getIstance();
+        TimerController timerController = TimerController.getInstance();
         timerController.startGame();
         timerController.stopTimer();
         assertFalse(inputController.isInGame(), "The game must be not in progress");

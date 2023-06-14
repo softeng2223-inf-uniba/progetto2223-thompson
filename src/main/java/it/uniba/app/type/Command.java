@@ -235,7 +235,8 @@ public enum Command {
         if (input != null) {
             for (TypeCommand type : TypeCommand.VALUES) {
                 if (input.containsKey(type.getRegex())) {
-                    Command value = Command.fromString(input.get(type.getRegex()).remove(0), type.getRegex());
+                    Command value = Command.fromString(input.get(type.getRegex()).remove(0).toLowerCase(),
+                            type.getRegex());
                     if (value != null) {
                         if (input.get(type.getRegex()).size() == value.type.getMaxArgs()) {
                             result.put(value, new ArrayList<>(input.get(type.getRegex()).values()));
@@ -256,7 +257,7 @@ public enum Command {
         CONFIRM("y|yes|si|s", 0),
         DECLINE("n|no", 0),
         NOARG("(/[a-z]+)", 0),
-        NUMERO("(/[a-z]+) ([-|+]*[0-9][0-9]*)", 1);
+        NUMERO("(/[a-z]+)\\h[\\h]*([-|+]*[0-9][0-9]*)", 1);
 
         private final String regex;
         private final int maxArgs;

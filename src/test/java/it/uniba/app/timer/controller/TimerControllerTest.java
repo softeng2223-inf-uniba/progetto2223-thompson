@@ -29,8 +29,7 @@ class TimerControllerTest {
     @BeforeEach
     void setUp() {
         GridController gridController = GridController.getInstance();
-        TimerController timerController = TimerController.getIstance();
-        this.timerController = timerController;
+        this.timerController = TimerController.getInstance();
         gridController.newGrid();
         this.timerController.setMaxTime(MAX_TIME);
     }

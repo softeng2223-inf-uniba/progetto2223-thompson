@@ -26,7 +26,7 @@ public final class TimerController extends TimerBoundary {
     /**
      * Returns the instance of the TimerController class.
      */
-    public static TimerController getIstance() {
+    public static TimerController getInstance() {
         return CONTROLLER;
     }
 

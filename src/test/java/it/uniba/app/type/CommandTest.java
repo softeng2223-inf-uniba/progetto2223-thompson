@@ -108,7 +108,7 @@ class CommandTest {
     @Test
     void testParseArg() {
         String command = "/facile 500";
-        String regex = "(/[a-z]+) ([-|+]*[0-9][0-9]*)";
+        String regex = "(/[a-z]+)\\h[\\h]*([-|+]*[0-9][0-9]*)";
         Map<Command, List<String>> result = Command.parse(Parser.parseInput(command, Pattern.compile(regex)));
         assertTrue(result.containsKey(Command.EASY) && result.get(Command.EASY).contains("500"),
                 "The command must be EASY");
@@ -121,7 +121,7 @@ class CommandTest {
     @Test
     void testParseNull() {
         String command = "/facil 500";
-        String regex = "(/[a-z]+) ([-|+]*[1-9][0-9]*)";
+        String regex = "(/[a-z]+)\\h[\\h]*([-|+]*[0-9][0-9]*)";
         Map<Command, List<String>> result = Command.parse(Parser.parseInput(command, Pattern.compile(regex)));
         assertNull(result, "The command must be null");
     }

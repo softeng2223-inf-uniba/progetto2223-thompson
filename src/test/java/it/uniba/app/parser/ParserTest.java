@@ -44,7 +44,7 @@ class ParserTest {
     @Test
     void testParseInputMatch() {
         Map<String, Map<Integer, String>> result = Parser.parseInput(INPUT1, PATTERN1);
-        assertTrue(result.containsKey("Hello") && result.get("Hello").containsValue("hello"),
+        assertTrue(result.containsKey("Hello") && result.get("Hello").containsValue("Hello"),
                 "The result must contain the key Hello and the value hello");
     }
 
@@ -54,7 +54,7 @@ class ParserTest {
     @Test
     void testParseInputSinglePattern() {
         Map<String, Map<Integer, String>> result = Parser.parseInput(INPUT1, PATTERN1);
-        assertEquals("hello", result.get("Hello").get(0), "The result must contain the value hello");
+        assertEquals("Hello", result.get("Hello").get(0), "The result must contain the value hello");
     }
 
     /**

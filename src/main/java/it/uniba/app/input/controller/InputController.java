@@ -88,7 +88,7 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void quitGame() {
-        TimerController controller = TimerController.getIstance();
+        TimerController controller = TimerController.getInstance();
         controller.setRunning(false);
         controller.stopTimer();
     }
@@ -134,7 +134,7 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void setUpGame() {
-        TimerController controller = TimerController.getIstance();
+        TimerController controller = TimerController.getInstance();
         int tries = Difficulty.getMaxTries();
         Difficulty.setFailedTries(tries);
         Difficulty.setCurrentTries(0);
@@ -155,7 +155,7 @@ public final class InputController extends InputBoundary {
 
     @Override
     protected boolean isInGame() {
-        TimerController controller = TimerController.getIstance();
+        TimerController controller = TimerController.getInstance();
         return controller.isRunning();
     }
 
@@ -195,7 +195,7 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void setMaxMinuteTime(final int time) throws IllegalArgumentException {
-        TimerController controller = TimerController.getIstance();
+        TimerController controller = TimerController.getInstance();
         controller.setMaxTime(time);
     }
 
@@ -244,7 +244,7 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void printCurrentAndRemainingTime() {
-        TimerController controller = TimerController.getIstance();
+        TimerController controller = TimerController.getInstance();
         controller.printCurrentAndRemainingTime();
     }
 
@@ -283,7 +283,7 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void printCurrentTime() {
-        TimerController controller = TimerController.getIstance();
+        TimerController controller = TimerController.getInstance();
         controller.printCurrentTime();
     }
 
