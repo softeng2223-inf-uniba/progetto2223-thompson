@@ -237,6 +237,30 @@ L'utilizzo di questo design pattern ha portato a segnalazioni di warning da part
 [Torna all'indice](#indice)
 
 ## 6. Riepilogo del test
+I test sono stati eseguiti utilizzando il framework JUnit.
+Sono state create 14 test suite, per un totale di 154 test complessivi, tutti superati con successo.
+Ogni test suite è stata correttamente inserita nella cartella "test", rispettando la stessa struttura della cartella del codice sorgente. Ogni test suite corrisponde a una classe del codice sorgente ed è stata denominata "\<nomeclasse>Test.java", posizionandola nella cartella corrispondente.
+<div>
+   <table width="100%" height="100%" valign="center">
+   <tr><td>
+      <img src="./img/testResult.png"/>
+   </td><td>
+      <img src="./img/testDirectory.jpg"/>
+   </td>
+   </tr>
+   </table>
+</div>
+Per le classi entity e control, sono stati adottati principalmente criteri di tipo black box. Per ciascun metodo, il dominio dei dati in ingresso è stato suddiviso in classi di equivalenza e sono stati scelti valori appropriati per ciascuna classe. Per le classi boundary, non sono stati eseguiti test in quanto è stato applicato il principio di presentazione separata.
+<div>
+   <table width="100%" height="100%" valign="center">
+   <tr><td>
+      <img src="./img/blackBoxTest1.jpg"/>
+   </td><td>
+      <img src="./img/blackBoxTest2.jpg"/>
+   </td>
+   </tr>
+   </table>
+</div>
 
 [Torna all'indice](#indice)
 
