@@ -176,10 +176,10 @@ Dopo aver eseguito il comando docker pull copiandolo da GitHub Packages, Il coma
 [Torna all'indice](#indice)
 
 ## 5. OO Design
-   5.1 [Diagrammi delle classi](#5.1-diagrammi-delle-classi)<br>
-   5.2 [Diagrammi di sequenza](#5.2-diagrammi-di-sequenza)<br>
-   5.3 [Decisioni prese](#5.3-decisioni-prese)<br>
-   5.4 [Design Pattern](#5.4-design-pattern)<br>
+5.1 [Diagrammi delle classi](#51-diagrammi-delle-classi)<br>
+5.2 [Diagrammi di sequenza](#52-diagrammi-di-sequenza)<br>
+5.3 [Decisioni prese](#53-decisioni-prese)<br>
+5.4 [Design Pattern](#54-design-pattern)<br>
 ## 5.1 Diagrammi delle classi
 ![playGameClassDiagram](./img/playGameClassDiagram.png) 
 <br>
@@ -222,6 +222,8 @@ Successivamente, abbiamo ristrutturato il codice per evitare questa duplicazione
 ![printExtraLargeGrid](./img/printExtraLargeGrid.png)
 <br>
 ![printCurrentGrid](./img/printCurrentGrid.png)
+
+Per le classi boundary, è stato scelto di dichiararle astratte al fine di minimizzare il numero di dipendenze. Inoltre, sono stati definiti eventuali metodi astratti per calcolare risultati o modificare il flusso di controllo, permettendo ai controller di implementarli. Questa scelta aiuta a separare la parte di presentazione dalla logica di business e favorisce una maggiore modularità nel sistema.
 
 [Torna all'indice](#indice)
 
