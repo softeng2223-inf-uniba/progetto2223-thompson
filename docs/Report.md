@@ -7,10 +7,6 @@
 3. [Requisiti Specifici](#3-requisiti-specifici)
 4. [System Design](#4-system-design)
 5. [OO Design](#5-oo-design)
-   - 5.1 [Diagrammi delle classi](#5.1-diagrammi-delle-classi)
-   - 5.2 [Diagrammi di sequenza](#5.2-diagrammi-di-sequenza)
-   - 5.3 [Decisioni prese](#5.3-decisioni-prese)
-   - 5.4 [Design Pattern](#5.4-design-pattern)
 6. [Riepilogo del test](#6-riepilogo-del-test)
 7. [Manuale Utente](#7-manuale-utente)
 8. [Processo di sviluppo e organizzazione del lavoro](#8-Processo-di-sviluppo-e-organizzazione-del-lavoro)
@@ -180,7 +176,10 @@ Dopo aver eseguito il comando docker pull copiandolo da GitHub Packages, Il coma
 [Torna all'indice](#indice)
 
 ## 5. OO Design
-
+   5.1 [Diagrammi delle classi](#5.1-diagrammi-delle-classi)<br>
+   5.2 [Diagrammi di sequenza](#5.2-diagrammi-di-sequenza)<br>
+   5.3 [Decisioni prese](#5.3-decisioni-prese)<br>
+   5.4 [Design Pattern](#5.4-design-pattern)<br>
 ## 5.1 Diagrammi delle classi
 ![playGameClassDiagram](./img/playGameClassDiagram.png) 
 <br>
@@ -391,9 +390,9 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 
 ## 8. Processo di sviluppo e organizzazione del lavoro
    Per il processo di sviluppo e l'organizzazione del lavoro abbiamo seguito il metodo <strong>SCRUM</strong>, dove i progetti fanno progessi in una serie di consegne dette Sprint. Nel nostro caso, il metodo SCRUM prevede l'intero progetto suddiviso in 3 sprint (Sprint 0, 1, 2). Ogni sprint ha una durata di circa 2 settimane e ognuno di questi sprint è stato svolto seguendo il [codice di condotta](./CODE_OF_CONDUCT.md).
-   Abbiamo suddiviso il lavoro in base alle user story, e relativi user points, fornite dal product owner, in modo da avere un carico di lavoro equilibrato fra tutti i componenti del team.
+   Abbiamo suddiviso il lavoro in base alle user story fornite dal product owner, in modo da avere un carico di lavoro equilibrato fra tutti i componenti del team.
 
-   I meeting periodici venivano svolti ogni 2 giorni, escludendo la domenica, ed avevano la durata di massimo 15 minuti ed erano effettuati attraverso un canale privato di comunicazione sulla piattaforma Discord, questi meeting periodici avevano l'obiettivo di aggiornarci su eventuali problemi riscontrati, <strong>Discord</strong> veniva anche usato per la condivisione di file utili, oppure per programmare e confrontarsi. Inoltre per le comunicazioni veloci durante l'arco della giornata è stata usata un'altra piattaforma di comunicazione, Whatsapp. 
+   Durante le pause o prima delle lezioni, si tenevano anche meeting non periodici. Questi incontri aggiuntivi avevano l'obiettivo di discutere e risolvere eventuali problemi. I meeting periodici venivano svolti ogni 2/3 giorni, escludendo la domenica, ed avevano la durata di massimo 30 minuti ed erano effettuati attraverso un canale privato di comunicazione sulla piattaforma Discord, questi meeting periodici avevano l'obiettivo di aggiornarci su eventuali problemi riscontrati, <strong>Discord</strong> veniva anche usato per la condivisione di file utili, oppure per programmare e confrontarsi. In alcuni giorni abbiamo anche deciso di lavorare tutti insieme in presenza o anche su Discord. Inoltre per le comunicazioni veloci durante l'arco della giornata è stata usata un'altra piattaforma di comunicazione, Whatsapp. 
 
    Discord mette a disposizione la creazione di diversi canli (vocali e testuali) per questo il server è stato strutturato come segue per mantere l'ordine e l'organizzazione:
 
@@ -413,12 +412,12 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
    <li> <i>Git</i> per il controllo di versione;</li>
    <li> <i>GitHub Flow</i> per Branching e Pull Request;</li>
    </ul>
-  Per la stesura del progetto, come ambiente di sviluppo, abbiamo usato l'IDE Eclipse con i sui plug-in: Gradle, Junit, Checkstyle, Spotbugs.
+  Per la stesura del progetto, come ambiente di sviluppo, abbiamo usato l'IDE Visual Studio Code con i sui plug-in: Gradle, GitHub e PlantUML.
   Altri Software utilizzati sono stati: 
    <ul>
-   <li> <i>Visual Studio Code</i> per i file markdown;</li>
+   <li> <i>Miro</i> per l'analisi retrospettiva;</li>
    <li> <i>Docker</i> per l'utilizzo di container;</li>
-   <li> <i>Star-Uml</i> per i diagrammi di dominio e delle classi;</li>
+   <li> <i>PlantUML</i> per i diagrammi di dominio e delle classi;</li>
    <li> <i>Netbeans</i> come IDE secondario;</li>
    </ul>
 
