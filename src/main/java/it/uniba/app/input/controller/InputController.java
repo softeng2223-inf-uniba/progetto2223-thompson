@@ -21,6 +21,9 @@ import it.uniba.app.type.Difficulty;
 public final class InputController extends InputBoundary {
     private static final InputController CONTROLLER = new InputController();
 
+    /**
+     * Returns the instance of the InputController class.
+     */
     public static InputController getInstance() {
         return CONTROLLER;
     }

@@ -27,6 +27,9 @@ public final class GridController extends GridBoundary {
      */
     private Grid grid;
 
+    /**
+     * Returns the instance of the GridController class.
+     */
     public static GridController getInstance() {
         return CONTROLLER;
     }

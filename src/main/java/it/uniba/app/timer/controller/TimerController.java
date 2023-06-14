@@ -23,6 +23,9 @@ public final class TimerController extends TimerBoundary {
     private boolean isRunning;
     private long startTime;
 
+    /**
+     * Returns the instance of the TimerController class.
+     */
     public static TimerController getIstance() {
         return CONTROLLER;
     }
