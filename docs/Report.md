@@ -5,8 +5,14 @@
 1. [Introduzione](#1-introduzione)
 2. [Modello di Dominio](#2-modello-di-dominio)
 3. [Requisiti Specifici](#3-requisiti-specifici)
+   - 3.1 [Requisiti funzionali](#31-requisiti-funzionali)
+   - 3.2 [Requisiti non funzionali](#32-requisiti-non-funzionali)
 4. [System Design](#4-system-design)
 5. [OO Design](#5-oo-design)
+   - 5.1 [Diagrammi delle classi](#51-diagrammi-delle-classi)
+   - 5.2 [Diagrammi di sequenza](#52-diagrammi-di-sequenza)
+   - 5.3 [Decisioni prese](#53-decisioni-prese)
+   - 5.4 [Design Pattern](#54-design-pattern)
 6. [Riepilogo del test](#6-riepilogo-del-test)
 7. [Manuale Utente](#7-manuale-utente)
 8. [Processo di sviluppo e organizzazione del lavoro](#8-Processo-di-sviluppo-e-organizzazione-del-lavoro)
@@ -230,9 +236,9 @@ Per le classi boundary, è stato scelto di dichiararle astratte al fine di minim
 ## 5.4 Design pattern
 Per le classi control (InputController, GridController, TimerController), è stato applicato il design pattern Singleton per garantire che esista solo un'istanza di queste classi durante l'esecuzione del programma.
 Il design pattern Singleton è stato implementato nascondendo il costruttore delle classi e definendo un metodo statico chiamato "getInstance" che restituisce l'unica istanza della classe.
-L'utilizzo di tale pattern risiede nel fatto di fornisce un unico punto di accesso per interagire con l'istanza delle classi control, semplificando l'utilizzo e la gestione delle funzionalità offerte da queste classi ed evitare la creazione di istanze multiple che potrebbero causare problemi di inconsistenza dei dati.
+La scelta di tale pattern risiede nel fatto di fornire un unico punto di accesso per interagire con le istanze delle classi control, semplificando l'utilizzo e la gestione delle funzionalità offerte da queste classi ed evitare la creazione di istanze multiple che potrebbero causare problemi di inconsistenza dei dati.
 
-L'utilizzo di questo design pattern ha portato a segnalazioni di warning da parte di SpotBugs, tuttavia, tali avvertenze sono state ignorate al fine di implementare correttamente il design pattern.
+L'utilizzo di questo design pattern ha portato a segnalazioni di warning da parte di SpotBugs. Tuttavia, tali avvertenze sono state ignorate al fine di implementare correttamente il design pattern.
 <br>
 
 [Torna all'indice](#indice)

@@ -49,7 +49,7 @@ Nel seguito si dettagliano i ruoli dei diversi componenti:
 - `gradle/`: ospita il `.jar` relativo al sistema di gestione delle dipendenze *Gradle*.
 - `lib`: include eventuali librerie esterne utilizzate dal progetto.
 - `res`: contiene risorse varie utilizzate dal sistema
-- `src`: cartella principale del progetto, in cui scrivere tutto il codice dell’applicazione. In `main/` ci saranno i file sorgente e `test/` che contiene i test di unità previsti.
+- `src`: cartella principale del progetto, in cui è presente tutto il codice dell’applicazione. In `main/` sono presenti i file sorgente e in `test/` i test di unità previsti.
 - `drawings/`: contiene tutti i diagrammi UML usati per descrivere il progetto.
 - `.gitignore`: specifica tutti i file che devono essere esclusi dal sistema di controllo versione.
 - `build.gradle`: esplicita le direttive e la configurazione di *Gradle*.
