@@ -182,13 +182,19 @@ Dopo aver eseguito il comando docker pull copiandolo da GitHub Packages, Il coma
 ## 5. OO Design
 
 ## 5.1 Diagrammi delle classi
-![playGameClassDiagram](./img/playGameClassDiagram.png)
+![playGameClassDiagram](./img/playGameClassDiagram.png) 
+<br>
 ![generateGridClassDiagram](./img/generateGridClassDiagram.png)
+<br>
 ![printGridClassDiagram](./img/printGridClassDiagram.png)
+
+[Torna all'indice](#indice)
 
 ## 5.2 Diagrammi di sequenza
 ![playGameSequenceDiagram](./img/playGameSequenceDiagram.png)
+<br>
 ![generateGridSequenceDiagram](./img/generateGridSequenceDiagram.png)
+<br>
 ![printGridSequenceDiagram](./img/printGridSequenceDiagram.png)
 
 [Torna all'indice](#indice)
@@ -211,9 +217,14 @@ Inizialmente, avevamo creato metodi separati per ciascuna dimensione della grigl
 Successivamente, abbiamo ristrutturato il codice per evitare questa duplicazione e semplificare la gestione futura del codice.
 
 ![printStandardGrid](./img/printStandardGrid.png)
+<br>
 ![printLargeGrid](./img/printLargeGrid.png)
+<br>
 ![printExtraLargeGrid](./img/printExtraLargeGrid.png)
+<br>
 ![printCurrentGrid](./img/printCurrentGrid.png)
+
+[Torna all'indice](#indice)
 
 ## 5.4 Design pattern
 Per le classi control (InputController, GridController, TimerController), è stato applicato il design pattern Singleton per garantire che esista solo un'istanza di queste classi durante l'esecuzione del programma.
@@ -222,6 +233,8 @@ L'utilizzo di tale pattern risiede nel fatto di fornisce un unico punto di acces
 
 L'utilizzo di questo design pattern ha portato a segnalazioni di warning da parte di SpotBugs, tuttavia, tali avvertenze sono state ignorate al fine di implementare correttamente il design pattern.
 <br>
+
+[Torna all'indice](#indice)
 
 ## 6. Riepilogo del test
 
