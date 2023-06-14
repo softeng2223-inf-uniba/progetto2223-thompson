@@ -96,8 +96,9 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void createGrid() {
-        GridController.INSTANCE.newGrid();
-        GridController.INSTANCE.printCurrentGrid();
+        GridController controller = GridController.getInstance();
+        controller.newGrid();
+        controller.printCurrentGrid();
     }
 
     /**
@@ -107,7 +108,8 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected boolean isGameFinish() {
-        return GridController.INSTANCE.isAllSunken();
+        GridController controller = GridController.getInstance();
+        return controller.isAllSunken();
     }
 
     /**
@@ -118,8 +120,9 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected String fireShoot(final Coordinate coordinate) {
-        String result = GridController.INSTANCE.hitCoordinate(coordinate);
-        GridController.INSTANCE.printCurrentGrid();
+        GridController controller = GridController.getInstance();
+        String result = controller.hitCoordinate(coordinate);
+        controller.printCurrentGrid();
         return result;
     }
 
@@ -158,7 +161,8 @@ public final class InputController extends InputBoundary {
      */
     @Override
     public void printGrid() {
-        GridController.INSTANCE.printGrid();
+        GridController controller = GridController.getInstance();
+        controller.printGrid();
     }
 
     /**
@@ -168,7 +172,8 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void printCurrentGrid() {
-        GridController.INSTANCE.printCurrentGrid();
+        GridController controller = GridController.getInstance();
+        controller.printCurrentGrid();
     }
 
     /**
@@ -176,7 +181,8 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void showShips() {
-        GridController.INSTANCE.showShips();
+        GridController controller = GridController.getInstance();
+        controller.showShips();
     }
 
     /**

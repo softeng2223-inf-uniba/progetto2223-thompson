@@ -174,11 +174,11 @@ class InputControllerTest {
      */
     @Test
     void testIsInGameFalse() {
-        GridController gridController = GridController.INSTANCE;
+        GridController gridController = GridController.getInstance();
         gridController.newGrid();
-        TimerController controller = TimerController.getIstance();
-        controller.startGame();
-        controller.stopTimer();
+        TimerController timerController = TimerController.getIstance();
+        timerController.startGame();
+        timerController.stopTimer();
         assertFalse(inputController.isInGame(), "The game must be not in progress");
     }
 
