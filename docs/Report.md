@@ -186,7 +186,7 @@ Dopo aver eseguito il comando docker pull copiandolo da GitHub Packages, Il coma
 5.2 [Diagrammi di sequenza](#52-diagrammi-di-sequenza)<br>
 5.3 [Decisioni prese](#53-decisioni-prese)<br>
 5.4 [Design Pattern](#54-design-pattern)<br>
-## 5.1 Diagrammi delle classi
+### 5.1 Diagrammi delle classi
 ![playGameClassDiagram](./img/playGameClassDiagram.png) 
 <br>
 ![generateGridClassDiagram](./img/generateGridClassDiagram.png)
@@ -195,7 +195,7 @@ Dopo aver eseguito il comando docker pull copiandolo da GitHub Packages, Il coma
 
 [Torna all'indice](#indice)
 
-## 5.2 Diagrammi di sequenza
+### 5.2 Diagrammi di sequenza
 ![playGameSequenceDiagram](./img/playGameSequenceDiagram.png)
 <br>
 ![generateGridSequenceDiagram](./img/generateGridSequenceDiagram.png)
@@ -204,7 +204,7 @@ Dopo aver eseguito il comando docker pull copiandolo da GitHub Packages, Il coma
 
 [Torna all'indice](#indice)
 
-## 5.3 Decisioni prese
+### 5.3 Decisioni prese
 Durante la progettazione delle classi, abbiamo seguito il principio di information hiding per garantire l'incapsulamento dei dati. 
 Tutte le variabili di istanza sono state dichiarate private, assicurando che i dati siano accessibili solo attraverso metodi getter e setter. 
 Solo le operazioni necessarie sono state dichiarate pubbliche, mentre le altre sono state mantenute private o protette.<br>
@@ -233,7 +233,7 @@ Per le classi boundary, è stato scelto di dichiararle astratte al fine di minim
 
 [Torna all'indice](#indice)
 
-## 5.4 Design pattern
+### 5.4 Design pattern
 Per le classi control (InputController, GridController, TimerController), è stato applicato il design pattern Singleton per garantire che esista solo un'istanza di queste classi durante l'esecuzione del programma.
 Il design pattern Singleton è stato implementato nascondendo il costruttore delle classi e definendo un metodo statico chiamato "getInstance" che restituisce l'unica istanza della classe.
 La scelta di tale pattern risiede nel fatto di fornire un unico punto di accesso per interagire con le istanze delle classi control, semplificando l'utilizzo e la gestione delle funzionalità offerte da queste classi ed evitare la creazione di istanze multiple che potrebbero causare problemi di inconsistenza dei dati.
@@ -272,6 +272,11 @@ Per le classi entity e control, sono stati adottati principalmente criteri di ti
 [Torna all'indice](#indice)
 
 ## 7. Manuale utente
+
+7.1 [Comandi invocabili prima della partita](#71-comandi-invocabili-prima-della-partita) <br>
+7.2 [Comandi invocabili durante la partita](#72-comandi-invocabili-durante-la-partita) <br>
+7.3 [Comandi invocabili sempre](#73-comandi-invocabili-sempre)
+
 Il gioco si svolge su una griglia, dove il sistema posiziona in modo casuale le navi all'inizio di una partita. L'obiettivo del giocatore è quello di indovinare la posizione delle navi nemiche e cercare di affondarle attaccando le caselle della griglia prima che finisca il tempo a disposizione.<br>
 Il gioco termina quando tutte le navi nemiche sono state affondate, quando si esauriscono le mosse disponibili o quando scade il tempo a disposizione.
 Il numero di mosse disponibili dipende dalla modalità di gioco scelta, che può essere facile, media o difficile.<br>
@@ -282,10 +287,6 @@ Il giocatore vince se affonda tutte le navi prima di esaurire le mosse e prima c
 
 Per interagire con il gioco, viene utilizzata l'interfaccia a riga di comando (CLI). Di seguito si riporta l'elenco dei comandi utilizzabili e una breve descrizione del loro funzionamento, suddivisi in tre sezioni:
 <br>
-
-7.1 [Comandi invocabili prima della partita](#71-comandi-invocabili-prima-della-partita) <br>
-7.2 [Comandi invocabili durante la partita](#72-comandi-durante-la-partita) <br>
-7.3 [Comandi invocabili sempre](#73-comandi-invocabili-sempre)
 
 
 ### 7.1 Comandi invocabili prima della partita
@@ -318,6 +319,8 @@ Per interagire con il gioco, viene utilizzata l'interfaccia a riga di comando (C
 
 <li>Al comando <strong>/tempo</strong> <i>numero</i> l’applicazione risponde con OK e imposta a <i>numero</i> il numero minuti a disposizione per giocare.</li><br>
 
+![tempo](./img/tempo.jpg)
+
 <li>Al comando <strong>/gioca</strong> se nessuna partita è in corso l'applicazione imposta causalmente le navi, in orizzontale o in verticale, mostra la griglia vuota e si predispone a ricevere il primo tentativo o altri comandi.</li><br>
 
 ![gioca](./img/gioca.jpg)
@@ -344,6 +347,8 @@ Per interagire con il gioco, viene utilizzata l'interfaccia a riga di comando (C
 Qualunque sia l’esito del tentativo, l’applicazione mostra la griglia con le navi colpite parzialmente o affondate, il numero di tentativi già effettuati e il tempo trascorso.<br>
 La partita termina con successo se il tentativo ha affondato l’ultima nave.<br>
 La partita termina con insuccesso se è stato raggiunto il numero massimo di tentativi falliti o se è scaduto il tempo di gioco.</li><br>
+
+![tentativo](./img/tentativo.jpg)
 
 <li>Al comando <strong>/mostratempo</strong> l’applicazione risponde visualizzando il numero di minuti trascorsi nel gioco e il numero di minuti ancora disponibili.</li><br>
 
