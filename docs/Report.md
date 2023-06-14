@@ -276,25 +276,12 @@ Il giocatore vince se affonda tutte le navi prima di esaurire le mosse e prima c
 Per interagire con il gioco, viene utilizzata l'interfaccia a riga di comando (CLI). Di seguito si riporta l'elenco dei comandi utilizzabili e una breve descrizione del loro funzionamento, suddivisi in tre sezioni:
 <br>
 
-7.1 [Comandi pre inizio partita](#71-comandi-pre-inizio-partita) <br>
-7.2 [Comandi post inizio partita](#72-comandi-post-inizio-partita) <br>
+7.1 [Comandi invocabili prima della partita](#71-comandi-invocabili-prima-della-partita) <br>
+7.2 [Comandi invocabili durante la partita](#72-comandi-durante-la-partita) <br>
 7.3 [Comandi invocabili sempre](#73-comandi-invocabili-sempre)
 
 
-### 7.1 Comandi pre inizio partita
-
-<ul>
-<li>Al comando <strong>/help</strong> o invocando l'app con flag <i>--help</i> o <i>-h</i> il risultato è una descrizione concisa, che normalmente appare all'avvio del programma, seguita dalla lista di comandi disponibili, uno per riga, come da esempio successivo:<br>
-<ul>
-<li>	gioca<br></li>
-<li>	esci<br></li>
-</ul>
-</li><br>
-Si nota che se all'avvio del programma viene specificato un flag diverso da <i>--help</i> o <i>-h</i>, o vengono specificati più flag, l'applicazione risponde con un messaggio di errore e si chiude restituendo il controllo al sistema operativo. In caso non sia specificato alcun flag, l'applicazione mostra esclusivamente l'introduzione e si predispone a ricevere comandi.<br>
-<br>
-
-![help](./img/help.jpg)
-
+### 7.1 Comandi invocabili prima della partita
 <li>Al comando <strong>/facile</strong> l’applicazione risponde con OK e imposta a 50 il numero massimo di tentativi falliti.</li><br>
 
 <li>Al comando <strong>/medio</strong> l’applicazione risponde con OK e imposta a 30 il numero massimo di tentativi falliti (è il default).</li><br>
@@ -312,11 +299,15 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 
 <li>Al comando <strong>/tentativi</strong> <i>numero</i> l’applicazione risponde con OK e imposta a <i>numero</i> il numero massimo di tentativi falliti.</li><br>
 
+![tentFacMedDiff](img/tentFacMedDiff.JPG)
+
 <li>Al comando <strong>/standard</strong> l’applicazione risponde con OK e imposta a 10x10 la dimensione della griglia (è il default).</li><br>
 
 <li>Al comando <strong>/large</strong> l’applicazione risponde con OK e imposta a 18x18 la dimensione della griglia.</li><br>
 
 <li>Al comando <strong>/extralarge</strong> l’applicazione risponde con OK e imposta a 26x26 la dimensione della griglia.</li><br>
+
+![stLargeExtrala](img/stLargeExtrala.JPG)
 
 <li>Al comando <strong>/tempo</strong> <i>numero</i> l’applicazione risponde con OK e imposta a <i>numero</i> il numero minuti a disposizione per giocare.</li><br>
 
@@ -324,7 +315,7 @@ Si nota che se all'avvio del programma viene specificato un flag diverso da <i>-
 
 ![gioca](./img/gioca.jpg)
 
-### 7.2 Comandi post inizio partita
+### 7.2 Comandi invocabili durante la partita
 
 <li>Al comando <strong>/mostranavi</strong> l’applicazione risponde visualizzando, per ogni tipo di nave, la dimensione in quadrati e il numero di esemplari da affondare:<br>
 <ul>
@@ -353,6 +344,8 @@ La partita termina con insuccesso se è stato raggiunto il numero massimo di ten
 
 <li>Al comando <strong>/mostratentativi</strong> l’applicazione risponde visualizzando il numero di tentativi già effettuati, il numero di tentativi falliti e il numero massimo di tentativi falliti.</li><br>
 
+![tempoGrigliaTentativi](img/tempoGrigliaTentativi.JPG)
+
 <li>Al comando <strong>/svelagriglia</strong> l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate da 1 a 10 e le colonne numerate da A a J, e tutte le navi posizionate.</li><br>
 
 ![svelagriglia](./img/svelagriglia.jpg)
@@ -364,7 +357,20 @@ La partita termina con insuccesso se è stato raggiunto il numero massimo di ten
 </ul>
 </li><br>
 
+![abbandona](./img/abbandona.jpg)
+
 ### 7.3 Comandi invocabili sempre
+<ul>
+<li>Al comando <strong>/help</strong> o invocando l'app con flag <i>--help</i> o <i>-h</i> il risultato è una descrizione concisa, che normalmente appare all'avvio del programma, seguita dalla lista di comandi disponibili, uno per riga, come da esempio successivo:<br>
+<ul>
+<li>	gioca<br></li>
+<li>	esci<br></li>
+</ul>
+</li><br>
+Si nota che se all'avvio del programma viene specificato un flag diverso da <i>--help</i> o <i>-h</i>, o vengono specificati più flag, l'applicazione risponde con un messaggio di errore e si chiude restituendo il controllo al sistema operativo. In caso non sia specificato alcun flag, l'applicazione mostra esclusivamente l'introduzione e si predispone a ricevere comandi.<br>
+<br>
+
+![help](./img/help.jpg)
 
 <li>Al comando <strong>/mostralivello</strong> l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti.</li><br>
 
