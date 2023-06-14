@@ -19,7 +19,7 @@ import it.uniba.app.type.Difficulty;
  * Unit tests for the InputController class.
  */
 class InputControllerTest {
-    private InputController inputController = InputController.CONTROLLER;
+    private InputController inputController = InputController.getInstance();
     private static final int TRIES = 500;
     private static final int MAX_TRIES = 10;
     private static final int CURRENT_TRIES = 3;

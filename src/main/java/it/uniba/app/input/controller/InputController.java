@@ -19,7 +19,11 @@ import it.uniba.app.type.Difficulty;
  * interface, interprets them, and executes the corresponding actions.
  */
 public final class InputController extends InputBoundary {
-    public static final InputController CONTROLLER = new InputController();
+    private static final InputController CONTROLLER = new InputController();
+
+    public static InputController getInstance() {
+        return CONTROLLER;
+    }
 
     private InputController() {
     }

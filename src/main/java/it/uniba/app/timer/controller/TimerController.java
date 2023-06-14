@@ -74,9 +74,10 @@ public final class TimerController extends TimerBoundary {
      * Stops the game timer if it is running.
      */
     public void stopTimer() {
+        InputController controller = InputController.getInstance();
         if (isRunning) {
             endTimerMessage();
-            InputController.CONTROLLER.printGrid();
+            controller.printGrid();
             setRunning(false);
         }
         timer.cancel();

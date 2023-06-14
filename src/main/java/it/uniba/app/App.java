@@ -18,7 +18,7 @@ public final class App {
      * @param args command line arguments
      */
     public static void main(final String[] args) {
-        InputController controller = InputController.CONTROLLER;
+        InputController controller = InputController.getInstance();
         boolean helpFlag = controller.controlFlag(args);
         controller.start(helpFlag);
     }
