@@ -15,13 +15,17 @@ import java.util.concurrent.TimeUnit;
  * time.
  */
 public final class TimerController extends TimerBoundary {
-    public static final TimerController CONTROLLER = new TimerController();
+    private static final TimerController CONTROLLER = new TimerController();
     private static final long DEFAULT_TIME = 10;
     private static final int SECONDS_IN_MINUTE = 60;
     private long maxTime = TimeUnit.MILLISECONDS.convert(DEFAULT_TIME, TimeUnit.MINUTES);
     private Timer timer;
     private boolean isRunning;
     private long startTime;
+
+    public static TimerController getIstance() {
+        return CONTROLLER;
+    }
 
     private TimerController() {
     }

@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import it.uniba.app.grid.controller.GridController;
 import it.uniba.app.grid.type.Column;
 import it.uniba.app.grid.type.Coordinate;
 import it.uniba.app.grid.type.SizeGrid;
@@ -60,7 +61,8 @@ class InputControllerTest {
      */
     @Test
     void testQuitGame() {
-        TimerController.CONTROLLER.startGame();
+        TimerController controller = TimerController.getIstance();
+        controller.startGame();
         inputController.quitGame();
         assertFalse(inputController.isInGame(), "The game must be stopped");
     }
@@ -162,7 +164,8 @@ class InputControllerTest {
      */
     @Test
     void testIsInGameTrue() {
-        TimerController.CONTROLLER.startGame();
+        TimerController controller = TimerController.getIstance();
+        controller.startGame();
         assertTrue(inputController.isInGame(), "The game must be in progress");
     }
 
@@ -171,8 +174,11 @@ class InputControllerTest {
      */
     @Test
     void testIsInGameFalse() {
-        TimerController.CONTROLLER.startGame();
-        TimerController.CONTROLLER.stopTimer();
+        GridController gridController = GridController.INSTANCE;
+        gridController.newGrid();
+        TimerController controller = TimerController.getIstance();
+        controller.startGame();
+        controller.stopTimer();
         assertFalse(inputController.isInGame(), "The game must be not in progress");
     }
 
