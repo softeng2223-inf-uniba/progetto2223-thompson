@@ -23,8 +23,9 @@ class GridControllerTest {
      */
     @BeforeEach
     public void setUp() {
+        GridController controller = GridController.getInstance();
         SizeGrid.setSize(SizeGrid.LARGE);
-        GridController.INSTANCE.newGrid();
+        controller.newGrid();
     }
 
     /**
@@ -33,8 +34,9 @@ class GridControllerTest {
      */
     @Test
     void testHitCoordinate() {
+        GridController controller = GridController.getInstance();
         Coordinate coord = new Coordinate(Column.A, ROW);
-        String result = GridController.INSTANCE.hitCoordinate(coord);
+        String result = controller.hitCoordinate(coord);
         assertTrue(result.equals("acqua") || result.equals("colpito") || result.equals("colpito e affondato"),
                 "The result is \"acqua\", \"colpito\", or \"colpito e affondato\"");
     }
@@ -45,9 +47,10 @@ class GridControllerTest {
      */
     @Test
     void testHitCoordinateSameCoordinate() {
+        GridController controller = GridController.getInstance();
         Coordinate coord = new Coordinate(Column.A, ROW);
-        String result = GridController.INSTANCE.hitCoordinate(coord);
-        result = GridController.INSTANCE.hitCoordinate(coord);
+        String result = controller.hitCoordinate(coord);
+        result = controller.hitCoordinate(coord);
         assertEquals("Questa mossa \u00E8 stata gi\u00E0 effettuata", result,
                 "The result is \"Questa mossa \u00E8 stata gi\u00E0 effettuata\"");
     }
@@ -58,10 +61,11 @@ class GridControllerTest {
      */
     @Test
     void testHitCoordinateOutGridCoordinate() {
+        GridController controller = GridController.getInstance();
         assertThrows(IndexOutOfBoundsException.class,
                 () -> {
                     Coordinate coord = new Coordinate(Column.A, SizeGrid.getSize() + 1);
-                    GridController.INSTANCE.hitCoordinate(coord);
+                    controller.hitCoordinate(coord);
                 }, "The coordinate is out of the grid");
     }
 
@@ -71,6 +75,7 @@ class GridControllerTest {
      */
     @Test
     void testIsAllSunken() {
-        assertFalse(GridController.INSTANCE.isAllSunken(), "Not all ships are sunk");
+        GridController controller = GridController.getInstance();
+        assertFalse(controller.isAllSunken(), "Not all ships are sunk");
     }
 }

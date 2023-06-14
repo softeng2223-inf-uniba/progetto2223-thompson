@@ -15,13 +15,20 @@ import java.util.concurrent.TimeUnit;
  * time.
  */
 public final class TimerController extends TimerBoundary {
-    public static final TimerController CONTROLLER = new TimerController();
+    private static final TimerController CONTROLLER = new TimerController();
     private static final long DEFAULT_TIME = 10;
     private static final int SECONDS_IN_MINUTE = 60;
     private long maxTime = TimeUnit.MILLISECONDS.convert(DEFAULT_TIME, TimeUnit.MINUTES);
     private Timer timer;
     private boolean isRunning;
     private long startTime;
+
+    /**
+     * Returns the instance of the TimerController class.
+     */
+    public static TimerController getInstance() {
+        return CONTROLLER;
+    }
 
     private TimerController() {
     }
@@ -70,9 +77,10 @@ public final class TimerController extends TimerBoundary {
      * Stops the game timer if it is running.
      */
     public void stopTimer() {
+        InputController controller = InputController.getInstance();
         if (isRunning) {
             endTimerMessage();
-            InputController.CONTROLLER.printGrid();
+            controller.printGrid();
             setRunning(false);
         }
         timer.cancel();

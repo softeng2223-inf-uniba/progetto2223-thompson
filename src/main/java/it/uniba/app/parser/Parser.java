@@ -26,7 +26,7 @@ public abstract class Parser {
         try {
             Map<String, Map<Integer, String>> result = new HashMap<>();
             for (Pattern pattern : patterns) {
-                Matcher matcher = pattern.matcher(input.toLowerCase().trim());
+                Matcher matcher = pattern.matcher(input.trim());
                 if (matcher.matches()) {
                     result.put(pattern.pattern(), new HashMap<>());
                     if (matcher.groupCount() == 0) {

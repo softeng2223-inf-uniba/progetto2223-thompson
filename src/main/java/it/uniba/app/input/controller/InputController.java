@@ -19,7 +19,14 @@ import it.uniba.app.type.Difficulty;
  * interface, interprets them, and executes the corresponding actions.
  */
 public final class InputController extends InputBoundary {
-    public static final InputController CONTROLLER = new InputController();
+    private static final InputController CONTROLLER = new InputController();
+
+    /**
+     * Returns the instance of the InputController class.
+     */
+    public static InputController getInstance() {
+        return CONTROLLER;
+    }
 
     private InputController() {
     }
@@ -81,8 +88,9 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void quitGame() {
-        TimerController.CONTROLLER.setRunning(false);
-        TimerController.CONTROLLER.stopTimer();
+        TimerController controller = TimerController.getInstance();
+        controller.setRunning(false);
+        controller.stopTimer();
     }
 
     /**
@@ -91,8 +99,9 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void createGrid() {
-        GridController.INSTANCE.newGrid();
-        GridController.INSTANCE.printCurrentGrid();
+        GridController controller = GridController.getInstance();
+        controller.newGrid();
+        controller.printCurrentGrid();
     }
 
     /**
@@ -102,7 +111,8 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected boolean isGameFinish() {
-        return GridController.INSTANCE.isAllSunken();
+        GridController controller = GridController.getInstance();
+        return controller.isAllSunken();
     }
 
     /**
@@ -113,8 +123,9 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected String fireShoot(final Coordinate coordinate) {
-        String result = GridController.INSTANCE.hitCoordinate(coordinate);
-        GridController.INSTANCE.printCurrentGrid();
+        GridController controller = GridController.getInstance();
+        String result = controller.hitCoordinate(coordinate);
+        controller.printCurrentGrid();
         return result;
     }
 
@@ -123,10 +134,11 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void setUpGame() {
+        TimerController controller = TimerController.getInstance();
         int tries = Difficulty.getMaxTries();
         Difficulty.setFailedTries(tries);
         Difficulty.setCurrentTries(0);
-        TimerController.CONTROLLER.startGame();
+        controller.startGame();
     }
 
     /**
@@ -143,7 +155,8 @@ public final class InputController extends InputBoundary {
 
     @Override
     protected boolean isInGame() {
-        return TimerController.CONTROLLER.isRunning();
+        TimerController controller = TimerController.getInstance();
+        return controller.isRunning();
     }
 
     /**
@@ -151,7 +164,8 @@ public final class InputController extends InputBoundary {
      */
     @Override
     public void printGrid() {
-        GridController.INSTANCE.printGrid();
+        GridController controller = GridController.getInstance();
+        controller.printGrid();
     }
 
     /**
@@ -161,7 +175,8 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void printCurrentGrid() {
-        GridController.INSTANCE.printCurrentGrid();
+        GridController controller = GridController.getInstance();
+        controller.printCurrentGrid();
     }
 
     /**
@@ -169,7 +184,8 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void showShips() {
-        GridController.INSTANCE.showShips();
+        GridController controller = GridController.getInstance();
+        controller.showShips();
     }
 
     /**
@@ -179,7 +195,8 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void setMaxMinuteTime(final int time) throws IllegalArgumentException {
-        TimerController.CONTROLLER.setMaxTime(time);
+        TimerController controller = TimerController.getInstance();
+        controller.setMaxTime(time);
     }
 
     /**
@@ -227,7 +244,8 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void printCurrentAndRemainingTime() {
-        TimerController.CONTROLLER.printCurrentAndRemainingTime();
+        TimerController controller = TimerController.getInstance();
+        controller.printCurrentAndRemainingTime();
     }
 
     /**
@@ -265,7 +283,8 @@ public final class InputController extends InputBoundary {
      */
     @Override
     protected void printCurrentTime() {
-        TimerController.CONTROLLER.printCurrentTime();
+        TimerController controller = TimerController.getInstance();
+        controller.printCurrentTime();
     }
 
     /**

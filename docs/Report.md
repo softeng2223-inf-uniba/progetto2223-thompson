@@ -7,6 +7,10 @@
 3. [Requisiti Specifici](#3-requisiti-specifici)
 4. [System Design](#4-system-design)
 5. [OO Design](#5-oo-design)
+   - 5.1 [Diagrammi delle classi](#5.1-diagrammi-delle-classi)
+   - 5.2 [Diagrammi di sequenza](#5.2-diagrammi-di-sequenza)
+   - 5.3 [Decisioni prese](#5.3-decisioni-prese)
+   - 5.4 [Design Pattern](#5.4-design-pattern)
 6. [Riepilogo del test](#6-riepilogo-del-test)
 7. [Manuale Utente](#7-manuale-utente)
 8. [Processo di sviluppo e organizzazione del lavoro](#8-Processo-di-sviluppo-e-organizzazione-del-lavoro)
@@ -176,6 +180,59 @@ Dopo aver eseguito il comando docker pull copiandolo da GitHub Packages, Il coma
 [Torna all'indice](#indice)
 
 ## 5. OO Design
+
+## 5.1 Diagrammi delle classi
+![playGameClassDiagram](./img/playGameClassDiagram.png) 
+<br>
+![generateGridClassDiagram](./img/generateGridClassDiagram.png)
+<br>
+![printGridClassDiagram](./img/printGridClassDiagram.png)
+
+[Torna all'indice](#indice)
+
+## 5.2 Diagrammi di sequenza
+![playGameSequenceDiagram](./img/playGameSequenceDiagram.png)
+<br>
+![generateGridSequenceDiagram](./img/generateGridSequenceDiagram.png)
+<br>
+![printGridSequenceDiagram](./img/printGridSequenceDiagram.png)
+
+[Torna all'indice](#indice)
+
+## 5.3 Decisioni prese
+Durante la progettazione delle classi, abbiamo seguito il principio di information hiding per garantire l'incapsulamento dei dati. 
+Tutte le variabili di istanza sono state dichiarate private, assicurando che i dati siano accessibili solo attraverso metodi getter e setter. 
+Solo le operazioni necessarie sono state dichiarate pubbliche, mentre le altre sono state mantenute private o protette.<br>
+
+L'applicazione del principio di information hiding ha comportato una riduzione dell'accoppiamento tra le classi.
+Questo significa che una classe esterna può interagire con un oggetto senza conoscere i dettagli interni della sua implementazione.
+Ciò promuove una maggiore modularità e facilita la manutenzione del sistema.<br>
+
+Inoltre, abbiamo suddiviso le classi in Entity/Control/Boundary, seguendo il principio di presentazione separata.
+Ogni classe ha una responsabilità specifica: le classi entity si occupano di implementare i concetti chiave del gioco, le classi control contengono gran parte della logica del programma, mentre le classi boundary gestiscono l'interazione con l'utente e la presentazione dei dati.<br>
+
+Abbiamo applicato il principio DRY in diverse occasioni per migliorare la manutenibilità, la leggibilità e la gestione del codice.
+Ad esempio, abbiamo consolidato diversi metodi utilizzati per la stampa della griglia in un unico metodo, riducendo così la duplicazione di codice.
+Inizialmente, avevamo creato metodi separati per ciascuna dimensione della griglia, che differivano solo per alcune righe di codice relative alla formattazione.
+Successivamente, abbiamo ristrutturato il codice per evitare questa duplicazione e semplificare la gestione futura del codice.
+
+![printStandardGrid](./img/printStandardGrid.png)
+<br>
+![printLargeGrid](./img/printLargeGrid.png)
+<br>
+![printExtraLargeGrid](./img/printExtraLargeGrid.png)
+<br>
+![printCurrentGrid](./img/printCurrentGrid.png)
+
+[Torna all'indice](#indice)
+
+## 5.4 Design pattern
+Per le classi control (InputController, GridController, TimerController), è stato applicato il design pattern Singleton per garantire che esista solo un'istanza di queste classi durante l'esecuzione del programma.
+Il design pattern Singleton è stato implementato nascondendo il costruttore delle classi e definendo un metodo statico chiamato "getInstance" che restituisce l'unica istanza della classe.
+L'utilizzo di tale pattern risiede nel fatto di fornisce un unico punto di accesso per interagire con l'istanza delle classi control, semplificando l'utilizzo e la gestione delle funzionalità offerte da queste classi ed evitare la creazione di istanze multiple che potrebbero causare problemi di inconsistenza dei dati.
+
+L'utilizzo di questo design pattern ha portato a segnalazioni di warning da parte di SpotBugs, tuttavia, tali avvertenze sono state ignorate al fine di implementare correttamente il design pattern.
+<br>
 
 [Torna all'indice](#indice)
 

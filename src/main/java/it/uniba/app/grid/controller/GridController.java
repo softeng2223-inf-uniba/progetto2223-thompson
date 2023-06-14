@@ -20,12 +20,19 @@ import it.uniba.app.type.Difficulty;
  * and various operations related to the grid.
  */
 public final class GridController extends GridBoundary {
-    public static final GridController INSTANCE = new GridController();
+    private static final GridController CONTROLLER = new GridController();
 
     /**
      * Grid of the current match.
      */
     private Grid grid;
+
+    /**
+     * Returns the instance of the GridController class.
+     */
+    public static GridController getInstance() {
+        return CONTROLLER;
+    }
 
     private GridController() {
     }
